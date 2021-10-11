@@ -1,0 +1,14 @@
+# Indicate that our dependencies on any libs are USED.
+
+liblddbg.so -	$USED;
+libld.so -	$USED;
+libelf.so -	$USED;
+libc.so -	$USED;
+
+# We need to drag some symbols to satisfy liblddbg.so.3.
+
+{
+	global:
+		strrchr;
+		strtok;
+};

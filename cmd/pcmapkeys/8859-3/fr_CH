@@ -1,0 +1,226 @@
+# Copyright (c) 1993 Sun Microsystems, Inc.  All Rights Reserved.
+#
+#	"@(#)fr_CH	1.2	93/04/09 SMI"
+#
+# This mapfile is provided as example only. Sun Microsystems Inc.,
+# does not warrant that this file is error-free.
+#
+#	fr_CH.8859-3
+#
+# This mapping file is indended for use with the 8859-3 loadfont.
+# It implements a keyboard mapping which allows the use of the
+# 8859-3 code set, using the Danish Standards Association's recommended
+# short names (but not their "compose" value), such that the "compose" key,
+# followed by the 2-letter code, generates the character.
+# In addition, more "graphic" combinations are also encoded
+# (for instance, E^ in addition to E>, and ?? in addition to ?I
+# for inverted question mark). The graphic characters are encoded
+# using special names.
+#
+# The dead keys are: diaeresis, tilde, circumflex, apostrophe
+# (not acute-accent) and grave accent
+# Note that internal code for non-spacing grave is 0x101.
+#
+# Input mapping is not done 
+input:
+#
+# The toggle key is CTRL t.
+#
+toggle: 0x14
+#
+# 
+dead: '''  	# apostrophe (acute accent)
+' '  '''       # <apostrophe>
+'A'  0xc1          # A acute
+'E'  0xc9          # E acute
+'I'  0xcd          # I acute
+'O'  0xd3          # O acute
+'U'  0xda          # U acute
+'a'  0xe1          # a acute
+'e'  0xe9          # e acute
+'i'  0xed          # i acute
+'o'  0xf3          # o acute
+'u'  0xfa          # u acute
+#
+dead: 0x101			# grave accent
+' '  '`'          # <grave-accent>
+'A'  0xc0          # A grave
+'E'  0xc8          # E grave
+'I'  0xcc          # I grave
+'O'  0xd2          # O grave
+'U'  0xd9          # U grave
+'a'  0xe0          # a grave
+'e'  0xe8          # e grave
+'i'  0xec          # i grave
+'o'  0xf2          # o grave
+'u'  0xf9          # u grave
+#
+dead: 0xa8 		# umlaut/diaeresis
+' ' 0xa8  	# <diaeresis>
+'A'  0xc4          # A diaeresis
+'E'  0xcb          # E diaeresis
+'I'  0xcf          # I diaresis
+'O'  0xd6          # O diaeresis
+'U'  0xdc          # U diaeresis
+'a'  0xe4          # a diaeresis
+'e'  0xeb          # e diaeresis
+'i'  0xef          # i diaresis
+'o'  0xf6          # o diaeresis
+'u'  0xfc          # u diaeresis
+#
+dead: '~' 	# tilde
+' ' '~'	# <tilde accent>
+'N' 0xd1	# <N-tilde>
+'n' 0xf1	# <n-tilde>
+#
+dead: '^'	# circumflex
+' ' '^'		# <circumflex>
+'A'  0xc2          # A circumflex
+'C'  0xc6          # C circumflex
+'E'  0xca          # E circumflex
+'G'  0xd8          # G circumflex
+'H'  0xa6          # H circumflex
+'I'  0xce          # I circumflex
+'J'  0xac          # J circumflex
+'O'  0xd4          # O circumflex
+'S'  0xde          # S circumflex
+'U'  0xdb          # U circumflex
+'a'  0xe2          # a circumflex
+'c'  0xe6          # c circumflex
+'e'  0xea          # e circumflex
+'g'  0xf8          # g circumflex
+'h'  0xb6          # h circumflex
+'i'  0xee          # i circumflex
+'j'  0xbc          # j circumflex
+'o'  0xf4          # o circumflex
+'s'  0xfe          # s circumflex
+'u'  0xfb          # u circumflex
+#
+#
+# The "compose" character is CTRL x.
+# Compose mode: 
+# 
+compose:  0x18      # unfrequently used ctrl character
+#			
+' '  ' '  0xa0          # no breaking space 
+' '  '2'  0xb2          # superscript 2
+' '  '3'  0xb3          # superscript 3
+'#'  '$'  0xa4          # currency symbol
+'$'  '$'  0xa7          # paragraph sign
+'''  ' '  '''          # apostrophe
+'''  '''  0xb4          # acute accent
+'''  '('  0xa2          # breve
+'''  ','  0xb8          # cedilla
+'''  '.'  0xff          # dot above
+'''  ':'  0xa8          # diaeresis
+'('  'U'  0x98          # intersection
+'*'  '*'  0xb0          # degree
+'*'  '.'  0xd7          # multiplication sign
+'*'  'X'  0xd7          # multiplication sign
+','  ','  0xb8          # cedilla
+'-'  '-'  0xad          # soft hyphen
+'-'  ':'  0xf7          # division sign
+'.'  '.'  0xb7          # middle dot
+'.'  'M'  0xb7          # middle dot
+'1'  'h'  0xbd          # vulgar fraction 1/2
+'A'  '!'  0xc0          # A grave
+'A'  ':'  0xc4          # A diaeresis
+'C'  ','  0xc7          # C cedilla
+'C'  '.'  0xc5          # C dot above
+'C'  'u'  0xa4          # currency symbol
+'D'  'G'  0xb0          # degree
+'E'  '!'  0xc8          # E grave
+'E'  ':'  0xcb          # E diaeresis
+'G'  '('  0xab          # G breve
+'G'  '.'  0xd5          # G dot above
+'H'  '/'  0xa1          # H stroke
+'I'  '!'  0xcc          # I grave
+'I'  '.'  0xa9          # I dot above
+'I'  ':'  0xcf          # I diaresis
+'L'  '-'  0xa3          # pound sign
+'M'  'y'  0xb5          # micro
+'N'  'S'  0xa0          # no breaking space 
+'O'  '!'  0xd2          # O grave
+'O'  ':'  0xd6          # O diaeresis
+'P'  'd'  0xa3          # pound sign
+'S'  ','  0xaa          # S cedilla
+'S'  'E'  0xa7          # paragraph sign
+'U'  '!'  0xd9          # U grave
+'U'  '('  0xdd          # U breve
+'U'  ':'  0xdc          # U diaeresis
+'Z'  '.'  0xaf          # Z dot
+'a'  '!'  0xe0          # a grave
+'a'  ':'  0xe4          # a diaeresis
+'b'  't'  0x94          # "Bottom T intersection" (_|_)
+'c'  ','  0xe7          # c cedilla
+'c'  '.'  0xe5          # c dot
+'e'  '!'  0xe8          # e grave
+'e'  ':'  0xeb          # e diaeresis
+'g'  '.'  0xf5          # g dot
+'h'  '/'  0xb1          # h stroke
+'h'  'l'  0x97          # "Horizontal Line"
+'i'  ' '  0xb9          # I without dot
+'i'  '!'  0xec          # i grave
+'i'  '.'  0xb9          # Dotless i
+'i'  ':'  0xef          # i diaresis
+'l'  'l'  0x93          # "Lower Left Corner" (|_)
+'l'  'r'  0x99          # "Lower Right Corner" (_|)
+'l'  't'  0x96          # "Left T Intersection" (|-)
+'o'  '!'  0xf2          # o grave
+'o'  ':'  0xf6          # o diaeresis
+'p'  's'  0xa3          # pound sign
+'r'  't'  0x91          # "Right T Intersection" (-|)
+'s'  ','  0xba          # s cedilla
+'s'  's'  0xdf          # German double s
+'u'  '!'  0xf9          # u grave
+'u'  '('  0xfd          # u breve
+'u'  ':'  0xfc          # u diaeresis
+'u'  'l'  0x9a          # "Upper Left Corner" (|~)
+'u'  'r'  0x92          # "Upper Right Corner" (~|)
+'u'  't'  0x95          # "Upper T intersection" (~|~)
+'u'  '|'  0xb5          # micro
+'v'  'l'  0x90          # "Vertical Line" (-)
+'x'  't'  0x98          # "Middle Cross(Intersection" (-|-)
+'z'  '.'  0xbf          # z dot above
+#
+#
+# The following output section maps '9b' (an ANSI CSI code,
+# which unfortunately is also an IBM character) such that
+# it prints.
+#
+output:
+0x9b	0x1b 0x9b
+#
+# scan codes for fr_CH
+scancodes:
+#      NORM    SHIFT     ALT   ALT_SHIFT
+0x2     '1'     '+'     '|'     '|'
+0x3     '2'     '"'     '@'|C   '@'|C
+0x4     '3'     '*'     '#'     '#'
+0x5     '4'     0xe7    '4'|N   0xe7|N
+0x6     '5'     '%'     '5'|N   '%'|N
+0x7     '6'     '&'     0xa0    0xa0
+0x8     '7'     '/'     '|'     '|'
+0x9     '8'     '('     'c'    'c'
+0xa     '9'     ')'     '9'|N   ')'|N
+0xb     '0'     '='     '0'|N   '='|N
+0xc     '`'     '?'     '''     -
+0xd     '^'|C   0x101   '~'     '~'
+0x15	'z'|C   'Z'|C   'z'|N   'Z'|N
+0x1a    0xe8    0xfc    '['|C   '['|C
+0x1b    0xa8    '!'     ']'|C   ']'|C
+0x27    0xe9    0xf6    0xe9|N  0xf6|N
+0x28    0xe0    0xe4    '{'     '{'
+0x29    0xa7    0xb0    0xa7|N  0xb0|N
+0x2b    '$'     0xa3    '}'     '}'
+0x2c    'y'|C   'Y'|C   'y'|N   'Y'|N
+0x56    '<'     '>'     '\'|C   '\'|C
+0x33    ','     ';'     ','|N   ';'|N
+0x34    '.'     ':'     '.'|N   ':'|N
+0x35    '-'     '_'|C   '-'|N   '_'|N
+#
+#
+# map CTRL SHIFT F1  to be 0x18 for the compose character key
+F37     0x18
+# map CTRL SHIFT F2 to be 0x14 for the toggle key
+F38     0x14

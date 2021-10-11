@@ -1,0 +1,20 @@
+# Copyright (c) 1993 Sun Microsystems, Inc.  All Rights Reserved.
+#
+#	"@(#)README	1.1	93/03/02 SMI"
+#
+
+The software described in this subdirectory has been contributed by
+users. Sun Microsystems, Inc. does not warrant either the correctness
+or the useability of this software.
+
+The source files in this section are delivered for information purposes
+only. They are in the POSIX.2 'localedef' format, using character
+symbolic names. With the exception of the collation definition, which
+can be used in 'colldef', the other category sources must be translated
+from the symbolic format to absolute encoding.
+
+New source files can be created using the compose file and the
+appropriate dead/* file(s). The user must manually create the correct
+scancode section, if none of the current scancode sections are
+applicable.  The same is true for the input and output sections (see
+pcmapkeys(1)).

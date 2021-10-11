@@ -1,0 +1,37 @@
+#	Copyright (c) 1990-93 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)prototype_com	1.8	94/03/13 (c) Sun Microsystems, Inc.
+#
+# This required package information file contains a list of package contents.
+# The 'pkgmk' command uses this file to identify the contents of a package
+# and their location on the development machine when building the package.
+# Can be created via a text editor or through use of the 'pkgproto' command.
+
+#!search <pathname pathname ...>	# where to find pkg objects
+#!include <filename>			# include another 'prototype' file
+#!default <mode> <owner> <group>	# default used if not specified on entry
+#!<param>=<value>			# puts parameter in pkg environment
+
+# packaging files
+i pkginfo
+i copyright
+i depend
+#
+# source locations relative to the prototype file
+#
+# SUNWsxr
+#
+d none etc 775 root sys
+d none etc/init.d 775 root sys
+f none etc/init.d/sxcmem 544 root sys
+d none etc/rcS.d 775 root sys
+l none etc/rcS.d/S00sxcmem=../../etc/init.d/sxcmem
+d none platform 755 root sys
+d none platform/sun4m 755 root sys
+d none platform/sun4m/kernel 755 root sys
+d none platform/sun4m/kernel/drv 755 root sys
+f none platform/sun4m/kernel/drv/cgfourteen 0755 root sys
+f none platform/sun4m/kernel/drv/sx 0755 root sys
+f none platform/sun4m/kernel/drv/sx_cmem 0755 root sys
+f none platform/sun4m/kernel/drv/sx_cmem.conf 0644 root sys

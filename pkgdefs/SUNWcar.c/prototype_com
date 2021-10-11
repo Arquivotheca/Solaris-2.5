@@ -1,0 +1,54 @@
+#	Copyright (c) 1990-93 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)prototype_com	1.42	95/03/23 (c) Sun Microsystems, Inc.
+#
+# This required package information file contains a list of package contents.
+# The 'pkgmk' command uses this file to identify the contents of a package
+# and their location on the development machine when building the package.
+# Can be created via a text editor or through use of the 'pkgproto' command.
+
+#!search <pathname pathname ...>	# where to find pkg objects
+#!include <filename>			# include another 'prototype' file
+#!default <mode> <owner> <group>	# default used if not specified on entry
+#!<param>=<value>			# puts parameter in pkg environment
+
+# packaging files
+i pkginfo
+i copyright
+#
+# source locations relative to the prototype file
+#
+# SUNWcar.c
+#
+d none platform 755 root sys
+d none platform/sun4c 755 root sys
+f none platform/sun4c/ufsboot 644 root sys
+f none platform/sun4c/kadb 644 root sys
+d none platform/sun4c/kernel 755 root sys
+d none platform/sun4c/kernel/drv 755 root sys
+f none platform/sun4c/kernel/drv/dma 755 root sys
+f none platform/sun4c/kernel/drv/eeprom 755 root sys
+f none platform/sun4c/kernel/drv/fd 755 root sys
+f none platform/sun4c/kernel/drv/profile.conf 644 root sys
+f none platform/sun4c/kernel/drv/rootnex 755 root sys
+f none platform/sun4c/kernel/drv/sbus 755 root sys
+f none platform/sun4c/kernel/drv/sbusmem 755 root sys
+f none platform/sun4c/kernel/drv/sbusmem.conf 644 root sys
+f none platform/sun4c/kernel/drv/stc 755 root sys
+f none platform/sun4c/kernel/drv/stc.conf 644 root sys
+f none platform/sun4c/kernel/drv/zs 755 root sys
+f none platform/sun4c/kernel/drv/zsh 755 root sys
+f none platform/sun4c/kernel/drv/zsh.conf 644 root sys
+d none platform/sun4c/kernel/misc 755 root sys
+f none platform/sun4c/kernel/misc/obpsym 755 root sys
+d none platform/sun4c/kernel/strmod 755 root sys
+f none platform/sun4c/kernel/strmod/kb 755 root sys
+f none platform/sun4c/kernel/unix 755 root sys
+s none platform/SUNW,Sun_4_20=sun4c
+s none platform/SUNW,Sun_4_25=sun4c
+s none platform/SUNW,Sun_4_40=sun4c
+s none platform/SUNW,Sun_4_50=sun4c
+s none platform/SUNW,Sun_4_60=sun4c
+s none platform/SUNW,Sun_4_65=sun4c
+s none platform/SUNW,Sun_4_75=sun4c

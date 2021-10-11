@@ -1,0 +1,58 @@
+Answer to question #1:  How to get a new patch ID.
+
+   getpatch@raid.Corp
+
+Answer to question #2:  Who to send patches to.
+
+   The SunSoft Patch Manager is Alex.Simonovich@Corp.  You can
+   coordinate with him to deliver the patch.  A deliver utility
+   does exist.  Actually, it looks like two delivery utilities
+   exist.  I'm not sure which one you should use or what the 
+   differences are.  We use submitpatch, I believe.  See:
+
+   benet:/benet/Sustaining/PatchTools/{submitpatch, sunsoftsubmitpatch}
+
+Answer to unasked question #3 about how to generate README.patchid files:
+
+   See benet:/benet/Sustaining/PatchTools/{genreadme, genreadme_style_guide}
+
+Hope this helps.  Good luck.
+
+Claire
+
+------- End of Forwarded Message
+
+brian, i'll show you how i make patches for online: backup.  this
+should be pretty similar to what you'll need to do.
+
+once we've done that, here's what i would do.
+
+    email getpatch@raid.corp.  this will get you your own unique
+    	patchid.
+
+    make a directory whose name is the patchid, including a minor
+    	number, e.g. 101176 is your patch id, mkdir 101176-01.
+
+    copy /net/benet.eng/benet/Sustaining/PatchTools/{installpatch,backoutpatch}
+    	to your new directory.
+
+    get the goods to make your package.  this will include the
+    	patched binaries, etc.  it should be a subset of your already
+    	existing package.
+
+    strip out the prototype file for your package, so that it includes
+    	only the stuff you're patching.
+
+    do a `pkgmk'.  ask julian taylor (the package god) if you run into
+    	any problems.
+
+    do a `cp -r /var/spool/pkg/SUNWnwcl 101176-01' (or whatever).
+
+    do a /net/benet.eng/benet/Sustaining/PatchTools/genreadme to make
+        a readme file to go into 101176-01.
+
+    talk to alex simonovich about handing it off!  he should know
+    	about test issues, etc.
+
+- sam
+

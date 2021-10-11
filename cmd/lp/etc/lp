@@ -1,0 +1,24 @@
+#!/bin/sh
+#ident	"@(#)lp	1.4	92/09/29 SMI"	/* SVr4.0 1.6	*/
+
+##########
+#
+# The first argument tells what to do.
+##########
+
+state=$1
+
+set `who -r`
+case $state in
+
+'start')
+	if [ $9 = "2" -o $9 = "3" ]
+	then
+		exit
+	fi
+	[ -f /usr/lib/lpsched ] && /usr/lib/lpsched
+	;;
+'stop')
+	[ -f /usr/lib/lpshut ] && /usr/lib/lpshut
+	;;
+esac

@@ -1,0 +1,31 @@
+#
+#	Copyright (c) 1994 by Sun Microsystems, Inc.
+#
+#ident	"@(#)Makefile.targ	1.4	94/07/06 SMI"
+#
+
+pics/%.o:	../common/%.c
+		$(COMPILE.c) -o $@ $<
+		$(POST_PROCESS_O)
+
+$(DYNLIB):	$(MAPFILE)
+
+$(LIBLINKS):
+		-$(RM) $@; $(SYMLINK) $(DYNLIB) $@
+
+delete:
+		$(RM) $(DYNLIB)
+
+# Special target for native builds (ie. when we need to build a version of ld
+# to build a version of ld :-).
+ 
+native:		$(SGSPROTO)/$(DYNLIB)
+
+$(SGSPROTO)/$(DYNLIB): \
+		pics .WAIT $$(PICS)
+		$(CC) -o $@ -dy -G $(DYNFLAGS) $(PICS) $(LDLIBS)
+		$(POST_PROCESS_SO)
+		-@$(RM) $(SGSPROTO)/$(LIBLINKS);
+		$(SYMLINK) $(DYNLIB) $(SGSPROTO)/$(LIBLINKS)
+
+include		../../../../lib/Makefile.targ

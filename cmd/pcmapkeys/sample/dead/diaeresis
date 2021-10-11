@@ -1,0 +1,22 @@
+# Copyright (c) 1993 Sun Microsystems, Inc.  All Rights Reserved.
+#
+#	"@(#)diaeresis	1.1	93/03/02 SMI"
+#
+dead: <diaeresis> 		# umlaut/diaeresis
+' ' <diaeresis>  	# <diaeresis>
+'A'  <A-diaeresis>          # A diaeresis
+'E'  <E-diaeresis>          # E diaeresis
+'I'  <I-diaeresis>          # I diaresis
+'J'  <IOTA-diaeresis>          # Iota diaeresis
+'O'  <O-diaeresis>          # O diaeresis
+'U'  <U-diaeresis>          # U diaeresis
+'V'  <UPSILON-diaeresis>          # Upsilon diaeresis
+'a'  <a-diaeresis>          # a diaeresis
+'e'  <e-diaeresis>          # e diaeresis
+'i'  <i-diaeresis>          # i diaresis
+'j'  <iota-diaeresis>          # iota diaeresis
+'o'  <o-diaeresis>          # o diaeresis
+'u'  <u-diaeresis>          # u diaeresis
+'v'  <upsilon-diaeresis>          # upsilon diaeresis
+'y'  <y-diaeresis>          # y diaeresis
+#

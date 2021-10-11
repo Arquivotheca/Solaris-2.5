@@ -1,0 +1,13 @@
+#!/bin/sh
+#
+#ident	"@(#)preremove	1.1	92/04/08 SMI"
+#
+# Copyright (c) 1992 by Sun Microsystems, Inc.
+#
+#
+#	remove the libcrypt.a symlink
+#
+
+rm -f $BASEDIR/usr/lib/libcrypt.a
+
+exit 0

@@ -1,0 +1,241 @@
+#!/bin/sh
+#
+#pragma	ident	"@(#)inc.flg	1.18	95/04/11 SMI"
+#
+
+#
+# This file brings down all that is needed to build just 
+# SCSI Subsystem.
+#
+
+find_files "s.*.h"	\
+	usr/src/uts/sun/sys/scsi \
+	usr/src/uts/sun/sys/fc4
+
+find_files "s.*"	\
+	usr/src/uts/sparc/esp	\
+	usr/src/uts/sparc/fas	\
+	usr/src/uts/sparc/isp	\
+	usr/src/uts/sparc/pln	\
+	usr/src/uts/sparc/scsi	\
+	usr/src/uts/sparc/sd	\
+	usr/src/uts/sparc/ssd	\
+	usr/src/uts/sparc/st
+
+echo_file usr/src/uts/sun/os/classes
+echo_file usr/src/uts/sun/os/driver_aliases
+echo_file usr/src/uts/sun/os/name_to_major
+
+echo_file  usr/src/Makefile.master
+echo_file  usr/src/req.flg
+echo_file  usr/src/Makefile.psm
+echo_file  usr/src/Makefile.psm.targ
+echo_file  usr/src/uts/Makefile
+echo_file  usr/src/uts/Makefile.targ
+echo_file  usr/src/uts/Makefile.uts
+echo_file  usr/src/uts/common/Makefile.files
+echo_file  usr/src/uts/common/Makefile.rules
+echo_file  usr/src/uts/common/io/scsi/conf/scsi_confdata.c
+echo_file  usr/src/uts/common/io/scsi/conf/scsi_confsubr.c
+echo_file  usr/src/uts/common/io/scsi/impl/scsi_capabilities.c
+echo_file  usr/src/uts/common/io/scsi/impl/scsi_control.c
+echo_file  usr/src/uts/common/io/scsi/impl/scsi_data.c
+echo_file  usr/src/uts/common/io/scsi/impl/scsi_hba.c
+echo_file  usr/src/uts/common/io/scsi/impl/scsi_resource.c
+echo_file  usr/src/uts/common/io/scsi/impl/scsi_subr.c
+echo_file  usr/src/uts/common/io/scsi/impl/scsi_transport.c
+echo_file  usr/src/uts/common/sys/aio_req.h
+echo_file  usr/src/uts/common/sys/auxv.h
+echo_file  usr/src/uts/common/sys/bitmap.h
+echo_file  usr/src/uts/common/sys/buf.h
+echo_file  usr/src/uts/common/sys/bustypes.h
+echo_file  usr/src/uts/common/sys/cdio.h
+echo_file  usr/src/uts/common/sys/class.h
+echo_file  usr/src/uts/common/sys/cmn_err.h
+echo_file  usr/src/uts/common/sys/condvar.h
+echo_file  usr/src/uts/common/sys/conf.h
+echo_file  usr/src/uts/common/sys/cpuvar.h
+echo_file  usr/src/uts/common/sys/cred.h
+echo_file  usr/src/uts/common/sys/ddi.h
+echo_file  usr/src/uts/common/sys/ddi_implfuncs.h
+echo_file  usr/src/uts/common/sys/ddidmareq.h
+echo_file  usr/src/uts/common/sys/ddimapreq.h
+echo_file  usr/src/uts/common/sys/ddipropdefs.h
+echo_file  usr/src/uts/common/sys/dditypes.h
+echo_file  usr/src/uts/common/sys/debug.h
+echo_file  usr/src/uts/common/sys/devops.h
+echo_file  usr/src/uts/common/sys/disp.h
+echo_file  usr/src/uts/common/sys/dki_lkinfo.h
+echo_file  usr/src/uts/common/sys/dklabel.h
+echo_file  usr/src/uts/common/sys/dl.h
+echo_file  usr/src/uts/common/sys/errno.h
+echo_file  usr/src/uts/common/sys/fcntl.h
+echo_file  usr/src/uts/common/sys/feature_tests.h
+echo_file  usr/src/uts/common/sys/file.h
+echo_file  usr/src/uts/common/sys/gprof.h
+echo_file  usr/src/uts/common/sys/ioccom.h
+echo_file  usr/src/uts/common/sys/ioctl.h
+echo_file  usr/src/uts/common/sys/isa_defs.h
+echo_file  usr/src/uts/common/sys/klwp.h
+echo_file  usr/src/uts/common/sys/kmem.h
+echo_file  usr/src/uts/common/sys/kstat.h
+echo_file  usr/src/uts/common/sys/lwp.h
+echo_file  usr/src/uts/common/sys/map.h
+echo_file  usr/src/uts/common/sys/mman.h
+echo_file  usr/src/uts/common/sys/modctl.h
+echo_file  usr/src/uts/common/sys/msacct.h
+echo_file  usr/src/uts/common/sys/mtio.h
+echo_file  usr/src/uts/common/sys/mutex.h
+echo_file  usr/src/uts/common/sys/nexusdefs.h
+echo_file  usr/src/uts/common/sys/open.h
+echo_file  usr/src/uts/common/sys/param.h
+echo_file  usr/src/uts/common/sys/pirec.h
+echo_file  usr/src/uts/common/sys/poll.h
+echo_file  usr/src/uts/common/sys/priocntl.h
+echo_file  usr/src/uts/common/sys/proc.h
+echo_file  usr/src/uts/common/sys/processor.h
+echo_file  usr/src/uts/common/sys/procset.h
+echo_file  usr/src/uts/common/sys/resource.h
+echo_file  usr/src/uts/common/sys/rwlock.h
+echo_file  usr/src/uts/common/sys/scsi/conf/autoconf.h
+echo_file  usr/src/uts/common/sys/scsi/conf/device.h
+echo_file  usr/src/uts/common/sys/scsi/generic/commands.h
+echo_file  usr/src/uts/common/sys/scsi/generic/dad_mode.h
+echo_file  usr/src/uts/common/sys/scsi/generic/inquiry.h
+echo_file  usr/src/uts/common/sys/scsi/generic/message.h
+echo_file  usr/src/uts/common/sys/scsi/generic/mode.h
+echo_file  usr/src/uts/common/sys/scsi/generic/sense.h
+echo_file  usr/src/uts/common/sys/scsi/generic/status.h
+echo_file  usr/src/uts/common/sys/scsi/impl/commands.h
+echo_file  usr/src/uts/common/sys/scsi/impl/inquiry.h
+echo_file  usr/src/uts/common/sys/scsi/impl/mode.h
+echo_file  usr/src/uts/common/sys/scsi/impl/sense.h
+echo_file  usr/src/uts/common/sys/scsi/impl/services.h
+echo_file  usr/src/uts/common/sys/scsi/impl/status.h
+echo_file  usr/src/uts/common/sys/scsi/impl/transport.h
+echo_file  usr/src/uts/common/sys/scsi/impl/types.h
+echo_file  usr/src/uts/common/sys/scsi/impl/uscsi.h
+echo_file  usr/src/uts/common/sys/scsi/scsi.h
+echo_file  usr/src/uts/common/sys/scsi/scsi_address.h
+echo_file  usr/src/uts/common/sys/scsi/scsi_ctl.h
+echo_file  usr/src/uts/common/sys/scsi/scsi_params.h
+echo_file  usr/src/uts/common/sys/scsi/scsi_pkt.h
+echo_file  usr/src/uts/common/sys/scsi/scsi_resource.h
+echo_file  usr/src/uts/common/sys/scsi/scsi_types.h
+echo_file  usr/src/uts/common/sys/select.h
+echo_file  usr/src/uts/common/sys/semaphore.h
+echo_file  usr/src/uts/common/sys/siginfo.h
+echo_file  usr/src/uts/common/sys/signal.h
+echo_file  usr/src/uts/common/sys/sleepq.h
+echo_file  usr/src/uts/common/sys/stream.h
+echo_file  usr/src/uts/common/sys/strmdep.h
+echo_file  usr/src/uts/common/sys/stropts.h
+echo_file  usr/src/uts/common/sys/sunddi.h
+echo_file  usr/src/uts/common/sys/synch.h
+echo_file  usr/src/uts/common/sys/sysinfo.h
+echo_file  usr/src/uts/common/sys/sysmacros.h
+echo_file  usr/src/uts/common/sys/systm.h
+echo_file  usr/src/uts/common/sys/t_lock.h
+echo_file  usr/src/uts/common/sys/thread.h
+echo_file  usr/src/uts/common/sys/time.h
+echo_file  usr/src/uts/common/sys/timer.h
+echo_file  usr/src/uts/common/sys/turnstile.h
+echo_file  usr/src/uts/common/sys/types.h
+echo_file  usr/src/uts/common/sys/uio.h
+echo_file  usr/src/uts/common/sys/unistd.h
+echo_file  usr/src/uts/common/sys/user.h
+echo_file  usr/src/uts/common/sys/utsname.h
+echo_file  usr/src/uts/common/sys/var.h
+echo_file  usr/src/uts/common/sys/varargs.h
+echo_file  usr/src/uts/common/sys/vmmac.h
+echo_file  usr/src/uts/common/sys/vnode.h
+echo_file  usr/src/uts/common/sys/vtoc.h
+echo_file  usr/src/uts/common/sys/vtrace.h
+echo_file  usr/src/uts/common/vm/as.h
+echo_file  usr/src/uts/common/vm/devpage.h
+echo_file  usr/src/uts/common/vm/faultcode.h
+echo_file  usr/src/uts/common/vm/hat.h
+echo_file  usr/src/uts/common/vm/page.h
+echo_file  usr/src/uts/common/vm/seg.h
+echo_file  usr/src/uts/common/vm/seg_enum.h
+echo_file  usr/src/uts/req.flg
+echo_file  usr/src/uts/sparc/Makefile
+echo_file  usr/src/uts/sparc/Makefile.files
+echo_file  usr/src/uts/sparc/Makefile.rules
+echo_file  usr/src/uts/sparc/Makefile.sparc
+echo_file  usr/src/uts/sparc/Makefile.targ
+echo_file  usr/src/uts/sparc/esp/Makefile
+echo_file  usr/src/uts/sparc/fas/Makefile
+echo_file  usr/src/uts/sparc/isp/Makefile
+echo_file  usr/src/uts/sparc/isp/inc.flg
+echo_file  usr/src/uts/sparc/isp/isp.wlcmd
+echo_file  usr/src/uts/sparc/pln/Makefile
+echo_file  usr/src/uts/sparc/pln/note.h
+echo_file  usr/src/uts/sparc/ml/sparc.il
+echo_file  usr/src/uts/sparc/req.flg
+echo_file  usr/src/uts/sparc/sd/Makefile
+echo_file  usr/src/uts/sparc/sd/sd.wlcmd
+echo_file  usr/src/uts/sparc/ssd/Makefile
+echo_file  usr/src/uts/sparc/st/Makefile
+echo_file  usr/src/uts/sparc/st/st.wlcmd
+echo_file  usr/src/uts/sparc/sys/cpu.h
+echo_file  usr/src/uts/sparc/sys/ddi_isa.h
+echo_file  usr/src/uts/sparc/sys/machlock.h
+echo_file  usr/src/uts/sparc/sys/machsig.h
+echo_file  usr/src/uts/sparc/sys/machtypes.h
+echo_file  usr/src/uts/sparc/sys/pcb.h
+echo_file  usr/src/uts/sparc/sys/psw.h
+echo_file  usr/src/uts/sparc/sys/reg.h
+echo_file  usr/src/uts/sparc/sys/regset.h
+echo_file  usr/src/uts/sparc/sys/stat.h
+echo_file  usr/src/uts/sparc/sys/ucontext.h
+echo_file  usr/src/uts/sun/Makefile.files
+echo_file  usr/src/uts/sun/Makefile.rules
+echo_file  usr/src/uts/sun/io/scsi/adapters/esp.c
+echo_file  usr/src/uts/sun/io/scsi/adapters/fas.c
+echo_file  usr/src/uts/sun/io/scsi/adapters/fas_callbacks.c
+echo_file  usr/src/uts/sun/io/scsi/adapters/isp.c
+echo_file  usr/src/uts/sun/io/scsi/adapters/isp_fw.c
+echo_file  usr/src/uts/sun/io/scsi/adapters/reset_notify.c
+echo_file  usr/src/uts/sun/io/scsi/adapters/pln.c
+echo_file  usr/src/uts/sun/io/scsi/adapters/pln.conf
+echo_file  usr/src/uts/sun/io/scsi/adapters/ncr.c
+echo_file  usr/src/uts/sun/io/scsi/adapters/ncr.conf
+echo_file  usr/src/uts/sun/io/scsi/targets/sd.c
+echo_file  usr/src/uts/sun/io/scsi/targets/ssd.c
+echo_file  usr/src/uts/sun/io/scsi/targets/ssd.conf
+echo_file  usr/src/uts/sun/io/scsi/targets/sd.conf
+echo_file  usr/src/uts/sun/io/scsi/targets/sdwatch.c
+echo_file  usr/src/uts/sun/io/scsi/targets/st.c
+echo_file  usr/src/uts/sun/io/scsi/targets/st.conf
+echo_file  usr/src/uts/sun/io/scsi/targets/st_conf.c
+echo_file  usr/src/uts/sun/io/scsi/targets/pln_ctlr.c
+echo_file  usr/src/uts/sun/sys/dkbad.h
+echo_file  usr/src/uts/sun/sys/dkio.h
+echo_file  usr/src/uts/sun/sys/dmaga.h
+echo_file  usr/src/uts/sun/sys/mhd.h
+echo_file  usr/src/uts/sun/sys/fc4/fc.h
+echo_file  usr/src/uts/sun/sys/fc4/fcp.h
+echo_file  usr/src/uts/sun/sys/fc4/fc_transport.h
+echo_file  usr/src/uts/sun/sys/scsi/adapters/espreg.h
+echo_file  usr/src/uts/sun/sys/scsi/adapters/espvar.h
+echo_file  usr/src/uts/sun/sys/scsi/adapters/espcmd.h
+echo_file  usr/src/uts/sun/sys/scsi/adapters/fascmd.h
+echo_file  usr/src/uts/sun/sys/scsi/adapters/fasdma.h
+echo_file  usr/src/uts/sun/sys/scsi/adapters/fasreg.h
+echo_file  usr/src/uts/sun/sys/scsi/adapters/fasvar.h
+echo_file  usr/src/uts/sun/sys/scsi/adapters/ispmail.h
+echo_file  usr/src/uts/sun/sys/scsi/adapters/ispreg.h
+echo_file  usr/src/uts/sun/sys/scsi/adapters/ispvar.h
+echo_file  usr/src/uts/sun/sys/scsi/adapters/ispcmd.h
+echo_file  usr/src/uts/sun/sys/scsi/adapters/reset_notify.h
+echo_file  usr/src/uts/sun/sys/scsi/adapters/ncrctl.h
+echo_file  usr/src/uts/sun/sys/scsi/adapters/ncrreg.h
+echo_file  usr/src/uts/sun/sys/scsi/adapters/ncrsbc.h
+echo_file  usr/src/uts/sun/sys/scsi/adapters/plnvar.h
+echo_file  usr/src/uts/sun/sys/scsi/adapters/plndef.h
+echo_file  usr/src/uts/sun/sys/scsi/targets/sddef.h
+echo_file  usr/src/uts/sun/sys/scsi/targets/ssddef.h
+echo_file  usr/src/uts/sun/sys/scsi/targets/sdwatch.h
+echo_file  usr/src/uts/sun/sys/scsi/targets/stdef.h
+echo_file  usr/src/uts/sun/sys/scsi/targets/pln_ctlr.h

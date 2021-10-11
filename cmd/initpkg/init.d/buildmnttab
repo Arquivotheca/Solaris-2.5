@@ -1,0 +1,43 @@
+#!/sbin/sh
+#	Copyright (c) 1984, 1986, 1987, 1988, 1989 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF AT&T
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+#
+#	Copyright (c) 1991-1993, by Sun Microsystems, Inc.
+#
+
+#ident	"@(#)buildmnttab	1.7	94/10/17 SMI"
+
+#
+# Mount other file systems to be available in single user mode. Currently,
+# this is only /var. A change here will require a modification to the
+# following scripts (and documentation):
+#	/sbin/mountall
+#	/sbin/umountall
+#	/sbin/rc0
+#	/sbin/rc6
+#
+for fs in /var /var/adm
+do
+	exec < ${vfstab}; readvfstab ${fs}
+	if [ "${mountp}" ]
+	then
+		checkfs ${fsckdev} ${fstype} ${mountp}
+		if [ "${mntopts}" != "-" ]
+		then
+			/sbin/mount -m -o ${mntopts} ${mountp}
+		else
+			/sbin/mount -m ${mountp}
+		fi
+		mntlist="${mntlist}${special} ${mountp}\n"
+	fi
+done
+
+#
+# Update the mount table.
+#
+echo "${mntlist}" | /usr/sbin/setmnt

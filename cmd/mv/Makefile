@@ -1,0 +1,52 @@
+#
+#ident	"@(#)Makefile	1.14	95/02/13 SMI"
+#
+# Copyright (c) 1989, 1995 by Sun Microsystems, Inc.
+#
+
+PROG= mv
+XPG4PROG= mv
+STATPROG= mv
+CPFILE= cp
+LNFILE= ln
+ROOTLINKS= $(ROOTBIN)/$(CPFILE) $(ROOTBIN)/$(LNFILE)
+ROOTSTATLINKS= $(ROOTUSRSBINSTAT)/$(CPFILE) $(ROOTUSRSBINSTAT)/$(LNFILE)
+ROOTXPG4LINKS= $(ROOTXPG4BIN)/$(CPFILE) $(ROOTXPG4BIN)/$(LNFILE)
+
+include ../Makefile.cmd
+
+CLOBBERFILES += $(CPFILE) $(LNFILE)
+LDLIBS += -lintl
+CFLAGS += -v
+$(XPG4) := CFLAGS += -DXPG4
+XGETFLAGS += -a -x mv.xcl
+
+.KEEP_STATE:
+
+all: $(PROG) $(CPFILE) $(LNFILE) $(STATIC) $(XPG4)
+
+$(CPFILE):	$(PROG)
+		@$(RM) $(CPFILE); $(LN) $(PROG) $(CPFILE)
+
+$(LNFILE):	$(PROG)
+		@$(RM) $(LNFILE); $(LN) $(PROG) $(LNFILE)
+
+install: all $(ROOTXPG4PROG) $(ROOTLINKS) $(ROOTSTATLINKS) $(ROOTXPG4LINKS)
+
+$(ROOTLINKS):	$(ROOTPROG)
+	$(RM) $@
+	$(LN) $(ROOTPROG) $@
+
+$(ROOTSTATLINKS):	$(ROOTSTATPROG)
+	$(RM) $@
+	$(LN) $(ROOTSTATPROG) $@
+
+$(ROOTXPG4LINKS):	$(ROOTXPG4PROG)
+	$(RM) $@
+	$(LN) $(ROOTXPG4PROG) $@
+
+clean:
+
+lint:	lint_PROG
+
+include ../Makefile.targ

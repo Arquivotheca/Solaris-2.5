@@ -1,0 +1,24 @@
+#!/bin/sh
+#
+#ident	"@(#)i.automaster	1.1	94/12/05 SMI"
+#
+# Copyright (c) 1994, by Sun Microsystems, Inc.
+# All rights reserved.
+#
+
+PATH="/usr/bin:/usr/sbin:${PATH}"
+export PATH
+
+while read src dest
+do
+	if [ ! -f $dest ] ; then
+		cp $src $dest
+	elif grep '^[ 	]*/xfn' $dest 2>&1 >/dev/null; then
+		# No action needed if "/xfn" entry already exists
+		true
+	else
+		echo '/xfn		-xfn' >> $dest
+	fi
+done
+
+exit 0

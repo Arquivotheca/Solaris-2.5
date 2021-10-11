@@ -1,0 +1,84 @@
+#
+#ident	"@(#)Makefile.targ	1.7	94/12/16 SMI"
+#
+# Copyright (c) 1990-1994, by Sun Microsystems, Inc.
+#
+# uts/adb/platform/Makefile.targ
+#
+
+include $(SRC)/Makefile.psm.targ
+
+#
+# the following section replaces the actions of adbgen.sh.
+#
+# there are two reuseable build macros, pattern-matching rules for kernel
+# architectures, and required explicit dependencies.
+#
+BUILD.run= (unset LD_LIBRARY_PATH; \
+	$(NATIVECC) ${ARCHOPTS} $(NATIVEDEFS) ${INCLUDES} \
+	$(CCYFLAG)${INCDIR} -o $@.run $@.adb.c $(ISADIR)/adbsub.o)
+
+#
+# note that we *deliberately* use the '-e' flag here to force the
+# build to break if warnings result.  the right way to fix this
+# is to repair the macro (or the header!), NOT to take the '-e' away.
+#
+BUILD.adb= ./$@.run -e > $@.runout && \
+	$(ISADIR)/adbgen3 < $@.runout | $(ISADIR)/adbgen4 > $@
+
+% : $(COMMONDIR)/%.adb
+	$(ISADIR)/adbgen1 < $< > $@.adb.c
+	$(BUILD.run)
+	$(BUILD.adb)
+	-$(RM) $@.adb.c $@.run $@.adb.o $@.runout
+
+% : $(ISADIR)/%.adb
+	$(ISADIR)/adbgen1 < $< > $@.adb.c
+	$(BUILD.run)
+	$(BUILD.adb)
+	-$(RM) $@.adb.c $@.run $@.adb.o $@.runout
+
+% : ./%.adb
+	$(ISADIR)/adbgen1 < $< > $@.adb.c
+	$(BUILD.run)
+	$(BUILD.adb)
+	-$(RM) $@.adb.c $@.run $@.adb.o $@.runout
+
+# install rules
+
+$(USR_PSM_ADB_DIR):	$(USR_PSM_LIB_DIR)
+	-$(INS.dir.bin.bin)
+
+$(USR_PSM_ADB_DIR)/%:	% $(USR_PSM_ADB_DIR)
+	$(INS.file)
+
+clobber: clean
+	-$(RM) $(SCRIPTS)
+
+clean:
+	-$(RM) $(SCRIPTS:=.adb.c) $(SCRIPTS:=.run) $(SCRIPTS:=.adb.o)
+
+check:
+	@echo $(SCRIPTS) | tr ' ' '\012' | sed 's/$$/&.adb/' |\
+		sort > script.files
+	@(cd $(ADB_BASE_DIR); ls *.adb) > actual.files
+	diff script.files actual.files
+	-$(RM) script.files actual.files
+
+# the macro list is platform-architecture specific too.
+
+maclist1:
+	@(dir=`pwd`; \
+	for i in $(SCRIPTS); do \
+		echo "$$dir $$i"; \
+	done)
+
+maclist:
+	@(dir=`pwd`; bdir=`(cd $(ISADIR); pwd)`; \
+	if [ "`basename $$dir`" != "`basename $$bdir`" ]; then \
+		(cd $(ISADIR); make maclist1); \
+	fi ; \
+	make maclist1) | sort +1 | sed -e "s/ /\//"
+
+
+

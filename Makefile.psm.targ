@@ -1,0 +1,156 @@
+#
+#ident	"@(#)Makefile.psm.targ	1.4	94/12/22 SMI"
+#
+# Copyright (c) 1993 by Sun Microsystems, Inc.
+#
+# Makefile.psm.targ, global targets for platform specific modules
+#
+
+#
+#	Installation targets and rules:
+#
+$(ROOT_PLAT_DIR) $(USR_PLAT_DIR):
+	-$(INS.dir.root.sys)
+
+$(ROOT_PSM_DIR):		$(ROOT_PLAT_DIR)
+	-$(INS.dir.root.sys)
+
+$(ROOT_PSM_LIB_DIR) \
+$(ROOT_PSM_SBIN_DIR):		$(ROOT_PSM_DIR)
+	-$(INS.dir.bin.bin)
+
+$(ROOT_PSM_MOD_DIR):		$(ROOT_PSM_DIR)
+	-$(INS.dir.root.sys)
+
+$(ROOT_PSM_MOD_DIRS):		$(ROOT_PSM_MOD_DIR)
+	-$(INS.dir.root.sys)
+
+$(ROOT_PSM_DIR)/%:		% $(ROOT_PSM_DIR)
+	$(INS.file)
+
+$(ROOT_PSM_LIB_DIR)/%:		% $(ROOT_PSM_LIB_DIR)
+	$(INS.file)
+
+$(ROOT_PSM_SBIN_DIR)/%:		% $(ROOT_PSM_SBIN_DIR)
+	$(INS.file)
+
+$(ROOT_PSM_MOD_DIR)/%:		% $(ROOT_PSM_MOD_DIR)
+	$(INS.file)
+
+$(ROOT_PSM_DRV_DIR)/%:		% $(ROOT_PSM_DRV_DIR)
+	$(INS.file)
+
+$(ROOT_PSM_EXEC_DIR)/%:		% $(ROOT_PSM_EXEC_DIR)
+	$(INS.file)
+
+$(ROOT_PSM_FS_DIR)/%:		% $(ROOT_PSM_FS_DIR)
+	$(INS.file)
+
+$(ROOT_PSM_SCHED_DIR)/%:	% $(ROOT_PSM_SCHED_DIR)
+	$(INS.file)
+
+$(ROOT_PSM_STRMOD_DIR)/%:	% $(ROOT_PSM_STRMOD_DIR)
+	$(INS.file)
+
+$(ROOT_PSM_SYS_DIR)/%:		% $(ROOT_PSM_SYS_DIR)
+	$(INS.file)
+
+$(ROOT_PSM_MISC_DIR)/%:		% $(ROOT_PSM_MISC_DIR)
+	$(INS.file)
+
+$(ROOT_PSM_MACH_DIR)/%:		% $(ROOT_PSM_MACH_DIR)
+	$(INS.file)
+
+#
+#
+#
+$(USR_PSM_DIR):			$(USR_PLAT_DIR)
+	-$(INS.dir.root.sys)
+
+$(USR_PSM_INCL_DIR) \
+$(USR_PSM_LIB_DIR) \
+$(USR_PSM_SBIN_DIR):		$(USR_PSM_DIR)
+	-$(INS.dir.bin.bin)
+
+$(USR_PSM_LIB_FS_DIR):	$(USR_PSM_LIB_DIR)
+	-$(INS.dir.bin.bin)
+
+$(USR_PSM_LIB_UFS_DIR) \
+$(USR_PSM_LIB_NFS_DIR) \
+$(USR_PSM_LIB_HSFS_DIR):	$(USR_PSM_LIB_FS_DIR)
+	-$(INS.dir.bin.bin)
+
+$(USR_PSM_MOD_DIR):		$(USR_PSM_DIR)
+	-$(INS.dir.root.sys)
+
+$(USR_PSM_MOD_DIRS):		$(USR_PSM_MOD_DIR)
+	-$(INS.dir.root.sys)
+
+$(USR_PSM_ISYS_DIR) \
+$(USR_PSM_IVM_DIR):		$(USR_PSM_INCL_DIR)
+	-$(INS.dir.bin.bin)
+
+$(USR_PSM_INCL_DIR)/%:		% $(USR_PSM_INCL_DIR)
+	$(INS.file)
+
+$(USR_PSM_LIB_DIR)/%:		% $(USR_PSM_LIB_DIR)
+	$(INS.file)
+
+$(USR_PSM_SBIN_DIR)/%:		% $(USR_PSM_SBIN_DIR)
+	$(INS.file)
+
+$(USR_PSM_ISYS_DIR)/%:		% $(USR_PSM_ISYS_DIR)
+	$(INS.file)
+
+$(USR_PSM_IVM_DIR)/%:		% $(USR_PSM_IVM_DIR)
+	$(INS.file)
+
+$(USR_PSM_LIB_UFS_DIR)/%:	% $(USR_PSM_LIB_UFS_DIR)
+	$(INS.file)
+
+$(USR_PSM_LIB_NFS_DIR)/%:	% $(USR_PSM_LIB_NFS_DIR)
+	$(INS.file)
+
+$(USR_PSM_LIB_HSFS_DIR)/%:	% $(USR_PSM_LIB_HSFS_DIR)
+	$(INS.file)
+
+$(USR_PSM_MOD_DIR)/%:		% $(USR_PSM_MOD_DIR)
+	$(INS.file)
+
+$(USR_PSM_DRV_DIR)/%:		% $(USR_PSM_DRV_DIR)
+	$(INS.file)
+
+$(USR_PSM_EXEC_DIR)/%:		% $(USR_PSM_EXEC_DIR)
+	$(INS.file)
+
+$(USR_PSM_FS_DIR)/%:		% $(USR_PSM_FS_DIR)
+	$(INS.file)
+
+$(USR_PSM_SCHED_DIR)/%:		% $(USR_PSM_SCHED_DIR)
+	$(INS.file)
+
+$(USR_PSM_STRMOD_DIR)/%:	% $(USR_PSM_STRMOD_DIR)
+	$(INS.file)
+
+$(USR_PSM_SYS_DIR)/%:		% $(USR_PSM_SYS_DIR)
+	$(INS.file)
+
+$(USR_PSM_MISC_DIR)/%:		% $(USR_PSM_MISC_DIR)
+	$(INS.file)
+
+#
+#       Set ownership on links.
+#
+CHOWNLINK=
+$(CH)CHOWNLINK= ; $(CHOWN) $(OWNER) $@
+CHGRPLINK=
+$(CH)CHGRPLINK= ; $(CHGRP) $(GROUP) $@
+
+#
+#
+#
+$(ROOT_PSM_PROG_LINKS) $(USR_PSM_PROG_LINKS):
+	$(RM) $@; $(SYMLINK) ../$(PLATFORM)/$(PROG) $@ $(CHOWNLINK) $(CHGRPLINK)
+
+$(ROOT_PSM_SBIN_PROG_LINKS) $(USR_PSM_SBIN_PROG_LINKS):
+	$(RM) $@; $(SYMLINK) ../../$(PLATFORM)/sbin/$(PROG) $@ $(CHOWNLINK) $(CHGRPLINK)

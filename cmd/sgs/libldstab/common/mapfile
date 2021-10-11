@@ -1,0 +1,10 @@
+# Specify what global symbols we export.
+
+SUNW.1.1 {
+	global:
+		ld_file;
+		ld_section;
+		ld_start;
+	local:
+		*;
+};

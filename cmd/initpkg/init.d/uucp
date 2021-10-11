@@ -1,0 +1,8 @@
+#ident	"@(#)uucp	1.7	92/07/14 SMI"	/* SVr4.0 1.2.2.1	*/
+#	Clean-up uucp locks, status, and temporary files
+
+set `/usr/bin/who -r`
+if [ $9 = "S" -o $9 = "1" ]
+then
+	/usr/bin/rm -rf /usr/spool/locks/*
+fi

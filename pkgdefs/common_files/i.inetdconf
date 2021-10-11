@@ -1,0 +1,58 @@
+#!/bin/sh
+#
+#ident	"@(#)i.inetdconf 1.15 95/08/09 SMI"
+#
+# Copyright (c) 1993,1994 by Sun Microsystems, Inc.
+#
+
+PATH="/usr/bin:/usr/sbin:${PATH}"
+export PATH
+
+while read src dest
+do
+	if [ ! -f $dest ] ; then
+		cp $src $dest
+	else
+		if [ -f $BASEDIR/etc/inetd.conf.temp ] ; then
+			cp $BASEDIR/etc/inetd.conf.temp $dest
+			rm -f $BASEDIR/etc/inetd.conf.temp
+		fi
+		grep '^#ident[ 	]*\"@(#)inetd.conf' $src \
+		    > /tmp/newident.$$ 2>/dev/null
+		grep -v '^#ident[ 	]*\"@(#)inetd.conf' $dest \
+		    > /tmp/rest.$$ 2>/dev/null
+		cat /tmp/newident.$$ /tmp/rest.$$ > $dest
+		sed -e 's,^100068/2-3,100068/2-4,' \
+		    -e '/rpc.rexd/s/stream/tli/' \
+		    -e 's,/usr/openwin/bin/rpc.ttdbserverd,/usr/dt/bin/rpc.ttdbserverd,' \
+		    -e 's/inetd(8).  See inetd.conf(5)/inetd(1M).  See inetd.conf(4)/' \
+		    -e '/^rusersd/s/datagram_v\([^,]\)/datagram_v,circuit_v\1/' \
+		    -e 's,^100087.*,100232/10   tli     rpc/udp wait root /usr/sbin/sadmind     sadmind,' \
+		    -e 's/100999/ufsd/' \
+		    $dest > /tmp/d.$$
+		grep -s "^# UFS-aware service daemon$" /tmp/d.$$ > /dev/null 2>&1
+		if [ $? -ne 0 ]
+		then
+			echo "#\n# UFS-aware service daemon\n#" >> /tmp/d.$$
+			echo "#ufsd/1	tli	rpc/*	wait	root	/usr/lib/fs/ufs/ufsd	ufsd -p" >> /tmp/d.$$
+		fi
+		grep -s "^100221\/1[ 	]" /tmp/d.$$ > /dev/null 2>&1
+		if [ $? -ne 0 ]
+		then
+			echo "#\n# Sun KCMS Profile Server\n#" >> /tmp/d.$$
+			echo "100221/1\ttli\trpc/tcp\twait root /usr/openwin/bin/kcms_server\tkcms_server" >> /tmp/d.$$
+		fi
+		grep -s "^fs[ 	]" /tmp/d.$$ > /dev/null 2>&1
+		if [ $? -ne 0 ]
+		then
+			echo "#\n# Sun Font Server\n#" >> /tmp/d.$$
+			echo "fs\t\tstream\ttcp\twait nobody /usr/openwin/lib/fs.auto\tfs" >> /tmp/d.$$
+		fi
+		cp /tmp/d.$$ $dest
+		rm -f $BASEDIR/etc/inetd.conf
+		ln -s ./inet/inetd.conf $BASEDIR/etc/inetd.conf
+		rm -f /tmp/d.$$ /tmp/newident.$$ /tmp/rest.$$
+	fi
+done
+
+exit 0

@@ -1,0 +1,43 @@
+#	Copyright (c) 1990-93 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)prototype_com	1.24	93/04/02 (c) Sun Microsystems, Inc.
+#
+# This required package information file contains a list of package contents.
+# The 'pkgmk' command uses this file to identify the contents of a package
+# and their location on the development machine when building the package.
+# Can be created via a text editor or through use of the 'pkgproto' command.
+
+#!search <pathname pathname ...>	# where to find pkg objects
+#!include <filename>			# include another 'prototype' file
+#!default <mode> <owner> <group>	# default used if not specified on entry
+#!<param>=<value>			# puts parameter in pkg environment
+
+# packaging files
+i pkginfo
+i copyright
+i depend
+i i.preserve
+#
+# source locations relative to the prototype file
+#
+# SUNWaccr
+#
+d none etc 775 root sys
+d none etc/acct 775 adm adm
+e preserve etc/acct/holidays 664 bin bin
+f none etc/datemsk 444 root sys
+d none etc/init.d 775 root sys
+f none etc/init.d/acct 744 root sys
+f none etc/init.d/perf 744 root sys
+d none etc/rc0.d 775 root sys
+d none etc/rc1.d 775 root sys
+d none etc/rc2.d 775 root sys
+l none etc/rc2.d/S21perf=../../etc/init.d/perf
+d none var 775 root sys
+d none var/adm 775 root sys
+d none var/adm/acct 775 adm adm
+d none var/adm/acct/fiscal 775 adm adm
+d none var/adm/acct/nite 775 adm adm
+d none var/adm/acct/sum 775 adm adm
+d none var/adm/sa 775 adm sys

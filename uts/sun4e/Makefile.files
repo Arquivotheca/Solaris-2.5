@@ -1,0 +1,65 @@
+#
+# uts/sun4e/Makefile.files
+# Copyright (c) 1991 by Sun Microsystems, Inc.
+#
+#ident   "@(#)Makefile.files 1.26     94/03/23 SMI"
+#
+#	This Makefile defines all file modules in the directory uts/sun4e
+#	and it's children. These are the source files which sun4e
+#	"implementation architecture" dependent.
+#
+
+#
+#	object lists
+#
+CORE_OBJS += \
+	bp_map.o \
+	confunix.o \
+	copy.o \
+	ddi_impl.o \
+	dvma.o \
+	ip_ocsum.o \
+	eccerr.o \
+	hardclk.o \
+	hat_conf.o \
+	kalloc.o \
+	machdep.o \
+	map.o \
+	memerr.o \
+	mlsetup.o \
+	mmu.o \
+	ppage.o \
+	startup.o \
+	stubs.o \
+	subr_4e.o \
+	swtch.o \
+	trap.o \
+	vm_machdep.o
+
+AUTOCONF_OBJS += autoconf.o
+
+#
+#	locore.o is special. It must be the first file relocated so that it
+#	it is relocated just where its name implies.
+#
+SPECIAL_OBJS +=	locore.o
+
+#
+#			driver modules
+#
+ROOTNEX_OBJS += rootnex.o
+
+#
+#	Build up defines and paths.
+#
+ALL_DEFS	+= -Dsun4e -DSUN4E_120
+INC_PATH	+= -I$(UTSBASE)/sun4e
+
+#
+# Since assym.s is a derived file, the dependency must be explicit for
+# all files including this file. (This is only actually required in the
+# instance when the .nse_depinfo file does not exist.) It may seem that
+# the lint targets should also have a similar dependency, but they don't
+# since only C headers are included when #defined(lint) is true.
+#
+ASSYM_DEPS	+= copy.o locore.o map.o subr_4e.o swtch.o

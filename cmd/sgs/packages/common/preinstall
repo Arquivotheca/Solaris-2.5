@@ -1,0 +1,38 @@
+#
+#ident	"@(#)preinstall	1.7	95/05/12 SMI"
+#
+# Copyright (c) 1993 by Sun Microsystems, Inc.
+#
+
+files="\
+	etc/lib/ld.so.1 755 bin bin \
+	usr/include/dlfcn.h 644 bin bin \
+	usr/include/libelf.h 644 bin bin \
+	usr/include/link.h 644 bin bin \
+	usr/include/sys/elf.h 644 bin bin \
+	usr/include/sys/link.h 644 bin bin \
+	usr/ccs/bin/ar 755 bin bin \
+	usr/ccs/bin/gprof 555 bin bin \
+	usr/ccs/bin/gprof.flat.blurb 555 bin bin \
+	usr/ccs/bin/gprof.callg.blurb 555 bin bin \
+	usr/ccs/bin/ld 755 bin bin \
+	usr/lib/ld.so.1 755 bin bin \
+	usr/lib/libelf.so.1 755 bin bin \
+	usr/lib/libld.so.2 755 bin bin \
+	usr/lib/liblddbg.so.3 755 bin bin \
+	usr/lib/libldstab.so.1 755 bin bin \
+	usr/bin/ldd 755 bin bin \
+	usr/bin/pvs 755 bin bin \
+	"
+
+
+for F in $files
+do
+	if [ ! -f ${BASEDIR}/$F.orig ]
+	then
+		if [ -f ${BASEDIR}/$F ]
+		then
+			cp ${BASEDIR}/$F ${BASEDIR}/$F.orig
+		fi
+	fi
+done

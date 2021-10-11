@@ -1,0 +1,45 @@
+#
+#ident	"@(#)postinstall	1.10	95/04/12 SMI"
+#
+# Copyright (c) 1993 by Sun Microsystems, Inc.
+#
+#
+
+if [ -h $BASEDIR/var/mail.ABCsavedXYZ ] ; then
+	rmdir $BASEDIR/var/mail/:saved >/dev/null 2>&1
+	if [ $? = 0 ] ; then
+		rmdir $BASEDIR/var/mail >/dev/null 2>&1
+		if [ $? = 0 ] ; then
+			mv $BASEDIR/var/mail.ABCsavedXYZ $BASEDIR/var/mail
+		fi
+	fi
+	rm -fr $BASEDIR/var/mail.ABCsavedXYZ
+fi
+
+if [ -h $BASEDIR/var/news.ABCsavedXYZ ] ; then
+	rmdir $BASEDIR/var/news >/dev/null 2>&1
+	if [ $? = 0 ] ; then
+		mv $BASEDIR/var/news.ABCsavedXYZ $BASEDIR/var/news
+	fi
+	rm -fr $BASEDIR/var/news.ABCsavedXYZ
+fi
+
+if [ -f $BASEDIR/kernel/drv/classes ] ; then
+	removef $PKGINST /kernel/drv/classes >/dev/null 2>&1
+	removef -f $PKGINST >/dev/null 2>&1
+	rm -f $BASEDIR/kernel/drv/classes
+fi
+
+PMTAB=$BASEDIR/etc/saf/tcp/_pmtab
+if [ -f $PMTAB ] ; then
+	sed -e 's/\\x00020ACE......../\\x00020ACE00000000/' \
+	    -e 's/\\x00020203......../\\x0002020300000000/' $PMTAB >/tmp/t.$$
+	cp /tmp/t.$$ $PMTAB
+fi
+
+DEVIP=$BASEDIR/devices/pseudo/clone@0:ip
+if [ -c $DEVIP ] ; then
+	chmod 0660 $DEVIP >/dev/null 2>&1
+fi
+
+exit 0

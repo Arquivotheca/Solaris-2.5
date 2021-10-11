@@ -1,0 +1,35 @@
+#
+#ident	"@(#)Makefile.targ	1.3	94/09/07 SMI"
+#
+# Copyright (c) 1994 by Sun Microsystems, Inc.
+#
+# cmd/sgs/tools/Makefile.targ
+
+$(ROOTDIR)/bin/%:	%
+		$(INS.file)
+
+$(ROOTDIR)/lib/%:	%
+		$(INS.file)
+
+0@0.so.1:	0@0.o
+		$(LINK.c) -o $@ 0@0.o -lc
+
+elfdump:	elfdump.o 
+		$(LINK.c) -o $@ elfdump.o -lelf -L../../liblddbg/$(MACH) -llddbg
+
+%:		%.o
+		$(LINK.c) -o $@ $<
+
+%.o:		../common/%.c
+		$(COMPILE.c) -o $@ $<
+		$(POST_PROCESS_O)
+
+clobber:	clean
+		$(RM) $(PROGS) $(LIBS) $(CLOBBERFILES)
+
+clean:
+		$(RM) $(OBJECTS) $(CLEANFILES)
+
+lint:
+		$(LINT.c) ../common/elfdump.c -lelf \
+			-L../../liblddbg/$(MACH) -llddbg    > $(LINTOUT) 2>&1

@@ -1,0 +1,76 @@
+#!/bin/sh
+#
+#ident  "@(#)i.sbproconf 1.2 95/04/07 SMI"
+#
+# Copyright (c) 1993, 1995 by Sun Microsystems, Inc.
+# All Rights Reserved.
+#
+PATH="/usr/bin:/usr/sbin:${PATH}"
+export PATH
+log=/dev/null
+
+while read src dest
+do
+	if [ ! -f $dest ] ; then
+		cp $src $dest
+		echo "no existing sbpro.conf file -- new one installed" > $log
+		continue
+	fi
+
+	grep 'Notes on "dma-channels" property for SB16 cards:' \
+	    $dest > $log 2>&1
+	if [ $? = 0 ] ; then
+		echo "new sbpro.conf file already installed" > $log
+		continue
+	fi
+
+	# Find the (single) active entry in an old sbpro.conf file
+	grep -v '^[ 	]*#' $dest | grep -v '^[ 	]*$' > /tmp/sbconf.$$
+
+	# SBPRO entries for varying legal DMA channels
+	grep 'dmachan=1[^,]' /tmp/sbconf.$$ > $log 2>&1
+	if [ $? = 0 ] ; then
+		cp $src $dest
+		echo "found a PRO entry with dmachan=1, copied new" > $log
+		continue
+	fi
+	grep 'dmachan=3[^,]' /tmp/sbconf.$$ > $log 2>&1
+	if [ $? = 0 ] ; then
+		sed -e '/type="SBPRO"/s/dma-channels=1/dma-channels=3/' \
+		   < $src > $dest
+		echo "found a PRO entry with dmachan=3, edited new" > $log
+		continue
+	fi
+	grep 'dmachan=0[^,]' /tmp/sbconf.$$ > $log 2>&1
+	if [ $? = 0 ] ; then
+		sed -e '/type="SBPRO"/s/dma-channels=1/dma-channels=0/' \
+		   < $src > $dest
+		echo "found a PRO entry with dmachan=0, edited new" > $log
+		continue
+	fi
+
+	# Check for legal SB16 entry
+	grep 'dmachan=[013],[567]' /tmp/sbconf.$$ > $log 2>&1
+	if [ $? != 0 ] ; then
+		echo "# Could not integrate illegal entry from previous sbpro.conf file:" > $dest
+		sed -e 's/^/# /' < /tmp/sbconf.$$ >> $dest
+		echo "# See notes below for legal DMA values" >> $dest
+		echo "" >> $dest
+		echo "" >> $dest
+		cat $src >> $dest
+		echo "No existing legal SBPRO or SB16 entry; copied new" > $log
+		continue
+	fi
+
+	DMA=`grep 'dmachan=[013],[567]' /tmp/sbconf.$$ \
+		| sed -e 's/.*dmachan=\(.,.\).*/\1/'`
+	INT=`grep interrupts /tmp/sbconf.$$ \
+		| sed -e 's/.*interrupts=.,\(.\).*/\1/'`
+	sed -e "/interrupts=5,${INT}.*type=.SB16./s/;/ dma-channels=${DMA};/"\
+	   < $src > $dest
+	echo "found an SB16 entry, edited new" > $log
+	continue
+done
+
+rm -f /tmp/sbconf.$$
+exit 0

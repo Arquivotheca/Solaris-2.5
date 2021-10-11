@@ -1,0 +1,43 @@
+#!/bin/sh
+#
+#ident	"@(#)i.cronroot	1.4	94/04/20 SMI"
+#
+# Copyright (c) 1993 by Sun Microsystems, Inc.
+#
+
+PATH="/usr/bin:/usr/sbin:${PATH}"
+export PATH
+
+while read src dest
+do
+	if [ ! -f $dest ] ; then
+		cp $src $dest
+	else
+		grep '^#ident[ 	]*\"@(#)root' $src \
+		    > /tmp/newident.$$ 2>/dev/null
+		grep -v '^#ident[ 	]*\"@(#)root' $dest \
+		    > /tmp/rest.$$ 2>/dev/null
+		cat /tmp/newident.$$ /tmp/rest.$$ > $dest
+		#
+		# 2.1 version of this file had a trailing blank line.
+		# Remove it.
+		#
+		sed -e '$s/^[ 	]*$/%%%/' -e '/^%%%$/d' $dest > /tmp/d.$$
+		cp /tmp/d.$$ $dest
+		#
+		# usr nfsfind
+		#
+		sed 's,find / -name \.nfs\\\* -mtime +7.*,/usr/lib/fs/nfs/nfsfind,' $dest > /tmp/d.$$
+		cp /tmp/d.$$ $dest
+		#
+		# add rtc command
+		#
+		grep "/usr/sbin/rtc -c" $dest >/dev/null 2>&1
+		if [ $? != 0 ] ; then
+			grep "/usr/sbin/rtc -c" $src >> $dest
+		fi
+		rm -f /tmp/d.$$ /tmp/newident.$$ /tmp/rest.$$
+	fi
+done
+
+exit 0

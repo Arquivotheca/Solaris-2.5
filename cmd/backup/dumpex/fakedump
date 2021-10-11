@@ -1,0 +1,39 @@
+#!/bin/perl
+print "Fake dump on ",`/bin/hostname`;
+print "Args:";
+foreach $i (@ARGV) { print " $i";}
+print "\n";
+$args = $ARGV[0];
+shift(@ARGV);
+foreach (split(/ */, $args))
+{
+	/b/ && do { "-b: %s\n", $bsize=shift(@ARGV); next; };
+	/L/ && do { "-L: %s\n", $lfile=shift(@ARGV); next; };
+	/f/ && do { "-f: %s\n", shift(@ARGV); next; };
+	/V/ && do { "-V\n"; next; };
+	/U/ && do { "-U: %s\n", shift(@ARGV); next; };
+	/P/ && do { printf "-P: %s\n", $p = shift(@ARGV); next; };
+	/p/ && do { printf "-p: %s\n", $p = shift(@ARGV); next; };
+	/R/ && do { "-R\n"; next; };
+	/D/ && do { "-D: %s\n", shift(@ARGV); next; };
+	/I/ && do { "-I\n"; next; };
+	/[0-9]/ && do { "-$_\n"; next; };
+	print "????: $_\n";
+}
+printf "f/s = %s\n", $fs = $ARGV[0];
+open(IN, $lfile) || die "Can't open $lfile\n";
+open(OUT, ">$lfile.xxx") || die "Can't open outfile\n";
+$_ = <IN>; print OUT; # security header
+$_ = <IN>; print OUT; # library name
+
+$_ = <IN>;		# should be cleverer
+s/./P/;
+s/-/+/;
+$p++;
+s/$/ $p/;
+print OUT;
+while (<IN>) { print OUT;}
+close (IN);
+close (OUT);
+rename("$lfile.xxx", "$lfile");
+exit(0);

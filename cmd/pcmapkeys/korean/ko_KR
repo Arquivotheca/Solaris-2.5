@@ -1,0 +1,209 @@
+# Copyright (c) 1993 Sun Microsystems, Inc.  All Rights Reserved.
+#
+#	"@(#)ko_KR   1.1     94/03/23 SMI"
+#
+# This mapfile is provided as example only. Sun Microsystems Inc.,
+# does not warrant that this file is error-free.
+#
+#	ko_KR (en_US.8859-1)
+#
+# This mapping file is indended for use with the 8859-1 loadfont.
+# It implements a keyboard mapping which allows the use of the
+# 8859-1 code set, using the Danish Standards Association's recommended
+# short names (but not their "compose" value), such that the "compose" key,
+# followed by the 2-letter code, generates the character.
+# In addition, more "graphic" combinations are also encoded
+# (for instance, E^ in addition to E>, and ?? in addition to ?I
+# for inverted question mark). The graphic characters are encoded
+# using special names.
+# There are, in this set, no nonspacing characters; all non-keyboard
+# sequences require the "compose" key.
+#
+#
+# Input mapping is not done - Korea keyboard                    
+input:
+#
+# The "compose" character is CTRL x.
+# The toggle key is CTRL t.
+#
+toggle: 0x14
+#
+#
+# The "compose" character is CTRL x.
+# Compose mode: 
+# 
+compose:  0x18      # unfrequently used ctrl character
+#			
+' '  ' '  0xa0          # no breaking space 
+' '  '1'  0xb9          # superscript 1
+' '  '2'  0xb2          # superscript 2
+' '  '3'  0xb3          # superscript 3
+'!'  '!'  0xa1          # inverted exclamation mark 
+'#'  '$'  0xa4          # currency symbol
+'$'  '$'  0xa7          # paragraph sign
+'''  ' '  '''           # apostrophe
+'''  '''  0xb4          # acute accent
+'''  ','  0xb8          # cedilla
+'''  ':'  0xa8          # diaeresis
+'('  'U'  0x98          # intersection
+'*'  '*'  0xb0          # degree
+'*'  '.'  0xd7          # multiplication sign
+'*'  'X'  0xd7          # multiplication sign
+'+'  '-'  0xb1          # plus-minus
+','  ','  0xb8          # cedilla
+'-'  '-'  0xad          # soft hyphen
+'-'  ':'  0xf7          # division sign
+'-'  'a'  0xaa          # ordinal (feminine) a
+'-'  'o'  0xba          # ordinal (masculine) o
+'-'  '|'  0xac          # not sign
+'.'  '.'  0xb7          # middle dot
+'.'  'M'  0xb7          # middle dot
+'1'  'h'  0xbd          # vulgar fraction 1/2
+'1'  'q'  0xbc          # vulgar fraction 1/4
+'3'  'q'  0xbe          # vulgar fraction 3/4
+'<'  '<'  0xab          # left double angle quotation mark
+'>'  '>'  0xbb          # right double angle quotation mark
+'?'  '?'  0xbf          # inverted question mark
+'A'  '!'  0xc0          # A grave
+'A'  '''  0xc1          # A acute
+'A'  '.'  0xc5          # A ring above
+'A'  ':'  0xc4          # A diaeresis
+'A'  '>'  0xc2          # A circumflex
+'A'  '?'  0xc3          # A tilde
+'A'  'A'  0xc5          # A ring above
+'A'  'E'  0xc6          # AE diphtong
+'A'  '^'  0xc2          # A circumflex
+'A'  '`'  0xc0          # A grave
+'A'  '~'  0xc3          # A tilde
+'B'  'B'  0xa6          # broken bar
+'C'  ','  0xc7          # C cedilla
+'C'  'o'  0xa9          # copyright sign
+'C'  't'  0xa2          # cent sign
+'C'  'u'  0xa4          # currency symbol
+'D'  '-'  0xd0          # Capital eth
+'D'  'G'  0xb0          # degree
+'E'  '!'  0xc8          # E grave
+'E'  '''  0xc9          # E acute
+'E'  ':'  0xcb          # E diaeresis
+'E'  '>'  0xca          # E circumflex
+'E'  '^'  0xca          # E circumflex
+'E'  '`'  0xc8          # E grave
+'I'  '!'  0xcc          # I grave
+'I'  '''  0xcd          # I acute
+'I'  ':'  0xcf          # I diaresis
+'I'  '>'  0xce          # I circumflex
+'I'  '^'  0xce          # I circumflex
+'I'  '`'  0xcc          # I grave
+'L'  '-'  0xa3          # pound sign
+'M'  'y'  0xb5          # micro
+'N'  '?'  0xd1          # N tilde
+'N'  'O'  0xac          # not sign
+'N'  'S'  0xa0          # no breaking space 
+'N'  'o'  0xac          # not sign
+'N'  '~'  0xd1          # N tilde
+'O'  '!'  0xd2          # O grave
+'O'  '''  0xd3          # O acute
+'O'  '/'  0xd8          # O slash
+'O'  ':'  0xd6          # O diaeresis
+'O'  '>'  0xd4          # O circumflex
+'O'  '?'  0xd5          # O tilde
+'O'  '^'  0xd4          # O circumflex
+'O'  '`'  0xd2          # O grave
+'O'  '~'  0xd5          # O tilde
+'P'  'I'  0xb6          # pilcrow
+'P'  'P'  0xb6          # pilcrow
+'P'  'd'  0xa3          # pound sign
+'R'  'O'  0xae          # registered mark
+'R'  'g'  0xae          # registered mark
+'S'  'E'  0xa7          # paragraph sign
+'T'  'H'  0xde          # Thorn
+'U'  '!'  0xd9          # U grave
+'U'  '''  0xda          # U acute
+'U'  ':'  0xdc          # U diaeresis
+'U'  '>'  0xdb          # U circumflex
+'U'  '^'  0xdb          # U circumflex
+'U'  '`'  0xd9          # U grave
+'Y'  '''  0xdd          # Y acute
+'Y'  '-'  0xa5          # yen sign
+'Y'  'e'  0xa5          # yen sign
+'a'  '!'  0xe0          # a grave
+'a'  '''  0xe1          # a acute
+'a'  '.'  0xe5          # a ring above
+'a'  ':'  0xe4          # a diaeresis
+'a'  '>'  0xe2          # a circumflex
+'a'  '?'  0xe3          # a tilde
+'a'  '^'  0xe2          # a circumflex
+'a'  '`'  0xe0          # a grave
+'a'  'a'  0xe5          # a ring above
+'a'  'e'  0xe6          # ae diphtong
+'a'  '~'  0xe3          # a tilde
+'b'  't'  0x94          # "Bottom T intersection" (_|_)
+'c'  ','  0xe7          # c cedilla
+'c'  '/'  0xa2          # cent sign
+'c'  'O'  0xa9          # copyright sign
+'d'  '-'  0xf0          # eth
+'e'  '!'  0xe8          # e grave
+'e'  '''  0xe9          # e acute
+'e'  ':'  0xeb          # e diaeresis
+'e'  '>'  0xea          # e circumflex
+'e'  '^'  0xea          # e circumflex
+'e'  '`'  0xe8          # e grave
+'h'  'l'  0x97          # "Horizontal Line"
+'i'  '!'  0xec          # i grave
+'i'  '''  0xed          # i acute
+'i'  ':'  0xef          # i diaresis
+'i'  '>'  0xee          # i circumflex
+'i'  '^'  0xee          # i circumflex
+'i'  '`'  0xec          # i grave
+'l'  'l'  0x93          # "Lower Left Corner" (|_)
+'l'  'r'  0x99          # "Lower Right Corner" (_|)
+'l'  't'  0x96          # "Left T Intersection" (|-)
+'n'  '?'  0xf1          # n tilde
+'n'  '~'  0xf1          # n tilde
+'o'  '!'  0xf2          # o grave
+'o'  '''  0xf3          # o acute
+'o'  '/'  0xf8          # o slash
+'o'  ':'  0xf6          # o diaeresis
+'o'  '>'  0xf4          # o circumflex
+'o'  '?'  0xf5          # o tilde
+'o'  '^'  0xf4          # o circumflex
+'o'  '`'  0xf2          # o grave
+'o'  '~'  0xf5          # o tilde
+'p'  's'  0xa3          # pound sign
+'r'  't'  0x91          # "Right T Intersection" (-|)
+'s'  's'  0xdf          # German double s
+'t'  'h'  0xfe          # thorn
+'u'  '!'  0xf9          # u grave
+'u'  '''  0xfa          # u acute
+'u'  ':'  0xfc          # u diaeresis
+'u'  '>'  0xfb          # u circumflex
+'u'  '^'  0xfb          # u circumflex
+'u'  '`'  0xf9          # u grave
+'u'  'l'  0x9a          # "Upper Left Corner" (|~)
+'u'  'r'  0x92          # "Upper Right Corner" (~|)
+'u'  't'  0x95          # "Upper T intersection" (~|~)
+'u'  '|'  0xb5          # micro
+'v'  'l'  0x90          # "Vertical Line" (-)
+'x'  't'  0x98          # "Middle Cross(Intersection" (-|-)
+'y'  '''  0xfd          # y acute
+'y'  '-'  0xa5          # yen sign
+'y'  ':'  0xff          # y diaeresis
+'|'  '|'  0xa6          # broken bar
+'~'  '~'  0xaf          # macron
+#
+#
+# The following output section maps '9b' (an ANSI CSI code,
+# which unfortunately is also an IBM character) such that
+# it prints.
+#
+output:
+0x9b	0x1b 0x9b
+#
+scancodes:
+# Add your own scan codes here
+#      NORM    SHIFT     ALT   ALT_SHIFT
+#
+# map CTRL SHIFT F1  to be 0x18 for the compose character key
+F37     0x18
+# map CTRL SHIFT F2 to be 0x14 for the toggle key
+F38     0x14

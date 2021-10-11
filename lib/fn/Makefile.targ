@@ -1,0 +1,32 @@
+#
+#ident  "@(#)Makefile.targ	1.7 94/11/15 SMI"
+#
+# Copyright (c) 1989 - 1994 by Sun Microsystems, Inc.
+#
+# lib/fn/Makefile.targ
+#
+# We are using this file to share target rules across all subdirs
+
+# lib/Makefile.lib changes FILEMODE to 755 underneath us causing
+# multiple (and eventually wrong) install of headers from lib subdirs
+$(ROOT)/usr/include/xfn/% := FILEMODE = 644
+$(FNINCDIR)/xfn/% := FILEMODE = 644
+
+# for now, we only want .h files to get installed in /usr/include
+$(ROOT)/usr/include/xfn/%.h: %.h
+	$(INS.file)
+
+# for now, keep .hh files in $(FNINCDIR)
+$(FNINCDIR)/xfn/%.hh: %.hh
+	$(INS.file)
+
+$(ROOT)/usr/lib $(FNLIBDIR) $(ROOTDIRS) $(FNINCDIR) $(FNINCDIR)/xfn:
+	$(INS.dir)
+
+# CC -G drops /opt/SUNWspro/lib from the library_path it passes to ld,
+# this restores it so we can find -lC.
+# CC -G also adds /opt/SUNWspro/lib to the run_path it passes to ld.  This
+# overrides it.
+$(DYNLIBCCC) := LDLIBS += -L/opt/SUNWspro/lib -Qoption ld -R/usr/lib
+
+include $(SRC)/lib/Makefile.targ

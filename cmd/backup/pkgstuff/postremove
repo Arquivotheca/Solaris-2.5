@@ -1,0 +1,81 @@
+#!/bin/sh
+#
+#ident "$SunId: @(#)postremove 1.1 92/09/25 SMI [RMTC] $"
+#
+# Post-remove script for SUNWhsm
+
+etcdir=/etc/opt/SUNWhsm
+admdir=/var/opt/SUNWhsm
+
+confdir=${etcdir}/dumps
+logdir=${admdir}/dumplog
+
+initfiles="/etc/init.d/hsm /etc/init.d/hsmdump"
+rcfiles="/etc/rc*/K25hsm* /etc/rc*/S90hsm*"
+dbfiles=".db*_lock activetapes* *.[0-9]*.[0-9]*.[0-9]*.[0-9]*"
+
+# Set up signal handler
+trap 'echo "Caught Signal"; exit 3' 1 2 3 15
+
+# Check to see if we have configuration information.
+haveconfig=0
+cleanconfig="rm -rf $admdir $etcdir"
+if [ -d $etcdir ]; then
+	grep '### dumpconfigfile ###' $confdir/* >/dev/null 2>&1
+	if [ $? -eq 0 -o -f ${etcdir}/dump.conf ]; then
+		haveconfig=1
+	fi
+fi
+
+# Check to see if we have rc files
+haverc=0
+cleanrc=""
+for rc in $initfiles; do
+	if [ -x $rc ]; then
+		haverc=1
+		cleanrc="rm -f $initfiles $rcfiles"
+		break
+	fi
+done
+
+# Check to see if we have a dump database configured
+havedb=0
+cleandb=""
+for rc in $initfiles; do
+	set x `grep "rpc.dumpdbd /" $rc 2>/dev/null`
+	if [ $# -ge 3 -a -d "$3" ]; then
+		havedb=1
+		dbdir="$3"
+		rcfile=$rc
+		cleandb="eval ( cd \"$dbdir\"; rm -rf $dbfiles; cd /; rmdir \"$dbdir\" ) >/dev/null 2>&1"
+		break
+	fi
+done
+
+# Check to see if we have crontab modifications
+havecron=0
+cleancron=""
+crontab -l 2>/dev/null | grep dumpex >/dev/null 2>&1
+if [ $? -eq 0 ]; then
+	havecron=1
+	cleancron="eval ( crontab -l | grep -v dumpex | crontab ) >/dev/null 2>&1"
+fi
+
+#
+# ---------------------------------------------------------------------------
+#
+
+# If no configurations and no database, just clean stuff up and quit
+if [ $haveconfig -eq 0 -a $havedb -eq 0 ]; then
+	$cleanconfig
+	$cleancron
+	$cleanrc
+	exit 0
+fi
+
+cat <<eof
+Note -- database and/or configuration files remain!  you must remove
+them yourself.
+eof
+
+exit 0

@@ -1,0 +1,41 @@
+#	Copyright (c) 1994 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+# ident "@(#)prototype_com	1.2 94/11/08 SMI"
+#
+# This required package information file contains a list of package contents.
+# The 'pkgmk' command uses this file to identify the contents of a package
+# and their location on the development machine when building the package.
+# Can be created via a text editor or through use of the 'pkgproto' command.
+
+#!search <pathname pathname ...>	# where to find pkg objects
+#!include <filename>			# include another 'prototype' file
+#!default <mode> <owner> <group>	# default used if not specified on entry
+#!<param>=<value>			# puts parameter in pkg environment
+
+# packaging files
+i pkginfo
+i copyright
+i depend
+#
+# source locations relative to the prototype file
+#
+# SUNWfnspr
+#
+d none usr 0775 root sys
+d none usr/lib 0775 root bin
+d none usr/lib/fn 0755 bin bin
+f none usr/lib/fn/fn_ctx_onc_fn_printer_files.so.1 0755 bin bin
+s none usr/lib/fn/fn_ctx_onc_fn_printer_files.so=fn_ctx_onc_fn_printer_files.so.1
+f none usr/lib/fn/fn_ctx_onc_fn_printer_nis.so.1 0755 bin bin
+s none usr/lib/fn/fn_ctx_onc_fn_printer_nis.so=fn_ctx_onc_fn_printer_nis.so.1
+f none usr/lib/fn/fn_ctx_onc_fn_printer_nisplus.so.1 0755 bin bin
+s none usr/lib/fn/fn_ctx_onc_fn_printer_nisplus.so=fn_ctx_onc_fn_printer_nisplus.so.1
+f none usr/lib/fn/fn_ref_addr_onc_fn_printer_files.so.1 0755 bin bin
+s none usr/lib/fn/fn_ref_addr_onc_fn_printer_files.so=fn_ref_addr_onc_fn_printer_files.so.1
+f none usr/lib/fn/fn_ref_addr_onc_fn_printer_nis.so.1 0755 bin bin
+s none usr/lib/fn/fn_ref_addr_onc_fn_printer_nis.so=fn_ref_addr_onc_fn_printer_nis.so.1
+f none usr/lib/fn/fn_ref_addr_onc_fn_printer_nisplus.so.1 0755 bin bin
+s none usr/lib/fn/fn_ref_addr_onc_fn_printer_nisplus.so=fn_ref_addr_onc_fn_printer_nisplus.so.1
+d none usr/bin 0775 root bin
+f none usr/bin/fncreate_printer 0555 bin bin

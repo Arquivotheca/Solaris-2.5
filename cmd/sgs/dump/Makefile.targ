@@ -1,0 +1,37 @@
+#
+#ident	"@(#)Makefile.targ	1.1	94/08/30 SMI"
+#
+# Copyright (c) 1994 by Sun Microsystems, Inc.
+#
+# cmd/sgs/dump/Makefile.targ
+
+%.o:		../common/%.c
+		$(COMPILE.c) $<
+
+%.o:		../../c++/demangler/common/%.y
+		$(YACC.y) $<
+		$(COMPILE.c) -o $@ y.tab.c
+		$(RM) y.tab.c
+
+%.o:		../../c++/demangler/common/%.c
+		$(COMPILE.c) $<
+
+.KEEP_STATE:
+
+all:		$(PROG)
+
+$(PROG):	$(OBJS)
+		$(LINK.c) $(OBJS) -o $@ $(LDLIBS)
+		$(POST_PROCESS)
+
+install:	all $(ROOTCCSBINPROG)
+
+clean:
+		$(RM) $(OBJS) $(CLEANFILES)
+
+lint:		$(LINTOUT)
+
+$(LINTOUT):	$(SRCS)
+		$(LINT.c) $(SRCS) > $(LINTOUT) 2>&1
+
+include		../../../Makefile.targ

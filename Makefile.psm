@@ -1,0 +1,102 @@
+#
+#ident	"@(#)Makefile.psm	1.5	94/12/22 SMI"
+#
+# Copyright (c) 1993 by Sun Microsystems, Inc.
+#
+# Makefile.psm, global definitions for platform specific modules
+#
+
+#
+#
+#
+INS.dir.root.sys=	$(INS) -s -d -m $(DIRMODE) $@
+$(CH)INS.dir.root.sys=	$(INS) -s -d -m $(DIRMODE) -u root -g sys $@
+INS.dir.bin.bin=	$(INS) -s -d -m $(DIRMODE) $@
+$(CH)INS.dir.bin.bin=	$(INS) -s -d -m $(DIRMODE) -u bin -g bin $@
+
+#
+#
+#
+ROOT_PLAT_DIR		 = $(ROOT)/platform
+
+ROOT_PSM_DIR		 = $(ROOT_PLAT_DIR)/$(PLATFORM)
+
+ROOT_PSM_MOD_DIR	 = $(ROOT_PSM_DIR)/kernel
+ROOT_PSM_LIB_DIR	 = $(ROOT_PSM_DIR)/lib
+ROOT_PSM_SBIN_DIR	 = $(ROOT_PSM_DIR)/sbin
+
+ROOT_PSM_DRV_DIR	 = $(ROOT_PSM_MOD_DIR)/drv
+ROOT_PSM_EXEC_DIR	 = $(ROOT_PSM_MOD_DIR)/exec
+ROOT_PSM_FS_DIR		 = $(ROOT_PSM_MOD_DIR)/fs
+ROOT_PSM_SCHED_DIR	 = $(ROOT_PSM_MOD_DIR)/sched
+ROOT_PSM_STRMOD_DIR	 = $(ROOT_PSM_MOD_DIR)/strmod
+ROOT_PSM_SYS_DIR	 = $(ROOT_PSM_MOD_DIR)/sys
+ROOT_PSM_MISC_DIR	 = $(ROOT_PSM_MOD_DIR)/misc
+ROOT_PSM_MACH_DIR	 = $(ROOT_PSM_MOD_DIR)/mach
+
+ROOT_PSM_MOD_DIRS	 = $(ROOT_PSM_DRV_DIR)
+ROOT_PSM_MOD_DIRS 	+= $(ROOT_PSM_EXEC_DIR) $(ROOT_PSM_FS_DIR)
+ROOT_PSM_MOD_DIRS 	+= $(ROOT_PSM_SCHED_DIR) $(ROOT_PSM_STRMOD_DIR)
+ROOT_PSM_MOD_DIRS 	+= $(ROOT_PSM_SYS_DIR) $(ROOT_PSM_MISC_DIR)
+ROOT_PSM_MOD_DIRS 	+= $(ROOT_PSM_MACH_DIR)
+
+USR_PLAT_DIR		 = $(ROOT)/usr/platform
+
+USR_PSM_DIR		 = $(USR_PLAT_DIR)/$(PLATFORM)
+
+USR_PSM_MOD_DIR		 = $(USR_PSM_DIR)/kernel
+USR_PSM_INCL_DIR	 = $(USR_PSM_DIR)/include
+USR_PSM_LIB_DIR		 = $(USR_PSM_DIR)/lib
+USR_PSM_SBIN_DIR	 = $(USR_PSM_DIR)/sbin
+
+USR_PSM_ISYS_DIR	 = $(USR_PSM_INCL_DIR)/sys
+USR_PSM_IVM_DIR		 = $(USR_PSM_INCL_DIR)/vm
+
+USR_PSM_LIB_FS_DIR	 = $(USR_PSM_LIB_DIR)/fs
+USR_PSM_LIB_UFS_DIR	 = $(USR_PSM_LIB_FS_DIR)/ufs
+USR_PSM_LIB_NFS_DIR	 = $(USR_PSM_LIB_FS_DIR)/nfs
+USR_PSM_LIB_HSFS_DIR	 = $(USR_PSM_LIB_FS_DIR)/hsfs
+
+USR_PSM_DRV_DIR		 = $(USR_PSM_MOD_DIR)/drv
+USR_PSM_EXEC_DIR	 = $(USR_PSM_MOD_DIR)/exec
+USR_PSM_FS_DIR		 = $(USR_PSM_MOD_DIR)/fs
+USR_PSM_SCHED_DIR	 = $(USR_PSM_MOD_DIR)/sched
+USR_PSM_STRMOD_DIR	 = $(USR_PSM_MOD_DIR)/strmod
+USR_PSM_SYS_DIR		 = $(USR_PSM_MOD_DIR)/sys
+USR_PSM_MISC_DIR	 = $(USR_PSM_MOD_DIR)/misc
+
+USR_PSM_MOD_DIRS	 = $(USR_PSM_DRV_DIR)
+USR_PSM_MOD_DIRS 	+= $(USR_PSM_EXEC_DIR) $(USR_PSM_FS_DIR)
+USR_PSM_MOD_DIRS 	+= $(USR_PSM_SCHED_DIR) $(USR_PSM_STRMOD_DIR)
+USR_PSM_MOD_DIRS 	+= $(USR_PSM_SYS_DIR) $(USR_PSM_MISC_DIR)
+
+#
+# The following are for the installation of objects in PSM directories.
+#
+ROOT_PSM_PROG=			$(PROG:%=$(ROOT_PSM_DIR)/%)
+USR_PSM_PROG=			$(PROG:%=$(USR_PSM_DIR)/%)
+
+ROOT_PSM_SBIN_PROG=		$(PROG:%=$(ROOT_PSM_SBIN_DIR)/%)
+USR_PSM_SBIN_PROG=		$(PROG:%=$(USR_PSM_SBIN_DIR)/%)
+
+ROOT_PSM_LIBS=			$(LIBS:%=$(ROOT_PSM_LIB_DIR)/%)
+USR_PSM_LIBS=			$(LIBS:%=$(USR_PSM_LIB_DIR)/%)
+$(ROOT_PSM_LIB_DIR)/$(DYNLIB)	:= FILEMODE= 755
+$(USR_PSM_LIB_DIR)/$(DYNLIB)	:= FILEMODE= 755
+
+#
+# The following are used to link objects between platforms (for platforms
+# which wish to share some objects, but not everything).
+#
+ROOT_PSM_PROG_LINKS=		$(PLATLINKS:%=$(ROOT_PLAT_DIR)/%/$(PROG))
+USR_PSM_PROG_LINKS=		$(PLATLINKS:%=$(USR_PLAT_DIR)/%/$(PROG))
+
+ROOT_PSM_SBIN_PROG_LINKS=	$(PLATLINKS:%=$(ROOT_PLAT_DIR)/%/sbin/$(PROG))
+USR_PSM_SBIN_PROG_LINKS=	$(PLATLINKS:%=$(USR_PLAT_DIR)/%/sbin/$(PROG))
+
+#
+# The following are for the creation of the link between the generic name
+# of a library and the versioned instance of it.
+#
+ROOT_PSM_LIB_VERLINKS=		$(ROOT_PSM_LIB_DIR)/$(LIBLINKS)
+USR_PSM_LIB_VERLINKS=		$(USR_PSM_LIB_DIR)/$(LIBLINKS)

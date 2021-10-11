@@ -1,0 +1,29 @@
+#
+# Copyright (c) 1991, by Sun Microsystems, Inc.
+#
+#ident	"@(#)syslog	1.6	93/10/06 SMI"
+
+case "$1" in
+'start')
+	if [ -f /etc/syslog.conf -a -f /usr/sbin/syslogd ]; then
+		echo "syslog service starting."
+		if [ ! -f /var/adm/messages ]
+		then
+			cp /dev/null /var/adm/messages
+		fi
+		/usr/sbin/syslogd 1>/dev/console 2>&1
+	fi
+	;;
+'stop')
+	[ ! -f /etc/syslog.pid ] && exit 0
+	syspid=`cat /etc/syslog.pid`
+	if [ "$syspid" -gt 0 ]; then
+		echo "Stopping the syslog service."
+		kill -15 $syspid 2>&1 | /usr/bin/grep -v "no such process"
+	fi
+	;;
+*)
+	echo "Usage: /etc/init.d/syslog { start | stop }"
+	;;
+esac
+exit 0

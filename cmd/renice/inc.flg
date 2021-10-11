@@ -1,0 +1,4 @@
+#!/bin/sh
+#ident	"@(#)inc.flg	1.1	94/11/09 SMI"
+ 
+echo_file usr/src/cmd/csh/setpriority.c

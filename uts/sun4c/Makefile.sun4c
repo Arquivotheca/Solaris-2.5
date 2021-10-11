@@ -1,0 +1,192 @@
+#
+# uts/sun4c/Makefile.sun4c
+# Copyright (c) 1991 by Sun Microsystems, Inc.
+#
+#ident	"@(#)Makefile.sun4c	1.54	94/11/19 SMI"
+#
+#	This makefile contains the common definitions for the sun4c unix
+#	and all sun4c implementation architecture dependent modules.
+#
+
+#
+#	Machine type (implementation architecture):
+#
+PLATFORM	 = sun4c
+PROMIF           = obp
+PSMBASE		 = $(UTSBASE)/../psm
+
+#
+#	Everybody needs to know how to build modstubs.o and to locate unix.o
+#
+OBJS_DIR	 = .
+UNIX_DIR	 = $(UTSBASE)/$(PLATFORM)/unix
+GENLIB_DIR	 = $(UTSBASE)/sparc/genunix
+MODSTUBS_DIR	 = $(UNIX_DIR)
+DSF_DIR		 = $(UTSBASE)/$(PLATFORM)/genassym
+LINTS_DIR	 = $(OBJS_DIR)
+LINT_LIB_DIR	 = $(UTSBASE)/$(PLATFORM)/lint-libs
+GEN_LINT_LIB_DIR = $(UTSBASE)/sparc/lint-libs
+
+UNIX_O		 = $(UNIX_DIR)/unix.o
+MODSTUBS_O	 = $(MODSTUBS_DIR)/modstubs.o
+GENLIB	 	 = $(GENLIB_DIR)/libgenunix.so
+LINT_LIB	 = $(LINT_LIB_DIR)/llib-lunix.ln
+GEN_LINT_LIB	 = $(GEN_LINT_LIB_DIR)/llib-lgenunix.ln
+
+#
+#	Include the makefiles which define build rule templates, the
+#	collection of files per module, and a few specific flags. Note
+#	that order is significant, just as with an include path. The
+#	first build rule template which matches the files name will be
+#	used. By including these in order from most machine dependent
+#	to most machine independent, we allow a machine dependent file
+#	to be used in preference over a machine independent version
+#	(Such as a machine specific optimization, which preserves the
+#	interfaces.)
+#
+include $(UTSBASE)/$(PLATFORM)/Makefile.files
+include $(UTSBASE)/sunmmu/Makefile.files
+include $(UTSBASE)/sparc/v7/Makefile.files
+include $(UTSBASE)/sparc/Makefile.files
+include $(UTSBASE)/sun/Makefile.files
+include $(SRC)/psm/promif/$(PROMIF)/Makefile.files
+include $(UTSBASE)/common/Makefile.files
+
+#
+#	Include machine independent rules. Note that this does not imply
+#	that the resulting module from rules in Makefile.uts is	machine
+#	independent. Only that the build rules are machine independent.
+#
+include $(UTSBASE)/Makefile.uts
+
+#
+#	The following must be defined for all implementations:
+#
+#	MAPFILE:	ld mapfile for the build of kernel/unix.
+#	MODSTUBS:	Module stubs source file.
+#	GENASSYM_SRC:	genassym.c
+#	FDGENASSYM_SRC: fd_genassym.c
+#
+MAPFILE		 = $(UTSBASE)/$(PLATFORM)/conf/Mapfile
+MODSTUBS	 = $(UTSBASE)/sparc/ml/modstubs.s
+GENASSYM_SRC	 = $(UTSBASE)/$(PLATFORM)/ml/genassym.c
+FDGENASSYM_SRC 	 = $(UTSBASE)/sun/io/fd_genassym.c
+
+#
+#	Define the actual specific platforms
+#
+MACHINE_DEFS	 = -D$(PLATFORM) -D_MACHDEP
+
+#
+#	Debugging level
+#
+#	Special knowledge of which special debugging options effect which
+#	file is used to optimize the build if these flags are changed.
+#
+#	XXX: The above could possibly be done for more flags and files, but
+#	     is left as an experiment to the interested reader. Be forewarned,
+#	     that excessive use could lead to maintenance difficulties.
+#
+DEBUG_DEFS	=
+$(NOT_RELEASE_BUILD)DEBUG_DEFS	+= -DDEBUG
+
+$(NOT_RELEASE_BUILD)trap.o	:=	DEBUG_DEFS	+= -DTRAPDEBUG
+$(NOT_RELEASE_BUILD)syscall_trap.o :=	DEBUG_DEFS	+= -DSYSCALLTRACE
+$(NOT_RELEASE_BUILD)locore.o	:=	DEBUG_DEFS	+= -DTRAPTRACE
+$(NOT_RELEASE_BUILD)syscall_trap.o :=	DEBUG_DEFS	+= -DTRAPTRACE
+$(NOT_RELEASE_BUILD)overflow.o :=	DEBUG_DEFS	+= -DTRAPTRACE
+$(NOT_RELEASE_BUILD)underflow.o :=	DEBUG_DEFS	+= -DTRAPTRACE
+
+# Comment these out if you don't want dispatcher lock statistics.
+
+# $(NOT_RELEASE_BUILD)lock_prim.o	:= DEBUG_DEFS	+= -DDISP_LOCK_STATS
+# $(NOT_RELEASE_BUILD)disp.o	:= DEBUG_DEFS	+= -DDISP_LOCK_STATS
+
+#
+#	Build `options'. These are mostly historical and the need for these
+#	is largely removed by the module technology. However, the static
+#	build will continue to require these.
+#
+OPTION_DEFS	 = -DSYSACCT -DC2_AUDIT -DQUOTA
+
+#
+#	Collect the preprocessor definitions to be associated with *all*
+#	files.
+#
+ALL_DEFS	 = $(MACHINE_DEFS) $(DEBUG_DEFS) $(OPTION_DEFS)
+GENASSYM_DEFS	 = $(MACHINE_DEFS) $(OPTION_DEFS)
+
+#
+# ----- TRANSITIONAL SECTION --------------------------------------------------
+#
+
+#
+#	Not everything which *should* be a module is a module yet. The
+#	following is a list of such objects which are currently part of
+#	the base kernel but should soon become kmods.
+#
+MACH_NOT_YET_KMODS	 = $(AUTOCONF_OBJS)
+
+#
+# ----- END OF TRANSITIONAL SECTION -------------------------------------------
+#
+
+#
+#	The kernels modules which are "implementation architecture"
+#	specific for this machine are enumerated below. Note that most
+#	of these modules must exist (in one form or another) for each
+#	architecture.
+#
+#	Common Drivers (usually pseudo drivers) (/kernel/drv):
+#
+DRV_KMODS	+=
+
+#
+#	Machine Specific Driver Modules (/kernel/drv):
+#
+#	XXX: How many of these are really machine specific?
+#
+DRV_KMODS	+= bwtwo cgeight cgsix cgthree
+DRV_KMODS	+= dma eeprom fd rootnex
+DRV_KMODS	+= sbus sbusmem stc zs zsh
+
+#
+#	Exec Class Modules (/kernel/exec):
+#
+EXEC_KMODS	+=
+
+#
+#	Scheduling Class Modules (/kernel/sched):
+#
+SCHED_KMODS	+=
+
+#
+#	File System Modules (/kernel/fs):
+#
+FS_KMODS	+=
+
+#
+#	Streams Modules (/kernel/strmod):
+#
+STRMOD_KMODS	+= kb
+
+#
+#	'System' Modules (/kernel/sys):
+#
+SYS_KMODS	+=
+
+#
+#	'User' Modules (/kernel/misc):
+#
+MISC_KMODS	+= obpsym
+
+#
+#	Modules eXcluded from the product:
+#
+XMODS		+=
+
+#
+#	The following aren't really modules, but just support the
+#	installation of a platform specific .conf file.
+#
+CONFS		+= profile

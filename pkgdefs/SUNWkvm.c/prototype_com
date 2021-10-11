@@ -1,0 +1,61 @@
+#	Copyright (c) 1990-95 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)prototype_com	1.50	95/03/29 (c) Sun Microsystems, Inc.
+#
+# This required package information file contains a list of package contents.
+# The 'pkgmk' command uses this file to identify the contents of a package
+# and their location on the development machine when building the package.
+# Can be created via a text editor or through use of the 'pkgproto' command.
+
+#!search <pathname pathname ...>	# where to find pkg objects
+#!include <filename>			# include another 'prototype' file
+#!default <mode> <owner> <group>	# default used if not specified on entry
+#!<param>=<value>			# puts parameter in pkg environment
+
+# packaging files
+i pkginfo
+i copyright
+#
+# source locations relative to the prototype file
+#
+# SUNWkvm.c
+#
+d none usr 775 root sys
+d none usr/platform 755 root sys
+d none usr/platform/sun4c 755 root sys
+d none usr/platform/sun4c/sbin 755 bin bin
+f none usr/platform/sun4c/sbin/eeprom 2555 bin sys
+d none usr/platform/sun4c/lib 755 bin bin
+#
+# platform-dependent adb macros
+#
+d none usr/platform/sun4c/lib/adb 755 bin bin
+f none usr/platform/sun4c/lib/adb/ctx 644 root sys
+f none usr/platform/sun4c/lib/adb/hmetopmgrp 644 root sys
+f none usr/platform/sun4c/lib/adb/machpcb 644 root sys
+f none usr/platform/sun4c/lib/adb/msgbuf 644 root sys
+f none usr/platform/sun4c/lib/adb/mutex 644 root sys
+f none usr/platform/sun4c/lib/adb/pmgrp 644 root sys
+f none usr/platform/sun4c/lib/adb/pmgseg 644 root sys
+f none usr/platform/sun4c/lib/adb/regs 644 root sys
+f none usr/platform/sun4c/lib/adb/rwlock 644 root sys
+f none usr/platform/sun4c/lib/adb/sema 644 root sys
+#
+# platform-dependent boot objects
+#
+d none usr/platform/sun4c/lib/fs 755 bin bin
+d none usr/platform/sun4c/lib/fs/ufs 755 bin bin
+f none usr/platform/sun4c/lib/fs/ufs/bootblk 444 root sys
+d none usr/platform/sun4c/lib/fs/nfs 755 bin bin
+f none usr/platform/sun4c/lib/fs/nfs/inetboot 644 root sys
+#
+# make the links to other machine types
+#
+s none usr/platform/SUNW,Sun_4_20=sun4c
+s none usr/platform/SUNW,Sun_4_25=sun4c
+s none usr/platform/SUNW,Sun_4_40=sun4c
+s none usr/platform/SUNW,Sun_4_50=sun4c
+s none usr/platform/SUNW,Sun_4_60=sun4c
+s none usr/platform/SUNW,Sun_4_65=sun4c
+s none usr/platform/SUNW,Sun_4_75=sun4c

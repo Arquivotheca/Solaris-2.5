@@ -1,0 +1,11 @@
+# Copyright (c) 1993 Sun Microsystems, Inc.  All Rights Reserved.
+#
+#	"@(#)double-acute	1.1	93/03/02 SMI"
+#
+dead: <double-acute-accent>		# Double acute
+' '  <double-acute-accent>          # double acute
+'O'  <O-double-acute>          # O double acute
+'U'  <U-double-acute>          # U double acute
+'o'  <o-double-acute>          # o double acute
+'u'  <u-double-acute>          # u double acute
+#

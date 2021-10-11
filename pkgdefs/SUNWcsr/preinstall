@@ -1,0 +1,45 @@
+#
+#ident	"@(#)preinstall	1.5	95/02/27 SMI"
+#
+# Copyright (c) 1993 by Sun Microsystems, Inc.
+
+if [ -f $BASEDIR/etc/TIMEZONE ] ; then
+	cp $BASEDIR/etc/TIMEZONE $BASEDIR/etc/TIMEZONE.temp
+fi
+if [ -f $BASEDIR/etc/inetd.conf ] ; then
+	cp $BASEDIR/etc/inetd.conf $BASEDIR/etc/inetd.conf.temp
+fi
+
+if [ -c $BASEDIR/devices/pseudo/profile:profile ] ; then
+	rm -f $BASEDIR/devices/pseudo/profile:profile
+fi
+
+if [ -h $BASEDIR/var/mail ] ; then
+	ls -L $BASEDIR/var/mail >/dev/null 2>&1
+	if [ $? != 0 ] ; then
+		rm -rf $BASEDIR/var/mail.ABCsavedXYZ
+		mv $BASEDIR/var/mail $BASEDIR/var/mail.ABCsavedXYZ
+	fi
+fi
+
+if [ -h $BASEDIR/var/news ] ; then
+	ls -L $BASEDIR/var/news >/dev/null 2>&1
+	if [ $? != 0 ] ; then
+		rm -rf $BASEDIR/var/news.ABCsavedXYZ
+		mv $BASEDIR/var/news $BASEDIR/var/news.ABCsavedXYZ
+	fi
+fi
+
+if [ -f $BASEDIR/kernel/drv/classes ] ; then
+	cp $BASEDIR/kernel/drv/classes $BASEDIR/etc/driver_classes
+fi
+
+# If upgrading from an x86 system which has no st driver, delete the
+# /dev/rmt/* nodes so that new tape devs are built after reconfigure
+# reboot.  This is OK in preinstall since tape devs aren't used by install.
+#
+if [ ! -f $BASEDIR/kernel/drv/st ] ; then
+	rm $BASEDIR/dev/rmt/* > /dev/null 2>&1
+fi
+
+exit 0

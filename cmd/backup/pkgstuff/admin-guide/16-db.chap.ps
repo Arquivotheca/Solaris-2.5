@@ -1,0 +1,3842 @@
+%!
+%%BoundingBox: (atend)
+%%Pages: (atend)
+%%DocumentFonts: (atend)
+%%EndComments
+%%BeginProlog
+%
+% FrameMaker postscript_prolog 3.0, for use with FrameMaker 3.0
+% This postscript_prolog file is Copyright (c) 1986-1991 Frame Technology
+% Corporation.  All rights reserved.  This postscript_prolog file may be
+% freely copied and distributed in conjunction with documents created using
+% FrameMaker.
+% NOTE
+% This file fixes the problem with NeWS printers dithering color output.
+% Any questions should be sent to mickey@magickingdom.eng.sun.com
+%
+% Known Problems:
+%	Due to bugs in Transcript, the 'PS-Adobe-' is omitted from line 1
+/FMversion (3.0) def 
+% Set up Color vs. Black-and-White
+
+/FMPrintInColor { % once-thru loop gimmick
+    % See if we're a NeWSprint printer
+     /currentcanvas where {
+        pop systemdict /separationdict known
+	exit
+     } if
+% originally had the following, which should always be false:
+%    /currentcanvas where {
+%        pop currentcanvas /Color known {
+%	    currentcanvas /Color get
+%	    exit
+%        } if
+%    } if
+    systemdict /colorimage known
+    systemdict /currentcolortransfer known and
+exit } loop def
+
+% Uncomment the following line to force b&w on color printer
+%   /FMPrintInColor false def
+/FrameDict 195 dict def 
+systemdict /errordict known not {/errordict 10 dict def
+		errordict /rangecheck {stop} put} if
+% The readline in 23.0 doesn't recognize cr's as nl's on AppleTalk
+FrameDict /tmprangecheck errordict /rangecheck get put 
+errordict /rangecheck {FrameDict /bug true put} put 
+FrameDict /bug false put 
+mark 
+% Some PS machines read past the CR, so keep the following 3 lines together!
+currentfile 5 string readline
+00
+0000000000
+cleartomark 
+errordict /rangecheck FrameDict /tmprangecheck get put 
+FrameDict /bug get { 
+	/readline {
+		/gstring exch def
+		/gfile exch def
+		/gindex 0 def
+		{
+			gfile read pop 
+			dup 10 eq {exit} if 
+			dup 13 eq {exit} if 
+			gstring exch gindex exch put 
+			/gindex gindex 1 add def 
+		} loop
+		pop 
+		gstring 0 gindex getinterval true 
+		} def
+	} if
+/FMVERSION {
+	FMversion ne {
+		/Times-Roman findfont 18 scalefont setfont
+		100 100 moveto
+		(FrameMaker version does not match postscript_prolog!)
+		dup =
+		show showpage
+		} if
+	} def 
+/FMLOCAL {
+	FrameDict begin
+	0 def 
+	end 
+	} def 
+	/gstring FMLOCAL
+	/gfile FMLOCAL
+	/gindex FMLOCAL
+	/orgxfer FMLOCAL
+	/orgproc FMLOCAL
+	/organgle FMLOCAL
+	/orgfreq FMLOCAL
+	/yscale FMLOCAL
+	/xscale FMLOCAL
+	/manualfeed FMLOCAL
+	/paperheight FMLOCAL
+	/paperwidth FMLOCAL
+/FMDOCUMENT { 
+	array /FMfonts exch def 
+	/#copies exch def
+	FrameDict begin
+	0 ne dup {setmanualfeed} if
+	/manualfeed exch def
+	/paperheight exch def
+	/paperwidth exch def
+	/yscale exch def
+	/xscale exch def
+	currenttransfer cvlit /orgxfer exch def
+	currentscreen cvlit /orgproc exch def
+	/organgle exch def /orgfreq exch def
+	setpapername 
+	manualfeed {true} {papersize} ifelse 
+	{manualpapersize} {false} ifelse 
+	{desperatepapersize} if
+	end 
+	} def 
+	/pagesave FMLOCAL
+	/orgmatrix FMLOCAL
+	/landscape FMLOCAL
+/FMBEGINPAGE { 
+	FrameDict begin 
+	/pagesave save def
+	3.86 setmiterlimit
+	/landscape exch 0 ne def
+	landscape { 
+		90 rotate 0 exch neg translate pop 
+		}
+		{pop pop}
+		ifelse
+	xscale yscale scale
+	/orgmatrix matrix def
+	gsave 
+	} def 
+/FMENDPAGE {
+	grestore 
+	pagesave restore
+	end 
+	showpage
+	} def 
+/FMFONTDEFINE { 
+	FrameDict begin
+	findfont 
+	ReEncode 
+	1 index exch 
+	definefont 
+	FMfonts 3 1 roll 
+	put
+	end 
+	} def 
+/FMFILLS {
+	FrameDict begin
+	array /fillvals exch def
+	end 
+	} def 
+/FMFILL {
+	FrameDict begin
+	 fillvals 3 1 roll put
+	end 
+	} def 
+/FMNORMALIZEGRAPHICS { 
+	newpath
+	0.0 0.0 moveto
+	1 setlinewidth
+	0 setlinecap
+	0 0 0 sethsbcolor
+	0 setgray 
+	} bind def
+	/fx FMLOCAL
+	/fy FMLOCAL
+	/fh FMLOCAL
+	/fw FMLOCAL
+	/llx FMLOCAL
+	/lly FMLOCAL
+	/urx FMLOCAL
+	/ury FMLOCAL
+/FMBEGINEPSF { 
+	end 
+	/FMEPSF save def 
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	[/fy /fx /fh /fw /ury /urx /lly /llx] {exch def} forall 
+	fx fy translate 
+	rotate
+	fw urx llx sub div fh ury lly sub div scale 
+	llx neg lly neg translate 
+	} bind def
+/FMENDEPSF {
+	FMEPSF restore
+	FrameDict begin 
+	} bind def
+FrameDict begin 
+/setmanualfeed {
+%%BeginFeature *ManualFeed True
+	 statusdict /manualfeed true put
+%%EndFeature
+	} def
+/max {2 copy lt {exch} if pop} bind def
+/min {2 copy gt {exch} if pop} bind def
+/inch {72 mul} def
+/pagedimen { 
+	paperheight sub abs 16 lt exch 
+	paperwidth sub abs 16 lt and
+	{/papername exch def} {pop} ifelse
+	} def
+	/papersizedict FMLOCAL
+/setpapername { 
+	/papersizedict 14 dict def 
+	papersizedict begin
+	/papername /unknown def 
+		/Letter 8.5 inch 11.0 inch pagedimen
+		/LetterSmall 7.68 inch 10.16 inch pagedimen
+		/Tabloid 11.0 inch 17.0 inch pagedimen
+		/Ledger 17.0 inch 11.0 inch pagedimen
+		/Legal 8.5 inch 14.0 inch pagedimen
+		/Statement 5.5 inch 8.5 inch pagedimen
+		/Executive 7.5 inch 10.0 inch pagedimen
+		/A3 11.69 inch 16.5 inch pagedimen
+		/A4 8.26 inch 11.69 inch pagedimen
+		/A4Small 7.47 inch 10.85 inch pagedimen
+		/B4 10.125 inch 14.33 inch pagedimen
+		/B5 7.16 inch 10.125 inch pagedimen
+	end
+	} def
+/papersize {
+	papersizedict begin
+		/Letter {lettertray letter} def
+		/LetterSmall {lettertray lettersmall} def
+		/Tabloid {11x17tray 11x17} def
+		/Ledger {ledgertray ledger} def
+		/Legal {legaltray legal} def
+		/Statement {statementtray statement} def
+		/Executive {executivetray executive} def
+		/A3 {a3tray a3} def
+		/A4 {a4tray a4} def
+		/A4Small {a4tray a4small} def
+		/B4 {b4tray b4} def
+		/B5 {b5tray b5} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	/FMdicttop countdictstack 1 add def 
+	statusdict begin stopped end 
+	countdictstack -1 FMdicttop {pop end} for 
+	} def
+/manualpapersize {
+	papersizedict begin
+		/Letter {letter} def
+		/LetterSmall {lettersmall} def
+		/Tabloid {11x17} def
+		/Ledger {ledger} def
+		/Legal {legal} def
+		/Statement {statement} def
+		/Executive {executive} def
+		/A3 {a3} def
+		/A4 {a4} def
+		/A4Small {a4small} def
+		/B4 {b4} def
+		/B5 {b5} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	stopped 
+	} def
+/desperatepapersize {
+	statusdict /setpageparams known
+		{
+		paperwidth paperheight 0 1 
+		statusdict begin
+		{setpageparams} stopped pop 
+		end
+		} if
+	} def
+/savematrix {
+	orgmatrix currentmatrix pop
+	} bind def
+/restorematrix {
+	orgmatrix setmatrix
+	} bind def
+/dmatrix matrix def
+/dpi    72 0 dmatrix defaultmatrix dtransform
+    dup mul exch   dup mul add   sqrt def
+/freq dpi 18.75 div 8 div round dup 0 eq {pop 1} if 8 mul dpi exch div def
+/sangle 1 0 dmatrix defaultmatrix dtransform exch atan def
+/DiacriticEncoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /space /exclam /quotedbl
+/numbersign /dollar /percent /ampersand /quotesingle /parenleft
+/parenright /asterisk /plus /comma /hyphen /period /slash /zero /one
+/two /three /four /five /six /seven /eight /nine /colon /semicolon
+/less /equal /greater /question /at /A /B /C /D /E /F /G /H /I /J /K
+/L /M /N /O /P /Q /R /S /T /U /V /W /X /Y /Z /bracketleft /backslash
+/bracketright /asciicircum /underscore /grave /a /b /c /d /e /f /g /h
+/i /j /k /l /m /n /o /p /q /r /s /t /u /v /w /x /y /z /braceleft /bar
+/braceright /asciitilde /.notdef /Adieresis /Aring /Ccedilla /Eacute
+/Ntilde /Odieresis /Udieresis /aacute /agrave /acircumflex /adieresis
+/atilde /aring /ccedilla /eacute /egrave /ecircumflex /edieresis
+/iacute /igrave /icircumflex /idieresis /ntilde /oacute /ograve
+/ocircumflex /odieresis /otilde /uacute /ugrave /ucircumflex
+/udieresis /dagger /.notdef /cent /sterling /section /bullet
+/paragraph /germandbls /registered /copyright /trademark /acute
+/dieresis /.notdef /AE /Oslash /.notdef /.notdef /.notdef /.notdef
+/yen /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/ordfeminine /ordmasculine /.notdef /ae /oslash /questiondown
+/exclamdown /logicalnot /.notdef /florin /.notdef /.notdef
+/guillemotleft /guillemotright /ellipsis /.notdef /Agrave /Atilde
+/Otilde /OE /oe /endash /emdash /quotedblleft /quotedblright
+/quoteleft /quoteright /.notdef /.notdef /ydieresis /Ydieresis
+/fraction /currency /guilsinglleft /guilsinglright /fi /fl /daggerdbl
+/periodcentered /quotesinglbase /quotedblbase /perthousand
+/Acircumflex /Ecircumflex /Aacute /Edieresis /Egrave /Iacute
+/Icircumflex /Idieresis /Igrave /Oacute /Ocircumflex /.notdef /Ograve
+/Uacute /Ucircumflex /Ugrave /dotlessi /circumflex /tilde /macron
+/breve /dotaccent /ring /cedilla /hungarumlaut /ogonek /caron
+] def
+/ReEncode { 
+	dup 
+	length 
+	dict begin 
+	{
+	1 index /FID ne 
+		{def} 
+		{pop pop} ifelse 
+	} forall 
+	0 eq {/Encoding DiacriticEncoding def} if 
+	currentdict 
+	end 
+	} bind def
+/graymode true def
+	/bwidth FMLOCAL
+	/bpside FMLOCAL
+	/bstring FMLOCAL
+	/onbits FMLOCAL
+	/offbits FMLOCAL
+	/xindex FMLOCAL
+	/yindex FMLOCAL
+	/x FMLOCAL
+	/y FMLOCAL
+/setpattern {
+	 /bwidth  exch def
+	 /bpside  exch def
+	 /bstring exch def
+	 /onbits 0 def  /offbits 0 def
+	 freq sangle landscape {90 add} if 
+		{/y exch def
+		 /x exch def
+		 /xindex x 1 add 2 div bpside mul cvi def
+		 /yindex y 1 add 2 div bpside mul cvi def
+		 bstring yindex bwidth mul xindex 8 idiv add get
+		 1 7 xindex 8 mod sub bitshift and 0 ne
+		 {/onbits  onbits  1 add def 1}
+		 {/offbits offbits 1 add def 0}
+		 ifelse
+		}
+		setscreen
+	 {} settransfer
+	 offbits offbits onbits add div FMsetgray
+	/graymode false def
+	} bind def
+/grayness {
+	FMsetgray
+	graymode not {
+		/graymode true def
+		orgxfer cvx settransfer
+		orgfreq organgle orgproc cvx setscreen
+		} if
+	} bind def
+	/HUE FMLOCAL
+	/SAT FMLOCAL
+	/BRIGHT FMLOCAL
+	/Colors FMLOCAL
+FMPrintInColor 
+	
+	{
+	/HUE 0 def
+	/SAT 0 def
+	/BRIGHT 0 def
+	% array of arrays Hue and Sat values for the separations [HUE BRIGHT]
+	/Colors   
+	[[0    0  ]    % black
+	 [0    0  ]    % white
+	 [0.00 1.0]    % red
+	 [0.37 1.0]    % green
+	 [0.60 1.0]    % blue
+	 [0.50 1.0]    % cyan
+	 [0.83 1.0]    % magenta
+	 [0.16 1.0]    % comment / yellow
+	 ] def
+      
+	/BEGINBITMAPCOLOR { 
+		BITMAPCOLOR} def
+	/BEGINBITMAPCOLORc { 
+		BITMAPCOLORc} def
+	/BEGINBITMAPTRUECOLOR { 
+		BITMAPTRUECOLOR } def
+	/BEGINBITMAPTRUECOLORc { 
+		BITMAPTRUECOLORc } def
+	/K { 
+		Colors exch get dup
+		0 get /HUE exch store 
+		1 get /BRIGHT exch store
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray}
+			{HUE SAT BRIGHT sethsbcolor} 
+		  ifelse
+		} def
+	/FMsetgray { 
+		/SAT exch 1.0 exch sub store 
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray}
+			{HUE SAT BRIGHT sethsbcolor} 
+		  ifelse
+		} bind def
+	}
+	
+	{
+	/BEGINBITMAPCOLOR { 
+		BITMAPGRAY} def
+	/BEGINBITMAPCOLORc { 
+		BITMAPGRAYc} def
+	/BEGINBITMAPTRUECOLOR { 
+		BITMAPTRUEGRAY } def
+	/BEGINBITMAPTRUECOLORc { 
+		BITMAPTRUEGRAYc } def
+	/FMsetgray {setgray} bind def
+	/K { 
+		pop
+		} def
+	}
+ifelse
+/normalize {
+	transform round exch round exch itransform
+	} bind def
+/dnormalize {
+	dtransform round exch round exch idtransform
+	} bind def
+/lnormalize { 
+	0 dtransform exch cvi 2 idiv 2 mul 1 add exch idtransform pop
+	} bind def
+/H { 
+	lnormalize setlinewidth
+	} bind def
+/Z {
+	setlinecap
+	} bind def
+	/fillvals FMLOCAL
+/X { 
+	fillvals exch get
+	dup type /stringtype eq
+	{8 1 setpattern} 
+	{grayness}
+	ifelse
+	} bind def
+/V { 
+	gsave eofill grestore
+	} bind def
+/N { 
+	stroke
+	} bind def
+/M {newpath moveto} bind def
+/E {lineto} bind def
+/D {curveto} bind def
+/O {closepath} bind def
+	/n FMLOCAL
+/L { 
+ 	/n exch def
+	newpath
+	normalize
+	moveto 
+	2 1 n {pop normalize lineto} for
+	} bind def
+/Y { 
+	L 
+	closepath
+	} bind def
+	/x1 FMLOCAL
+	/x2 FMLOCAL
+	/y1 FMLOCAL
+	/y2 FMLOCAL
+	/rad FMLOCAL
+/R { 
+	/y2 exch def
+	/x2 exch def
+	/y1 exch def
+	/x1 exch def
+	x1 y1
+	x2 y1
+	x2 y2
+	x1 y2
+	4 Y 
+	} bind def
+/RR { 
+	/rad exch def
+	normalize
+	/y2 exch def
+	/x2 exch def
+	normalize
+	/y1 exch def
+	/x1 exch def
+	newpath
+	x1 y1 rad add moveto
+	x1 y2 x2 y2 rad arcto
+	x2 y2 x2 y1 rad arcto
+	x2 y1 x1 y1 rad arcto
+	x1 y1 x1 y2 rad arcto
+	closepath
+	16 {pop} repeat
+	} bind def
+/C { 
+	grestore
+	gsave
+	R 
+	clip
+	} bind def
+	/FMpointsize FMLOCAL
+/F { 
+	FMfonts exch get
+	FMpointsize scalefont
+	setfont
+	} bind def
+/Q { 
+	/FMpointsize exch def
+	F 
+	} bind def
+/T { 
+	moveto show
+	} bind def
+/RF { 
+	rotate
+	0 ne {-1 1 scale} if
+	} bind def
+/TF { 
+	gsave
+	moveto 
+	RF
+	show
+	grestore
+	} bind def
+/P { 
+	moveto
+	0 32 3 2 roll widthshow
+	} bind def
+/PF { 
+	gsave
+	moveto 
+	RF
+	0 32 3 2 roll widthshow
+	grestore
+	} bind def
+/S { 
+	moveto
+	0 exch ashow
+	} bind def
+/SF { 
+	gsave
+	moveto
+	RF
+	0 exch ashow
+	grestore
+	} bind def
+/B { 
+	moveto
+	0 32 4 2 roll 0 exch awidthshow
+	} bind def
+/BF { 
+	gsave
+	moveto
+	RF
+	0 32 4 2 roll 0 exch awidthshow
+	grestore
+	} bind def
+/G { 
+	gsave
+	newpath
+	normalize translate 0.0 0.0 moveto 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath fill
+	grestore
+	} bind def
+/A { 
+	gsave
+	savematrix
+	newpath
+	2 index 2 div add exch 3 index 2 div sub exch 
+	normalize 2 index 2 div sub exch 3 index 2 div add exch 
+	translate 
+	scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	restorematrix
+	stroke
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/w FMLOCAL
+	/h FMLOCAL
+	/xx FMLOCAL
+	/yy FMLOCAL
+	/ww FMLOCAL
+	/hh FMLOCAL
+	/FMsaveobject FMLOCAL
+	/FMoptop FMLOCAL
+	/FMdicttop FMLOCAL
+/BEGINPRINTCODE { 
+	/FMdicttop countdictstack 1 add def 
+	/FMoptop count 4 sub def 
+	/FMsaveobject save def
+	userdict begin 
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	3 index neg 3 index neg translate
+	} bind def
+/ENDPRINTCODE {
+	count -1 FMoptop {pop pop} for 
+	countdictstack -1 FMdicttop {pop end} for 
+	FMsaveobject restore 
+	} bind def
+/gn { 
+	0 
+	{	46 mul 
+		cf read pop 
+		32 sub 
+		dup 46 lt {exit} if 
+		46 sub add 
+		} loop
+	add 
+	} bind def
+	/str FMLOCAL
+/cfs { 
+	/str sl string def 
+	0 1 sl 1 sub {str exch val put} for 
+	str def 
+	} bind def
+/ic [ 
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0
+	{0 hx} {1 hx} {2 hx} {3 hx} {4 hx} {5 hx} {6 hx} {7 hx} {8 hx} {9 hx}
+	{10 hx} {11 hx} {12 hx} {13 hx} {14 hx} {15 hx} {16 hx} {17 hx} {18 hx}
+	{19 hx} {gn hx} {0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12}
+	{13} {14} {15} {16} {17} {18} {19} {gn} {0 wh} {1 wh} {2 wh} {3 wh}
+	{4 wh} {5 wh} {6 wh} {7 wh} {8 wh} {9 wh} {10 wh} {11 wh} {12 wh}
+	{13 wh} {14 wh} {gn wh} {0 bl} {1 bl} {2 bl} {3 bl} {4 bl} {5 bl} {6 bl}
+	{7 bl} {8 bl} {9 bl} {10 bl} {11 bl} {12 bl} {13 bl} {14 bl} {gn bl}
+	{0 fl} {1 fl} {2 fl} {3 fl} {4 fl} {5 fl} {6 fl} {7 fl} {8 fl} {9 fl}
+	{10 fl} {11 fl} {12 fl} {13 fl} {14 fl} {gn fl}
+	] def
+	/sl FMLOCAL
+	/val FMLOCAL
+	/ws FMLOCAL
+	/im FMLOCAL
+	/bs FMLOCAL
+	/cs FMLOCAL
+	/len FMLOCAL
+	/pos FMLOCAL
+/ms { 
+	/sl exch def 
+	/val 255 def 
+	/ws cfs 
+	/im cfs 
+	/val 0 def 
+	/bs cfs 
+	/cs cfs 
+	} bind def
+400 ms 
+/ip { 
+	is 
+	0 
+	cf cs readline pop 
+	{	ic exch get exec 
+		add 
+		} forall 
+	pop 
+	
+	} bind def
+/wh { 
+	/len exch def 
+	/pos exch def 
+	ws 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/bl { 
+	/len exch def 
+	/pos exch def 
+	bs 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/s1 1 string def
+/fl { 
+	/len exch def 
+	/pos exch def 
+	/val cf s1 readhexstring pop 0 get def
+	pos 1 pos len add 1 sub {im exch val put} for
+	pos len 
+	} bind def
+/hx { 
+	3 copy getinterval 
+	cf exch readhexstring pop pop 
+	} bind def
+	/h FMLOCAL
+	/w FMLOCAL
+	/d FMLOCAL
+	/lb FMLOCAL
+	/bitmapsave FMLOCAL
+	/is FMLOCAL
+	/cf FMLOCAL
+/wbytes { 
+	dup 
+	8 eq {pop} {1 eq {7 add 8 idiv} {3 add 4 idiv} ifelse} ifelse
+	} bind def
+/BEGINBITMAPBWc { 
+	1 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAPGRAYc { 
+	8 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAP2BITc { 
+	2 {} COMMONBITMAPc
+	} bind def
+/COMMONBITMAPc { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	r                    
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} image 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BEGINBITMAPBW { 
+	1 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAPGRAY { 
+	8 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAP2BIT { 
+	2 {} COMMONBITMAP
+	} bind def
+/COMMONBITMAP { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	r                    
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{cf is readhexstring pop} image
+	bitmapsave restore 
+	grestore
+	} bind def
+	/proc1 FMLOCAL
+	/proc2 FMLOCAL
+	/newproc FMLOCAL
+/Fmcc {
+    /proc2 exch cvlit def
+    /proc1 exch cvlit def
+    /newproc proc1 length proc2 length add array def
+    newproc 0 proc1 putinterval
+    newproc proc1 length proc2 putinterval
+    newproc cvx
+} bind def
+/ngrayt 256 array def
+/nredt 256 array def
+/nbluet 256 array def
+/ngreent 256 array def
+	/gryt FMLOCAL
+	/blut FMLOCAL
+	/grnt FMLOCAL
+	/redt FMLOCAL
+	/indx FMLOCAL
+	/cynu FMLOCAL
+	/magu FMLOCAL
+	/yelu FMLOCAL
+	/k FMLOCAL
+	/u FMLOCAL
+/colorsetup {
+	currentcolortransfer
+	/gryt exch def
+	/blut exch def
+	/grnt exch def
+	/redt exch def
+	0 1 255 {
+		/indx exch def
+		/cynu 1 red indx get 255 div sub def
+		/magu 1 green indx get 255 div sub def
+		/yelu 1 blue indx get 255 div sub def
+		/k cynu magu min yelu min def
+		/u k currentundercolorremoval exec def
+		nredt indx 1 0 cynu u sub max sub redt exec put
+		ngreent indx 1 0 magu u sub max sub grnt exec put
+		nbluet indx 1 0 yelu u sub max sub blut exec put
+		ngrayt indx 1 k currentblackgeneration exec sub gryt exec put
+	} for
+	{255 mul cvi nredt exch get}
+	{255 mul cvi ngreent exch get}
+	{255 mul cvi nbluet exch get}
+	{255 mul cvi ngrayt exch get}
+	setcolortransfer
+	{pop 0} setundercolorremoval
+	{} setblackgeneration
+	} bind def
+	/tran FMLOCAL
+/fakecolorsetup {
+	/tran 256 string def
+	0 1 255 {/indx exch def 
+		tran indx
+		red indx get 77 mul
+		green indx get 151 mul
+		blue indx get 28 mul
+		add add 256 idiv put} for
+	currenttransfer
+	{255 mul cvi tran exch get 255.0 div}
+	exch Fmcc settransfer
+} bind def
+/BITMAPCOLOR { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	colorsetup
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{cf is readhexstring pop} {is} {is} true 3 colorimage 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPCOLORc { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	colorsetup
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} {is} {is} true 3 colorimage
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPTRUECOLORc { 
+        gsave
+        translate rotate scale /h exch def /w exch def
+        /bitmapsave save def 
+        
+        /is w string def
+        
+        ws 0 w getinterval is copy pop 
+        /cf currentfile def 
+        w h 8 [w 0 0 h neg 0 h] 
+        {ip} {gip} {bip} true 3 colorimage
+        bitmapsave restore 
+        grestore
+        } bind def
+/BITMAPTRUECOLOR { 
+        gsave
+        translate rotate scale /h exch def /w exch def
+        /bitmapsave save def 
+        /is w string def
+        /gis w string def
+        /bis w string def
+        /cf currentfile def 
+        w h 8 [w 0 0 h neg 0 h] 
+        { cf is readhexstring pop } 
+        { cf gis readhexstring pop } 
+        { cf bis readhexstring pop } 
+        true 3 colorimage 
+        bitmapsave restore 
+        grestore
+        } bind def
+/BITMAPTRUEGRAYc { 
+        gsave
+        translate rotate scale /h exch def /w exch def
+        /bitmapsave save def 
+        
+        /is w string def
+        
+        ws 0 w getinterval is copy pop 
+        /cf currentfile def 
+        w h 8 [w 0 0 h neg 0 h] 
+        {ip gip bip w gray} image
+        bitmapsave restore 
+        grestore
+        } bind def
+/ww FMLOCAL
+/r FMLOCAL
+/g FMLOCAL
+/b FMLOCAL
+/i FMLOCAL
+/gray { 
+        /ww exch def
+        /b exch def
+        /g exch def
+        /r exch def
+        0 1 ww 1 sub { /i exch def r i get .299 mul g i get .587 mul
+			b i get .114 mul add add r i 3 -1 roll floor cvi put } for
+        r
+        } bind def
+/BITMAPTRUEGRAY { 
+        gsave
+        translate rotate scale /h exch def /w exch def
+        /bitmapsave save def 
+        /is w string def
+        /gis w string def
+        /bis w string def
+        /cf currentfile def 
+        w h 8 [w 0 0 h neg 0 h] 
+        { cf is readhexstring pop 
+          cf gis readhexstring pop 
+          cf bis readhexstring pop w gray}  image
+        bitmapsave restore 
+        grestore
+        } bind def
+/BITMAPGRAY { 
+	8 {fakecolorsetup} COMMONBITMAP
+	} bind def
+/BITMAPGRAYc { 
+	8 {fakecolorsetup} COMMONBITMAPc
+	} bind def
+/ENDBITMAP {
+	} bind def
+end 
+	/ALDsave FMLOCAL
+	/ALDmatrix matrix def ALDmatrix currentmatrix pop
+/StartALD {
+	/ALDsave save def
+	 savematrix
+	 ALDmatrix setmatrix
+	} bind def
+/InALD {
+	 restorematrix
+	} bind def
+/DoneALD {
+	 ALDsave restore
+	} bind def
+%%EndProlog
+%%BeginSetup
+(3.0) FMVERSION
+1 1 612 792 0 1 16 FMDOCUMENT
+0 0 /Palatino-Roman FMFONTDEFINE
+1 0 /Palatino-Italic FMFONTDEFINE
+2 0 /Times-Bold FMFONTDEFINE
+3 0 /Courier FMFONTDEFINE
+4 0 /Palatino-Bold FMFONTDEFINE
+5 0 /Courier-Bold FMFONTDEFINE
+32 FMFILLS
+0 0 FMFILL
+1 0.1 FMFILL
+2 0.3 FMFILL
+3 0.5 FMFILL
+4 0.7 FMFILL
+5 0.9 FMFILL
+6 0.97 FMFILL
+7 1 FMFILL
+8 <0f1e3c78f0e1c387> FMFILL
+9 <0f87c3e1f0783c1e> FMFILL
+10 <cccccccccccccccc> FMFILL
+11 <ffff0000ffff0000> FMFILL
+12 <8142241818244281> FMFILL
+13 <03060c183060c081> FMFILL
+14 <8040201008040201> FMFILL
+16 1 FMFILL
+17 0.9 FMFILL
+18 0.7 FMFILL
+19 0.5 FMFILL
+20 0.3 FMFILL
+21 0.1 FMFILL
+22 0.03 FMFILL
+23 0 FMFILL
+24 <f0e1c3870f1e3c78> FMFILL
+25 <f0783c1e0f87c3e1> FMFILL
+26 <3333333333333333> FMFILL
+27 <0000ffff0000ffff> FMFILL
+28 <7ebddbe7e7dbbd7e> FMFILL
+29 <fcf9f3e7cf9f3f7e> FMFILL
+30 <7fbfdfeff7fbfdfe> FMFILL
+%%EndSetup
+%%Page: "103" 1
+%%BeginPaperSize: Letter
+%%EndPaperSize
+612 792 0 FMBEGINPAGE
+0 9 Q
+0 X
+4 K
+0.09 (103) 544.23 108.7 S
+198 500.18 558 500.18 2 L
+0.3 H
+2 Z
+0 K
+N
+185 83.74 393.76 101.24 R
+7 X
+V
+540.76 521.07 558.36 524.92 R
+0 X
+4 K
+V
+540.76 514.65 558.36 518.5 R
+V
+540.76 508.42 558.36 512.27 R
+V
+540.76 518.61 558.36 521.29 R
+7 X
+V
+540.76 512.4 558.36 514.87 R
+V
+54 522.64 558 589.39 C
+0 72 612 720 C
+1 20 Q
+0 X
+0 K
+-2.5 (Online Database) 198 509.31 P
+1 24 Q
+4 K
+-3.12 (6) 525.14 508.64 S
+0 10 Q
+0 K
+0.52 0.1 (This chapter pr) 198 459.68 B
+0.52 0.1 (ovides the following information on the Online: Backup 2.0) 267.69 459.68 B
+0.52 0.1 (database operation and how maintenance is performed:) 198 447.28 B
+2 14 Q
+0.14 (\245) 198 428.88 S
+0 10 Q
+0.52 0.1 (Overview of the database) 210.6 428.88 B
+2 14 Q
+0.14 (\245) 198 410.48 S
+0 10 Q
+0.52 0.1 (Setting up the database) 210.6 410.48 B
+2 14 Q
+0.14 (\245) 198 392.08 S
+0 10 Q
+0.52 0.1 (Database size r) 210.6 392.08 B
+0.52 0.1 (equir) 279.41 392.08 B
+0.52 0.1 (ements) 303.01 392.08 B
+2 14 Q
+0.14 (\245) 198 373.68 S
+0 10 Q
+0.52 0.1 (De\336ning hosts) 210.6 373.68 B
+2 14 Q
+0.14 (\245) 198 355.28 S
+0 10 Q
+0.52 0.1 (Maintaining the database) 210.6 355.28 B
+0.52 0.1 (The version of) 198 334.88 B
+3 F
+1.2 (hsmdump) 266.91 334.88 P
+0 F
+0.52 0.1 (\0501M\051 distributed as part of the standar) 308.91 334.88 B
+0.52 0.1 (d SunOS 5.0) 484.47 334.88 B
+0.03 0.1 (distribution) 198 322.48 B
+3 F
+0.07 0.1 (,ufsdump) 251.59 322.48 B
+0 F
+0.03 0.1 (\0501M\051, cr) 300.39 322.48 B
+0.03 0.1 (eates a simple index of the \336les or \336le systems of) 335.55 322.48 B
+0.52 0.1 (only one particular dump set. This index is kept permanently on the backup) 198 310.08 B
+0.52 0.1 (media \050usually a tape\051 and optionally in a disk-based \336le.) 198 297.68 B
+0.52 0.1 (The Online: Backup 2.0 database system enhances) 198 277.28 B
+3 F
+1.22 0.1 (hsmdump) 429.51 277.28 B
+0 F
+0.52 0.1 ( by cr) 472.21 277.28 B
+0.52 0.1 (eating an) 498.15 277.28 B
+0.52 0.1 (online database \050a complete index\051 that allows fast, interactive r) 198 264.88 B
+0.52 0.1 (estoring of all) 490.44 264.88 B
+0.52 0.1 (curr) 198 252.48 B
+0.52 0.1 (ently unexpir) 216.59 252.48 B
+0.52 0.1 (ed dump sets made fr) 277.74 252.48 B
+0.52 0.1 (om any machine on the network.) 378.06 252.48 B
+-0.05 0.1 (W) 198 232.08 B
+-0.05 0.1 (ith the -) 207.55 232.08 B
+3 F
+-0.12 (U) 242.53 232.08 P
+0 F
+-0.05 0.1 ( option, the database is quickly updated \050potentially in parallel with) 248.53 232.08 B
+0.43 0.1 (the next) 198 219.68 B
+3 F
+0.99 (hsmdump) 237.66 219.68 P
+0 F
+0.43 0.1 ( command\051 with batched inserts after a) 279.66 219.68 B
+3 F
+0.99 (hsmdump) 461.71 219.68 P
+0 F
+0.43 0.1 ( completes.) 503.71 219.68 B
+0.52 0.1 (Operators and users can view the database as a hierar) 198 199.28 B
+0.52 0.1 (chical \336lesystem, by) 445.41 199.28 B
+0.52 0.1 (using the) 198 186.88 B
+3 F
+1.2 (recover) 243.47 186.88 P
+0 F
+0.52 0.1 (\0501\051 command \050see Chapter) 285.47 186.88 B
+0.52 0.1 (5, \322Recovery Pr) 408.75 186.88 B
+0.52 0.1 (ograms\323\051. The) 479.92 186.88 B
+0.52 0.1 (same security measur) 198 174.48 B
+0.52 0.1 (es that pr) 296.74 174.48 B
+0.52 0.1 (otect \336les in the UNIX \336le system apply to the) 339.93 174.48 B
+0.52 0.1 (database.) 198 162.08 B
+FMENDPAGE
+%%EndPage: "103" 2
+%%Page: "104" 2
+612 792 0 FMBEGINPAGE
+0 9 Q
+0 X
+4 K
+0.09 (104) 54 108.7 S
+1 F
+-0.58 0.09 (Online: Backup 2.0 Administration Guide) 198 108.7 B
+0 F
+-0.58 0.09 (\321) 352.35 108.7 B
+1 F
+-0.58 0.09 (November 1992) 361.44 108.7 B
+558 675 54 675 2 L
+0.3 H
+2 Z
+0 K
+N
+1 20 Q
+4 K
+(6) 73.44 680.03 T
+185 83.74 393.76 101.24 R
+7 X
+0 K
+V
+54 690.23 68.96 693.5 R
+0 X
+4 K
+V
+54 684.77 68.96 688.05 R
+V
+54 679.48 68.96 682.75 R
+V
+54 688.14 68.96 690.41 R
+7 X
+V
+54 682.86 68.96 684.96 R
+V
+1 15 Q
+0 X
+0 K
+-0.94 (Overview of the Database) 54 638 P
+0 10 Q
+0.52 0.1 (The Online: Backup 2.0 database system pr) 198 616.33 B
+0.52 0.1 (ovides administrators and users) 394.85 616.33 B
+0.52 0.1 (with a means of viewing all \336les and dir) 198 603.93 B
+0.52 0.1 (ectories that r) 383.47 603.93 B
+0.52 0.1 (eside on curr) 445.96 603.93 B
+0.52 0.1 (ently) 505.61 603.93 B
+0.52 0.1 (unexpir) 198 591.53 B
+0.52 0.1 (ed) 233.19 591.53 B
+3 F
+1.2 (hsmdump) 247.41 591.53 P
+0 F
+0.52 0.1 ( media.) 289.41 591.53 B
+0.14 0.1 (When an) 198 571.13 B
+3 F
+0.33 (hsmdump) 241.34 571.13 P
+0 F
+0.14 0.1 ( is performed with the database update option speci\336ed \050) 283.34 571.13 B
+3 F
+0.34 0.1 (U) 543.03 571.13 B
+0 F
+0.14 0.1 (\051,) 549.12 571.13 B
+0.52 0.1 (the Online: Backup 2.0 database is updated.) 198 558.73 B
+2 14 Q
+0.14 (\245) 198 540.33 S
+3 10 Q
+1.2 (recover) 210.6 540.33 P
+4 F
+0.52 0.1 ( and the Database) 252.6 540.33 B
+0 F
+0.52 0.1 (Users and administrators normally interact with the database using the) 198 519.93 B
+3 F
+0.56 0.1 (recover) 198 507.53 B
+0 F
+0.24 0.1 ( utility) 240.7 507.53 B
+0.24 0.1 (.) 269.97 507.53 B
+3 F
+0.56 0.1 (recover) 275.41 507.53 B
+0 F
+0.24 0.1 ( pr) 318.11 507.53 B
+0.24 0.1 (esents the database\325s binary \336les to users as a \336le-) 330.93 507.53 B
+0.52 0.1 (system-like hierar) 198 495.13 B
+0.52 0.1 (chy of the \336les that curr) 279.48 495.13 B
+0.52 0.1 (ently r) 389.08 495.13 B
+0.52 0.1 (eside on dumped media.) 418.91 495.13 B
+2 14 Q
+0.14 (\245) 198 476.73 S
+4 10 Q
+0.52 0.1 (Database Security) 210.6 476.73 B
+0 F
+0.5 0.1 (The database has built-in access security) 198 456.33 B
+0.5 0.1 (, similar to the UNIX \336le system. This) 381.75 456.33 B
+0.52 0.1 (security pr) 198 443.93 B
+0.52 0.1 (events typical users fr) 247.08 443.93 B
+0.52 0.1 (om viewing names of \336les they do not have) 347.43 443.93 B
+0.52 0.1 (permission to see \050or r) 198 431.53 B
+0.52 0.1 (ecover\051.) 300.59 431.53 B
+0.52 0.1 (Several users can access the database at one time, even while dumps ar) 198 411.13 B
+0.52 0.1 (e in) 524.47 411.13 B
+0.52 0.1 (pr) 198 398.73 B
+0.52 0.1 (ogr) 207.98 398.73 B
+0.52 0.1 (ess fr) 223.07 398.73 B
+0.52 0.1 (om the server) 247.06 398.73 B
+0.52 0.1 (. However) 309.19 398.73 B
+0.52 0.1 (, the database is brie\337y locked and) 356.17 398.73 B
+0.52 0.1 (inaccessible immediately following the completion of a backup.) 198 386.33 B
+2 14 Q
+0.14 (\245) 198 367.93 S
+4 10 Q
+0.52 0.1 (Database Size) 210.6 367.93 B
+0 F
+0.27 0.1 (T) 198 347.53 B
+0.27 0.1 (ypically) 203.33 347.53 B
+0.27 0.1 (, the database uses about 4 to 7 per) 238.32 347.53 B
+0.27 0.1 (cent of the storage r) 397.28 347.53 B
+0.27 0.1 (equir) 487.47 347.53 B
+0.27 0.1 (ed for the) 511.07 347.53 B
+0.52 0.1 (\336les described in the database.) 198 335.13 B
+2 14 Q
+0.14 (\245) 198 316.73 S
+4 10 Q
+0.52 0.1 (Database Maintenance) 210.6 316.73 B
+0 F
+0.52 0.1 (The) 198 296.33 B
+3 F
+1.22 0.1 (dumpdm) 218.16 296.33 B
+0 F
+0.52 0.1 (\0501M\051 command maintains the database. This command r) 254.76 296.33 B
+0.52 0.1 (ebuilds) 513.06 296.33 B
+0.52 0.1 (any part or all of a database in the event a single database binary \336le is) 198 283.93 B
+0.52 0.1 (inadvertently deleted or corr) 198 271.53 B
+0.52 0.1 (upted.) 329.68 271.53 B
+1 15 Q
+-0.94 (Setting up the Database) 54 237.8 P
+0 10 Q
+0.52 0.1 (The Online: Backup 2.0 database can r) 198 216.13 B
+0.52 0.1 (eside in any empty dir) 372.78 216.13 B
+0.52 0.1 (ectory in the) 476.25 216.13 B
+0.16 0.1 (UNIX \336le system. The only r) 198 203.73 B
+0.16 0.1 (estriction is that only one database can r) 327.56 203.73 B
+0.16 0.1 (eside on a) 509.7 203.73 B
+0.52 0.1 (server) 198 191.33 B
+0.52 0.1 (.) 225.23 191.33 B
+FMENDPAGE
+%%EndPage: "104" 3
+%%Page: "105" 3
+612 792 0 FMBEGINPAGE
+1 9 Q
+0 X
+4 K
+-0.58 0.09 (Online Database) 198 108.7 B
+0 F
+0.09 (105) 544.23 108.7 S
+1 20 Q
+(6) 528.56 680.03 T
+558 675 54 675 2 L
+0.3 H
+2 Z
+0 K
+N
+185 83.74 393.76 101.24 R
+7 X
+V
+543.04 690.29 558 693.56 R
+0 X
+4 K
+V
+543.04 684.84 558 688.11 R
+V
+543.04 679.54 558 682.81 R
+V
+543.04 688.2 558 690.48 R
+7 X
+V
+543.04 682.92 558 685.02 R
+V
+0 10 Q
+0 X
+0 K
+0.52 0.1 (SunSoft advises setting up the location of the database and starting the) 198 641.33 B
+0.25 0.1 (database server daemon) 198 628.93 B
+3 F
+0.58 (,rpc.dumpdbd) 308.01 628.93 P
+0 F
+0.25 0.1 (\0501M\051, in the) 380.01 628.93 B
+3 F
+0.58 (/etc/init.d/hsm) 435.79 628.93 P
+0 F
+0.25 0.1 ( \336le. If) 525.79 628.93 B
+0.52 0.1 (you have con\336gur) 198 616.53 B
+0.52 0.1 (ed backups on this host with) 281.08 616.53 B
+3 F
+1.2 (dumpconf) 416.43 616.53 P
+1.2 (ig) 464.43 616.53 P
+0 F
+0.52 0.1 (, defaults will) 476.43 616.53 B
+0.52 0.1 (have taken car) 198 604.13 B
+0.52 0.1 (e of these details for you. If not, r) 264.34 604.13 B
+0.52 0.1 (un the) 417.8 604.13 B
+3 F
+1.2 (dumpconfrc) 450.26 604.13 P
+0 F
+0.52 0.1 ( script as) 510.26 604.13 B
+0.1 (follows:) 198 591.73 S
+54 535.01 558 543 C
+558 539.98 198 539.98 2 L
+0.3 H
+2 Z
+0 X
+4 K
+N
+0 72 612 720 C
+4 10 Q
+0 X
+0 K
+0.52 0.1 (Note \320) 198 528.34 B
+0 F
+0.52 0.1 (The database dir) 231.96 528.34 B
+0.52 0.1 (ectory must r) 308.06 528.34 B
+0.52 0.1 (eside on a locally-mounted \336le system) 368.99 528.34 B
+54 504.62 558 512.61 C
+558 509.58 198 509.58 2 L
+0.3 H
+2 Z
+0 X
+4 K
+N
+0 72 612 720 C
+0 10 Q
+0 X
+0 K
+0.52 0.1 (\050the database must not r) 198 515.94 B
+0.52 0.1 (eside on an NFS-mounted \336le system\051.) 309.28 515.94 B
+1 15 Q
+-0.94 (Database Size Requir) 54 474.22 P
+-0.94 (ements) 180.75 474.22 P
+0 10 Q
+0.52 0.1 (The \336le system that holds the) 198 452.55 B
+3 F
+1.2 (hsmdump) 336.28 452.55 P
+0 F
+0.52 0.1 ( database dir) 378.28 452.55 B
+0.52 0.1 (ectory must have enough) 437.34 452.55 B
+0.19 0.1 (fr) 198 440.15 B
+0.19 0.1 (ee space to hold the) 205.3 440.15 B
+3 F
+0.43 (hsmdump) 297.78 440.15 P
+0 F
+0.19 0.1 ( database. Ther) 339.78 440.15 B
+0.19 0.1 (e ar) 408.6 440.15 B
+0.19 0.1 (e two general r) 425.24 440.15 B
+0.19 0.1 (ules to follow) 493.34 440.15 B
+0.52 0.1 (to \336gur) 198 427.75 B
+0.52 0.1 (e out how lar) 231.85 427.75 B
+0.52 0.1 (ge a space the database will need:) 293.05 427.75 B
+0.1 (1.) 197.5 407.35 S
+0.52 0.1 (Place the database on the lar) 210.6 407.35 B
+0.52 0.1 (gest available partition.) 341.41 407.35 B
+0.1 (2.) 197.5 386.95 S
+0.02 0.1 (The database consumes r) 210.6 386.95 B
+0.02 0.1 (oughly 7 per) 323.74 386.95 B
+0.02 0.1 (cent of the amount of data you have to) 380.89 386.95 B
+0.25 0.1 (back up. This \336gur) 210.6 374.55 B
+0.25 0.1 (e can incr) 296.24 374.55 B
+0.25 0.1 (ease, however) 339.73 374.55 B
+0.25 0.1 (, if you keep many level 0 dumps) 403.16 374.55 B
+0.52 0.1 (on the shelf, or if your \336lesystems have many small \336les.) 210.6 362.15 B
+54 340.42 558 348.42 C
+558 345.39 198 345.39 2 L
+0.3 H
+2 Z
+0 X
+4 K
+N
+0 72 612 720 C
+4 10 Q
+0 X
+0 K
+0.52 0.1 (Note \320) 198 333.76 B
+0 F
+0.52 0.1 (It is important to plan for futur) 231.96 333.76 B
+0.52 0.1 (e gr) 375.28 333.76 B
+0.52 0.1 (owth. It would be r) 392.82 333.76 B
+0.52 0.1 (easonable to set) 481.75 333.76 B
+54 310.03 558 318.02 C
+558 315 198 315 2 L
+0.3 H
+2 Z
+0 X
+4 K
+N
+0 72 612 720 C
+0 10 Q
+0 X
+0 K
+0.52 0.1 (up a partition just for the database.) 198 321.36 B
+1 15 Q
+-0.94 (De\336ning Hosts) 54 279.63 P
+0 10 Q
+0.52 0.1 (The Online: Backup 2.0 database r) 198 257.97 B
+0.52 0.1 (elies on the system host\325s database \050for) 354.1 257.97 B
+0.52 0.1 (example,) 198 245.57 B
+3 F
+1.22 0.1 (/etc/hosts) 241.91 245.57 B
+0 F
+0.52 0.1 (, Network Information System \050NIS\051, Domain Name) 302.91 245.57 B
+-0.03 0.1 (Service \050DNS\051\051. Each host that stor) 198 233.17 B
+-0.03 0.1 (es backup information in the Online: Backup) 353.62 233.17 B
+0.52 0.1 (2.0 database must be de\336ned in the system host database.) 198 220.77 B
+0.52 0.1 (If you want to use a) 198 200.37 B
+3 F
+1.22 0.1 (dumpdm) 293.17 200.37 B
+0 F
+0.52 0.1 ( utility \050that is,) 329.77 200.37 B
+3 F
+1.22 0.1 (tapeadd) 400.91 200.37 B
+0 F
+0.52 0.1 ( or) 443.61 200.37 B
+3 F
+1.22 0.1 (dumpadd) 459.46 200.37 B
+0 F
+0.52 0.1 (\051 to add an) 502.16 200.37 B
+0.08 0.1 (\324) 198 187.97 B
+0.08 0.1 (\324old\325) 200.51 187.97 B
+0.08 0.1 (\325 dump to the Online: Backup 2.0 database \050fr) 220.68 187.97 B
+0.08 0.1 (om a machine that no longer) 425.74 187.97 B
+0.52 0.1 (exists\051 you must \336rst make an entry for this host in the system host database.) 198 175.57 B
+0.52 0.1 (Likewise, if a site decommissions a host, but wants to keep its) 198 163.17 B
+3 F
+1.2 (hsmdump) 485.55 163.17 P
+0 F
+0.52 0.1 (database, that host\325s entry must r) 198 150.77 B
+0.52 0.1 (emain in the system host database.) 350.58 150.77 B
+3 9 Q
+(#) 207.02 564.4 T
+5 F
+(/opt/SUNWhsm/lib/dumpconfrc) 217.82 564.4 T
+198 576.25 198 557.55 2 L
+V
+0.3 H
+0 Z
+N
+558 576.25 558 557.55 2 L
+V
+N
+197.85 576.4 558.15 576.4 2 L
+V
+N
+197.85 557.4 558.15 557.4 2 L
+V
+N
+FMENDPAGE
+%%EndPage: "105" 4
+%%Page: "106" 4
+612 792 0 FMBEGINPAGE
+0 9 Q
+0 X
+4 K
+0.09 (106) 54 108.7 S
+1 F
+-0.58 0.09 (Online: Backup 2.0 Administration Guide) 198 108.7 B
+0 F
+-0.58 0.09 (\321) 352.35 108.7 B
+1 F
+-0.58 0.09 (November 1992) 361.44 108.7 B
+558 675 54 675 2 L
+0.3 H
+2 Z
+0 K
+N
+1 20 Q
+4 K
+(6) 73.44 680.03 T
+185 83.74 393.76 101.24 R
+7 X
+0 K
+V
+54 690.23 68.96 693.5 R
+0 X
+4 K
+V
+54 684.77 68.96 688.05 R
+V
+54 679.48 68.96 682.75 R
+V
+54 688.14 68.96 690.41 R
+7 X
+V
+54 682.86 68.96 684.96 R
+V
+1 15 Q
+0 X
+0 K
+-0.94 (Maintaining the Database) 54 638 P
+0 10 Q
+0.52 0.1 (The) 198 616.33 B
+3 F
+1.22 0.1 (dumpdm) 218.16 616.33 B
+0 F
+0.52 0.1 ( utility maintains the database under certain cir) 254.76 616.33 B
+0.52 0.1 (cumstances. The) 472.22 616.33 B
+0.52 0.1 (subcommands pr) 198 603.93 B
+0.52 0.1 (ovided by) 276.73 603.93 B
+3 F
+1.22 0.1 (dumpdm) 325.89 603.93 B
+0 F
+0.52 0.1 ( include:) 362.49 603.93 B
+2 14 Q
+(\245) 198 585.53 T
+3 10 Q
+(start) 210.6 585.53 T
+2 14 Q
+(\245) 198 567.13 T
+3 10 Q
+(stop) 210.6 567.13 T
+2 14 Q
+(\245) 198 548.73 T
+3 10 Q
+(reclaim) 210.6 548.73 T
+2 14 Q
+(\245) 198 530.33 T
+3 10 Q
+(dumpadd) 210.6 530.33 T
+2 14 Q
+(\245) 198 511.93 T
+3 10 Q
+(delete) 210.6 511.93 T
+2 14 Q
+(\245) 198 493.53 T
+3 10 Q
+(tapeadd) 210.6 493.53 T
+2 14 Q
+(\245) 198 475.13 T
+3 10 Q
+(tapef) 210.6 475.13 T
+(ile_rebuild) 240.6 475.13 T
+2 14 Q
+(\245) 198 456.73 T
+3 10 Q
+(tapelist) 210.6 456.73 T
+2 14 Q
+(\245) 198 438.33 T
+3 10 Q
+(pslabel) 210.6 438.33 T
+2 14 Q
+(\245) 198 419.93 T
+3 10 Q
+(dbinfo) 210.6 419.93 T
+2 14 Q
+(\245) 198 401.53 T
+3 10 Q
+(dir_rebuild) 210.6 401.53 T
+0 F
+0.52 0.1 (When you invoke) 198 381.13 B
+3 F
+1.22 0.1 (dumpdm) 282.33 381.13 B
+0 F
+0.52 0.1 ( without an ar) 318.93 381.13 B
+0.52 0.1 (gument, the following help message) 384.06 381.13 B
+0.1 (displays:) 198 368.73 S
+3 9 Q
+(#) 60 341.4 T
+5 F
+(/opt/SUNWhsm/sbin/dumpdm) 70.8 341.4 T
+3 F
+(usage: dumpdm arg) 60 330.4 T
+(where `arg\325 is one of:) 60 308.4 T
+([-t tapelabel] delete) 80 286.4 T
+([-r database_root] [-h host] [-m mapsize]  -a dir_rebuild) 80 275.4 T
+([-s database_server] [-d dumpdevice] [-f tempdir] [-b blksize] dumpadd) 80 264.4 T
+([-r database_root] [-h host] [-m mapsize] reclaim) 80 253.4 T
+(start) 80 242.4 T
+(stop) 80 231.4 T
+([-s database_server] [-d dumpdevice] [-f tempdir] [-b blksize] tapeadd) 80 220.4 T
+([-r database_root] [-m mapsize] tapefile_rebuild) 80 209.4 T
+([-s database_server] [-v] [-V] tapelist [tapelabel...]) 80 198.4 T
+([-s database server] [-l 8mm|qic] pslabel [tapelabel...]) 80 187.4 T
+([-s database_server] dbinfo) 80 176.4 T
+54 353.25 54 169.55 2 L
+V
+0 Z
+N
+558 353.25 558 169.55 2 L
+V
+N
+53.85 353.4 558.15 353.4 2 L
+V
+N
+53.85 169.4 558.15 169.4 2 L
+V
+N
+FMENDPAGE
+%%EndPage: "106" 5
+%%Page: "107" 5
+612 792 0 FMBEGINPAGE
+1 9 Q
+0 X
+4 K
+-0.58 0.09 (Online Database) 198 108.7 B
+0 F
+0.09 (107) 544.23 108.7 S
+1 20 Q
+(6) 528.56 680.03 T
+558 675 54 675 2 L
+0.3 H
+2 Z
+0 K
+N
+185 83.74 393.76 101.24 R
+7 X
+V
+543.04 690.29 558 693.56 R
+0 X
+4 K
+V
+543.04 684.84 558 688.11 R
+V
+543.04 679.54 558 682.81 R
+V
+543.04 688.2 558 690.48 R
+7 X
+V
+543.04 682.92 558 685.02 R
+V
+0 10 Q
+0 X
+0 K
+0.52 0.1 (When) 198 641.33 B
+3 F
+1.22 0.1 (dumpdm) 227.95 641.33 B
+0 F
+0.52 0.1 ( is accessing a tape drive, it must be invoked on the machine) 264.55 641.33 B
+0.52 0.1 (wher) 198 628.93 B
+0.52 0.1 (e the tape drive is attached.) 221.12 628.93 B
+0.52 0.1 (Discussions of each of the) 198 608.53 B
+3 F
+1.22 0.1 (dumpdm) 319.57 608.53 B
+0 F
+0.52 0.1 ( commands follow:) 356.17 608.53 B
+2 14 Q
+(\245) 198 590.13 T
+3 10 Q
+(start) 210.6 590.13 T
+0 F
+0.52 0.1 (This subcommand is normally used only to r) 210.6 569.73 B
+0.52 0.1 (estart the database after the) 416.33 569.73 B
+3 F
+1.22 0.1 (stop) 210.6 557.33 B
+0 F
+0.52 0.1 ( subcommand is invoked. The database is automatically started when) 235 557.33 B
+0.52 0.1 (the daemon is invoked fr) 210.6 544.93 B
+0.52 0.1 (om the) 325.51 544.93 B
+3 F
+1.22 0.1 (/etc/init.d/hsm) 360.41 544.93 B
+0 F
+0.52 0.1 (\336le. An example of) 459.23 544.93 B
+3 F
+1.22 0.1 (start) 210.6 532.53 B
+0 F
+0.52 0.1 ( follows:) 241.1 532.53 B
+2 14 Q
+(\245) 198 477.13 T
+3 10 Q
+(stop) 210.6 477.13 T
+0 F
+0.28 0.1 (This subcommand tells the local database server to handle no r) 210.6 456.73 B
+0.28 0.1 (equests until) 497.17 456.73 B
+0.52 0.1 (a) 210.6 444.33 B
+3 F
+1.22 0.1 (start) 218.82 444.33 B
+0 F
+0.52 0.1 ( subcommand is issued. This subcommand could be used to stop) 249.32 444.33 B
+-0.01 0.1 (the database server in or) 210.6 431.93 B
+-0.01 0.1 (der to get a \324) 321.2 431.93 B
+-0.01 0.1 (\324clean\325) 377.17 431.93 B
+-0.01 0.1 (\325 backup of the database \336les. An) 406.02 431.93 B
+0.52 0.1 (example of) 210.6 419.53 B
+3 F
+1.22 0.1 (stop) 264.02 419.53 B
+0 F
+0.52 0.1 ( follows:) 288.42 419.53 B
+0.52 0.1 (Only the database server on the local machine may be stopped.) 210.6 364.13 B
+2 14 Q
+(\245) 198 345.73 T
+3 10 Q
+(delete) 210.6 345.73 T
+0 F
+0.52 0.1 (This subcommand r) 210.6 325.33 B
+0.52 0.1 (emoves dumps on the given tape fr) 301.5 325.33 B
+0.52 0.1 (om the local) 463.94 325.33 B
+0.52 0.1 (database. If the tape label is not speci\336ed,) 210.6 312.93 B
+3 F
+1.22 0.1 (dumpdm) 404.99 312.93 B
+0 F
+0.52 0.1 ( will r) 441.59 312.93 B
+0.52 0.1 (equest one.) 469.17 312.93 B
+0.52 0.1 (Normally) 210.6 300.53 B
+0.52 0.1 (, database entries ar) 253.22 300.53 B
+0.52 0.1 (e r) 344.34 300.53 B
+0.52 0.1 (emoved automatically as tapes ar) 356.22 300.53 B
+0.52 0.1 (e r) 509.01 300.53 B
+0.52 0.1 (eused.) 520.89 300.53 B
+0.52 0.1 (This subcommand is useful for r) 210.6 288.13 B
+0.52 0.1 (emoving database entries for other tapes) 359.18 288.13 B
+0.52 0.1 (\050for example, a tape that is lost or has gone bad and cannot be r) 210.6 275.73 B
+0.52 0.1 (eused\051. An) 503.42 275.73 B
+0.52 0.1 (example of) 210.6 263.33 B
+3 F
+1.22 0.1 (delete) 264.02 263.33 B
+0 F
+0.52 0.1 ( follows:) 300.62 263.33 B
+2 14 Q
+(\245) 198 196.93 T
+3 10 Q
+(reclaim) 210.6 196.93 T
+0 F
+0.52 0.1 (This subcommand is used to locate \324) 210.6 176.53 B
+0.52 0.1 (\324dead\325) 376.92 176.53 B
+0.52 0.1 (\325 r) 404.72 176.53 B
+0.52 0.1 (ecor) 414.59 176.53 B
+0.52 0.1 (ds in the database so they) 433.45 176.53 B
+0.52 0.1 (can be r) 210.6 164.13 B
+0.52 0.1 (eused at a later time, allowing the database to make the most) 246.79 164.13 B
+0.52 0.1 (ef) 210.6 151.73 B
+0.52 0.1 (\336cient use of disk space.) 218.74 151.73 B
+3 9 Q
+(#) 207.02 505.2 T
+5 F
+(/opt/SUNWhsm/sbin/dumpdm start) 217.82 505.2 T
+3 F
+(#) 207.02 392.2 T
+5 F
+(/opt/SUNWhsm/sbin/dumpdm stop) 217.82 392.2 T
+3 F
+(#) 204 236 T
+5 F
+(/opt/SUNWhsm/sbin/dumpdm delete) 214.8 236 T
+3 F
+(Enter tape label to be deleted:) 207.02 225 T
+5 F
+(fred_t:00000) 379.82 225 T
+198 517.05 198 498.35 2 L
+V
+0 Z
+N
+558 517.05 558 498.35 2 L
+V
+N
+197.85 517.2 558.15 517.2 2 L
+V
+N
+197.85 498.2 558.15 498.2 2 L
+V
+N
+198 404.05 198 385.35 2 L
+V
+N
+558 404.05 558 385.35 2 L
+V
+N
+197.85 404.2 558.15 404.2 2 L
+V
+N
+197.85 385.2 558.15 385.2 2 L
+V
+N
+198 247.85 198 218.15 2 L
+V
+N
+558 247.85 558 218.15 2 L
+V
+N
+197.85 248 558.15 248 2 L
+V
+N
+197.85 218 558.15 218 2 L
+V
+N
+FMENDPAGE
+%%EndPage: "107" 6
+%%Page: "108" 6
+612 792 0 FMBEGINPAGE
+0 9 Q
+0 X
+4 K
+0.09 (108) 54 108.7 S
+1 F
+-0.58 0.09 (Online: Backup 2.0 Administration Guide) 198 108.7 B
+0 F
+-0.58 0.09 (\321) 352.35 108.7 B
+1 F
+-0.58 0.09 (November 1992) 361.44 108.7 B
+558 675 54 675 2 L
+0.3 H
+2 Z
+0 K
+N
+1 20 Q
+4 K
+(6) 73.44 680.03 T
+185 83.74 393.76 101.24 R
+7 X
+0 K
+V
+54 690.23 68.96 693.5 R
+0 X
+4 K
+V
+54 684.77 68.96 688.05 R
+V
+54 679.48 68.96 682.75 R
+V
+54 688.14 68.96 690.41 R
+7 X
+V
+54 682.86 68.96 684.96 R
+V
+54 640.01 558 648 C
+558 644.98 198 644.98 2 L
+0.3 H
+2 Z
+0 X
+4 K
+N
+0 72 612 720 C
+4 10 Q
+0 X
+0 K
+0.52 0.1 (Note \320) 198 633.34 B
+0 F
+0.52 0.1 (This subcommand should be invoked at least quarterly to allow the) 231.96 633.34 B
+54 609.62 558 617.61 C
+558 614.58 198 614.58 2 L
+0.3 H
+2 Z
+0 X
+4 K
+N
+0 72 612 720 C
+0 10 Q
+0 X
+0 K
+0.52 0.1 (database to make the most ef) 198 620.94 B
+0.52 0.1 (\336cient use of disk space r) 331.33 620.94 B
+0.52 0.1 (esour) 447.22 620.94 B
+0.52 0.1 (ces.) 472.01 620.94 B
+0.28 0.1 (This operation implicitly issues a database) 210.6 592.55 B
+3 F
+0.64 (stop) 406.45 592.55 P
+0 F
+0.28 0.1 ( dir) 430.45 592.55 B
+0.28 0.1 (ective befor) 446.42 592.55 B
+0.28 0.1 (e pr) 499.12 592.55 B
+0.28 0.1 (ocessing) 516.86 592.55 B
+0.52 0.1 (begins and a database) 210.6 580.15 B
+3 F
+1.2 (start) 314.59 580.15 P
+0 F
+0.52 0.1 ( dir) 344.59 580.15 B
+0.52 0.1 (ective when pr) 360.8 580.15 B
+0.52 0.1 (ocessing \336nishes. If this) 428.63 580.15 B
+0.52 0.1 (command is r) 210.6 567.75 B
+0.52 0.1 (un on a database that was alr) 273.35 567.75 B
+0.52 0.1 (eady stopped, it will be) 408.03 567.75 B
+0.52 0.1 (automatically started when the command completes. An example of) 210.6 555.35 B
+3 F
+1.22 0.1 (reclaim) 210.6 542.95 B
+0 F
+0.52 0.1 ( follows:) 253.3 542.95 B
+0.17 0.1 (The) 210.6 465.55 B
+3 F
+0.39 0.1 (\320m) 230.4 465.55 B
+0 F
+0.17 0.1 ( \337ag is available with the) 242.6 465.55 B
+3 F
+0.39 0.1 (reclaim) 358.98 465.55 B
+0 F
+0.17 0.1 ( subcommand. The) 401.68 465.55 B
+3 F
+0.39 0.1 (\320m) 490.91 465.55 B
+0 F
+0.17 0.1 ( \337ag allows) 503.11 465.55 B
+0.52 0.1 (mapping the \336les into lar) 210.6 453.15 B
+0.52 0.1 (ger pieces. The map size must be an integer) 326.31 453.15 B
+0.2 0.1 (between 1 and 500. If the) 210.6 440.75 B
+3 F
+0.47 0.1 (\320m) 326.71 440.75 B
+0 F
+0.2 0.1 ( option is not speci\336ed, a default value of 100 is) 338.91 440.75 B
+0.22 0.1 (used. The database update pr) 210.6 428.35 B
+0.22 0.1 (ocedur) 344.59 428.35 B
+0.22 0.1 (e uses) 375.79 428.35 B
+3 F
+0.51 0.1 (mmap) 406.01 428.35 B
+0 F
+0.22 0.1 (\0502\051 to update database \336les.) 430.41 428.35 B
+0.52 0.1 (The \336les ar) 210.6 415.95 B
+0.52 0.1 (e mapped in chunks of the speci\336ed size \050in Mbyte units\051.) 261.24 415.95 B
+2 14 Q
+(\245) 198 397.55 T
+3 10 Q
+(dir_rebuild) 210.6 397.55 T
+0 F
+0.52 0.1 (This subcommand is used to r) 210.6 377.15 B
+0.52 0.1 (ebuild) 348.7 377.15 B
+3 F
+1.22 0.1 (dir) 380.7 377.15 B
+0 F
+0.52 0.1 ( and) 399 377.15 B
+3 F
+1.22 0.1 (instance) 422.47 377.15 B
+0 F
+0.52 0.1 ( \336les that wer) 471.27 377.15 B
+0.52 0.1 (e) 533.96 377.15 B
+0.43 0.1 (accidentally r) 210.6 364.75 B
+0.43 0.1 (emoved or corr) 271.85 364.75 B
+0.43 0.1 (upted. The) 341.87 364.75 B
+3 F
+1.01 0.1 (dnode) 394.26 364.75 B
+0 F
+0.43 0.1 ( and) 424.76 364.75 B
+3 F
+1.01 0.1 (pathcomponents) 448.05 364.75 B
+0 F
+0.43 0.1 ( \336les) 533.45 364.75 B
+0.52 0.1 (must all still be pr) 210.6 352.35 B
+0.52 0.1 (esent to use this command. This operation implicitly) 294.19 352.35 B
+0.52 0.1 (issues a database) 210.6 339.95 B
+3 F
+1.2 (stop) 291.84 339.95 P
+0 F
+0.52 0.1 ( dir) 315.84 339.95 B
+0.52 0.1 (ective befor) 332.05 339.95 B
+0.52 0.1 (e pr) 384.99 339.95 B
+0.52 0.1 (ocessing begins and a database) 402.98 339.95 B
+3 F
+1.2 (start) 210.6 327.55 P
+0 F
+0.52 0.1 ( dir) 240.6 327.55 B
+0.52 0.1 (ective when pr) 256.81 327.55 B
+0.52 0.1 (ocessing \336nishes. If this command is r) 324.64 327.55 B
+0.52 0.1 (un on a) 498.83 327.55 B
+0.08 0.1 (database that was alr) 210.6 315.15 B
+0.08 0.1 (eady stopped, it will be automatically started when the) 305.97 315.15 B
+0.52 0.1 (command completes. An example of) 210.6 302.75 B
+3 F
+1.22 0.1 (dir_rebuild) 380.6 302.75 B
+0 F
+0.52 0.1 ( follows:) 447.7 302.75 B
+0.32 0.1 (T) 210.6 225.35 B
+0.32 0.1 (o r) 215.91 225.35 B
+0.32 0.1 (ebuild all hosts use the) 228.26 225.35 B
+3 F
+0.75 0.1 (dir_rebuild) 335.9 225.35 B
+0 F
+0.32 0.1 ( subcommand with the) 403 225.35 B
+3 F
+0.75 0.1 (\320) 510.86 225.35 B
+0.74 (a) 516.96 225.35 P
+0 F
+0.32 0.1 ( option:) 522.96 225.35 B
+3 9 Q
+(#) 204 515.62 T
+5 F
+(/opt/SUNWhsm/sbin/dumpdm reclaim) 214.8 515.62 T
+3 F
+(Enter root of database file hierarchy:) 204 504.62 T
+5 F
+(/usr/dumpdb) 414.6 504.62 T
+3 F
+(Enter host whose directory space is to be reclaimed:) 204 493.62 T
+5 F
+(fred) 490.2 493.62 T
+3 F
+(#) 204 275.42 T
+5 F
+(/opt/SUNWhsm/sbin/dumpdm dir_rebuild) 214.8 275.42 T
+3 F
+(Enter root of database file hierarchy:) 204 264.42 T
+5 F
+(/usr/dumpdb) 414.6 264.42 T
+3 F
+(Enter host whose directory is to be rebuilt:) 204 253.42 T
+5 F
+(fred) 447 253.42 T
+3 F
+(#) 204 198.02 T
+5 F
+(/opt/SUNWhsm/sbin/dumpdm -a dir_rebuild) 214.8 198.02 T
+198 527.47 198 486.77 2 L
+V
+0.3 H
+0 Z
+N
+558 527.47 558 486.77 2 L
+V
+N
+197.85 527.62 558.15 527.62 2 L
+V
+N
+197.85 486.62 558.15 486.62 2 L
+V
+N
+198 287.27 198 246.57 2 L
+V
+N
+558 287.27 558 246.57 2 L
+V
+N
+197.85 287.42 558.15 287.42 2 L
+V
+N
+197.85 246.42 558.15 246.42 2 L
+V
+N
+198 209.87 198 191.17 2 L
+V
+N
+558 209.87 558 191.17 2 L
+V
+N
+197.85 210.02 558.15 210.02 2 L
+V
+N
+197.85 191.02 558.15 191.02 2 L
+V
+N
+FMENDPAGE
+%%EndPage: "108" 7
+%%Page: "109" 7
+612 792 0 FMBEGINPAGE
+1 9 Q
+0 X
+4 K
+-0.58 0.09 (Online Database) 198 108.7 B
+0 F
+0.09 (109) 544.23 108.7 S
+1 20 Q
+(6) 528.56 680.03 T
+558 675 54 675 2 L
+0.3 H
+2 Z
+0 K
+N
+185 83.74 393.76 101.24 R
+7 X
+V
+543.04 690.29 558 693.56 R
+0 X
+4 K
+V
+543.04 684.84 558 688.11 R
+V
+543.04 679.54 558 682.81 R
+V
+543.04 688.2 558 690.48 R
+7 X
+V
+543.04 682.92 558 685.02 R
+V
+0 10 Q
+0 X
+0 K
+0.52 0.1 (An example of the) 210.6 641.33 B
+3 F
+1.22 0.1 (dir_rebuild) 298.23 641.33 B
+0 F
+0.52 0.1 ( subcommand using the) 365.33 641.33 B
+3 F
+1.22 0.1 (\320) 478.33 641.33 B
+1.2 (m) 484.43 641.33 P
+0 F
+0.52 0.1 ( option) 490.43 641.33 B
+0.52 0.1 (follows:) 210.6 628.93 B
+0.44 0.1 (By specifying the) 210.6 551.53 B
+3 F
+1.01 (\320m 200) 292.32 551.53 P
+0 F
+0.44 0.1 ( ar) 329.33 551.53 B
+0.44 0.1 (gument to) 341.33 551.53 B
+3 F
+1.01 (dumpdm) 391.21 551.53 P
+0 F
+0.44 0.1 (, the \336les will be mapped in) 427.21 551.53 B
+0.42 0.1 (lar) 210.6 539.13 B
+0.42 0.1 (ger pieces. The map size must be an integer between 1 and 500. If the) 222.58 539.13 B
+3 F
+0.99 0.1 (\320m) 542.78 539.13 B
+0 F
+0.52 0.1 (option is not speci\336ed, a default value of 100 is used. The database update) 210.6 526.73 B
+0.52 0.1 (pr) 210.6 514.33 B
+0.52 0.1 (ocedur) 220.58 514.33 B
+0.52 0.1 (e uses) 251.78 514.33 B
+3 F
+1.22 0.1 (mmap) 282.61 514.33 B
+0 F
+0.52 0.1 (\0502\051 to update database \336les. The \336les ar) 307.01 514.33 B
+0.52 0.1 (e mapped in) 486.65 514.33 B
+0.52 0.1 (chunks of the speci\336ed size \050in Mbyte units\051.) 210.6 501.93 B
+2 14 Q
+0.14 (\245) 198 483.53 S
+3 10 Q
+1.2 (tapef) 210.6 483.53 P
+1.2 (ile_rebuild) 240.6 483.53 P
+0 F
+0.52 0.1 (This subcommand r) 210.6 463.13 B
+0.52 0.1 (ebuilds the) 301.5 463.13 B
+3 F
+1.22 0.1 (activetapes) 355.13 463.13 B
+0 F
+0.52 0.1 ( \336le should it be accidentally) 422.23 463.13 B
+0.52 0.1 (r) 210.6 450.73 B
+0.52 0.1 (emoved or corr) 214.47 450.73 B
+0.52 0.1 (upted. This operation implicitly issues a database) 284.67 450.73 B
+3 F
+1.2 (stop) 514.4 450.73 P
+0 F
+0.52 0.1 (dir) 210.6 438.33 B
+0.52 0.1 (ective befor) 223.69 438.33 B
+0.52 0.1 (e pr) 276.63 438.33 B
+0.52 0.1 (ocessing begins, and a database) 294.62 438.33 B
+3 F
+1.2 (start) 442.59 438.33 P
+0 F
+0.52 0.1 ( dir) 472.59 438.33 B
+0.52 0.1 (ective when) 488.8 438.33 B
+0.52 0.1 (pr) 210.6 425.93 B
+0.52 0.1 (ocessing \336nishes. If this command is r) 220.58 425.93 B
+0.52 0.1 (un on a database that was alr) 394.77 425.93 B
+0.52 0.1 (eady) 529.45 425.93 B
+-0.01 0.1 (stopped, it will automatically start when the command \336nishes. An example) 210.6 413.53 B
+0.52 0.1 (of) 210.6 401.13 B
+3 F
+1.22 0.1 (tapef) 222.71 401.13 B
+1.22 0.1 (ile_rebuild) 253.21 401.13 B
+0 F
+0.52 0.1 ( follows:) 320.31 401.13 B
+2 14 Q
+(\245) 198 334.73 T
+3 10 Q
+(dumpadd) 210.6 334.73 T
+0 F
+0.52 0.1 (This subcommand adds entries fr) 210.6 314.33 B
+0.52 0.1 (om a single) 363.49 314.33 B
+3 F
+1.2 (ufsdump) 419.27 314.33 P
+0 F
+0.52 0.1 ( or) 461.27 314.33 B
+3 F
+1.2 (hsmdump) 477.12 314.33 P
+0 F
+0.52 0.1 ( to a) 519.12 314.33 B
+0.52 0.1 (database. The command r) 210.6 301.93 B
+0.52 0.1 (eads dump tapes cr) 328.39 301.93 B
+0.52 0.1 (eated by) 417.88 301.93 B
+3 F
+1.2 (ufsdump) 459.86 301.93 P
+0 F
+0.52 0.1 ( or) 501.86 301.93 B
+3 F
+1.2 (hsmdump) 210.6 289.53 P
+0 F
+0.52 0.1 (. If multiple dumps on a tape ar) 252.6 289.53 B
+0.52 0.1 (e being added, the) 399.12 289.53 B
+3 F
+1.22 0.1 (tapeadd) 486.99 289.53 B
+0 F
+0.52 0.1 (subcommand can be used.) 210.6 277.13 B
+3 F
+1.22 0.1 (dumpadd) 334.62 277.13 B
+0 F
+0.52 0.1 ( can r) 377.32 277.13 B
+0.52 0.1 (ecover fr) 402.99 277.13 B
+0.52 0.1 (om accidental) 443.09 277.13 B
+3 F
+1.22 0.1 (delete) 509.5 277.13 B
+0 F
+0.31 0.1 (operations, as well as cr) 210.6 264.73 B
+0.31 0.1 (eate database entries for a dump that was not made) 319.37 264.73 B
+0.52 0.1 (using Online: Backup 2.0 softwar) 210.6 252.33 B
+0.52 0.1 (e. An example of) 362.1 252.33 B
+3 F
+1.22 0.1 (dumpadd) 443.05 252.33 B
+0 F
+0.52 0.1 ( follows:) 485.75 252.33 B
+0.13 0.1 (Ther) 210.6 196.93 B
+0.13 0.1 (e is a detailed example of) 231.51 196.93 B
+3 F
+0.29 0.1 (dumpadd) 349.06 196.93 B
+0 F
+0.13 0.1 ( in the subsection,  \322Adding Backup) 391.76 196.93 B
+0.52 0.1 (T) 210.6 184.53 B
+0.52 0.1 (apes to the Database\323 on page) 215.91 184.53 B
+0.52 0.1 (1) 357.34 184.53 B
+0.52 0.1 (13.) 361.89 184.53 B
+3 9 Q
+(#) 204 601.6 T
+5 F
+(/opt/SUNWhsm/sbin/dumpdm -m 200 dir_rebuild) 214.8 601.6 T
+3 F
+(Enter root of database file hierarchy:) 204 590.6 T
+5 F
+(/usr/dumpdb) 414.6 590.6 T
+3 F
+(Enter host whose directory is to be rebuilt:) 204 579.6 T
+5 F
+(fred) 447 579.6 T
+3 F
+(#) 204 373.8 T
+5 F
+(/opt/SUNWhsm/sbin/dumpdm tapefile_rebuild) 214.8 373.8 T
+3 F
+(Enter root of database file hierarchy:) 204 362.8 T
+5 F
+(/usr/dumpdb) 414.6 362.8 T
+3 F
+(#) 207.02 225 T
+5 F
+(/opt/SUNWhsm/sbin/dumpdm -s) 217.82 225 T
+1 F
+0.09 (dino) 369.02 225 S
+5 F
+( -d /dev/rmt/0mbn dumpadd) 385.39 225 T
+198 613.45 198 572.75 2 L
+V
+0 Z
+N
+558 613.45 558 572.75 2 L
+V
+N
+197.85 613.6 558.15 613.6 2 L
+V
+N
+197.85 572.6 558.15 572.6 2 L
+V
+N
+198 385.65 198 355.95 2 L
+V
+N
+558 385.65 558 355.95 2 L
+V
+N
+197.85 385.8 558.15 385.8 2 L
+V
+N
+197.85 355.8 558.15 355.8 2 L
+V
+N
+198 236.85 198 218.15 2 L
+V
+N
+558 236.85 558 218.15 2 L
+V
+N
+197.85 237 558.15 237 2 L
+V
+N
+197.85 218 558.15 218 2 L
+V
+N
+FMENDPAGE
+%%EndPage: "109" 8
+%%Page: "110" 8
+612 792 0 FMBEGINPAGE
+0 9 Q
+0 X
+4 K
+0.09 (1) 54 108.7 S
+0.09 (10) 58.1 108.7 S
+1 F
+-0.58 0.09 (Online: Backup 2.0 Administration Guide) 198 108.7 B
+0 F
+-0.58 0.09 (\321) 352.35 108.7 B
+1 F
+-0.58 0.09 (November 1992) 361.44 108.7 B
+558 675 54 675 2 L
+0.3 H
+2 Z
+0 K
+N
+1 20 Q
+4 K
+(6) 73.44 680.03 T
+185 83.74 393.76 101.24 R
+7 X
+0 K
+V
+54 690.23 68.96 693.5 R
+0 X
+4 K
+V
+54 684.77 68.96 688.05 R
+V
+54 679.48 68.96 682.75 R
+V
+54 688.14 68.96 690.41 R
+7 X
+V
+54 682.86 68.96 684.96 R
+V
+2 14 Q
+0 X
+0 K
+(\245) 198 641.33 T
+3 10 Q
+(tapeadd) 210.6 641.33 T
+0 F
+0.38 0.1 (This subcommand adds all the dumps on a tape to the database. Unlike the) 210.6 620.93 B
+3 F
+-0.07 0.1 (dumpadd) 210.6 608.53 B
+0 F
+-0.03 0.1 ( subcommand, the) 253.3 608.53 B
+3 F
+-0.07 0.1 (tapeadd) 339.06 608.53 B
+0 F
+-0.03 0.1 ( subcommand does not pr) 381.76 608.53 B
+-0.03 0.1 (ompt for \336le) 499.14 608.53 B
+0.52 0.1 (position on the tape. Also, the) 210.6 596.13 B
+3 F
+1.22 0.1 (tapeadd) 351.46 596.13 B
+0 F
+0.52 0.1 ( subcommand does not pr) 394.16 596.13 B
+0.52 0.1 (ompt for) 513.75 596.13 B
+0.52 0.1 (the \336le system mount point of a labeled tape. It assumes that labeled tapes) 210.6 583.73 B
+0.52 0.1 (wer) 210.6 571.33 B
+0.52 0.1 (e made by Online: Backup 2.0. An example follows:) 227.8 571.33 B
+0.52 0.1 (In the example, the database server and backup device could have been) 210.6 427.93 B
+0.52 0.1 (speci\336ed on the command line using the) 210.6 415.53 B
+3 F
+1.22 0.1 (\320s) 399.48 415.53 B
+0 F
+0.52 0.1 ( and) 411.68 415.53 B
+3 F
+1.22 0.1 (\320d) 435.15 415.53 B
+0 F
+0.52 0.1 ( \337ags, r) 447.35 415.53 B
+0.52 0.1 (espectively) 481.34 415.53 B
+0.52 0.1 (. The) 530.68 415.53 B
+3 F
+0.72 0.1 (tapeadd) 210.6 403.13 B
+0 F
+0.31 0.1 ( operation terminates after the second \336le because ther) 253.3 403.13 B
+0.31 0.1 (e wer) 502.05 403.13 B
+0.31 0.1 (e only) 527.04 403.13 B
+0.52 0.1 (two dumps on the example tape.) 210.6 390.73 B
+54 369.01 558 377 C
+558 373.98 198 373.98 2 L
+0.3 H
+2 Z
+0 X
+4 K
+N
+0 72 612 720 C
+54 351.02 558 359.01 C
+558 355.98 198 355.98 2 L
+0.3 H
+2 Z
+0 X
+4 K
+N
+0 72 612 720 C
+4 10 Q
+0 X
+0 K
+0.52 0.1 (Note \320) 198 362.34 B
+0 F
+0.52 0.1 (The tape device speci\336ed to) 231.96 362.34 B
+3 F
+1.2 (tapeadd) 362.41 362.34 P
+0 F
+0.52 0.1 ( must be a nonr) 404.41 362.34 B
+0.52 0.1 (ewinding device.) 476.54 362.34 B
+2 14 Q
+(\245) 198 335.95 T
+3 10 Q
+(tapelist) 210.6 335.95 T
+0 F
+0.52 0.1 (This subcommand displays a list of labels for all tapes in the database. The) 210.6 315.55 B
+0.52 0.1 (tape list contains the identifying information for the dump tapes made at a) 210.6 303.15 B
+0.52 0.1 (site. An example of tapelist follows:) 210.6 290.75 B
+3 9 Q
+(#) 204 544 T
+5 F
+(/opt/SUNWhsm/sbin/dumpdm tapeadd) 214.8 544 T
+3 F
+(Name of database server where dump data will be added:) 204 533 T
+5 F
+(bambam) 501 533 T
+3 F
+(Device from which to read dump:) 204 522 T
+5 F
+(/dev/rmt/0mbn) 376.8 522 T
+3 F
+(File 1:) 204 511 T
+(level 0 dump of fred:/mnt on Tue Apr 30 16:39:47 1991) 204 500 T
+(update file transmitted to server \324bambam\325) 204 489 T
+(File 2:) 204 478 T
+(level 9 dump of fred:/mnt on Tue Apr 30 16:43:15 1991) 204 467 T
+(update file transmitted to server \324bambam\325) 204 456 T
+(#) 204 263.42 T
+5 F
+(/opt/SUNWhsm/sbin/dumpdm -s) 214.8 263.42 T
+1 F
+0.09 (dino) 366 263.42 S
+5 F
+( tapelist) 382.36 263.42 T
+3 F
+(fred_t:00000) 204 252.42 T
+(fred_t:00001) 204 241.42 T
+(fred_t:00002) 204 230.42 T
+(fred_t:00004) 204 219.42 T
+(. . .) 204 208.42 T
+198 555.85 198 449.15 2 L
+V
+0.3 H
+0 Z
+N
+558 555.85 558 449.15 2 L
+V
+N
+197.85 556 558.15 556 2 L
+V
+N
+197.85 449 558.15 449 2 L
+V
+N
+198 275.27 198 201.57 2 L
+V
+N
+558 275.27 558 201.57 2 L
+V
+N
+197.85 275.42 558.15 275.42 2 L
+V
+N
+197.85 201.42 558.15 201.42 2 L
+V
+N
+FMENDPAGE
+%%EndPage: "110" 9
+%%Page: "111" 9
+612 792 0 FMBEGINPAGE
+1 9 Q
+0 X
+4 K
+-0.58 0.09 (Online Database) 198 108.7 B
+0 F
+0.09 (1) 545.22 108.7 S
+0.09 (1) 549.32 108.7 S
+0.09 (1) 553.41 108.7 S
+1 20 Q
+(6) 528.56 680.03 T
+558 675 54 675 2 L
+0.3 H
+2 Z
+0 K
+N
+185 83.74 393.76 101.24 R
+7 X
+V
+543.04 690.29 558 693.56 R
+0 X
+4 K
+V
+543.04 684.84 558 688.11 R
+V
+543.04 679.54 558 682.81 R
+V
+543.04 688.2 558 690.48 R
+7 X
+V
+543.04 682.92 558 685.02 R
+V
+0 10 Q
+0 X
+0 K
+0.52 0.1 (When the) 210.6 641.33 B
+3 F
+1.22 0.1 (-v) 257.84 641.33 B
+0 F
+0.52 0.1 ( option is used with the) 270.04 641.33 B
+3 F
+1.22 0.1 (tapelist) 382.1 641.33 B
+0 F
+0.52 0.1 ( subcommand, the output) 430.9 641.33 B
+0.52 0.1 (changes to include all the individual dumps contained on the tapes.) 210.6 628.93 B
+0.52 0.1 (If the) 210.6 474.53 B
+3 F
+1.22 0.1 (-v) 237.91 474.53 B
+0 F
+0.52 0.1 ( option is used without specifying a tape label, all dumps on all) 250.11 474.53 B
+0.52 0.1 (tapes in the database ar) 210.6 462.13 B
+0.52 0.1 (e listed. The output is sorted with labels appearing) 318.68 462.13 B
+0.52 0.1 (alphabetically and by \336le number within each tape.) 210.6 449.73 B
+0.28 0.1 (W) 210.6 429.33 B
+0.28 0.1 (ith the) 220.15 429.33 B
+3 F
+0.65 0.1 (-V) 252.36 429.33 B
+0 F
+0.28 0.1 ( option, the) 264.56 429.33 B
+3 F
+0.65 0.1 (tapelist) 319.48 429.33 B
+0 F
+0.28 0.1 ( subcommand pr) 368.28 429.33 B
+0.28 0.1 (oduces the same data as) 445.31 429.33 B
+0.52 0.1 (the output of the) 210.6 416.93 B
+3 F
+1.22 0.1 (-v) 291.06 416.93 B
+0 F
+0.52 0.1 ( option, but the format can easily be parsed by other) 303.26 416.93 B
+0.52 0.1 (UNIX utilities, for example,) 210.6 404.53 B
+3 F
+1.22 0.1 (awk) 340.16 404.53 B
+0 F
+0.52 0.1 (\0501\051 or) 358.46 404.53 B
+3 F
+1.22 0.1 (sed) 386.27 404.53 B
+0 F
+0.52 0.1 (\0501\051, for generating r) 404.57 404.53 B
+0.52 0.1 (eports about) 493.86 404.53 B
+0.52 0.1 (the dumps that ar) 210.6 392.13 B
+0.52 0.1 (e curr) 292.56 392.13 B
+0.52 0.1 (ently in the database. An example of the) 319.16 392.13 B
+3 F
+1.22 0.1 (-V) 507.54 392.13 B
+0 F
+0.52 0.1 ( output) 519.74 392.13 B
+0.52 0.1 (follows:) 210.6 379.73 B
+0.52 0.1 (In the example, the \336elds contain the following information:) 198 236.33 B
+2 F
+0.1 (\245) 210.6 221.93 S
+3 F
+1.2 (fred_t:00015) 219.24 221.93 P
+0 F
+0.52 0.1 ( - The \336rst \336eld contains the name of the tape.) 291.24 221.93 B
+2 F
+0.1 (\245) 210.6 207.53 S
+3 F
+1.2 (1) 219.24 207.53 P
+0 F
+0.52 0.1 ( - The second \336eld is the \336le number on the tape.) 225.24 207.53 B
+3 9 Q
+(#) 204 601.6 T
+5 F
+(/opt/SUNWhsm/sbin/dumpdm -s) 214.8 601.6 T
+1 F
+0.09 (dino) 366 601.6 S
+5 F
+( -v tapelist) 382.36 601.6 T
+1 F
+0.09 (fr) 452.56 601.6 S
+0.09 (ed_t:00004) 458.58 601.6 S
+3 F
+(File: 1 - Level 5 dump of fred:/ \050dev/dsk/c0t3d0s0\051) 204 590.6 T
+(dumped on Fri Mar 8 18:18:33 1991) 204 579.6 T
+(File: 2 - Level 5 dump of fred:/usr \050/dev/c0t3d0s6\051) 204 568.6 T
+(dumped on Fri Mar 8 18:19:35 1991) 204 557.6 T
+(File: 3 - Level 5 dump of fred:/usr/fred \050/dev/c0t1d0s0\051) 204 546.6 T
+(dumped on Fri Mar 8 18:20:21 1991) 204 535.6 T
+(File: 5 - Level 5 dump of fred:/export \050/dev/c0t1d0s6\051) 204 524.6 T
+(dumped on Fri Mar 8 18:22:30 1991) 204 513.6 T
+(. . .) 204 502.6 T
+(#) 60 352.4 T
+5 F
+(/opt/SUNWhsm/sbin/dumpdm -s dino -V tapelist fred_t:00015) 70.8 352.4 T
+3 F
+(fred_t:00015 1 5 fred:/dev/dsk/c0t3d0s0           669002078 Thu Mar 14 18:54:38 1991) 60 341.4 T
+(fred_t:00015 2 5 fred:/usr/dev/dsk/c0t3d0s6       669002170 Thu Mar 14 18:56:10 1991) 60 330.4 T
+(fred_t:00015 3 5 fred:/usr/fred/dev/dsk/c0t1d0s0  669002212 Thu Mar 14 18:56:52 1991) 60 319.4 T
+(fred_t:00015 5 5 fred:/export/dev/dsk/c0t1d0s6    669002348 Thu Mar 14 18:59:08 1991) 60 308.4 T
+(fred_t:00015 6 5 fred:/var /dev/dsk/c0t2d0s0      669002675 Thu Mar 14 19:04:35 1991) 60 297.4 T
+(fred_t:00015 7 5 fred:/master /dev/dsk/c0t2d0s6   669003556 Thu Mar 14 19:19:16 1991) 60 286.4 T
+(fred_t:00015 9 5 lucifer:/ /dev/dsk/c0t3d0s0      669010721 Thu Mar 14 21:18:41 1991) 60 275.4 T
+(. . .) 60 264.4 T
+198 613.45 198 495.75 2 L
+V
+0 Z
+N
+558 613.45 558 495.75 2 L
+V
+N
+197.85 613.6 558.15 613.6 2 L
+V
+N
+197.85 495.6 558.15 495.6 2 L
+V
+N
+54 364.25 54 257.55 2 L
+V
+N
+558 364.25 558 257.55 2 L
+V
+N
+53.85 364.4 558.15 364.4 2 L
+V
+N
+53.85 257.4 558.15 257.4 2 L
+V
+N
+FMENDPAGE
+%%EndPage: "111" 10
+%%Page: "112" 10
+612 792 0 FMBEGINPAGE
+0 9 Q
+0 X
+4 K
+0.09 (1) 54 108.7 S
+0.09 (12) 58.1 108.7 S
+1 F
+-0.58 0.09 (Online: Backup 2.0 Administration Guide) 198 108.7 B
+0 F
+-0.58 0.09 (\321) 352.35 108.7 B
+1 F
+-0.58 0.09 (November 1992) 361.44 108.7 B
+558 675 54 675 2 L
+0.3 H
+2 Z
+0 K
+N
+1 20 Q
+4 K
+(6) 73.44 680.03 T
+185 83.74 393.76 101.24 R
+7 X
+0 K
+V
+54 690.23 68.96 693.5 R
+0 X
+4 K
+V
+54 684.77 68.96 688.05 R
+V
+54 679.48 68.96 682.75 R
+V
+54 688.14 68.96 690.41 R
+7 X
+V
+54 682.86 68.96 684.96 R
+V
+2 10 Q
+0 X
+0 K
+0.1 (\245) 210.6 641.33 S
+3 F
+1.2 (5) 219.24 641.33 P
+0 F
+0.52 0.1 ( - The thir) 225.24 641.33 B
+0.52 0.1 (d \336eld is the dump level. This \336eld will have a number in the) 271.23 641.33 B
+0.52 0.1 (range 0-to-9 or) 219.24 628.93 B
+3 F
+1.2 (x) 289.81 628.93 P
+0 F
+0.52 0.1 ( \050tr) 295.81 628.93 B
+0.52 0.1 (ue incr) 309.69 628.93 B
+0.52 0.1 (emental\051,) 341.17 628.93 B
+3 F
+1.2 (A) 386.42 628.93 P
+0 F
+0.52 0.1 ( \050active \336le r) 392.42 628.93 B
+0.52 0.1 (etry\051, or) 449.78 628.93 B
+3 F
+1.2 (P) 489.62 628.93 P
+0 F
+0.52 0.1 ( \050partial) 495.62 628.93 B
+0.52 0.1 (dump\051 for the level. Additionally) 219.24 616.53 B
+0.52 0.1 (, the level number can be followed by a) 370.72 616.53 B
+3 F
+1.2 (C) 219.24 604.13 P
+0 F
+0.52 0.1 (, which indicates it is a continuation of another dump, or an) 225.24 604.13 B
+3 F
+1.2 (E) 504.1 604.13 P
+0 F
+0.52 0.1 (, which) 510.1 604.13 B
+0.52 0.1 (means that this is an empty dump containing no \336les.) 219.24 591.73 B
+2 F
+0.1 (\245) 210.6 577.33 S
+3 F
+1.2 (fred:/) 219.24 577.33 P
+0 F
+0.52 0.1 ( - The fourth \336eld is the name of the machine and \336le system) 255.24 577.33 B
+0.52 0.1 (mount point that was dumped.) 219.24 564.93 B
+2 F
+0.1 (\245) 210.6 550.53 S
+3 F
+1.2 (/dev/dsk/c0t3d0s0) 219.24 550.53 P
+0 F
+0.52 0.1 ( - The \336fth \336eld is the device fr) 321.24 550.53 B
+0.52 0.1 (om which the \336le) 463.9 550.53 B
+0.52 0.1 (system was dumped.) 219.24 538.13 B
+2 F
+0.1 (\245) 210.6 523.73 S
+3 F
+1.2 (669002078) 219.24 523.73 P
+0 F
+0.52 0.1 ( - The sixth \336eld is the date of the dump in seconds since the) 273.24 523.73 B
+0.52 0.1 (epoch \050January 1, 1970\051.) 219.24 511.33 B
+2 F
+0.1 (\245) 210.6 496.93 S
+3 F
+1.03 0.1 (T) 219.24 496.93 B
+1.01 (hu Mar 14 18:54:38 1991) 225.34 496.93 P
+0 F
+0.44 0.1 ( - The seventh \336eld is the fully expanded) 367.4 496.93 B
+0.52 0.1 (date of the dump.) 219.24 484.53 B
+2 14 Q
+(\245) 198 466.13 T
+3 10 Q
+(pslabel) 210.6 466.13 T
+0 F
+0.52 0.1 (The) 210.6 445.73 B
+3 F
+1.22 0.1 (pslabel) 230.76 445.73 B
+0 F
+0.52 0.1 ( command pr) 273.46 445.73 B
+0.52 0.1 (oduces PostScript labels for either 8-mm or) 334.87 445.73 B
+0.52 0.1 (QIC-24 tape boxes. The label inserts contain the tape name, the most r) 210.6 433.33 B
+0.52 0.1 (ecent) 531.28 433.33 B
+0.41 0.1 (dump date, and a table of contents. If the table of contents is too lar) 210.6 420.93 B
+0.41 0.1 (ge to \336t) 519.88 420.93 B
+0.15 0.1 (on the label,) 210.6 408.53 B
+3 F
+0.36 0.1 (pslabel) 268.75 408.53 B
+0 F
+0.15 0.1 ( puts as much data as possible on the label insert. The) 311.45 408.53 B
+3 F
+1.22 0.1 (lp) 210.6 396.13 B
+0 F
+0.52 0.1 (\0501\051 command can be used to dir) 222.8 396.13 B
+0.52 0.1 (ect the PostScript \336le to any PostScript-) 368.33 396.13 B
+0.52 0.1 (supported printer) 210.6 383.73 B
+0.52 0.1 (. By default,) 291.13 383.73 B
+3 F
+1.22 0.1 (pslabel) 349.69 383.73 B
+0 F
+0.52 0.1 ( prints label inserts for all tapes) 392.39 383.73 B
+0.52 0.1 (known to the speci\336ed) 210.6 371.33 B
+1 F
+0.52 0.1 (database_server) 317.81 371.33 B
+0 F
+0.52 0.1 (. T) 382.08 371.33 B
+0.52 0.1 (o generate, for example, an 8-mm) 393.11 371.33 B
+0.52 0.1 (label insert, enter the following:) 210.6 358.93 B
+2 14 Q
+(\245) 198 303.53 T
+3 10 Q
+(dbinfo) 210.6 303.53 T
+0 F
+0.52 0.1 (This subcommand displays information about the database. The) 210.6 283.13 B
+0.52 0.1 (information includes the host wher) 210.6 270.73 B
+0.52 0.1 (e the database r) 371.45 270.73 B
+0.52 0.1 (esides, the dir) 443.47 270.73 B
+0.52 0.1 (ectory) 507.25 270.73 B
+0.52 0.1 (name wher) 210.6 258.33 B
+0.52 0.1 (e the database is located, the \336le system mount point, and the) 261.68 258.33 B
+0.52 0.1 (device on which the database lives.) 210.6 245.93 B
+3 9 Q
+(#) 204 331.6 T
+4 F
+(dumpdm -s) 214.8 331.6 T
+1 F
+0.09 (fr) 264.29 331.6 S
+0.09 (ed) 270.31 331.6 S
+4 F
+( -l 8mm pslabel) 278.49 331.6 T
+1 F
+0.09 (fr) 343.98 331.6 S
+0.09 (ed_t:00001) 350 331.6 S
+4 F
+( | lp) 391.14 331.6 T
+3 F
+(#) 204 218.6 T
+5 F
+(/opt/SUNWhsm/sbin/dumpdm dbinfo) 214.8 218.6 T
+3 F
+(fred /dumps/database /dumps /dev/) 204 207.6 T
+0 F
+(dsk/c0t0d0s0) 382.2 207.6 T
+198 343.45 198 324.75 2 L
+V
+0 Z
+N
+558 343.45 558 324.75 2 L
+V
+N
+197.85 343.6 558.15 343.6 2 L
+V
+N
+197.85 324.6 558.15 324.6 2 L
+V
+N
+198 230.45 198 200.75 2 L
+V
+N
+558 230.45 558 200.75 2 L
+V
+N
+197.85 230.6 558.15 230.6 2 L
+V
+N
+197.85 200.6 558.15 200.6 2 L
+V
+N
+FMENDPAGE
+%%EndPage: "112" 11
+%%Page: "113" 11
+612 792 0 FMBEGINPAGE
+1 9 Q
+0 X
+4 K
+-0.58 0.09 (Online Database) 198 108.7 B
+0 F
+0.09 (1) 544.72 108.7 S
+0.09 (13) 548.82 108.7 S
+1 20 Q
+(6) 528.56 680.03 T
+558 675 54 675 2 L
+0.3 H
+2 Z
+0 K
+N
+185 83.74 393.76 101.24 R
+7 X
+V
+543.04 690.29 558 693.56 R
+0 X
+4 K
+V
+543.04 684.84 558 688.11 R
+V
+543.04 679.54 558 682.81 R
+V
+543.04 688.2 558 690.48 R
+7 X
+V
+543.04 682.92 558 685.02 R
+V
+1 14 Q
+0 X
+0 K
+-0.88 (Adding Backup T) 117.22 638.67 P
+-0.88 (apes to the Database) 213.72 638.67 P
+0 10 Q
+0.52 0.1 (Normally the Online: Backup 2.0 database is automatically updated during a) 198 617.33 B
+0.52 0.1 (backup session when the database update \337ag \050) 198 604.93 B
+3 F
+1.22 0.1 (U) 416.65 604.93 B
+0 F
+0.52 0.1 (\051 is speci\336ed. The) 422.75 604.93 B
+3 F
+1.22 0.1 (dumpdm) 505.79 604.93 B
+0 F
+0.52 0.1 (command makes it possible to add entries to the database using the) 198 592.53 B
+3 F
+1.22 0.1 (dumpadd) 511.76 592.53 B
+0 F
+0.52 0.1 (or) 198 580.13 B
+3 F
+1.22 0.1 (tapeadd) 210.73 580.13 B
+0 F
+0.52 0.1 ( subcommand.) 253.43 580.13 B
+0.52 0.1 (Ther) 198 559.73 B
+0.52 0.1 (e ar) 218.91 559.73 B
+0.52 0.1 (e thr) 235.89 559.73 B
+0.52 0.1 (ee cases in which you may want to add entries:) 257.05 559.73 B
+0.1 (1.) 197.5 539.33 S
+0.52 0.1 (The dump was made with a version of) 210.6 539.33 B
+3 F
+1.2 (ufsdump) 391.33 539.33 P
+0 F
+0.52 0.1 (.) 433.33 539.33 B
+0.1 (2.) 197.5 518.93 S
+-0.01 0.1 (The Online: Backup 2.0 version of) 210.6 518.93 B
+3 F
+-0.03 (hsmdump) 365.52 518.93 P
+0 F
+-0.01 0.1 ( was used, but the) 407.52 518.93 B
+3 F
+-0.03 0.1 (U) 491.8 518.93 B
+0 F
+-0.01 0.1 ( \337ag was not) 497.89 518.93 B
+0.52 0.1 (speci\336ed.) 210.6 506.53 B
+0.1 (3.) 197.5 486.13 S
+0.52 0.1 (All of a particular dump was lost fr) 210.6 486.13 B
+0.52 0.1 (om the database. This can occur if a) 373.72 486.13 B
+0.17 0.1 (dump is accidentally deleted using the) 210.6 473.73 B
+3 F
+0.41 0.1 (dumpdm delete) 389.01 473.73 B
+0 F
+0.17 0.1 ( command or if the) 468.72 473.73 B
+0.52 0.1 (entir) 210.6 461.33 B
+0.52 0.1 (e database is lost because of har) 231.65 461.33 B
+0.52 0.1 (dwar) 378.01 461.33 B
+0.52 0.1 (e failur) 401.63 461.33 B
+0.52 0.1 (e.) 434.19 461.33 B
+0.08 0.1 (Y) 198 440.93 B
+0.08 0.1 (ou can r) 203.85 440.93 B
+0.08 0.1 (ecover database entries of all the dumps fr) 240.33 440.93 B
+0.08 0.1 (om a tape or series of tapes) 432.27 440.93 B
+0.52 0.1 (using the) 198 428.53 B
+3 F
+1.22 0.1 (tapeadd) 243.47 428.53 B
+0 F
+0.52 0.1 ( subcommand \050see page) 286.17 428.53 B
+0.52 0.1 (1) 398.73 428.53 B
+0.52 0.1 (10) 403.28 428.53 B
+0.52 0.1 ( for details\051.) 413.48 428.53 B
+0.52 0.1 (If you want to r) 198 408.13 B
+0.52 0.1 (ecover database entries of a single dump fr) 270.34 408.13 B
+0.52 0.1 (om a multidump) 467.65 408.13 B
+0.52 0.1 (tape, use the) 198 395.73 B
+3 F
+1.22 0.1 (dumpadd) 258.95 395.73 B
+0 F
+0.52 0.1 ( subcommand. For example, to use) 301.65 395.73 B
+3 F
+1.22 0.1 (dumpadd) 464.6 395.73 B
+0 F
+0.52 0.1 ( to add) 507.3 395.73 B
+0.52 0.1 (entries to the database on the system named) 198 383.33 B
+3 F
+1.22 0.1 (dino) 404.46 383.33 B
+0 F
+0.52 0.1 ( using a tape mounted on) 428.86 383.33 B
+0.52 0.1 (the device named) 198 370.93 B
+3 F
+1.22 0.1 (/dev/rmt/0mbn) 281.87 370.93 B
+0 F
+0.52 0.1 ( and positioned to the corr) 361.17 370.93 B
+0.52 0.1 (ect tape \336le \0501\051,) 483.08 370.93 B
+0.52 0.1 (enter the following:) 198 358.53 B
+3 F
+1.22 0.1 (dumpdm) 198 303.13 B
+0 F
+0.52 0.1 ( pr) 234.6 303.13 B
+0.52 0.1 (oduces the following output:) 247.7 303.13 B
+0.52 0.1 (If you answer) 198 236.73 B
+5 F
+1.22 0.1 (yes) 264.35 236.73 B
+0 F
+0.52 0.1 ( to the above query) 282.65 236.73 B
+0.52 0.1 (,) 370.47 236.73 B
+3 F
+1.22 0.1 (dumpdm) 376.19 236.73 B
+0 F
+0.52 0.1 ( r) 412.79 236.73 B
+0.52 0.1 (eads the tape label and tape-) 419.78 236.73 B
+0.52 0.1 (r) 198 224.33 B
+0.52 0.1 (esident data and adds the information to the database.) 201.87 224.33 B
+3 9 Q
+(#) 207.02 331.2 T
+5 F
+(/opt/SUNWhsm/sbin/dumpdm -s dino -d /dev/rmt/0bn dumpadd) 217.82 331.2 T
+3 F
+(#) 204 275.8 T
+5 F
+( /opt/SUNWhsm/sbin/dumpdm -s dino -d /dev/rmt/0bn dumpadd) 209.4 275.8 T
+3 F
+(Defaulting to file 1 of the tape. OK? \050yes or no\051) 204 264.8 T
+5 F
+(yes) 474 264.8 T
+198 343.05 198 324.35 2 L
+V
+0 Z
+N
+558 343.05 558 324.35 2 L
+V
+N
+197.85 343.2 558.15 343.2 2 L
+V
+N
+197.85 324.2 558.15 324.2 2 L
+V
+N
+198 287.65 198 257.95 2 L
+V
+N
+558 287.65 558 257.95 2 L
+V
+N
+197.85 287.8 558.15 287.8 2 L
+V
+N
+197.85 257.8 558.15 257.8 2 L
+V
+N
+FMENDPAGE
+%%EndPage: "113" 12
+%%Page: "114" 12
+612 792 0 FMBEGINPAGE
+0 9 Q
+0 X
+4 K
+0.09 (1) 54 108.7 S
+0.09 (14) 58.1 108.7 S
+1 F
+-0.58 0.09 (Online: Backup 2.0 Administration Guide) 198 108.7 B
+0 F
+-0.58 0.09 (\321) 352.35 108.7 B
+1 F
+-0.58 0.09 (November 1992) 361.44 108.7 B
+558 675 54 675 2 L
+0.3 H
+2 Z
+0 K
+N
+1 20 Q
+4 K
+(6) 73.44 680.03 T
+185 83.74 393.76 101.24 R
+7 X
+0 K
+V
+54 690.23 68.96 693.5 R
+0 X
+4 K
+V
+54 684.77 68.96 688.05 R
+V
+54 679.48 68.96 682.75 R
+V
+54 688.14 68.96 690.41 R
+7 X
+V
+54 682.86 68.96 684.96 R
+V
+0 10 Q
+0 X
+0 K
+0.52 0.1 (T) 198 641.33 B
+0.52 0.1 (apes made with pr) 203.31 641.33 B
+0.52 0.1 (evious SunOS versions of) 288.95 641.33 B
+3 F
+1.2 (hsmdump) 408.67 641.33 P
+0 F
+0.52 0.1 ( \050) 450.67 641.33 B
+3 F
+1.22 0.1 (dump) 457.22 641.33 B
+0 F
+0.52 0.1 ( or) 481.62 641.33 B
+3 F
+1.22 0.1 (ufsdump) 497.47 641.33 B
+0 F
+0.52 0.1 (\051) 540.17 641.33 B
+0.02 0.1 (will not contain adequate information to allow the database to be updated. The) 198 628.93 B
+0.52 0.1 (messages that will be r) 198 616.53 B
+0.52 0.1 (eported when) 302.57 616.53 B
+3 F
+1.22 0.1 (dumpdm) 369.05 616.53 B
+0 F
+0.52 0.1 ( is invoked ar) 405.65 616.53 B
+0.52 0.1 (e:) 468.33 616.53 B
+0.52 0.1 (If) 198 517.13 B
+3 F
+1.22 0.1 (dumpdm) 208.02 517.13 B
+0 F
+0.52 0.1 ( is invoked with only the) 244.62 517.13 B
+3 F
+1.22 0.1 (dumpadd) 362.74 517.13 B
+0 F
+0.52 0.1 ( command, the following) 405.44 517.13 B
+0.52 0.1 (additional pr) 198 504.73 B
+0.52 0.1 (ompts display:) 257.59 504.73 B
+0.52 0.1 (The \324) 198 383.33 B
+0.52 0.1 (\324r) 220.67 383.33 B
+0.52 0.1 (eal mount point\325) 227.42 383.33 B
+0.52 0.1 (\325 pr) 303.03 383.33 B
+0.52 0.1 (ompt always appears, r) 319.01 383.33 B
+0.52 0.1 (egar) 426.15 383.33 B
+0.52 0.1 (dless of what is enter) 445.67 383.33 B
+0.52 0.1 (ed) 543.03 383.33 B
+0.16 0.1 (on the command line.) 198 370.93 B
+3 F
+0.38 0.1 (dumpdm) 299.31 370.93 B
+0 F
+0.16 0.1 ( r) 335.91 370.93 B
+0.16 0.1 (equests this information to determine wher) 342.54 370.93 B
+0.16 0.1 (e to) 538.67 370.93 B
+0.52 0.1 (place the \336les in the database hierar) 198 358.53 B
+0.52 0.1 (chy) 362.6 358.53 B
+0.52 0.1 (. The default value listed will be the) 377.61 358.53 B
+0.52 0.1 (value r) 198 346.13 B
+0.52 0.1 (ead fr) 229.87 346.13 B
+0.52 0.1 (om the) 256.49 346.13 B
+3 F
+1.2 (hsmdump) 291.39 346.13 P
+0 F
+0.52 0.1 ( header) 333.39 346.13 B
+0.52 0.1 (.) 366.83 346.13 B
+0.52 0.1 (It is critical that the value speci\336ed at the following pr) 198 325.73 B
+0.52 0.1 (ompt:) 447.14 325.73 B
+0.52 0.1 (be a r) 198 259.33 B
+0.52 0.1 (eal pathname, a pathname that contains no symbolic links. Specifying a) 223.73 259.33 B
+0.52 0.1 (name that is a symbolic link could r) 198 246.93 B
+0.52 0.1 (esult in the dir) 362.47 246.93 B
+0.52 0.1 (ectory str) 429.75 246.93 B
+0.52 0.1 (uctur) 472.6 246.93 B
+0.52 0.1 (e being) 496.63 246.93 B
+0.52 0.1 (hidden when the) 198 234.53 B
+3 F
+1.2 (hsmdump) 278.86 234.53 P
+0 F
+0.52 0.1 ( that contains the actual symbolic link is enter) 320.86 234.53 B
+0.52 0.1 (ed in) 531.28 234.53 B
+0.52 0.1 (the database.) 198 222.13 B
+0.52 0.1 (The tape label r) 198 201.73 B
+0.52 0.1 (equest appears when any non-Online: Backup 2.0) 269.37 201.73 B
+3 F
+1.2 (hsmdump) 498.76 201.73 P
+0 F
+0.5 0.1 (tape is r) 198 189.33 B
+0.5 0.1 (ead. The name speci\336ed her) 234.88 189.33 B
+0.5 0.1 (e is used by) 362.78 189.33 B
+3 F
+1.17 0.1 (hmsrestore) 420.29 189.33 B
+0 F
+0.5 0.1 ( when a pr) 481.29 189.33 B
+0.5 0.1 (ompt) 530.84 189.33 B
+0.52 0.1 (for a tape mount is made. The name should be physically attached \050using a) 198 176.93 B
+0.52 0.1 (sticky label\051 to the tape so it can be quickly found if the information on the) 198 164.53 B
+0.52 0.1 (tape needs to be r) 198 152.13 B
+0.52 0.1 (estor) 279.5 152.13 B
+0.52 0.1 (ed.) 301.52 152.13 B
+3 9 Q
+(#) 204 589.2 T
+5 F
+(/opt/SUNWhsm/sbin/dumpdm -s dino -d /dev/rmt/0bn dumpadd) 214.8 589.2 T
+3 F
+(Defaulting to file 1 of the tape. OK? \050yes or no\051) 204 578.2 T
+5 F
+(yes) 474 578.2 T
+3 F
+(Specify the \324real\325 mount point of this) 204 567.2 T
+(filesystem -- no symlinks! \050default \324/home\325\051:) 204 556.2 T
+5 F
+(/export/home) 452.4 556.2 T
+3 F
+(Specify tape label for tape mount prompts:) 204 545.2 T
+5 F
+(fred_t:00012) 436.2 545.2 T
+3 F
+(#) 204 477.4 T
+5 F
+(/opt/SUNWhsm/sbin/dumpdm dumpadd) 214.8 477.4 T
+3 F
+(Name of database server where data will be added:) 204 466.4 T
+5 F
+(dino) 474 466.4 T
+3 F
+(File or device from which to read dump:) 204 455.4 T
+5 F
+(/dev/rmt/0bn) 420 455.4 T
+3 F
+(Defaulting to file 1 of the tape. OK? \050yes or no\051) 204 444.4 T
+5 F
+(yes) 474 444.4 T
+3 F
+(Specify the \324real\325 mount point of this) 204 433.4 T
+(filesystem -- no symlinks! \050default \324/home\325\051:) 204 422.4 T
+5 F
+(/export/home) 452.4 422.4 T
+3 F
+(Specify tape label for tape mount prompts:) 204 411.4 T
+5 F
+(fred_t:00012) 436.2 411.4 T
+3 F
+(Specify the \324real\325 mount point of this) 204 298.4 T
+(filesystem -- no symlinks! \050default \324/home\325\051:) 204 287.4 T
+5 F
+(/export/home) 452.4 287.4 T
+198 601.05 198 538.35 2 L
+V
+0 Z
+N
+558 601.05 558 538.35 2 L
+V
+N
+197.85 601.2 558.15 601.2 2 L
+V
+N
+197.85 538.2 558.15 538.2 2 L
+V
+N
+198 489.25 198 404.55 2 L
+V
+N
+558 489.25 558 404.55 2 L
+V
+N
+197.85 489.4 558.15 489.4 2 L
+V
+N
+197.85 404.4 558.15 404.4 2 L
+V
+N
+198 310.25 198 280.55 2 L
+V
+N
+558 310.25 558 280.55 2 L
+V
+N
+197.85 310.4 558.15 310.4 2 L
+V
+N
+197.85 280.4 558.15 280.4 2 L
+V
+N
+FMENDPAGE
+%%EndPage: "114" 13
+%%Page: "115" 13
+612 792 0 FMBEGINPAGE
+1 9 Q
+0 X
+4 K
+-0.58 0.09 (Online Database) 198 108.7 B
+0 F
+0.09 (1) 544.72 108.7 S
+0.09 (15) 548.82 108.7 S
+1 20 Q
+(6) 528.56 680.03 T
+558 675 54 675 2 L
+0.3 H
+2 Z
+0 K
+N
+185 83.74 393.76 101.24 R
+7 X
+V
+543.04 690.29 558 693.56 R
+0 X
+4 K
+V
+543.04 684.84 558 688.11 R
+V
+543.04 679.54 558 682.81 R
+V
+543.04 688.2 558 690.48 R
+7 X
+V
+543.04 682.92 558 685.02 R
+V
+0 10 Q
+0 X
+0 K
+-0.03 0.1 (The) 198 641.33 B
+3 F
+-0.08 0.1 (dumpadd) 217.61 641.33 B
+0 F
+-0.03 0.1 ( subcommand adds a single dump. If the tape contains mor) 260.31 641.33 B
+-0.03 0.1 (e than) 527.67 641.33 B
+0.52 0.1 (one dump, the) 198 628.93 B
+3 F
+1.22 0.1 (dumpdm dumpadd) 267.88 628.93 B
+0 F
+0.52 0.1 ( command must be invoked multiple times.) 354.5 628.93 B
+-0.07 0.1 (The magnetic tape contr) 198 608.53 B
+-0.07 0.1 (ol command) 306.76 608.53 B
+3 F
+-0.16 0.1 (,mt) 363.05 608.53 B
+0 F
+-0.07 0.1 (\0501\051, can be used with the) 381.35 608.53 B
+3 F
+-0.16 0.1 (asf) 493.66 608.53 B
+0 F
+-0.07 0.1 ( option to) 511.96 608.53 B
+0.52 0.1 (position the tape at other locations on the tape. The behavior of) 198 596.13 B
+3 F
+1.22 0.1 (mt) 492.23 596.13 B
+0 F
+0.52 0.1 ( has not) 504.43 596.13 B
+0.52 0.1 (been alter) 198 583.73 B
+0.52 0.1 (ed by Online: Backup 2.0.) 242.68 583.73 B
+0.36 0.1 (The following example shows how to use the) 198 563.33 B
+3 F
+0.84 (mt) 407.51 563.33 P
+0 F
+0.36 0.1 ( command to add two dumps) 419.51 563.33 B
+0.52 0.1 (fr) 198 550.93 B
+0.52 0.1 (om the same tape.) 205.3 550.93 B
+3 F
+1.2 (mt) 291.76 550.93 P
+0 F
+0.52 0.1 ( numbers tape \336les beginning at zer) 303.76 550.93 B
+0.52 0.1 (o \0500\051. Online:) 468.16 550.93 B
+0.49 0.1 (Backup 2.0 numbers tape \336les starting at one \0501\051. In this example, we will add) 198 538.53 B
+0.52 0.1 (the second and fourth dumps on the tape, specifying the no-r) 198 526.13 B
+0.52 0.1 (ewind device:) 479.46 526.13 B
+0.52 0.1 (The) 198 404.73 B
+3 F
+1.22 0.1 (mt) 218.16 404.73 B
+0 F
+0.52 0.1 ( command speci\336ed) 230.36 404.73 B
+3 F
+1.22 0.1 (asf 1) 325.05 404.73 B
+0 F
+0.52 0.1 ( \050absolute skip \336les\051 to position the tape at) 356.77 404.73 B
+0.52 0.1 (the beginning of the second \336le. The second \336le is speci\336ed with a 1 because) 198 392.33 B
+0.52 0.1 (the) 198 379.93 B
+3 F
+1.22 0.1 (mt) 215.29 379.93 B
+0 F
+0.52 0.1 ( command numbers \336les beginning with 0.) 227.49 379.93 B
+-0.02 0.1 (In the following example we will r) 198 359.53 B
+-0.02 0.1 (eposition the tape, without r) 353.52 359.53 B
+-0.02 0.1 (ewinding, to the) 481.5 359.53 B
+0.52 0.1 (beginning of the fourth \336le by using the) 198 347.13 B
+3 F
+1.2 (asf) 384.76 347.13 P
+0 F
+0.52 0.1 ( option with 3 as the count.) 402.76 347.13 B
+0.52 0.1 (For multitape dumps, a pr) 198 225.73 B
+0.52 0.1 (ompt like the following appears:) 319.05 225.73 B
+3 9 Q
+(#) 204 498.8 T
+5 F
+(mt -f /dev/rmt/0mbn asf 1) 214.8 498.8 T
+3 F
+(#) 204 487.8 T
+5 F
+(/opt/SUNWhsm/sbin/dumpdm -s dino -d /dev/rmt/0mbn dumpadd) 214.8 487.8 T
+3 F
+(Defaulting to file 1 of the tape. OK? \050yes or no\051) 204 476.8 T
+5 F
+(no) 474 476.8 T
+3 F
+(Enter desired file number:) 204 465.8 T
+5 F
+(2) 349.8 465.8 T
+3 F
+(Using file number 2) 204 454.8 T
+(Specify filesystem mount point \050default \324/\325\051:) 204 443.8 T
+(Specify tape label for mount prompts:) 204 432.8 T
+5 F
+(fredtape) 409.2 432.8 T
+3 F
+(#) 204 319.8 T
+5 F
+(mt -f /dev/rmt/0mbn asf 3) 214.8 319.8 T
+3 F
+(#) 204 308.8 T
+5 F
+(/opt/SUNWhsm/sbin/dumpdm -s dino -d /dev/rmt/0mbn dumpadd) 214.8 308.8 T
+3 F
+(Defaulting to file 1 of the tape. OK? \050yes or no\051) 204 297.8 T
+5 F
+(no) 474 297.8 T
+3 F
+(Enter desired file number:) 204 286.8 T
+5 F
+(4) 349.8 286.8 T
+3 F
+(Using file number 4) 204 275.8 T
+(Specify filesystem mount point \050default \324/\325\051:) 204 264.8 T
+(Specify tape label for mount prompts:) 204 253.8 T
+5 F
+(fredtape) 409.2 253.8 T
+3 F
+(mount next volume \050yes or no\051:) 207.02 198.4 T
+5 F
+(yes) 374.42 198.4 T
+198 510.65 198 425.95 2 L
+V
+0 Z
+N
+558 510.65 558 425.95 2 L
+V
+N
+197.85 510.8 558.15 510.8 2 L
+V
+N
+197.85 425.8 558.15 425.8 2 L
+V
+N
+198 331.65 198 246.95 2 L
+V
+N
+558 331.65 558 246.95 2 L
+V
+N
+197.85 331.8 558.15 331.8 2 L
+V
+N
+197.85 246.8 558.15 246.8 2 L
+V
+N
+198 210.25 198 191.55 2 L
+V
+N
+558 210.25 558 191.55 2 L
+V
+N
+197.85 210.4 558.15 210.4 2 L
+V
+N
+197.85 191.4 558.15 191.4 2 L
+V
+N
+FMENDPAGE
+%%EndPage: "115" 14
+%%Page: "116" 14
+612 792 0 FMBEGINPAGE
+0 9 Q
+0 X
+4 K
+0.09 (1) 54 108.7 S
+0.09 (16) 58.1 108.7 S
+1 F
+-0.58 0.09 (Online: Backup 2.0 Administration Guide) 198 108.7 B
+0 F
+-0.58 0.09 (\321) 352.35 108.7 B
+1 F
+-0.58 0.09 (November 1992) 361.44 108.7 B
+558 675 54 675 2 L
+0.3 H
+2 Z
+0 K
+N
+1 20 Q
+4 K
+(6) 73.44 680.03 T
+185 83.74 393.76 101.24 R
+7 X
+0 K
+V
+54 690.23 68.96 693.5 R
+0 X
+4 K
+V
+54 684.77 68.96 688.05 R
+V
+54 679.48 68.96 682.75 R
+V
+54 688.14 68.96 690.41 R
+7 X
+V
+54 682.86 68.96 684.96 R
+V
+0 10 Q
+0 X
+0 K
+0.52 0.1 (If you answer) 198 641.33 B
+5 9 Q
+1.08 (yes) 264.35 641.33 P
+0 10 Q
+0.52 0.1 ( when the corr) 280.55 641.33 B
+0.52 0.1 (ect volume is mounted, pr) 347.27 641.33 B
+0.52 0.1 (ocessing continues) 467.74 641.33 B
+0.52 0.1 (until the entir) 198 628.93 B
+0.52 0.1 (e dump has been r) 260.89 628.93 B
+0.52 0.1 (ead. Only complete dumps ar) 346.2 628.93 B
+0.52 0.1 (e added to the) 482.01 628.93 B
+0.52 0.1 (database, so that no database update occurs until the entir) 198 616.53 B
+0.52 0.1 (e dump has been) 464.87 616.53 B
+0.52 0.1 (r) 198 604.13 B
+0.52 0.1 (ead.) 201.87 604.13 B
+1 14 Q
+-0.88 (Rebuilding the Database) 117.22 571.07 P
+0 10 Q
+0.44 0.1 (The Online: Backup 2.0 database has been r) 198 549.73 B
+0.44 0.1 (eliably designed. Har) 396.46 549.73 B
+0.44 0.1 (dwar) 493.97 549.73 B
+0.44 0.1 (e failur) 517.59 549.73 B
+0.44 0.1 (e) 550.07 549.73 B
+-0.05 0.1 (and user err) 198 537.33 B
+-0.05 0.1 (or usually cause a lost database or a database that needs r) 252.55 537.33 B
+-0.05 0.1 (ebuilding) 511.98 537.33 B
+0.52 0.1 (fr) 198 524.93 B
+0.52 0.1 (om other database \336les.) 205.3 524.93 B
+3 F
+1.22 0.1 (dumpdm) 198 504.53 B
+0 F
+0.52 0.1 ( has two subcommands that use existing database \336les to r) 234.6 504.53 B
+0.52 0.1 (ebuild) 503.61 504.53 B
+0.52 0.1 (missing \336les. The) 198 492.13 B
+3 F
+1.22 0.1 (tapef) 280.6 492.13 B
+1.22 0.1 (ile_rebuild) 311.1 492.13 B
+0 F
+0.52 0.1 ( subcommand r) 378.2 492.13 B
+0.52 0.1 (ebuilds the) 449.6 492.13 B
+3 F
+1.22 0.1 (activetapes) 198 479.73 B
+0 F
+0.52 0.1 ( \336le. The) 265.1 479.73 B
+3 F
+1.22 0.1 (dir) 308.15 479.73 B
+0 F
+0.52 0.1 ( and) 326.45 479.73 B
+3 F
+1.22 0.1 (instance) 349.92 479.73 B
+0 F
+0.52 0.1 ( \336les ar) 398.72 479.73 B
+0.52 0.1 (e r) 432.32 479.73 B
+0.52 0.1 (ebuilt using the) 444.2 479.73 B
+3 F
+1.22 0.1 (dir_rebuild) 198 467.33 B
+0 F
+0.52 0.1 ( subcommand. For mor) 265.1 467.33 B
+0.52 0.1 (e information on these commands see) 371.98 467.33 B
+0.1 (page) 198 454.93 S
+0.1 (109.) 222.36 454.93 S
+0.52 0.1 (Both) 198 434.53 B
+3 F
+1.22 0.1 (tapef) 222.17 434.53 B
+1.22 0.1 (ile_rebuild) 252.67 434.53 B
+0 F
+0.52 0.1 ( and) 319.77 434.53 B
+3 F
+1.22 0.1 (dir_rebuild) 343.24 434.53 B
+0 F
+0.52 0.1 ( must be invoked on the) 410.34 434.53 B
+0.52 0.1 (machine wher) 198 422.13 B
+0.52 0.1 (e the database r) 262.55 422.13 B
+0.52 0.1 (esides.) 334.57 422.13 B
+0.06 0.1 (Only) 198 401.73 B
+3 F
+0.15 0.1 (activetapes) 223.21 401.73 B
+0 F
+0.06 0.1 (,) 290.31 401.73 B
+3 F
+0.15 0.1 (dir) 295.58 401.73 B
+0 F
+0.06 0.1 (, and) 313.14 401.73 B
+3 F
+0.15 0.1 (instance) 338.3 401.73 B
+0 F
+0.06 0.1 ( \336les can be r) 387.1 401.73 B
+0.06 0.1 (ebuilt without) 446.1 401.73 B
+3 F
+0.15 (hsmdump) 513.23 401.73 P
+0 F
+0.18 0.1 (tapes. Should the) 198 389.33 B
+3 F
+0.43 0.1 (symlink) 279.1 389.33 B
+0 F
+0.18 0.1 (,) 321.8 389.33 B
+3 F
+0.43 0.1 (dnode) 327.18 389.33 B
+0 F
+0.18 0.1 (, or) 357.68 389.33 B
+3 F
+0.43 0.1 (header) 375.45 389.33 B
+0 F
+0.18 0.1 ( \336les be lost, they can be r) 412.05 389.33 B
+0.18 0.1 (ebuilt) 529.09 389.33 B
+0.52 0.1 (only fr) 198 376.93 B
+0.52 0.1 (om) 228.57 376.93 B
+3 F
+1.2 (hsmdump) 246.18 376.93 P
+0 F
+0.52 0.1 ( tapes, using the) 288.18 376.93 B
+3 F
+1.22 0.1 (dumpadd) 366.29 376.93 B
+0 F
+0.52 0.1 ( subcommand.) 408.99 376.93 B
+1 14 Q
+-0.88 (Changing Host Names in the Database) 117.22 343.87 P
+0 10 Q
+0.52 0.1 (If it becomes necessary to change the name or Internet addr) 198 322.53 B
+0.52 0.1 (ess of a host that) 471.8 322.53 B
+0.43 0.1 (has dump data stor) 198 310.13 B
+0.43 0.1 (ed in the) 286.72 310.13 B
+3 F
+0.98 (hsmdump) 329.99 310.13 P
+0 F
+0.43 0.1 ( database, the following steps should be) 371.99 310.13 B
+0.52 0.1 (performed:) 198 297.73 B
+0.1 (1.) 197.5 277.33 S
+0.52 0.1 (Update the host\325s database \050for example,) 210.6 277.33 B
+3 F
+1.22 0.1 (/etc/hosts) 400.43 277.33 B
+0 F
+0.52 0.1 (, NIS, etc.\051.) 461.43 277.33 B
+0.1 (2.) 197.5 256.93 S
+0.52 0.1 (Change to the) 210.6 256.93 B
+3 F
+1.2 (hsmdump) 277.73 256.93 P
+0 F
+0.52 0.1 ( database dir) 319.73 256.93 B
+0.52 0.1 (ectory) 378.79 256.93 B
+0.52 0.1 (. If the dir) 405.74 256.93 B
+0.52 0.1 (ectory is named) 451.86 256.93 B
+3 F
+1.22 0.1 (/usr/dumpdb) 210.6 244.53 B
+0 F
+0.52 0.1 (, enter the following:) 277.7 244.53 B
+3 9 Q
+(#) 207.02 217.2 T
+5 F
+(cd /usr/dumpdb) 217.82 217.2 T
+198 229.05 198 210.35 2 L
+V
+0 Z
+N
+558 229.05 558 210.35 2 L
+V
+N
+197.85 229.2 558.15 229.2 2 L
+V
+N
+197.85 210.2 558.15 210.2 2 L
+V
+N
+FMENDPAGE
+%%EndPage: "116" 15
+%%Page: "117" 15
+612 792 0 FMBEGINPAGE
+1 9 Q
+0 X
+4 K
+-0.58 0.09 (Online Database) 198 108.7 B
+0 F
+0.09 (1) 544.72 108.7 S
+0.09 (17) 548.82 108.7 S
+1 20 Q
+(6) 528.56 680.03 T
+558 675 54 675 2 L
+0.3 H
+2 Z
+0 K
+N
+185 83.74 393.76 101.24 R
+7 X
+V
+543.04 690.29 558 693.56 R
+0 X
+4 K
+V
+543.04 684.84 558 688.11 R
+V
+543.04 679.54 558 682.81 R
+V
+543.04 688.2 558 690.48 R
+7 X
+V
+543.04 682.92 558 685.02 R
+V
+0 10 Q
+0 X
+0 K
+0.1 (3.) 197.5 641.33 S
+0.52 0.1 (Move the pr) 210.6 641.33 B
+0.52 0.1 (evious hostname to the new hostname. If the name of the old) 266.75 641.33 B
+0.52 0.1 (host is) 210.6 628.93 B
+3 F
+1.22 0.1 (fred) 243.37 628.93 B
+0 F
+0.52 0.1 ( and the new host is) 267.77 628.93 B
+3 F
+1.22 0.1 (tim) 363.67 628.93 B
+0 F
+0.52 0.1 (, enter the following:) 381.97 628.93 B
+0.52 0.1 (The Internet addr) 210.6 573.53 B
+0.52 0.1 (esses must be speci\336ed as part of the host names.) 291.13 573.53 B
+0.52 0.1 (If the Internet addr) 210.6 553.13 B
+0.52 0.1 (ess changed, r) 298.28 553.13 B
+0.52 0.1 (ebuild the active tapes \336le by using the) 362.8 553.13 B
+0.52 0.1 (following command:) 210.6 540.73 B
+1 14 Q
+-0.88 (Mer) 126 452.27 P
+-0.88 (ging Database Information) 149.86 452.27 P
+0 10 Q
+0.52 0.1 (If a host\325s Internet addr) 198 430.93 B
+0.52 0.1 (ess has changed and dumps have been added to the) 306.13 430.93 B
+0.52 0.1 (database befor) 198 418.53 B
+0.52 0.1 (e you have changed the Internet addr) 264.23 418.53 B
+0.52 0.1 (ess, you must mer) 436.51 418.53 B
+0.52 0.1 (ge the) 519.84 418.53 B
+0.52 0.1 (database entries by following these steps \050substitute your machine name for) 198 406.13 B
+3 F
+1.2 (fred) 198 393.73 P
+0 F
+0.52 0.1 ( in the example\051:) 222 393.73 B
+0.52 0.1 (Then r) 198 283.33 B
+0.52 0.1 (un the) 228.05 283.33 B
+3 F
+1.2 (tapef) 260.51 283.33 P
+1.2 (ile_rebuild) 290.51 283.33 P
+0 F
+0.52 0.1 ( command:) 356.51 283.33 B
+3 9 Q
+(#) 207.02 601.6 T
+5 F
+(mv) 217.82 601.6 T
+(fred) 234.02 601.6 T
+1 F
+0.09 (.IPnumber) 255.62 601.6 S
+5 F
+(tim) 300.04 601.6 T
+1 F
+0.09 (.IPnumber) 316.24 601.6 S
+3 F
+(#) 207.02 513.4 T
+5 F
+(/opt/SUNWhsm/sbin/dumpdm tapefile_rebuild) 217.82 513.4 T
+3 F
+(#) 207.02 366.4 T
+5 F
+(cd /usr/dumpdb) 217.82 366.4 T
+3 F
+(#) 207.02 355.4 T
+5 F
+(mv) 217.82 355.4 T
+3 F
+( fred.) 228.62 355.4 T
+1 F
+0.09 (oldnumber) 261.02 355.4 S
+3 F
+(/* fred.) 301.01 355.4 T
+1 F
+0.09 (newnumber) 344.21 355.4 S
+3 F
+(/.) 388.2 355.4 T
+(# rm -rf fred.) 207.02 344.4 T
+1 F
+0.09 (oldnumber) 282.62 344.4 S
+3 F
+(# /opt/SUNWhsm/sbin/dumpdm dir_rebuild) 207.02 333.4 T
+(Enter root of database file hierarchy:) 204 322.4 T
+5 F
+(/usr/dumpdb) 414.6 322.4 T
+3 F
+(Enter host whose directory is to be rebuilt:) 204 311.4 T
+5 F
+(fred) 447 311.4 T
+3 F
+(#) 207.02 256 T
+5 F
+(/opt/SUNWhsm/sbin/dumpdm tapefile_rebuild) 217.82 256 T
+198 613.45 198 594.75 2 L
+V
+0 Z
+N
+558 613.45 558 594.75 2 L
+V
+N
+197.85 613.6 558.15 613.6 2 L
+V
+N
+197.85 594.6 558.15 594.6 2 L
+V
+N
+198 525.25 198 506.55 2 L
+V
+N
+558 525.25 558 506.55 2 L
+V
+N
+197.85 525.4 558.15 525.4 2 L
+V
+N
+197.85 506.4 558.15 506.4 2 L
+V
+N
+198 378.25 198 304.55 2 L
+V
+N
+558 378.25 558 304.55 2 L
+V
+N
+197.85 378.4 558.15 378.4 2 L
+V
+N
+197.85 304.4 558.15 304.4 2 L
+V
+N
+198 267.85 198 249.15 2 L
+V
+N
+558 267.85 558 249.15 2 L
+V
+N
+197.85 268 558.15 268 2 L
+V
+N
+197.85 249 558.15 249 2 L
+V
+N
+FMENDPAGE
+%%EndPage: "117" 16
+%%Page: "118" 16
+612 792 0 FMBEGINPAGE
+0 9 Q
+0 X
+4 K
+0.09 (1) 54 108.7 S
+0.09 (18) 58.1 108.7 S
+1 F
+-0.58 0.09 (Online: Backup 2.0 Administration Guide) 198 108.7 B
+0 F
+-0.58 0.09 (\321) 352.35 108.7 B
+1 F
+-0.58 0.09 (November 1992) 361.44 108.7 B
+558 675 54 675 2 L
+0.3 H
+2 Z
+0 K
+N
+1 20 Q
+4 K
+(6) 73.44 680.03 T
+185 83.74 393.76 101.24 R
+7 X
+0 K
+V
+54 690.23 68.96 693.5 R
+0 X
+4 K
+V
+54 684.77 68.96 688.05 R
+V
+54 679.48 68.96 682.75 R
+V
+54 688.14 68.96 690.41 R
+7 X
+V
+54 682.86 68.96 684.96 R
+V
+FMENDPAGE
+%%EndPage: "118" 17
+%%Trailer
+%%BoundingBox: 0 0 612 792
+%%Pages: 16 1
+%%DocumentFonts: Palatino-Roman
+%%+ Palatino-Italic
+%%+ Times-Bold
+%%+ Courier
+%%+ Palatino-Bold
+%%+ Courier-Bold

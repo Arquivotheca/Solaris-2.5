@@ -1,0 +1,24 @@
+#
+# Copyright (c) 1992-1993, by Sun Microsystems, Inc.
+#
+#pragma	ident	"@(#)Makefile.files	1.3	95/05/25 SMI"
+#
+# psm/promif/obp/Makefile.files
+#
+#	This Makefile defines all file modules and build rules for the
+# directory uts/sun and it's children. These are the source files which
+# are common to all sun implementations.
+#
+
+#
+#			PROM Routines
+#
+CORE_OBJS +=								\
+	prom_cpuctl.o	prom_devname.o	prom_devtype.o	prom_enter.o	\
+	prom_env.o	prom_exit.o 	prom_fb.o	prom_getchar.o	\
+	prom_handler.o	prom_idprom.o	prom_idp.o	prom_init.o	\
+	prom_inpath.o	prom_interp.o	prom_kbd.o	prom_map.o	\
+	prom_node.o	prom_outpath.o	prom_panic.o 	prom_path.o	\
+	prom_phandle.o	prom_printf.o	prom_prop.o	prom_putchar.o	\
+	prom_reboot.o	prom_string.o	prom_trap.o	prom_vername.o	\
+	prom_version.o	prom_wrtestr.o

@@ -1,0 +1,219 @@
+# Copyright (c) 1993 Sun Microsystems, Inc.  All Rights Reserved.
+#
+#	"@(#)it_IT	1.2	93/04/09 SMI"
+#
+# This mapfile is provided as example only. Sun Microsystems Inc.,
+# does not warrant that this file is error-free.
+#
+#	it_IT.8859-3
+#
+# This mapping file is indended for use with the 8859-3 loadfont.
+# It implements a keyboard mapping which allows the use of the
+# 8859-3 code set, using the Danish Standards Association's recommended
+# short names (but not their "compose" value), such that the "compose" key,
+# followed by the 2-letter code, generates the character.
+# In addition, more "graphic" combinations are also encoded
+# (for instance, E^ in addition to E>, and ?? in addition to ?I
+# for inverted question mark). The graphic characters are encoded
+# using special names.
+# There are, in this set, no nonspacing characters; all non-keyboard
+# sequences require the "compose" key.
+#
+#
+input:
+#
+# The "compose" character is CTRL x.
+# The toggle key is CTRL t.
+#
+toggle: 0x14
+#
+# 
+# Compose mode: 
+# 
+#
+# The "compose" character is CTRL x.
+# Compose mode: 
+# 
+compose:  0x18      # unfrequently used ctrl character
+#			
+' '  ' '  0xa0          # no breaking space 
+' '  '2'  0xb2          # superscript 2
+' '  '3'  0xb3          # superscript 3
+'#'  '$'  0xa4          # currency symbol
+'$'  '$'  0xa7          # paragraph sign
+'''  ' '  '''          # apostrophe
+'''  '''  0xb4          # acute accent
+'''  '('  0xa2          # breve
+'''  ','  0xb8          # cedilla
+'''  '.'  0xff          # dot above
+'''  ':'  0xa8          # diaeresis
+'('  'U'  0x98          # intersection
+'*'  '*'  0xb0          # degree
+'*'  '.'  0xd7          # multiplication sign
+'*'  'X'  0xd7          # multiplication sign
+','  ','  0xb8          # cedilla
+'-'  '-'  0xad          # soft hyphen
+'-'  ':'  0xf7          # division sign
+'.'  '.'  0xb7          # middle dot
+'.'  'M'  0xb7          # middle dot
+'1'  'h'  0xbd          # vulgar fraction 1/2
+'A'  '!'  0xc0          # A grave
+'A'  '''  0xc1          # A acute
+'A'  ':'  0xc4          # A diaeresis
+'A'  '>'  0xc2          # A circumflex
+'A'  '^'  0xc2          # A circumflex
+'A'  '`'  0xc0          # A grave
+'C'  ','  0xc7          # C cedilla
+'C'  '.'  0xc5          # C dot above
+'C'  '>'  0xc6          # C circumflex
+'C'  '^'  0xc6          # C circumflex
+'C'  'u'  0xa4          # currency symbol
+'D'  'G'  0xb0          # degree
+'E'  '!'  0xc8          # E grave
+'E'  '''  0xc9          # E acute
+'E'  ':'  0xcb          # E diaeresis
+'E'  '>'  0xca          # E circumflex
+'E'  '^'  0xca          # E circumflex
+'E'  '`'  0xc8          # E grave
+'G'  '('  0xab          # G breve
+'G'  '.'  0xd5          # G dot above
+'G'  '>'  0xd8          # G circumflex
+'G'  '^'  0xd8          # G circumflex
+'H'  '/'  0xa1          # H stroke
+'H'  '>'  0xa6          # H circumflex
+'H'  '^'  0xa6          # H circumflex
+'I'  '!'  0xcc          # I grave
+'I'  '''  0xcd          # I acute
+'I'  '.'  0xa9          # I dot above
+'I'  ':'  0xcf          # I diaresis
+'I'  '>'  0xce          # I circumflex
+'I'  '^'  0xce          # I circumflex
+'I'  '`'  0xcc          # I grave
+'J'  '>'  0xac          # J circumflex
+'J'  '^'  0xac          # J circumflex
+'L'  '-'  0xa3          # pound sign
+'M'  'y'  0xb5          # micro
+'N'  '?'  0xd1          # N tilde
+'N'  'S'  0xa0          # no breaking space 
+'N'  '~'  0xd1          # N tilde
+'O'  '!'  0xd2          # O grave
+'O'  '''  0xd3          # O acute
+'O'  ':'  0xd6          # O diaeresis
+'O'  '>'  0xd4          # O circumflex
+'O'  '^'  0xd4          # O circumflex
+'O'  '`'  0xd2          # O grave
+'P'  'd'  0xa3          # pound sign
+'S'  ','  0xaa          # S cedilla
+'S'  '>'  0xde          # S circumflex
+'S'  'E'  0xa7          # paragraph sign
+'S'  '^'  0xde          # S circumflex
+'U'  '!'  0xd9          # U grave
+'U'  '''  0xda          # U acute
+'U'  '('  0xdd          # U breve
+'U'  ':'  0xdc          # U diaeresis
+'U'  '>'  0xdb          # U circumflex
+'U'  '^'  0xdb          # U circumflex
+'U'  '`'  0xd9          # U grave
+'Z'  '.'  0xaf          # Z dot
+'a'  '!'  0xe0          # a grave
+'a'  '''  0xe1          # a acute
+'a'  ':'  0xe4          # a diaeresis
+'a'  '>'  0xe2          # a circumflex
+'a'  '^'  0xe2          # a circumflex
+'a'  '`'  0xe0          # a grave
+'b'  't'  0x94          # "Bottom T intersection" (_|_)
+'c'  ','  0xe7          # c cedilla
+'c'  '.'  0xe5          # c dot
+'c'  '>'  0xe6          # c circumflex
+'c'  '^'  0xe6          # c circumflex
+'e'  '!'  0xe8          # e grave
+'e'  '''  0xe9          # e acute
+'e'  ':'  0xeb          # e diaeresis
+'e'  '>'  0xea          # e circumflex
+'e'  '^'  0xea          # e circumflex
+'e'  '`'  0xe8          # e grave
+'g'  '.'  0xf5          # g dot
+'g'  '>'  0xf8          # g circumflex
+'g'  '^'  0xf8          # g circumflex
+'h'  '/'  0xb1          # h stroke
+'h'  '>'  0xb6          # h circumflex
+'h'  '^'  0xb6          # h circumflex
+'h'  'l'  0x97          # "Horizontal Line"
+'i'  ' '  0xb9          # I without dot
+'i'  '!'  0xec          # i grave
+'i'  '''  0xed          # i acute
+'i'  '.'  0xb9          # Dotless i
+'i'  ':'  0xef          # i diaresis
+'i'  '>'  0xee          # i circumflex
+'i'  '^'  0xee          # i circumflex
+'i'  '`'  0xec          # i grave
+'j'  '>'  0xbc          # j circumflex
+'j'  '^'  0xbc          # j circumflex
+'l'  'l'  0x93          # "Lower Left Corner" (|_)
+'l'  'r'  0x99          # "Lower Right Corner" (_|)
+'l'  't'  0x96          # "Left T Intersection" (|-)
+'n'  '?'  0xf1          # n tilde
+'n'  '~'  0xf1          # n tilde
+'o'  '!'  0xf2          # o grave
+'o'  '''  0xf3          # o acute
+'o'  ':'  0xf6          # o diaeresis
+'o'  '>'  0xf4          # o circumflex
+'o'  '^'  0xf4          # o circumflex
+'o'  '`'  0xf2          # o grave
+'p'  's'  0xa3          # pound sign
+'r'  't'  0x91          # "Right T Intersection" (-|)
+'s'  ','  0xba          # s cedilla
+'s'  '>'  0xfe          # s circumflex
+'s'  '^'  0xfe          # s circumflex
+'s'  's'  0xdf          # German double s
+'u'  '!'  0xf9          # u grave
+'u'  '''  0xfa          # u acute
+'u'  '('  0xfd          # u breve
+'u'  ':'  0xfc          # u diaeresis
+'u'  '>'  0xfb          # u circumflex
+'u'  '^'  0xfb          # u circumflex
+'u'  '`'  0xf9          # u grave
+'u'  'l'  0x9a          # "Upper Left Corner" (|~)
+'u'  'r'  0x92          # "Upper Right Corner" (~|)
+'u'  't'  0x95          # "Upper T intersection" (~|~)
+'u'  '|'  0xb5          # micro
+'v'  'l'  0x90          # "Vertical Line" (-)
+'x'  't'  0x98          # "Middle Cross(Intersection" (-|-)
+'z'  '.'  0xbf          # z dot above
+#
+#
+# The following output section maps '9b' (an ANSI CSI code,
+# which unfortunately is also an IBM character) such that
+# it prints.
+#
+output:
+0x9b	0x1b 0x9b
+#
+# scan codes for it_IT
+scancodes:
+#      NORM    SHIFT     ALT   ALT_SHIFT
+0x3     '2'     '"'    '2'|N   '"'|N
+0x4     '3'     0xa3   '3'|N   '3'|N
+0x7	'6'     '&'    '6'|N   '&'|N
+0x8     '7'     '/'    '7'|N   '/'|N
+0x9	'8'     '('    '8'|N   '('|N
+0xa	'9'     ')'    '9'|N   ')'|N
+0xb	'0'     '='    '0'|N   '='|N
+0xc	'''     '?'    '''|N  '?'|N
+0xd	0xec    '^'|C  0xec    '^'|C
+0x1a    0xe8    0xe9   '['|C   '['|C
+0x1b    '+'     '*'    ']'|C   ']'|C
+0x27	0xf2    0xe7   '@'|N   '@'|N
+0x28	0xe0    0xb0   '#'|N   '#"|N
+0x2b    0xf9    0xa7   0xf9    0xa7
+0x29    '\'|C   '|'    '\'|N   '\'|N
+0x56    '<'     '>'    '<'|N   '>'|N
+0x33    ','     ';'    ','|N   ';'|N
+0x34    '.'     ':'    '.'|N   ':'|N
+0x35    '-'     '_'|C  '-'|N   '_'|N
+#
+#
+# map CTRL SHIFT F1  to be 0x18 for the compose character key
+F37     0x18
+# map CTRL SHIFT F2 to be 0x14 for the toggle key
+F38     0x14

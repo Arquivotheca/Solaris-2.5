@@ -1,0 +1,26 @@
+#!/sbin/sh
+#
+# Copyright (c) 1993, by Sun Microsystems, Inc.
+#
+
+#ident	"@(#)ufs_quota	1.1	93/02/25 SMI"
+
+#
+# Enable/Disable UFS quota checking
+#
+
+case $1 in
+
+'start')
+	#echo "Checking UFS quotas: \c"
+	/usr/sbin/quotacheck -a
+	#echo "done."
+	/usr/sbin/quotaon -a
+	;;
+'stop')
+	/usr/sbin/quotaoff -a
+	;;
+*)
+	echo "Usage: $0 { start | stop }"
+	;;
+esac

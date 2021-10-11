@@ -1,0 +1,146 @@
+#
+# Copyright 1990, 1991 Sun Microsystems, Inc.  All Rights Reserved.
+#
+#
+#ident	"@(#)tune.med	1.8	94/12/07 SMI"
+#
+# Tune list for level med 
+# Format:
+#       pathname mode owner group type
+
+# The following section is from tune.low (which = Brad's tune list).
+/ 02755 root root directory
+/bin 00777 root bin symlink
+/sbin 02775 root sys directory
+/usr/sbin 02775 root bin directory
+/etc 02755 root sys directory
+/etc/chroot 00777 bin bin symlink
+/etc/clri 00777 bin bin symlink
+/etc/crash 00777 root sys symlink
+/etc/cron 00777 root sys symlink
+/etc/fsck 00777 bin bin symlink
+/etc/fuser 00777 bin bin symlink
+/etc/halt 00777 bin bin symlink
+/etc/link 00777 root bin symlink
+/etc/mknod 00777 bin bin symlink
+/etc/mount 00777 bin bin symlink
+/etc/mnttab 00644 root root file
+/etc/vfstab 00664 root sys file
+/etc/passwd 00644 root sys file
+/etc/shadow 00400 root sys file
+/etc/nsswitch.conf 00644 root sys file
+/etc/resolve.conf 00644 root sys file
+/etc/ncheck 00777 bin bin symlink
+/etc/rmt 00777 bin bin symlink
+/etc/shutdown 00777 root sys symlink
+/etc/termcap 00777 bin bin symlink
+/etc/umount 00777 bin bin symlink
+/etc/unlink 00777 root bin symlink
+/devices 02755 root sys directory
+/usr 02775 root sys directory
+/usr/bin 02755 root bin directory
+/usr/demo 02755 root bin directory
+/usr/games 02755 root bin directory
+/usr/include 02755 root bin directory
+/usr/kvm 02775 bin bin directory
+/usr/kvm/i386 00777 bin bin symlink
+/usr/kvm/iAPX286 00777 bin bin symlink
+/usr/kvm/m68k 00777 bin bin symlink
+/usr/kvm/mc68010 00777 bin bin symlink
+/usr/kvm/mc68020 00777 bin bin symlink
+/usr/kvm/sparc 00777 bin bin symlink
+/usr/kvm/sun 00777 bin bin symlink
+/usr/kvm/sun2 00777 bin bin symlink
+/usr/kvm/sun4 00777 bin bin symlink
+/usr/kvm/sun4c 00777 bin bin symlink
+/usr/kvm/sun4d 00777 bin bin symlink
+/usr/kvm/sun4e 00777 bin bin symlink
+/usr/kvm/sun4m 00777 bin bin symlink
+/usr/kvm/crash 02750 root sys file
+/usr/kvm/u370 00777 bin bin symlink
+/usr/kvm/u3b 00777 bin bin symlink
+/usr/kvm/u3b15 00777 bin bin symlink
+/usr/kvm/u3b2 00777 bin bin symlink
+/usr/kvm/u3b5 00777 bin bin symlink
+/usr/kvm/vax 00777 bin bin symlink
+/usr/lib 02755 bin bin directory
+/usr/lib/refer 02755 bin bin directory
+/usr/lib/tabset 00777 bin bin symlink
+/usr/man 00777 bin bin symlink
+/usr/net 00775 root sys directory
+/usr/old 02775 root bin directory
+/usr/pub 00777 bin bin symlink
+/usr/share/lib 02755 root sys directory
+/usr/share/lib/tmac 02775 bin bin directory
+/usr/share/src 02755 root sys directory
+/usr/spool 00777 root bin symlink
+/usr/src 00777 root sys symlink
+/usr/tmp 00777 sys sys symlink
+/usr/ucb 02775 root bin directory
+/usr/ucbinclude 02755 bin bin directory
+/usr/ucblib 02755 bin bin directory
+/var 02775 root sys directory
+#/home 02755 root sys directory
+
+# The following section is from Beverly's list (hml.settings)
+# with modifications.
+
+/.cshrc 00640 root ? file
+/.login  00640 root ? file
+/.profile 00640 root ? file
+/.logout 00640 root ? file
+/etc/motd 00644 root sys file
+/etc/syslog.pid 00644 root sys file
+/etc/mail/aliases 00644 root bin file
+/etc/remote 00644 bin bin file
+/var/adm/utmp 644 root bin file 
+/var/adm/utmpx 644 root bin file
+/var/adm/wtmp 664 adm adm file 
+/var/adm/wtmpx 664 adm adm file
+/sbin/rc0 0744 root sys file
+/sbin/rc1 0744 root sys file
+/sbin/rc2 0744 root sys file
+/sbin/rc3 0744 root sys file
+/sbin/rc5 0744 root sys file
+/sbin/rc6 0744 root sys file
+/sbin/rcS 0744 root sys file
+/etc/rc0.d 02775 root sys directory
+/etc/rc1.d 02775 root sys directory
+/etc/rc2.d 02775 root sys directory
+/etc/rc3.d 02775 root sys directory
+/etc/rc5.d 02775 root sys directory
+/etc/rcS.d 02775 root sys directory
+/etc/vfstab 00644 root sys file
+/etc/group 00644 root sys file
+/var/statmon/sm 00775 root root directory
+/var/statmon/sm.bak 00775 root root directory
+/var/statmon/state 00644 root root file
+/platform 02755 root sys directory
+/tmp 02777 root root directory
+/dev/*mem 00777 root sys symlink
+#/etc/rmtab 00644 root ? file
+#/tmp/.getwd 00666 ? ? file
+
+/usr/bin/* 00755 ? ? ?
+/usr/ucb/* 00755 ? ? ?
+/var/tmp 02777 sys sys directory
+/usr/share 02755 root sys directory
+/usr/include/* 00755 ? ? ?
+/usr/lib/adb/* 00755 ? ? ?
+/usr/share/lib/* 00755 ? ? ?
+/usr/share/man/* 00755 ? ? ?
+/usr/share/src/* 00755 ? ? ?
+/usr/share/lib/make 02755 bin bin directory
+/usr/share/lib/termcap 00644 bin bin file
+/usr/share/lib/terminfo 02755 bin bin directory
+/usr/share/lib/tmac 02775 bin bin directory
+
+/dev/dump 00777 root sys symlink
+/dev/dsk/* 00640 root sys file
+/dev/rdsk/* 00640 root sys file
+/dev 02775 root sys directory
+
+# for security
+/etc/security 02755 root sys directory
+/etc/lib 02775 root sys directory
+/usr/lib/security 02755 root sys directory

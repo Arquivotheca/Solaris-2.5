@@ -1,0 +1,102 @@
+#!/sbin/sh
+#	Copyright (c) 1984, 1986, 1987, 1988, 1989 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF AT&T
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+#
+#	Copyright (c) 1991-1994, Sun Microsystems Inc.
+#	All Rights Reserved.
+#
+
+#ident	"@(#)standardmounts	1.8	95/04/13 SMI"
+
+#
+# Add physical swap.
+#
+/sbin/swapadd -1
+
+#
+# Check and remount the / (root) file system. For NFS mounts, force the
+# llock option on.
+#
+exec < ${vfstab}; readvfstab "/"
+checkfs ${fsckdev} ${fstype} ${mountp}
+checkopt "llock" ${mntopts}
+mntopts="remount"
+if [ "X${otherops}" != "X" ]
+then
+	mntopts="${mntopts},${otherops}"
+fi
+if [ "${fstype}" = "nfs" -o "${fstype}" = "cachefs" ]
+then
+	mntopts="${mntopts},llock"
+fi
+/sbin/mount -m -o ${mntopts} ${mountp}
+mntlist="${mntlist}${special} /\n"
+
+#
+# Check and remount the /usr file system (formerly mounted read-only).
+#
+exec < ${vfstab}; readvfstab "/usr"
+if [ "${mountp}" ]
+then
+	if [ "${fstype}" = "cachefs" ]
+	then
+		/sbin/mount -m -F cachefs -O -o ${mntopts} ${special} ${mountp}
+	else
+		checkopt "ro" ${mntopts}
+		if [ "X${option}" != "Xro" ]
+		then
+			checkfs ${fsckdev} ${fstype} ${mountp}
+			if [ "${mntopts}" != "-" ]
+			then
+				mntopts="remount,${mntopts}"
+			else
+				mntopts="remount"
+			fi
+			/sbin/mount -m -o ${mntopts} ${mountp}
+		fi
+	fi
+	mntlist="${mntlist}${special} ${mountp}\n"
+fi
+
+#
+# Check and mount the /usr/platform file system.  This should only be
+# present when a SunOS 5.5 (Solaris 2.5) or greater client is being
+# administered by a SunOS 5.4 or less host.
+#
+exec < ${vfstab}; readvfstab "/usr/platform"
+if [ "${mountp}" ]
+then
+	checkfs ${fsckdev} ${fstype} ${mountp}
+	if [ "${mntopts}" != "-" ]
+	then
+		/sbin/mount -m -o ${mntopts} ${mountp}
+	else
+		/sbin/mount -m ${mountp}
+	fi
+	mntlist="${mntlist}${special} ${mountp}\n"
+fi
+
+#
+# Mount /proc and the fd file systems if mount points for them exist.
+#
+exec < ${vfstab}; readvfstab "/proc"
+if [ "${mountp}" -a -d /proc ]
+then
+	if /sbin/mount -m /proc > /dev/null 2>&1; then
+		mntlist="${mntlist}/proc /proc\n"
+	else
+		echo "could not mount /proc"
+	fi
+fi
+
+exec < ${vfstab}; readvfstab "/dev/fd"
+if [ "${mountp}" -a -d /dev/fd ]
+then
+	/sbin/mount -m /dev/fd > /dev/null 2>&1
+	mntlist="${mntlist}fd /dev/fd\n"
+fi

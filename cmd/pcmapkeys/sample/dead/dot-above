@@ -1,0 +1,16 @@
+# Copyright (c) 1993 Sun Microsystems, Inc.  All Rights Reserved.
+#
+#	"@(#)dot-above	1.1	93/03/02 SMI"
+#
+dead: <dot>		# Dot above
+' '  <dot-above>          # dot above
+'C'  <C-dot>          # C dot above
+'E'  <E-dot>          # E dot
+'G'  <G-dot>          # G dot above
+'I'  <I-dot>          # I dot above
+'Z'  <Z-dot>          # Z dot
+'c'  <c-dot>          # c dot
+'e'  <e-dot>          # e dot above
+'g'  <g-dot>          # g dot
+'z'  <z-dot>          # z dot above
+#

@@ -1,0 +1,18 @@
+#
+#ident	"$SunId: @(#)pkginfo 1.12 92/10/08 SMI [RMTC] $"
+#
+PKG=SUNWhsm
+NAME=Online: Backup
+VERSION=2.0,PATCH=8
+BASEDIR=/opt
+ARCH=sparc
+DESC=SunSoft's unbundled backup and recovery product
+VENDOR=Sun Microsystems, Inc.
+MAXINST=1000
+CATEGORY=application
+HOTLINE=Please contact your local service provider
+EMAIL=
+CLASSES=none
+SUNW_PATCHID=101176-05
+SUNW_OBSOLETES=100980-01
+SUNW_TEXT=install/description:General Information:A

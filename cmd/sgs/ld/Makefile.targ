@@ -1,0 +1,36 @@
+#
+#ident	"@(#)Makefile.targ	1.5	94/08/18 SMI"
+#
+# Copyright (c) 1989 by Sun Microsystems, Inc.
+#
+
+%.o:		../common/%.c
+		$(COMPILE.c) $<
+		$(POST_PROCESS_O)
+
+$(PROG):	$(MAPFILE)
+
+$(ROOTCCSBIN)/%: %
+		$(INS.file)
+
+$(LINTOUT):	$(SRCS)
+		$(LINT.c) $(SRCS) > $(LINTOUT) 2>&1
+
+clean:
+		$(RM) $(OBJS) $(CLEANFILES)
+
+delete:
+		$(RM) $(PROG)
+
+include		../../../Makefile.targ
+
+# Special target for native builds (ie. when we need to build a version of ld
+# to build a version of ld :-).
+
+$(SGSPROTO)/$(PROG) \
+$(PROG):	$$(OBJS)
+		$(LINK.c) $(OBJS) -o $@ $(LDLIBS)
+		$(POST_PROCESS)
+
+native :=	LDFLAGS = -R$(SGSPROTO)
+native :=	LLDLIBS = -L$(SGSPROTO) -lld -lelf -lc -ldl -llddbg

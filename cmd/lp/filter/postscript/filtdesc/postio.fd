@@ -1,0 +1,9 @@
+#ident	"@(#)postio.fd	1.5	92/07/14 SMI"	/* SVr4.0 1.1	*/
+
+Input types: postdown
+Output types: PS
+Printer types: PS
+Printers: any
+Filter type: fast
+Command: /usr/lib/lp/postscript/postio 2>>$ERRFILE
+Options: PRINTER * = -L/var/tmp/*.log

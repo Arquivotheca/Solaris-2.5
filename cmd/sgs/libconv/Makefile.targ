@@ -1,0 +1,31 @@
+#
+#ident	"@(#)Makefile.targ	1.3	95/01/09 SMI"
+#
+# Copyright (c) 1989 by Sun Microsystems, Inc.
+#
+
+pics/%.o:	../common/%.c
+		$(COMPILE.c) -o $@ $<
+		$(POST_PROCESS_O)
+
+pics/%.o:	%.c
+		$(COMPILE.c) -o $@ $<
+		$(POST_PROCESS_O)
+
+$(LIBRARY):	pics $$(PICS)
+		$(AR) $(ARFLAGS) $@ $(PICS)
+		$(POST_PROCESS_A)
+
+$(LINTLIB):	$(SRCS)
+		$(LINT) $(LINTFLAGS) $(SRCS) -o $(LIBNAME) > $(LINTOUT) 2>&1
+
+pics:
+		-@mkdir -p $@
+
+clobber:	clean
+		-$(RM) $(LIBRARY) $(CLOBBERFILES)
+
+clean:
+		-$(RM) $(PICS) $(CLEANFILES)
+
+delete:

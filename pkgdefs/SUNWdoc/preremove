@@ -1,0 +1,19 @@
+#!/bin/sh
+#
+#ident	"@(#)preremove	1.1	92/02/28 SMI"
+#
+# Copyright (c) 1992 by Sun Microsystems, Inc.
+#
+#
+#	remove usr/lib/font/devpost/charlib/~=
+#
+# This postremove script is required because installf will not
+# register a file with an `=` in its name.
+#
+
+
+CHARLIB=$BASEDIR/usr/lib/font/devpost/charlib
+
+rm -f $CHARLIB/~=
+
+exit 0

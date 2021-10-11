@@ -1,0 +1,89 @@
+#       Copyright (c) 1990-1995 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)prototype_i386	1.5	95/03/23 (c) Sun Microsystems, Inc.
+#
+# This required package information file contains a list of package contents.
+# The 'pkgmk' command uses this file to identify the contents of a package
+# and their location on the development machine when building the package.
+# Can be created via a text editor or through use of the 'pkgproto' command.
+
+#!search <pathname pathname ...>	# where to find pkg objects
+#!include <filename>			# include another 'prototype' file
+#!default <mode> <owner> <group>	# default used if not specified on entry
+#!<param>=<value>			# puts parameter in pkg environment
+
+i i.preserve
+#
+# List bus-independent (common) drivers here
+#
+i copyright
+i depend
+i pkginfo
+#
+# Path names are relative to the prototype root directory
+#
+# SUNWpsdcr
+#
+d none kernel 755 root sys
+d none kernel/drv 755 root sys
+# Following drv and misc modules are from SUNWcsr
+f none kernel/drv/cmdk 755 root sys
+f none kernel/drv/cmdk.conf 644 root sys
+f none kernel/drv/objmgr 755 root sys
+f none kernel/drv/objmgr.conf 644 root sys
+d none kernel/misc 755 root sys
+f none kernel/misc/dadk 755 root sys
+f none kernel/misc/gda 755 root sys
+f none kernel/misc/genlb 755 root sys
+f none kernel/misc/sccd_audio 755 root sys
+f none kernel/misc/scdk 755 root sys
+f none kernel/misc/snlb 755 root sys
+f none kernel/misc/strategy 755 root sys
+e preserve kernel/misc/sysinit 755 root sys
+# Following drivers are from SUNWcar.i
+d none platform 755 root sys
+d none platform/i86pc 755 root sys
+d none platform/i86pc/kernel 755 root sys
+d none platform/i86pc/kernel/drv 755 root sys
+f none platform/i86pc/kernel/drv/aha 755 root sys
+f none platform/i86pc/kernel/drv/aha.conf 644 root sys
+f none platform/i86pc/kernel/drv/asy 755 root sys
+f none platform/i86pc/kernel/drv/asy.conf 644 root sys
+f none platform/i86pc/kernel/drv/chanmux 755 root sys
+f none platform/i86pc/kernel/drv/chanmux.conf 644 root sys
+f none platform/i86pc/kernel/drv/elx 755 root sys
+f none platform/i86pc/kernel/drv/elx.conf 644 root sys
+f none platform/i86pc/kernel/drv/fd 755 root sys
+f none platform/i86pc/kernel/drv/fd.conf 644 root sys
+f none platform/i86pc/kernel/drv/fdc.conf 644 root sys
+f none platform/i86pc/kernel/drv/fdc 755 root sys
+f none platform/i86pc/kernel/drv/kd 755 root sys
+f none platform/i86pc/kernel/drv/kd.conf 644 root sys
+f none platform/i86pc/kernel/drv/kdmouse 755 root sys
+e preserve platform/i86pc/kernel/drv/kdmouse.conf 644 root sys
+f none platform/i86pc/kernel/drv/logi 755 root sys
+e preserve platform/i86pc/kernel/drv/logi.conf 644 root sys
+f none platform/i86pc/kernel/drv/lp 755 root sys
+f none platform/i86pc/kernel/drv/lp.conf 644 root sys
+f none platform/i86pc/kernel/drv/mlx 755 root sys
+f none platform/i86pc/kernel/drv/mlx.conf 644 root sys
+f none platform/i86pc/kernel/drv/msm 755 root sys
+e preserve platform/i86pc/kernel/drv/msm.conf 644 root sys
+f none platform/i86pc/kernel/drv/smc 755 root sys
+f none platform/i86pc/kernel/drv/smc.conf 644 root sys
+f none platform/i86pc/kernel/drv/tr 755 root sys
+f none platform/i86pc/kernel/drv/tr.conf 644 root sys
+d none platform/i86pc/kernel/misc 755 root sys
+f none platform/i86pc/kernel/misc/mse 755 root sys
+d none platform/i86pc/kernel/strmod 755 root sys
+f none platform/i86pc/kernel/strmod/ansi 755 root sys
+f none platform/i86pc/kernel/strmod/char 755 root sys
+f none platform/i86pc/kernel/strmod/emap 755 root sys
+f none platform/i86pc/kernel/strmod/vuid2ps2 755 root sys
+f none platform/i86pc/kernel/strmod/vuid3ps2 755 root sys
+f none platform/i86pc/kernel/strmod/vuidkd 755 root sys
+f none platform/i86pc/kernel/strmod/vuidm3p 755 root sys
+f none platform/i86pc/kernel/strmod/vuidm4p 755 root sys
+f none platform/i86pc/kernel/strmod/vuidm5p 755 root sys
+

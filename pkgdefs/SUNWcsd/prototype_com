@@ -1,0 +1,69 @@
+#	Copyright (c) 1990-93 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)prototype_com	1.30	95/05/18 (c) Sun Microsystems, Inc.
+#
+# This required package information file contains a list of package contents.
+# The 'pkgmk' command uses this file to identify the contents of a package
+# and their location on the development machine when building the package.
+# Can be created via a text editor or through use of the 'pkgproto' command.
+
+#!search <pathname pathname ...>	# where to find pkg objects
+#!include <filename>			# include another 'prototype' file
+#!default <mode> <owner> <group>	# default used if not specified on entry
+#!<param>=<value>			# puts parameter in pkg environment
+
+# packaging files
+i pkginfo
+i copyright
+i preinstall
+#
+# source locations relative to the prototype file
+#
+# SUNWcsd
+#
+d none dev 775 root sys
+s none dev/conslog=../devices/pseudo/log@0:conslog
+s none dev/console=../devices/pseudo/cn@0:console
+d none dev/dsk 775 root sys
+d none dev/fd 775 root sys
+s none dev/ip=../devices/pseudo/clone@0:ip
+s none dev/kmem=../devices/pseudo/mm@0:kmem
+s none dev/ksyms=../devices/pseudo/ksyms@0:ksyms
+s none dev/log=../devices/pseudo/log@0:log
+s none dev/mem=../devices/pseudo/mm@0:mem
+s none dev/null=../devices/pseudo/mm@0:null
+d none dev/pts 775 root sys
+d none dev/rdsk 775 root sys
+d none dev/rmt 775 root sys
+d none dev/sad 775 root sys
+s none dev/sad/admin=../../devices/pseudo/sad@0:admin
+s none dev/sad/user=../../devices/pseudo/sad@0:user
+s none dev/stderr=./fd/2
+s none dev/stdin=./fd/0
+s none dev/stdout=./fd/1
+d none dev/swap 775 root sys
+s none dev/syscon=../devices/pseudo/cn@0:syscon
+s none dev/systty=../devices/pseudo/cn@0:systty
+d none dev/term 775 root root
+s none dev/tty=../devices/pseudo/sy@0:tty
+s none dev/udp=../devices/pseudo/clone@0:udp
+s none dev/zero=../devices/pseudo/mm@0:zero
+d none devices 775 root sys
+d none devices/pseudo 755 root sys
+c none devices/pseudo/clone@0:ip 11 3 660 root sys
+c none devices/pseudo/clone@0:udp 11 41 666 root sys
+c none devices/pseudo/cn@0:console 0 0 620 root tty
+c none devices/pseudo/cn@0:syscon 0 0 620 root tty
+c none devices/pseudo/cn@0:systty 0 0 620 root tty
+c none devices/pseudo/ksyms@0:ksyms 72 0 666 root sys
+c none devices/pseudo/log@0:conslog 21 0 666 root sys
+c none devices/pseudo/log@0:log 21 5 640 root sys
+c none devices/pseudo/mm@0:kmem 13 1 640 root sys
+c none devices/pseudo/mm@0:mem 13 0 640 root sys
+c none devices/pseudo/mm@0:null 13 2 666 root sys
+c none devices/pseudo/mm@0:zero 13 12 666 root sys
+c none devices/pseudo/sad@0:admin 12 1 600 root sys
+c none devices/pseudo/sad@0:user 12 0 666 root sys
+c none devices/pseudo/sy@0:tty 22 0 666 root tty
+c none devices/pseudo/wc@0:wscons 15 0 600 root sys

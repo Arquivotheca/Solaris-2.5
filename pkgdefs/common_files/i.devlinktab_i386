@@ -1,0 +1,54 @@
+#!/bin/sh
+#
+#ident	"@(#)i.devlinktab_i386	1.7	95/07/18 SMI"
+#
+# Copyright (c) 1993 by Sun Microsystems, Inc.
+#
+
+PATH="/usr/bin:/usr/sbin:${PATH}"
+export PATH
+
+while read src dest
+do
+	if [ ! -f $dest ] ; then
+		cp $src $dest
+	else
+		# update the SCCS id
+		grep '^#ident[ 	]*"@(#)devlink.tab' $src \
+		    > /tmp/newident.$$ 2>/dev/null
+		egrep -v '^#(pragma ident|ident)[ 	]*"@\(#\)devlink.tab' $dest \
+		    > /tmp/rest.$$ 2>/dev/null
+		cat /tmp/newident.$$ /tmp/rest.$$ > $dest
+
+		grep '^type=ddi_pseudo;name=tnf' $dest \
+		  >  /dev/null 2>&1
+		if [ $? != 0 ] ; then
+			grep '^type=ddi_pseudo;name=tnf' $src \
+			   >> $dest
+		fi
+		grep '^type=ddi_pseudo;name=tiqmouse' $dest \
+		  >  /dev/null 2>&1
+		if [ $? != 0 ] ; then
+			grep '^type=ddi_pseudo;name=tiqmouse' $src \
+			   >> $dest
+		fi
+
+		# begin updates
+ 		sed -e '/^type=ddi_pseudo;name=app	/d' \
+ 		    -e '/^type=ddi_pseudo;name=sw	/d' \
+ 		    -e '/^type=ddi_pseudo;name=win	/d' \
+ 		    -e\
+		's/^type=ddi_pseudo;name=lp;addr=3BC,0	/type=ddi_pseudo;name=lp;addr=3bc,0	/' $dest > /tmp/d.$$
+		cmp -s /tmp/d.$$ $dest  >  /dev/null 2>&1
+		# Don't modify file unless changes are required.
+		if [ $? != 0 ] ; then
+			cp /tmp/d.$$ $dest	
+		fi
+
+		# remove temporary files
+		rm -f /tmp/d.$$
+	fi
+done
+
+exit 0
+

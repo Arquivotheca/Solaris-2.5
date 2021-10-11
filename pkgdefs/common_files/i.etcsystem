@@ -1,0 +1,68 @@
+#!/bin/sh
+#
+#ident  "@(#)i.etcsystem 1.7 95/07/17 SMI"
+#
+# Copyright (c) 1993 by Sun Microsystems, Inc.
+#
+#
+PATH="/usr/bin:/usr/sbin:${PATH}"
+export PATH
+TAG=new
+CLEANUP_FILE=/tmp/CLEANUP
+
+while read src dest
+do
+	if [ ! -f $dest ] ; then
+		cp $src $dest
+	else
+		#
+		#  Remove now-obsolete "path_to_inst_bootstrap" line.
+		#
+
+		sed '/set[ 	]*path_to_inst_bootstrap/d' $dest > /tmp/s.$$
+		cp /tmp/s.$$ $dest
+		rm -f /tmp/s.$$
+
+		#
+		#  These tunable parameters have moved from nfs to nfssrv.
+		#
+		sed -e "s/^\([^*]*set[ 	]*\)nfs\([ 	]*:[ 	]*nfs_portmon\)/\1nfssrv\2/" \
+    		-e "s/^\([^*]*set[ 	]*\)nfs\([ 	]*:[ 	]*rfs_write_async\)/\1nfssrv\2/" $dest >/tmp/s.$$
+		cp /tmp/s.$$ $dest
+		rm -f /tmp/s.$$
+
+		#
+		# determine whether existing etc/system file is based on
+		# the same one being installed.  If so, no need to update it.
+		#
+		newrev=`sed -n 's/^.*\(@(#)system.*\)\".*/\1/p' $src`
+		oldrev=`sed -n 's/^.*\(@(#)system.*\)\".*/\1/p' $dest`
+		if [ "$oldrev" != "$newrev" ] ; then
+			#
+			# existing /etc/system file is based on a different
+			# original installed version of etc/system.  Determine
+			# whether it has been modified by looking for non-blank,
+			# non-comment lines in the file.  If it has been
+			# modified, preserve it and install the new one as
+			# /etc/system.new.
+			#
+			egrep -v '(^[ 	]*$)|(^\*)' $dest >/dev/null 2>&1
+			if [ $? = 0 ] ; then
+				realdest=`expr $dest : "/a\(.*\)"`
+				if [ "$realdest" = "" ] ; then
+					realdest=$dest
+				fi
+				cp $src $dest.${TAG}
+				echo "EXISTING_FILE_PRESERVED: ${realdest} ${realdest}.${TAG}" \
+					>> ${CLEANUP_FILE}
+			else
+
+				# existing file hasn't been modified, so
+				# install over it.
+
+				cp $src $dest
+			fi
+		fi
+	fi
+done
+exit 0

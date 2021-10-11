@@ -1,0 +1,230 @@
+
+#ident	"@(#)sun4u.fdbg	1.8	95/07/12 SMI"
+
+#include <sys/param.h>
+#include <sys/types.h>
+#include <sys/user.h>
+#include <sys/cred.h>
+#include <sys/proc.h>
+#include <sys/cpuvar.h>
+#include <sys/thread.h>
+#include <sys/sysinfo.h>
+#include <sys/vfs.h>
+#include <sys/time.h>
+#include <sys/vnode.h>
+#include <sys/disp.h>
+#include <sys/var.h>
+#include <sys/ts.h>
+#include <sys/kstat.h>
+#if defined(sun4) || defined(sun4c) || defined(sun4e)
+#include <vm/hat_sunm.h>
+#endif
+#if defined(sun4m) || defined(sun4d)
+#include <vm/hat_srmmu.h>
+#endif
+#if defined(sun4u)
+#include <vm/hat_sfmmu.h>
+#endif
+#include <sys/ivintr.h>
+#include <sys/intr.h>
+#include <sys/machcpuvar.h>
+#include <sys/sysiosbus.h>
+#include <sys/iommu.h>
+#include <sys/iocache.h>
+#include <vm/anon.h>
+#include <vm/as.h>
+#include <vm/hat.h>
+#include <vm/page.h>
+#include <vm/pvn.h>
+#include <vm/seg.h>
+#include <vm/seg_dev.h>
+#include <vm/seg_enum.h>
+#include <vm/seg_kp.h>
+#include <vm/seg_map.h>
+#include <vm/seg_vn.h>
+#include <sys/mutex_impl.h>
+#include <sys/rwlock_impl.h>
+#include <sys/callo.h>
+#include <sys/ddi_impldefs.h>
+#include <sys/kmem_impl.h>
+#include <sys/siginfo.h>
+#include <sys/memlist.h>
+#include <sys/modctl.h>
+#include <sys/kobj.h>
+#include <sys/privregs.h>
+#include <sys/machpcb.h>
+#include <sys/traptrace.h>
+
+intr_vector
+	iv_handler	.adr
+	iv_arg		x
+	iv_pil		d
+	iv_mutex	.mutex
+
+machcpu
+	mpcb		x
+	in_prom		d
+	cpu_info	.str
+	intr_head	x
+
+machpcb
+	mpcb_regs	.regs
+	mpcb_wbcnt	d
+	mpcb_fpu	x
+	mpcb_flags	x
+	mpcb_thread	x
+
+TRAP_TRACE_CTL.d
+
+forth_start
+
+alias .ttc .TRAP_TRACE_CTL.d
+
+: cpu-ttc ( n -- )
+   8 to-column ." cpuid = " dup .x cr          ( n )
+   ['] .ttc sizeof * symbol trap_trace_ctl +   ( trace-hdr )
+   .ttc                                        ( )
+;
+
+\	Trap Trace Macros
+\	print record subroutine (short)
+: .sttr-hdr ( n -- n )
+   ." cpuid = " dup .x cr
+   6 to-column ." tick"
+   d# 24 to-column ." type"
+   d# 32 to-column ." level"
+   d# 40 to-column ." trap PC" cr
+;
+
+: .sttr ( ptr -- )
+   dup 10 + x@ .x                   \ tick
+   d# 24 to-column dup 2 + w@ .x    \ trap_type
+   d# 32 to-column dup w@ .x        \ trap_level
+   d# 40 to-column 4 + l@ .adr cr   \ tpc
+;
+
+\	print record subroutine (long)
+: .lttr-hdr ( n -- n )
+   8 to-column ." cpuid = " dup .x cr
+;
+
+: .lttr ( ptr -- )
+   ." tick = " dup 10 + x@ .x cr      \ tick
+   ." trap type = " dup 2 + w@ .x cr  \ trap_type
+   ." trap level = " dup w@ .x cr     \ trap_level
+   ." trap pc = " dup 4 + l@ .adr cr  \ tpc
+   ." tstate = " dup 8 + x@ .x cr     \ tstate
+   ." trap sp = " dup 18 + l@ .x cr   \ sp
+   ." trap tr = " dup 1c + l@ .x cr   \ tr
+   ." trap f1 = " dup 20 + l@ .x cr   \ f1
+   ." trap f2 = " dup 24 + l@ .x cr   \ f2
+   ." trap f3 = " dup 28 + l@ .x cr   \ f3
+   ." trap f4 = " 2c + l@ .x cr cr    \ f4
+;
+
+
+: ttr-loop ( print-acf screen-acf end start -- )
+   do                          ( p-acf s-acf )
+      2dup i swap execute  if  ( p-acf s-acf p-acf addr )
+	 swap execute          ( p-acf s-acf )
+         exit? throw           ( p-acf s-acf )
+      else                     ( p-acf s-acf p-acf addr )
+	 2drop                 ( p-acf s-acf )
+      then                     ( p-acf s-acf )
+   -30 +loop                   ( p-acf s-acf )
+   2drop                       ( )
+;
+
+: ttr-bounds1 ( trace-hdr -- vaddr_base vaddr_base+last_offset )
+   [ also TRAP_TRACE_CTL.d-words ]
+   dup vaddr_base swap last_offset over +
+   [ previous ]
+;
+
+: ttr-bounds2 ( trace-hdr -- vaddr_base+offset vaddr_base+limit )
+   [ also TRAP_TRACE_CTL.d-words ]
+   dup vaddr_base over offset bounds   ( hdr v+o v )
+   rot limit +                         ( v+o v+l )
+   [ previous ]
+;
+
+: do-ttr ( n print-acf screen-acf -- )
+   rot 40 * symbol trap_trace_ctl +     ( p-acf s-acf trace-hdr )
+   3dup ttr-bounds1 ttr-loop            ( p-acf s-acf trace-hdr )
+   ttr-bounds2 ttr-loop                 ( )
+;
+
+
+\ print cpu's traces in short format
+: cpu-ttr ( n -- )
+   .sttr-hdr ['] .sttr ['] true do-ttr
+;
+   
+\ print cpu's traces in long format
+: cpu-xttr ( n -- )
+   .lttr-hdr ['] .lttr ['] true do-ttr
+;
+
+
+\ execute acf for each cpu
+: ncpu-acf ( acf -- )
+   symbol cpu symbol _ncpu l@ 0  do   ( acf cpu )
+      dup i 4 * + l@ 0<>  if          ( acf cpu )
+	 over i swap execute cr       ( acf cpu )
+      then                            ( acf cpu )
+   loop                               ( acf cpu )
+   2drop                              ( )
+;
+
+: ncpu-ttr ( -- ) ['] cpu-ttr ncpu-acf ;
+: ncpu-xttr ( -- ) ['] cpu-xttr ncpu-acf ;
+: ncpu-ttc ( -- ) ['] cpu-ttc ncpu-acf ;
+
+forth_end
+
+sbus_soft_state
+
+forth_start
+
+: .uintarray ( array-addr -- )
+   dup  if                       ( array-addr )
+      begin dup l@ ?dup  while   ( array-addr item )
+         .x la1+                 ( array-addr' )
+      repeat                     ( array-addr )
+   then                          ( array-addr )
+   drop
+;
+
+forth_end
+
+io_mem_list
+	rdip		x
+	ioaddr		x
+	addr		x
+	npages		d
+	pfn		.uintarray
+	next		x
+
+forth_start
+
+: .io_mem_list_list
+    [ also io_mem_list-words ]
+    begin ?dup while
+	dup .io_mem_list cr next
+    repeat
+    [ previous ]
+;
+
+forth_end
+
+forth_start
+: clr_pagecol_stats
+	symbol sys_req_bins
+	200 4 *
+	0 fill
+	symbol sys_nak_bins
+	200 4 *
+	0 fill
+;
+
+forth_end

@@ -1,0 +1,28 @@
+#
+#ident	"@(#)Makefile.sub	1.1	94/05/20 SMI"
+#
+# Copyright (c) 1994 by Sun Microsystems, Inc.
+#
+# Standard subdirs makefile for the sgs area.
+#
+
+include		../../../Makefile.master
+
+SUBDIRS=	$(MACH)
+ 
+all:=		TARGET= all
+clean:=		TARGET= clean
+clobber:=	TARGET= clobber
+delete:=	TARGET= delete
+install:=	TARGET= install
+lint:=		TARGET= lint
+
+.KEEP_STATE:
+
+all clean clobber delete install lint: \
+		$(SUBDIRS)
+	
+$(SUBDIRS):	FRC
+		@cd $@; pwd; $(MAKE) $(TARGET)
+
+FRC:

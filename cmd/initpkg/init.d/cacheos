@@ -1,0 +1,151 @@
+#!/sbin/sh
+
+#
+#	Copyright (c) 1994, Sun Microsystems Inc.
+#
+
+#ident	"@(#)cacheos	1.21	95/01/27 SMI"
+
+cocdevconfig() {
+	#
+	# configure devices before setting up cache disk
+	#
+	_INIT_RECONFIG="set"; export _INIT_RECONFIG
+	/sbin/sh /etc/init.d/drvconfig
+	/sbin/sh /etc/init.d/devlinks
+	_INIT_RECONFIG=""; export _INIT_RECONFIG
+	if [ -f /reconfigure ]
+	then
+		/usr/bin/rm -f /reconfigure
+	fi
+}
+
+dodots() {
+	echo "Configuring cache and swap:\c"
+	(while :
+	 do
+		sleep 6
+		echo ".\c"
+	 done)&
+	dotpid=$!
+}
+
+coc_runprofile() {
+	# process the disk configuration profile
+	if [ -f /.autoinstall/preinstall ]; then
+		/usr/bin/mv /.autoinstall/preinstall \
+			/.autoinstall/preinstall.done
+		/sbin/sh /.autoinstall/preinstall.done
+	fi
+	if [ -f /.autoinstall/profile ]; then
+		exec < ${vfstab}; readvfstab "/dev/fd"
+		if [ "${mountp}" -a -d /dev/fd ]; then
+			/sbin/mount -m /dev/fd >/dev/null 2>&1
+		fi
+		SWAPSIZE=`/sbin/bpgetfile swapsize | \
+			(read junk size junk; echo $size)`
+		SYS_SWAPSIZE=${SWAPSIZE}; export SYS_SWAPSIZE
+		/usr/sbin/install.d/pfinstall -c none \
+			/.autoinstall/profile >/dev/null
+		if [ $? -ne 0 ]; then
+			fatal_err "Error in disk configuration."
+		fi
+		/sbin/umount /dev/fd >/dev/null 2>&1
+	fi
+}
+
+get_cachedev() {
+	# get cache device from vfstab
+	exec < ${vfstab}; readvfstab "$CACHEMNT"
+	CACHEDEV=${special}
+	RCACHEDEV=${fsckdev}
+	if [ -z "$CACHEDEV" -o -z "$RCACHEDEV" ]; then
+		#
+		# this is either a bug in pfinstall or the user made
+		# a bad modification to vfstab.  Not much we can do
+		# here
+		#
+		fatal_err "Could not find $CACHEMNT entry in vfstab!"
+	fi
+	/usr/lib/fs/cachefs/cfstagchk $RCACHEDEV >/dev/null 2>&1
+	if [ $? -ne 0 ]; then
+		fatal_err "Improperly tagged cache device!"
+	fi
+}
+
+fatal_err() {
+	if [ $dotpid -ne 0 ]; then
+		kill $dotpid >/dev/null 2>&1
+		kill $dotpid >/dev/null 2>&1
+	fi
+	echo "\nFATAL: $1"
+	/usr/sbin/halt
+}
+
+#
+# See if the root file system type is "cachefs".  If so, we do the
+# work necessary for caching root and /usr on a "cache-only-client".
+# We either create a new cache or validate an existing cache, and
+# get the cache "front file system" mounted so that everything is
+# in place when S40standardmounts runs and does (re)mounts using cachefs.
+#
+ROOTFS=`/usr/lib/fs/cachefs/cfsfstype -r 2>/dev/null`
+if [ "$ROOTFS" = "cachefs" ]
+then
+	>/etc/mnttab
+	dotpid=0
+	CACHEMNT=/.cache
+	CACHEDIR=$CACHEMNT/rootcache
+	INSTMARKER=/COSINSTALL
+	newcache=0
+	cfsfsckflags=""
+	if [ -f $INSTMARKER -o "${_CACHEFS_FLUSHCACHE}" = "YES" ]; then
+		newcache=1
+	fi
+	if [ $newcache -ne 0 ]; then
+		cocdevconfig
+		dodots
+		coc_runprofile
+		get_cachedev
+		/usr/bin/rm -f $INSTMARKER
+	else
+		dodots
+		get_cachedev
+		#
+		# check and mount the cache
+		#
+		/usr/sbin/fsck -m $RCACHEDEV >/dev/null 2>&1
+		fsckerr=$?
+		if [ $fsckerr -ne 0 ]
+		then
+			/usr/sbin/fsck -o p $RCACHEDEV >/dev/null 2>&1
+			fsckerr=$?
+			cfsfsckflags="-o noclean"
+		fi
+
+		if [ $fsckerr -ne 0 ]; then
+			> $INSTMARKER
+			fatal_err "Could not fsck $RCACHEDEV."
+		fi
+		/usr/sbin/mount -m $CACHEDEV $CACHEMNT
+		if [ $? -ne 0 ]; then
+			fatal_err "Could not mount cache device $CACHEDEV."
+		fi
+	fi
+	if [ -d $CACHEDIR ]; then
+		/usr/sbin/fsck -F cachefs $cfsfsckflags $CACHEDIR
+		if [ $? -ne 0 ]; then
+			/usr/bin/rm -rf $CACHEDIR
+		fi
+	fi
+	if [ ! -d $CACHEDIR ]; then
+		/usr/lib/fs/cachefs/cfsadmin -c $CACHEDIR
+		if [ $? -ne 0 ]; then
+			fatal_err "Could not create cache in $CACHEDIR."
+		fi
+	fi
+	kill $dotpid >/dev/null 2>&1
+	kill $dotpid >/dev/null 2>&1
+	echo "done."
+	mntlist="${mntlist}$CACHEDEV $CACHEMNT\n"
+fi

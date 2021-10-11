@@ -1,0 +1,358 @@
+#!/bin/sh
+#	Copyright (c) 1995, by Sun Microsystems, Inc.
+#ident "@(#)pcicconfig	1.2	SMI"
+case "$1" in
+'start')
+	if [ "${_INIT_RECONFIG}" = "" -o ! -f /kernel/drv/pcic ]
+	then
+		exit 0
+	fi
+	egrep -s '^pcic[ 	]' /etc/name_to_major
+	if [ "$?" -eq 1 ]
+	then
+		exit 0
+	fi
+	if [ "${_INIT_VERBOSE}" != "" ]
+	then
+		echo "Checking PCMCIA Adapter Configuration."
+	fi
+	/usr/sbin/prtconf -v >/tmp/.prtconf
+#
+# 	we need to know which devices are know
+# 	and which are unknown.  We later ask the
+# 	user to provide info on the unknown and
+# 	to add any extra info Solaris can\'t find
+#
+	nawk '
+	function rev(str){
+		if (length(str) == 0)
+			return "";
+		return rev(substr(str,3)) substr(str,1,2)
+	}
+	function digit(str){
+		return match("0123456789abcdef",substr(str,1,1))-1;
+	}
+	function hex(str,v,i){
+		sub(/0x/,"",str);
+		str=rev(str);
+		v=0;
+		while (length(str) > 0){
+			v = v*16 + digit(str);
+			str = substr(str,2);
+		}
+		return v;
+	}
+	function devcheck(name, ioaddr, reg, intr)
+	{
+		if (name != "" && name != "pcic") {
+			if (intr != "" && (ioaddr == "" && name != "kd" &&
+				name != "kdmouse") ||
+				(name == "smc")) {
+				printf("%s %s %s\n",
+					name, intr, reg) >"/tmp/ask";
+			} else if (intr != "") {
+				if (ioaddr == "")
+					ioaddr="x";
+				printf("%s %s %s %s\n", name, ioaddr,
+						intr, reg) >"/tmp/found";
+			}
+		}
+	}
+	BEGIN	  {name=""; reg=""; intr=""; ioaddr="";}
+	/pcic, instance/ { getline; while ( $0 !~ "instance"){getline;}}
+	/, instance .*(driver not attached)/ {
+			devcheck(name, ioaddr, reg, intr);
+			name=""; intr=""; ioaddr=""; reg="";next;
+	}
+	/, instance/ {
+			devcheck(name, ioaddr, reg, intr);
+			sub(/\,/, "", $1);
+			name=$1;
+			intr="";
+			reg="";
+			ioaddr="";
+		     }
+	/chosen-/ {
+			gsub(/[<>]/,"",$0);
+			sub(/chosen-/,"");
+			prop=$2; getline; 
+			gsub(/[<>\.]/,"",$0);
+			val=$2;
+			if (match(prop,/interrupt/))
+				val=hex(substr(val,11));
+			if (match(prop,/reg/))
+				val=sprintf("%x,%x",hex(substr(val,11,8)), hex(substr(val,19,8)));
+			devs[name]=name;
+			if (prop == "reg")
+				reg = val;
+			if (prop == "interrupt")
+				intr = val;
+		  }
+	/ioaddr/  {
+			gsub(/[<>]/,"",$0);
+			prop=$2;
+			getline;
+			gsub(/[<>\.]/,"",$0);
+			ioaddr=sprintf("%x",hex($2));
+			iodevs[name] = name
+		   }
+	' </tmp/.prtconf
+#
+#
+#
+	if [ -f "/kernel/drv/pcic.conf" ]
+	then
+		grep '^#exclude' /kernel/drv/pcic.conf >/tmp/excluded
+	fi
+#
+# 	find details for removal from free list
+#
+	nawk '
+	function rev(str){
+		if (length(str) == 0)
+			return "";
+		return rev(substr(str,3)) substr(str,1,2)
+	}
+	function digit(str){
+		return match("0123456789abcdef",substr(str,1,1))-1;
+	}
+	function hex(str,v,i){
+		sub(/0x/,"",str);
+		str=rev(str);
+		v=0;
+		while (length(str) > 0){
+			v = v*16 + digit(str);
+			str = substr(str,2);
+		}
+		return v;
+	}
+	function skipname(name)
+	{
+		if (name == "pcic")
+			return (1);
+		if (name == "pcser")
+			return (1);
+		if (name == "pcmem")
+			return (1);
+		if (name == "pcelx")
+			return (1);
+		return (0);
+	}
+	BEGIN {intrs=0; regs=0; addrs=0;}
+	/, instance/ {sub(/\,/, "", $1);name=$1}
+	/chosen-/ {gsub(/[<>]/,"",$0);sub(/chosen-/,"");prop=$2; getline; gsub(/[<>\.]/,"",$0);val=$2;
+			if (!skipname(name) && match(prop,/interrupt/)) {
+				val=hex(substr(val,11));
+				interrupts[intrs] = val;
+				intrs = intrs + 1;
+			}
+			if (match(prop,/reg/)) {
+				val=sprintf("%x,%x",hex(substr(val,11,8)), hex(substr(val,19,8)));
+				registers[regs]=val;
+				regs = regs + 1;
+			}
+	}
+	/ioaddr/	{
+				gsub(/[<>]/,"",$0);
+				prop=$2;getline;gsub(/[<>\.]/,"",$0);
+				ioaddr=sprintf("%x",hex($2));
+				addresses[addrs] = ioaddr;
+				if (name == "asy")
+					alengths[addrs]=8;
+				else
+					alengths[addrs]=16;
+				addrs = addrs + 1;
+			}
+	END {
+		for (i=0; i<intrs; i++) printf("%s\n", interrupts[i]) >"/tmp/intrs";
+		for (i=0; i<regs; i++) printf("%s\n", registers[i]) >"/tmp/regs";
+		for (i=0; i<addrs; i++) printf("%s %d\n",
+				addresses[i], alengths[i])>"/tmp/addrs";
+	}' </tmp/.prtconf
+	rm -f /tmp/.prtconf
+#
+# now add those from the users updated pcic.conf
+#
+	if [ -f "/tmp/excluded" ]
+	then
+	   nawk '$2 ~ /res-irq/ { printf("%s\n", $3) >>"/tmp/intrs"; next}
+		$2 ~ /res-ioaddr/ { printf("%s %s\n", $3, $4) >>"/tmp/addrs"; next}
+		$2 ~ /res-memory/ { printf("%s %s\n", $3, $4) >>"/tmp/regs"; next}' </tmp/excluded
+	fi
+#
+# defines all resources that could be used by the PCIC
+# the "smi" property is the IRQ level of the management
+# interrupt level. We always exclude lp.
+#
+echo 'name="pcic" class="sysbus" ioaddr=0x3e0
+	intr=11,3,11,4,11,5,11,7,11,9,11,10,11,11,11,12,11,14,11,15,3,3,3,4,3,5,3,7,3,9,3,10,3,11,3,12,3,14,3,15
+	reg=0x3e0,0,0x100000
+'"\c" >/tmp/pcic.conf
+#
+# 	build the available interrupt list
+#
+	nawk '
+	BEGIN {
+		for (i=0; i<16; i++) intrs[i]=1;
+		intrs[0] = 0;
+		intrs[1] = 0;
+		intrs[2] = 0;
+		intrs[6] = 0;
+		intrs[7] = 0;
+		intrs[8] = 0;
+		intrs[13] = 0;
+	      }
+	      {
+		intrs[$1] = 0;
+	      }
+	END   {
+		comma="";
+		printf("\tres-irq=");
+		for (i=0; i<16; i++) {
+			if (intrs[i]) {
+				printf("%s%d", comma, i);
+				comma=",";
+			}
+		}
+		printf("\n");
+	      }' </tmp/intrs >>/tmp/pcic.conf
+	rm -f /tmp/intrs	     
+	
+#
+#	build the available device I/O address list
+#
+	cat >>/tmp/addrs <<!
+2f8 8
+3c0 10
+378 8
+${ioaddresslist}
+!
+	sort -fu /tmp/addrs |
+		nawk '
+	function rev(str){
+		if (length(str) == 0)
+			return "";
+		return rev(substr(str,3)) substr(str,1,2)
+	}
+	function digit(str){
+		return match("0123456789abcdef",substr(str,1,1))-1;
+	}
+	function hex(str,v,i){
+		sub(/0x/,"",str);
+		v=0;
+		while (length(str) > 0){
+			v = v*16 + digit(str);
+			str = substr(str,2);
+		}
+		return v;
+	}
+	function removeaddr(newbase,rlen,base){
+			if (rlen == 0) rlen=16;
+			if (newbase < eisa && newbase >= base) {
+				len=newbase-base;
+				if (len > 0) {
+					list=list sprintf("%s0x%x,0x%x",sep,base,len);
+					sep=",";
+					base=newbase+rlen;
+					len=0;
+				} else if (len == 0) {
+					base=base+rlen;
+				} else
+					base = newbase + rlen;
+			}
+		return (base);
+	}
+	BEGIN 	{
+			base=hex(200);
+			len=0;
+			list="";
+			sep="";
+			eisa=hex("1000");
+		}
+		{
+			base=removeaddr(hex($1),$2+0,base);
+		}
+	END	{
+			base=removeaddr(1024,8,base);
+			if (length(list) != 0)
+				printf("\tres-ioaddr=%s\n",list);
+		}
+	' >>/tmp/pcic.conf
+	rm -f /tmp/addrs
+	#
+	# now build the available device memory list
+	#
+	cat >>/tmp/regs <<!
+a0000 20000
+b0000 20000
+c0000 c000
+f0000 10000
+!
+	sed -e 's/,/ /' /tmp/regs |
+	sort -fu |
+		nawk '
+	function rev(str){
+		if (length(str) == 0)
+			return "";
+		return rev(substr(str,3)) substr(str,1,2)
+	}
+	function digit(str){
+		return match("0123456789abcdef",substr(str,1,1))-1;
+	}
+	function hex(str,v,i){
+		sub(/0x/,"",str);
+		v=0;
+		while (length(str) > 0){
+			v = v*16 + digit(str);
+			str = substr(str,2);
+		}
+		return v;
+	}
+	function removeaddr(newbase,rlen,base){
+			if (rlen == 0) rlen=4096;
+			if (newbase < end && newbase >= base) {
+				len=newbase-base;
+				if (len > 0) {
+					list=list sprintf("%s0x%x,0x%x",sep,base,
+								len/4096);
+					sep=",";
+					base=newbase+rlen;
+					len=0;
+				} else if (len == 0) {
+					base=base+rlen;
+				} else
+					base = newbase + rlen;
+			}
+		return (base);
+	}
+	BEGIN 	{
+			base=hex("a0000");
+			len=0;
+			list="";
+			sep="";
+			end=hex("ff000");
+		}
+		{
+			base=removeaddr(hex($1),hex($2),base);
+		}
+	END	{
+			removeaddr(hex("ff000"),4096,base);
+			if (length(list) != 0)
+				printf("\tres-memory=%s\n",list);
+		}
+	' >>/tmp/pcic.conf
+	echo "	;" >>/tmp/pcic.conf
+	rm -f /tmp/regs
+	rm -f /tmp/found
+	if [ -f "/tmp/excluded" ]
+	then
+		cat /tmp/pcic.conf /tmp/excluded >>/kernel/drv/pcic.conf.x
+		mv /kernel/drv/pcic.conf /kernel/drv/pcic.conf.bak
+		mv /kernel/drv/pcic.conf.x /kernel/drv/pcic.conf
+		rm /tmp/excluded /tmp/pcic.conf
+	fi
+	;;
+
+'stop')
+	;;
+esac

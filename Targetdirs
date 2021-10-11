@@ -1,0 +1,350 @@
+#
+#ident	"@(#)Targetdirs	1.36	95/07/10 SMI"	/* SVr4.0 1.2.2.8	*/
+#
+# Copyright (c) 1989 by Sun Microsystems, Inc.
+#
+#
+# The list is built of owner-group combinations.  ROOT.SYS occurs twice
+# because some directories owned by root and in group sys are subdirectories
+# of directories having other owner-group attributes.
+#
+# It is easier to think in terms of directory names without the ROOT macro
+# prefix.  ROOTDIRS is TARGETDIRS with ROOT prefixes.  It is necessary
+# to work with ROOT prefixes when controlling conditional assignments.
+#
+# Symbolic links are added to the end of the list when IFNOTPROTO is not
+# '#', as when the superuser is doing a full build with ownerships and
+# output is going to a ROOT which is not /proto.  SYMLINKS are omitted
+# otherwise, because the NSE stumbles over them too often.  Hence the
+# use of IFNOTPROTO before the incremental assignment of SYMLINKS to
+# TARGETDIRS.
+#
+# The macro SYM.ROOT.SYS means symlinks with owner root and group sys.
+
+IFNOTPROTO:sh=	echo \\043
+$(CH) IFNOTPROTO=
+
+SYMLINKS=	$(SYM.ROOT.SYS) $(SYM.ROOT.BIN) $(SYM.BIN.BIN) $(SYM.OTHERS)
+
+TARGETDIRS=	$(ROOT.SYS) $(ROOT.BIN) $(BIN.BIN) $(ROOT.SYS2) \
+		$(UUCP.UUCP) $(OTHERS)
+
+$(IFNOTPROTO) TARGETDIRS += $(SYMLINKS)
+
+ROOT.SYS=  \
+	/dev  \
+	/dev/dsk \
+	/dev/fd \
+	/dev/rdsk \
+	/dev/rmt \
+	/dev/pts \
+	/dev/sad \
+	/dev/swap \
+	/devices  \
+	/etc  \
+	/etc/cron.d  \
+	/etc/default  \
+	/etc/dfs  \
+	/etc/fs  \
+	/etc/fs/nfs  \
+	/etc/fs/proc  \
+	/etc/init.d  \
+	/etc/lib  \
+	/etc/opt  \
+	/etc/rcS.d  \
+	/etc/rc0.d  \
+	/etc/rc1.d  \
+	/etc/rc2.d  \
+	/etc/rc3.d  \
+	/etc/tm  \
+	/export  \
+	/home  \
+	/kernel  \
+	/mnt  \
+	/opt  \
+	/platform  \
+	/proc  \
+	/sbin  \
+	/usr  \
+	/usr/kernel  \
+	/usr/platform  \
+	/usr/share  \
+	/var  \
+	/var/adm  \
+	/var/cron  \
+	/var/log \
+	/var/opt  \
+	/var/sadm
+
+ROOT.BIN=  \
+	/usr/bin  \
+	/usr/demo \
+	/usr/games \
+	/usr/include  \
+	/usr/lib  \
+	/usr/4lib  \
+	/usr/lib/class  \
+	/usr/lib/class/RT  \
+	/usr/lib/class/TS  \
+	/usr/lib/class/IA  \
+	/usr/lib/saf  \
+	/usr/old \
+	/usr/openwin \
+	/usr/sbin  \
+	/usr/sbin/static  \
+	/usr/ucb  \
+	/usr/xpg4 \
+	/usr/xpg4/bin \
+	/usr/lib/localedef \
+	/usr/lib/localedef/charmap \
+	/usr/lib/localedef/src \
+	/var/spool
+
+BIN.BIN=  \
+	/etc/saf  \
+	/usr/ccs  \
+	/usr/ccs/bin  \
+	/usr/ccs/lib  \
+	/usr/ccs/lib/fp  \
+	/usr/ccs/lib/fp/libp  \
+	/usr/kvm \
+	/usr/lib/font  \
+	/usr/lib/libp  \
+	/usr/lib/term  \
+	/usr/proc  \
+	/usr/proc/bin  \
+	/usr/proc/lib  \
+	/usr/sadm  \
+	/usr/sadm/sysadm  \
+	/usr/sadm/sysadm/add-ons  \
+	/usr/share/man  \
+	/var/news  \
+	/var/preserve  \
+	/var/saf  \
+	/var/spool/pkg
+
+ROOT.SYS2=  \
+	/usr/lib/fs  \
+	/usr/lib/fs/nfs  \
+	/usr/lib/fs/proc  \
+	/usr/lib/nfs  \
+	/usr/net  \
+	/usr/net/servers  \
+	/usr/share/lib  \
+	/usr/share/src  \
+	/var/spool/cron  \
+	/var/spool/cron/atjobs  \
+	/var/spool/cron/crontabs
+
+UUCP.UUCP=  \
+	/var/spool/uucp  \
+	/var/spool/uucppublic  \
+	/var/uucp
+
+OTHERS=  \
+	/dev/term  \
+	/tmp  \
+	/etc/mail  \
+	/usr/lib/sa  \
+	/usr/share/lib/tmac  \
+	/var/adm/log  \
+	/var/adm/passwd  \
+	/var/adm/sa  \
+	/var/mail  \
+	/var/spool/lp  \
+	/var/tmp
+
+# /var/mail/:saved is built directly by the rootdirs target in
+# /usr/src/Makefile because of the colon in its name.
+
+# macros for symbolic links
+
+SYM.ROOT.SYS=  \
+	/dev/stdin \
+	/dev/stdout \
+	/dev/stderr \
+	/usr/adm  \
+	/usr/lib/cron  \
+	/usr/man  \
+	/usr/pub
+
+SYM.ROOT.BIN=  \
+	/bin  \
+	/lib  \
+	/usr/spool
+
+SYM.BIN.BIN=  \
+	/usr/lib/tmac  \
+	/usr/news  \
+	/usr/preserve \
+	/usr/src
+
+SYM.OTHERS=  \
+	/etc/log  \
+	/usr/mail  \
+	/usr/tmp
+
+# prepend the ROOT prefix
+
+ROOTDIRS=	$(TARGETDIRS:%=$(ROOT)%)
+
+# conditional assignments
+#
+# Target directories with non-default values for owner and group must
+# be referenced here, using their fully-prefixed names, and the non-
+# default values assigned.  If a directory is mentioned above and not
+# mentioned below, it has default values for attributes.
+#
+# The default values for OWNER, GROUP, and DIRMODE are specified in
+# /usr/src/Makefile.master.
+#
+$(ROOT)/dev/term  \
+$(ROOT)/usr/mail  \
+$(ROOT)/var/mail  \
+$(ROOT.SYS:%=$(ROOT)%) \
+$(ROOT.BIN:%=$(ROOT)%) \
+$(ROOT.SYS2:%=$(ROOT)%) \
+$(SYM.ROOT.SYS:%=$(ROOT)%) \
+$(SYM.ROOT.BIN:%=$(ROOT)%):=	OWNER= root
+
+$(ROOT)/tmp  \
+$(ROOT)/usr/tmp  \
+$(ROOT)/var/tmp  \
+$(ROOT)/var/adm/sa  \
+$(ROOT.SYS:%=$(ROOT)%) \
+$(ROOT.SYS2:%=$(ROOT)%) \
+$(SYM.ROOT.SYS:%=$(ROOT)%):=	GROUP= sys
+
+$(ROOT)/dev/term:=		GROUP= root
+
+$(UUCP.UUCP:%=$(ROOT)%):=	OWNER= uucp
+$(UUCP.UUCP:%=$(ROOT)%):=	GROUP= uucp
+
+$(ROOT)/tmp  \
+$(ROOT)/usr/tmp  \
+$(ROOT)/var/tmp:=		OWNER= sys
+
+$(ROOT)/etc/log  \
+$(ROOT)/usr/lib/sa  \
+$(ROOT)/var/adm/log  \
+$(ROOT)/var/adm/passwd  \
+$(ROOT)/var/adm/sa:=		OWNER= adm
+
+$(ROOT)/etc/log  \
+$(ROOT)/var/adm/log  \
+$(ROOT)/var/adm/passwd:=	GROUP= adm
+
+$(ROOT)/etc/mail  \
+$(ROOT)/usr/mail  \
+$(ROOT)/var/mail  :=	GROUP= mail
+
+$(ROOT)/var/spool/lp:=		OWNER= lp
+$(ROOT)/var/spool/lp:=		GROUP= tty
+
+# file mode
+#
+$(ROOT)/tmp \
+$(ROOT)/var/tmp \
+$(ROOT)/var/spool/uucppublic:=  DIRMODE= 1777
+
+$(ROOT)/var/news  \
+$(ROOT)/var/preserve  \
+$(ROOT)/var/spool/pkg:=  DIRMODE= 777 
+
+$(ROOT)/dev  \
+$(ROOT)/dev/fd \
+$(ROOT)/dev/dsk \
+$(ROOT)/dev/rdsk \
+$(ROOT)/dev/rmt \
+$(ROOT)/dev/pts \
+$(ROOT)/dev/sad \
+$(ROOT)/dev/swap \
+$(ROOT)/dev/term  \
+$(ROOT)/devices  \
+$(ROOT)/etc  \
+$(ROOT)/etc/default  \
+$(ROOT)/etc/dfs  \
+$(ROOT)/etc/fs  \
+$(ROOT)/etc/fs/proc  \
+$(ROOT)/etc/init.d  \
+$(ROOT)/etc/lib  \
+$(ROOT)/etc/mail  \
+$(ROOT)/etc/opt  \
+$(ROOT)/etc/rcS.d  \
+$(ROOT)/etc/rc0.d  \
+$(ROOT)/etc/rc1.d  \
+$(ROOT)/etc/rc2.d  \
+$(ROOT)/etc/rc3.d  \
+$(ROOT)/etc/tm  \
+$(ROOT)/export  \
+$(ROOT)/home  \
+$(ROOT)/mnt  \
+$(ROOT)/opt  \
+$(ROOT)/sbin  \
+$(ROOT)/usr  \
+$(ROOT)/usr/bin  \
+$(ROOT)/usr/demo  \
+$(ROOT)/usr/games  \
+$(ROOT)/usr/include  \
+$(ROOT)/usr/kvm  \
+$(ROOT)/usr/lib  \
+$(ROOT)/usr/4lib  \
+$(ROOT)/usr/lib/cftime  \
+$(ROOT)/usr/lib/chrclass  \
+$(ROOT)/usr/lib/chrtbl  \
+$(ROOT)/usr/lib/class  \
+$(ROOT)/usr/lib/class/RT  \
+$(ROOT)/usr/lib/class/TS  \
+$(ROOT)/usr/lib/class/IA  \
+$(ROOT)/usr/lib/font  \
+$(ROOT)/usr/lib/fs  \
+$(ROOT)/usr/lib/fs/proc  \
+$(ROOT)/usr/lib/libp  \
+$(ROOT)/usr/lib/sa  \
+$(ROOT)/usr/lib/saf  \
+$(ROOT)/usr/lib/term  \
+$(ROOT)/usr/lib/tmac  \
+$(ROOT)/usr/net  \
+$(ROOT)/usr/net/servers  \
+$(ROOT)/usr/old \
+$(ROOT)/usr/openwin \
+$(ROOT)/usr/sbin  \
+$(ROOT)/usr/sbin/static  \
+$(ROOT)/usr/share/lib/tmac  \
+$(ROOT)/usr/ucb  \
+$(ROOT)/var  \
+$(ROOT)/var/adm  \
+$(ROOT)/var/adm/log  \
+$(ROOT)/var/adm/passwd  \
+$(ROOT)/var/adm/sa  \
+$(ROOT)/var/opt  \
+$(ROOT)/var/spool  :=	DIRMODE=775
+
+$(ROOT)/var/mail:=	DIRMODE=1777
+
+# symlink assignments, LINKDEST is the value of the symlink
+#
+$(ROOT)/usr/lib/cron:=	LINKDEST=../../etc/cron.d
+$(ROOT)/bin:=		LINKDEST=usr/bin
+$(ROOT)/lib:=		LINKDEST=usr/lib
+$(ROOT)/dev/stdin:=	LINKDEST=fd/0
+$(ROOT)/dev/stdout:=	LINKDEST=fd/1
+$(ROOT)/dev/stderr:=	LINKDEST=fd/2
+$(ROOT)/usr/pub:=	LINKDEST=share/lib/pub
+$(ROOT)/usr/man:=	LINKDEST=share/man
+$(ROOT)/usr/src:=	LINKDEST=share/src
+$(ROOT)/usr/adm:=	LINKDEST=../var/adm
+$(ROOT)/etc/log:=	LINKDEST=../var/adm/log
+$(ROOT)/usr/mail:=	LINKDEST=../var/mail
+$(ROOT)/usr/news:=	LINKDEST=../var/news
+$(ROOT)/usr/preserve:=	LINKDEST=../var/preserve
+$(ROOT)/usr/spool:=	LINKDEST=../var/spool
+$(ROOT)/usr/tmp:=	LINKDEST=../var/tmp
+$(ROOT)/usr/lib/tmac:=	LINKDEST=../share/lib/tmac
+
+# Installing a directory symlink calls for overriding INS.dir to install
+# a symlink.
+#
+$(SYMLINKS:%=$(ROOT)%):=  \
+   INS.dir= -$(RM) -r $@; $(SYMLINK) $(LINKDEST) $@; \
+	     $(CHOWN) $(OWNER) $@; $(CHGRP) $(GROUP) $@

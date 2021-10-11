@@ -1,0 +1,39 @@
+# Indicate that the dependency on liblddbg is USED
+
+liblddbg.so -	$USED;
+
+# Specify what global symbols we require (refer sgs/include/libld.h)
+
+SUNW_private.2.1 {
+	global:
+		create_outfile;
+		ent_setup;
+		finish_libs;
+		ld_atexit;
+		ld_start;
+		ld_support_loadso;
+		list_append;
+		list_insert;
+		list_prepend;
+		list_where;
+		make_sections;
+		open_outfile;
+		process_open;
+		reloc_init;
+		reloc_process;
+		sdf_desc;
+		sdf_find;
+		sym_add_u;
+		sym_enter;
+		sym_find;
+		sym_validate;
+		update_outfile;
+		vers_base;
+		vers_check_defs;
+		vers_desc;
+		vers_find;
+
+		_elf_outsync;		# interposition of libelf.so routine
+	local:
+		*;
+};

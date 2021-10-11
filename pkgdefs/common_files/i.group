@@ -1,0 +1,43 @@
+#!/bin/sh
+#
+#ident	"@(#)i.group	1.1	94/04/15 SMI"
+#
+# Copyright (c) 1993 by Sun Microsystems, Inc.
+#
+
+PATH="/usr/bin:/usr/sbin:${PATH}"
+export PATH
+
+while read src dest
+do
+	if [ ! -f $dest ] ; then
+		cp $src $dest
+	else
+		#
+		# Strip off any leading "/a"
+		#
+		dest_file=`echo $dest | sed "s=^/a/=/="`
+
+		#
+		# Add the sysadmin group (gid 14) to support admintool
+		#
+		grep '^sysadmin:.*:14:.*' $dest 2>&1 >/dev/null
+		if [ $? = 0 ] ; then
+			/usr/bin/true
+		elif grep '^sysadmin:' $dest 2>&1 >/dev/null; then
+			cur_name="sysadmin"
+			echo "SYSADMIN_NOT_14 $dest_file none" >> /tmp/CLEANUP
+			echo "sysadmin::14:" >> $dest
+
+		elif grep ':14:' $dest 2>&1 >/dev/null; then
+			cur_name=`grep ':14:' $dest | awk -F: '{print $1}'`
+			echo "GROUP14_IN_USE $dest_file none" >> /tmp/CLEANUP
+			echo "sysadmin::14:" >> $dest
+
+		else		# add the group
+			echo "sysadmin::14:" >> $dest
+		fi
+	fi
+done
+
+exit 0

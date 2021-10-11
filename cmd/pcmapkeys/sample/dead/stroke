@@ -1,0 +1,14 @@
+# Copyright (c) 1993 Sun Microsystems, Inc.  All Rights Reserved.
+#
+#	"@(#)stroke	1.1	93/03/02 SMI"
+#
+dead: <stroke>			# Stroke
+' '  <stroke>         # <stroke>
+'D'  <D-stroke>          # D stroke
+'H'  <H-stroke>          # H stroke
+'L'  <L-stroke>          # L stroke
+'T'  <T-stroke>          # T stroke
+'d'  <d-stroke>          # d stroke
+'h'  <h-stroke>          # h stroke
+'l'  <l-stroke>          # l stroke
+'t'  <t-stroke>          # t slash

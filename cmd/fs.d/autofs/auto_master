@@ -1,0 +1,6 @@
+# Master map for automounter
+#
++auto_master
+/net		-hosts		-nosuid
+/home		auto_home
+/xfn		-xfn

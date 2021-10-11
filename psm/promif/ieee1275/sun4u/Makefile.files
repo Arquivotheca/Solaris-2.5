@@ -1,0 +1,33 @@
+#
+# Copyright (c) 1992-1994, by Sun Microsystems, Inc.
+# All rights reserved.
+#
+#pragma	ident	"@(#)Makefile.files	1.8	95/05/25 SMI"
+#
+# psm/promif/ieee1275/sun4u/Makefile.files
+#
+#	This Makefile defines all the promif file modules for the 
+#	directory psm/promif/ieee1275/sun4u.
+#
+
+#
+# Note that the kernel doesn't use/need prom_map.o and prom_alloc.o
+#
+
+#
+#			PROM Platform-dependent routines
+#
+CORE_OBJS +=				\
+	prom_cpuctl.o			\
+	prom_getunum.o			\
+	prom_heartbeat.o		\
+	prom_idprom.o			\
+	prom_init.o			\
+	prom_macaddr.o			\
+	prom_mem.o			\
+	prom_mmu.o			\
+	prom_power_off.o		\
+	prom_retain.o			\
+	prom_set_traptable.o		\
+	prom_sparc.o			\
+	prom_vername.o

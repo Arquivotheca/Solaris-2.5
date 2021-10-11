@@ -1,0 +1,29 @@
+#
+# uts/sunmmu/Makefile.files
+# Copyright (c) 1991 by Sun Microsystems, Inc.
+#
+#ident	"@(#)Makefile.files	1.4	92/07/14 SMI"
+#
+#	This Makefile defines all file modules and build rules for the
+# directory uts/sunmmu and it's children. These are the source files which
+# are specific to the old style sunmmu (sun4/sun4c).
+#
+
+#
+#	object lists
+#
+CORE_OBJS +=	overflow.o	underflow.o	seg_kmem.o	hat_sunm.o
+
+#
+#	Section 3:	misc.
+#
+INC_PATH	+= -I$(UTSBASE)/sunmmu
+
+#
+# Since assym.s is a derived file, the dependency must be explicit for
+# all files including this file. (This is only actually required in the
+# instance when the .nse_depinfo file does not exist.) It may seem that
+# the lint targets should also have a similar dependency, but they don't
+# since only C headers are included when #defined(lint) is true.
+#
+ASSYM_DEPS	+= overflow.o underflow.o

@@ -1,0 +1,28 @@
+#	Copyright (c) 1990-94 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#ident	"@(#)depend 1.4 92/09/25 SMI [RMTC]"
+#
+# This package information file defines software dependencies associated
+# with the pkg.  You can define three types of pkg dependencies with this file:
+#	 P indicates a prerequisite for installation
+#	 I indicates an incompatible package
+#	 R indicates a reverse dependency
+# <pkg.abbr> see pkginfo(4), PKG parameter
+# <name> see pkginfo(4), NAME parameter
+# <version> see pkginfo(4), VERSION parameter
+# <arch> see pkginfo(4), ARCH parameter
+# <type> <pkg.abbr> <name>
+#	(<arch>)<version>
+#	(<arch>)<version>
+# 	...
+# <type> <pkg.abbr> <name>
+# ...
+# Required system dependencies
+P SUNWcsr	Core Sparc, (Root)
+P SUNWcsu	Core Sparc, (Usr)
+P SUNWcar	Core Archictecture, (Root)
+P SUNWhsm	Online: Backup
+
+# Other packages this package has dependencies
+# upon at install-time or run-time.

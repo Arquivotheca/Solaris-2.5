@@ -1,0 +1,49 @@
+			The L file
+
+Here's a sample L file (indent on this page):
+
+		----LFILE----
+		libname
+		N-00000
+		N-00001
+		N-00002
+
+The first line contains a security string which both dump and the
+executor need to recheck when they open the file.
+
+The second line contains the tape library name.  All tape names are of
+the form libname:00003.
+
+Subsequent lines look like this:
+
+		N-00000
+		|||
+		||tape id number [maybe you want to know the db?]
+		|used flag: - = untouched, + = touched this tape
+		status flag:    N-new P-Partial E-Error F-Full U-new/unlabelled
+
+The status flag is for dump's benefit (to know which tapes on which to
+write) and the executor to know which tapes are error'd out.
+
+Dump needs to read in the file and update both the statuses and the used
+flags.  Leave the first two lines intact and change subsequent lines.
+
+Add a new line at the end for each new tape you use (because you ran out and had
+to request one from the operator).
+
+Note well that you need to update the `used flag' whenever you write
+to a tape and that you need to set and interpret the flags that
+change from {NP} -> P -> F (or -> E).
+
+Never write on an E tape.
+
+Never write on a P tape.
+
+You need update the file only on exit.
+
+One line is special (when returned from dump)
+		N+00001 5
+
+and tells the executor the tape position of the NEXT dump to be done
+on the tape (which is the first remaining writeable tape).  The first
+file on a tape is file 1.

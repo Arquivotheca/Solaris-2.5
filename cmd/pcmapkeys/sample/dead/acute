@@ -1,0 +1,30 @@
+# Copyright (c) 1993 Sun Microsystems, Inc.  All Rights Reserved.
+#
+#	"@(#)acute	1.1	93/03/02 SMI"
+#
+dead: <acute-accent>  	# acute accent
+' '  <acute-accent>         # <acute-accent>
+'A'  <A-acute>          # A acute
+'C'  <C-acute>          # C acute
+'E'  <E-acute>          # E acute
+'I'  <I-acute>          # I acute
+'L'  <L-acute>          # L acute
+'O'  <O-acute>          # O acute
+'R'  <R-acute>          # R acute
+'S'  <S-acute>          # S acute
+'U'  <U-acute>          # U acute
+'Y'  <Y-acute>          # Y acute
+'Z'  <Z-acute>          # Z acute
+'a'  <a-acute>          # a acute
+'c'  <c-acute>          # c acute
+'e'  <e-acute>          # e acute
+'i'  <i-acute>          # i acute
+'l'  <l-acute>          # l acute
+'n'  <n-acute>          # n acute
+'o'  <o-acute>          # o acute
+'r'  <r-acute>          # r acute
+'s'  <s-acute>          # s acute
+'u'  <u-acute>          # u acute
+'y'  <y-acute>          # y acute
+'z'  <z-acute>          # z acute
+#

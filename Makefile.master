@@ -1,0 +1,314 @@
+#
+#ident	"@(#)Makefile.master	1.71	95/07/16 SMI"
+#
+# Copyright (c) 1993 by Sun Microsystems, Inc.
+#
+# Makefile.master, global definitions for system source
+#
+ROOT=		/proto
+
+# CH toggles operations restricted to root. It is normally set to `#'. When
+# running as root, it should be set to `' (null).
+#
+# RELEASE_BUILD should be cleared for final release builds. This is completely
+# independent of CH. NOT_RELEASE_BUILD is exactly what the name implies.
+#
+# INTERNAL_RELEASE_BUILD is a subset of RELEASE_BUILD. It mostly controls
+# identification strings. Enabling RELEASE_BUILD automatically enables
+# INTERNAL_RELEASE_BUILD.
+#
+# STRIP_COMMENTS toggles comment section striping. Generally the same setting
+# as INTERNAL_RELEASE_BUILD.
+#
+# BUILD_PROFS toggles the building of profiled libraries. Again, generally
+# the same setting as INTERNAL_RELEASE_BUILD.
+#
+# STRIPFLAG is similar. It is set to a unique value depending upon the
+# value of CH. It is set here for use in lower level Makefiles to allow
+# a single point change to effect the entire build.
+#
+CH:sh=					echo \\043
+
+NOT_RELEASE_BUILD=
+INTERNAL_RELEASE_BUILD:sh=		echo \\043
+RELEASE_BUILD:sh=			echo \\043
+$(RELEASE_BUILD)NOT_RELEASE_BUILD:sh=	echo \\043
+$(RELEASE_BUILD)INTERNAL_RELEASE_BUILD=
+
+STRIP_COMMENTS=	$(INTERNAL_RELEASE_BUILD)
+BUILD_PROFS=	$(INTERNAL_RELEASE_BUILD)
+
+STRIPFLAG=
+$(CH)STRIPFLAG=	-s
+
+RPCGEN=		rpcgen
+ECHO=		echo
+INS=		install
+SYMLINK=	ln -s
+LN=		ln
+CHMOD=		chmod
+CHOWN=		$(ECHO)
+$(CH)CHOWN=	chown -h
+CHGRP=		$(ECHO)
+$(CH)CHGRP=	chgrp -h
+MV=		mv -f
+RM=		rm -f
+MCS=		mcs
+
+FILEMODE=	644
+DIRMODE=	755
+OWNER=		bin
+GROUP=		bin
+
+# Declare that nothing should be built in parallel.
+# Individual Makefiles can use the .PARALLEL target to declare otherwise.
+.NO_PARALLEL:
+
+# For stylistic checks
+#
+# Note that the X and C checks are not used at this time and may need
+# modification when they are actually used.
+#
+CSTYLE=		cstyle
+CSTYLE_TAIL=
+HDRCHK=		hdrchk
+HDRCHK_TAIL=
+
+DOT_H_CHECK=	\
+	@$(ECHO) "checking $<"; $(CSTYLE) $< $(CSTYLE_TAIL); \
+	$(HDRCHK) $< $(HDRCHK_TAIL)
+
+DOT_X_CHECK=	\
+	@$(ECHO) "checking $<"; $(RPCGEN) -C -h $< | $(CSTYLE) $(CSTYLE_TAIL); \
+	$(RPCGEN) -C -h $< | $(HDRCHK) $< $(HDRCHK_TAIL)
+
+DOT_C_CHECK=	\
+	@$(ECHO) "checking $<"; $(CSTYLE) $< $(CSTYLE_TAIL)
+
+# modified for use within NSE environments
+#
+INS.file=	$(RM) $@; $(INS) -s -m $(FILEMODE) -f $(@D) $<
+$(CH)INS.file=	$(INS) -s -m $(FILEMODE) -u $(OWNER) -g $(GROUP) -f $(@D) $<
+INS.dir=	$(INS) -s -d -m $(DIRMODE) $@
+$(CH)INS.dir=	$(INS) -s -d -m $(DIRMODE) -u $(OWNER) -g $(GROUP) $@
+# installs and renames at once
+#
+INS.rename=	$(INS.file); $(MV) $(@D)/$(<F) $@
+
+# MACH must be set in the shell environment per uname -p on the build host
+# More specific architecture variables should be set in lower makefiles.
+
+# In most places, assignments to these macros should be appended with +=
+# (CPPFLAGS.master allows values to be prepended to CPPFLAGS).
+# Optimization is toggleable in lower level makefiles via the COPTFLAG macro.
+#
+sparc_CFLAGS=	-xcg89 -Wa,-cg92
+i386_CFLAGS=
+COPTFLAG=       -O
+CFLAGS=         $(COPTFLAG) $($(MACH)_CFLAGS)
+DTEXTDOM=-DTEXT_DOMAIN=\"$(TEXT_DOMAIN)\"	# For messaging.
+CPPFLAGS.master=$(DTEXTDOM) \
+	$(ENVCPPFLAGS1) $(ENVCPPFLAGS2) $(ENVCPPFLAGS3) $(ENVCPPFLAGS4)
+CPPFLAGS=	$(CPPFLAGS.master)
+AS_CPPFLAGS=	$(CPPFLAGS.master)
+
+#
+# For source message catalogue
+#
+.SUFFIXES: $(SUFFIXES) .po
+MSGROOT= $(ROOT)/catalog
+MSGDOMAIN= $(MSGROOT)/$(TEXT_DOMAIN)
+CLOBBERFILES += $(POFILE) $(POFILES)
+COMPILE.cpp= $(CC) -E -C $(CFLAGS) $(CPPFLAGS)
+XGETTEXT= xgettext
+XGETFLAGS= -c TRANSLATION_NOTE
+BUILD.po= $(XGETTEXT) $(XGETFLAGS) $<.i ;\
+	$(RM)	$@ ;\
+	sed "/^domain/d" < messages.po  > $@ ;\
+	$(RM) messages.po $<.i
+#
+# This is overwritten by local Makefile when PROG is a list.
+#
+POFILE= $(PROG).po
+
+
+# The C++ translation system (can't bring myself to call it a compiler),
+# doesn't understand the ANSI and K&R C keyword "signed". The following
+# flag settings silence warnings about this. Hopefully, this will be fixed.
+#
+sparc_CCFLAGS=	-cg89 -Qoption fbe -cg92
+i386_CCFLAGS=
+CCOPTFLAG=	-O
+CCFLAGS=	$(CCOPTFLAG) -Dsigned= $($(MACH)_CCFLAGS)
+
+# Define compilation macros.
+#
+COMPILE.c=	$(CC) $(CFLAGS) $(CPPFLAGS) -c
+COMPILE.cc=	$(CCC) $(CCFLAGS) $(CPPFLAGS) -c
+COMPILE.s=	$(AS) $(ASFLAGS) $(AS_CPPFLAGS)
+LINK.c=		$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS)
+LINK.cc=	$(CCC) $(CCFLAGS) $(CPPFLAGS) $(LDFLAGS)
+LINT.c=		$(LINT) $(LINTFLAGS) $(CPPFLAGS)
+
+# Define native compilation macros
+#
+sparc_NATIVECC= /opt/SUNWspro/bin/cc
+i386_NATIVECC=  /opt/SUNWspro/bin/cc
+NATIVECC= $($(MACH)_NATIVECC)
+
+# Pass -Y flag to cpp (method of which is release-dependent)
+CCYFLAG=	-Y I,
+
+# Rules (normally from make.rules) and macros which are used for post
+# processing files. Normally, these do stripping of the comment section
+# automatically.
+#    RELEASE_CM:	Should be editted to reflect the release.
+#    POST_PROCESS_O:	Post-processing for `.o' files.
+#    POST_PROCESS_A:	Post-processing for `.a' files (currently null).
+#    POST_PROCESS_SO:	Post-processing for `.so' files.
+#    POST_PROCESS:	Post-processing for executable files (no suffix).
+# Note that these macros are not completely generalized as they are to be
+# used with the file name to be processed following.
+#
+# It is left as an exercise to Release Engineering to embellish the generation
+# of the release comment string.
+#
+#	If this is a standard development build:
+#		compress the comment section (mcs -c)
+#		add the standard comment (mcs -a $(RELEASE_CM))
+#		add the development specific comment (mcs -a $(DEV_CM))
+#
+#	If this is an installation build:
+#		delete the comment section (mcs -d)
+#		add the standard comment (mcs -a $(RELEASE_CM))
+#		add the development specific comment (mcs -a $(DEV_CM))
+#
+#	If this is an release build:
+#		delete the comment section (mcs -d)
+#		add the standard comment (mcs -a $(RELEASE_CM))
+#
+#	Sigh,... The declaration POUND_SIGN is always '#'. This is just needed
+#	to get around the make **bug** that '#' is always a comment delimiter,
+#	even when escaped or quoted.
+#
+# The following list of macros are used in the definition of RELEASE_CM
+# which is used to label all binaries in the build:
+#
+# 	RELEASE		Specific release of the build, eg: 5.2
+#	VERSION		Version of the build (alpha, beta, Generic)
+#	PATCHID		If this is a patch this value should contain
+#			the patchid value (eg: "Generic 100832-01"), otherwise
+#			it will be set to $(VERSION)
+#	RELEASE_DATE	Date of the Release Build
+#	PATCH_DATE	Date the patch was created, if this is blank it
+#			will default to the RELEASE_DATE
+#
+POUND_SIGN:sh=	echo \\043
+RELEASE=	5.5
+VERSION=	SunOS Development
+PATCHID=	$(VERSION)
+RELEASE_DATE=	April 1995
+PATCH_DATE=	$(RELEASE_DATE)
+RELEASE_CM=	"@($(POUND_SIGN))SunOS $(RELEASE) $(PATCHID) $(PATCH_DATE)"
+DEV_CM=		"@($(POUND_SIGN))SunOS Internal Development: `$(ECHO) $$LOGNAME` `date +%D` `$(ECHO) [\`basename $$CODEMGR_WS\`]`"
+
+#
+# SMALL_DEV_CM is used by ufsbootblk, because DEV_CM is too long.
+# If you make this much longer, you may break the bootblock.
+#
+SMALL_DEV_CM=	"`date +%D` `$(ECHO) [\`basename $$CODEMGR_WS\`]`"
+
+PROCESS_COMMENT=		   @?${MCS} -c -a $(RELEASE_CM) -a $(DEV_CM)
+$(STRIP_COMMENTS)PROCESS_COMMENT=  @?${MCS} -d -a $(RELEASE_CM) -a $(DEV_CM)
+$(RELEASE_BUILD)PROCESS_COMMENT=   @?${MCS} -d -a $(RELEASE_CM)
+
+POST_PROCESS_O=		$(PROCESS_COMMENT) $@
+POST_PROCESS_A=
+POST_PROCESS_SO=	$(PROCESS_COMMENT) $@
+POST_PROCESS=		$(PROCESS_COMMENT) $@
+
+#	Default build rules which perform comment section post-processing.
+#
+.c:
+	$(LINK.c) -o $@ $< $(LDLIBS)
+	$(POST_PROCESS)
+.c.o:
+	$(COMPILE.c) $(OUTPUT_OPTION) $<
+	$(POST_PROCESS_O)
+.c.a:
+	$(COMPILE.c) -o $% $<
+	$(PROCESS_COMMENT) $%
+	$(AR) $(ARFLAGS) $@ $%
+	$(RM) $%
+.s.o:
+	$(COMPILE.s) -o $@ $<
+	$(POST_PROCESS_O)
+.s.a:
+	$(COMPILE.s) -o $% $<
+	$(PROCESS_COMMENT) $%
+	$(AR) $(ARFLAGS) $@ $%
+	$(RM) $%
+.cc:
+	$(LINK.cc) -o $@ $< $(LDLIBS)
+	$(POST_PROCESS)
+.cc.o:
+	$(COMPILE.cc) $(OUTPUT_OPTION) $<
+	$(POST_PROCESS_O)
+.cc.a:
+	$(COMPILE.cc) -o $% $<
+	$(AR) $(ARFLAGS) $@ $%
+	$(PROCESS_COMMENT) $%
+	$(RM) $%
+.y:
+	$(YACC.y) $<
+	$(LINK.c) -o $@ y.tab.c $(LDLIBS)
+	$(POST_PROCESS)
+	$(RM) y.tab.c
+.y.o:
+	$(YACC.y) $<
+	$(COMPILE.c) -o $@ y.tab.c
+	$(POST_PROCESS_O)
+	$(RM) y.tab.c
+.l:
+	$(RM) $*.c
+	$(LEX.l) $< > $*.c
+	$(LINK.c) -o $@ $*.c -ll $(LDLIBS)
+	$(POST_PROCESS)
+	$(RM) $*.c
+.l.o:
+	$(RM) $*.c
+	$(LEX.l) $< > $*.c
+	$(COMPILE.c) -o $@ $*.c
+	$(POST_PROCESS_O)
+	$(RM) $*.c
+
+#
+# Rules to create message catalogue files from
+#	.c, .y and .l files
+#
+.c.po:
+	$(COMPILE.cpp) $<  > $<.i
+	$(BUILD.po)
+
+.y.po:
+	yacc -d $<
+	$(COMPILE.cpp) y.tab.c  > $<.i
+	$(BUILD.po)
+	$(RM) y.tab.c 
+
+.l.po:
+	lex $<
+	$(COMPILE.cpp) lex.yy.c  > $<.i
+	$(BUILD.po)
+	$(RM) lex.yy.c
+
+#
+# Rules to perform stylistic checks
+#
+.SUFFIXES: $(SUFFIXES) .x .check
+
+.h.check:
+	$(DOT_H_CHECK)
+
+.x.check:
+	$(DOT_X_CHECK)

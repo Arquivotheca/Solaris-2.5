@@ -1,0 +1,33 @@
+#       Copyright (c) 1990-1995 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)prototype_i386	1.3	95/03/23 (c) Sun Microsystems, Inc.
+#
+# This required package information file contains a list of package contents.
+# The 'pkgmk' command uses this file to identify the contents of a package
+# and their location on the development machine when building the package.
+# Can be created via a text editor or through use of the 'pkgproto' command.
+
+#!search <pathname pathname ...>	# where to find pkg objects
+#!include <filename>			# include another 'prototype' file
+#!default <mode> <owner> <group>	# default used if not specified on entry
+#!<param>=<value>			# puts parameter in pkg environment
+
+#
+# List drivers for devices supported only on MicroChannel bus machines.
+#
+i copyright
+i depend
+i pkginfo
+#
+# Path names are relative to the prototype root directory
+#
+# SUNWpsdmr
+#
+# Following drivers are from SUNWcar.i
+d none platform 755 root sys
+d none platform/i86pc 755 root sys
+d none platform/i86pc/kernel 755 root sys
+d none platform/i86pc/kernel/drv 755 root sys
+f none platform/i86pc/kernel/drv/mcis 755 root sys
+f none platform/i86pc/kernel/drv/mcis.conf 644 root sys

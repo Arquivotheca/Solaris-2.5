@@ -1,0 +1,33 @@
+#
+#ident	"@(#)Makefile.compfs	1.1	94/07/27 SMI"
+#
+# Copyright (c) 1994 by Sun Microsystems, Inc.
+# 
+# stand/lib/fs/compfs/Makefile.compfs
+#
+# Standalone Library COMPFS makefile
+#
+# This Makefile is included by ../../i386/Makefile and is used
+# to build $(LIBCOMPFS).  The library is built in ../../i386.
+#
+
+COMPFSOBJ=		compfsops.o
+COMPFSSRC=		$(COMPFSOBJ:%.o=$(COMPFSDIR)/%.c)
+COMPFSLINTOBJ=		$(COMPFSOBJ:%.o=objs/%.ln)
+
+.PARALLEL:	$(COMPFSOBJ:%=objs/%)
+.PARALLEL:	$(COMPFSLINTOBJ)
+
+$(LIBCOMPFS) :=	OBJECTS = $(COMPFSOBJ)
+
+$(LINTLIBCOMPFS): $(COMPFSLINTOBJ)
+	@-$(ECHO) "\n (compfs lint library construction):"
+	@$(LINT) -o compfs $(LINTFLAGS) $(COMPFSLINTOBJ)
+
+objs/%.ln: $(COMPFSDIR)/%.c
+	@($(LHEAD) $(LINT.c) -c $< $(LTAIL))
+	@$(MV) $(@F) $@
+
+objs/%.o: $(COMPFSDIR)/%.c
+	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)

@@ -1,0 +1,34 @@
+#	Copyright (c) 1995 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#       @(#)prototype_com	1.4     95/01/23 (c) Sun Microsystems, Inc.
+#
+# This required package information file contains a list of package contents.
+# The 'pkgmk' command uses this file to identify the contents of a package
+# and their location on the development machine when building the package.
+# Can be created via a text editor or through use of the 'pkgproto' command.
+
+# packaging files
+i pkginfo
+i copyright
+#
+# source locations relative to the prototype file
+#
+# SUNW0on
+#
+d none usr              775 root sys
+d none usr/lib          775 root bin
+d none usr/lib/locale               755 bin bin
+d none usr/lib/locale/C             755 bin bin
+d none usr/lib/locale/C/LC_MESSAGES 755 bin bin
+d none usr/lib/locale/C/LC_TIME     755 bin bin
+f none usr/lib/locale/C/LC_MESSAGES/SUNW_OST_ADMIN.po   644 root sys
+f none usr/lib/locale/C/LC_MESSAGES/SUNW_OST_NETRPC.po  644 root sys
+f none usr/lib/locale/C/LC_MESSAGES/SUNW_OST_OSCMD.po   644 root sys
+f none usr/lib/locale/C/LC_MESSAGES/SUNW_OST_OSLIB.po   644 root sys
+f none usr/lib/locale/C/LC_MESSAGES/SUNW_OST_UCBCMD.po  644 root sys
+f none usr/lib/locale/C/LC_MESSAGES/SUNW_OST_LINFO      644 root sys
+f none usr/lib/locale/C/LC_MESSAGES/mailx.help          644 root sys
+f none usr/lib/locale/C/LC_MESSAGES/more.help           644 root sys
+f none usr/lib/locale/C/LC_MESSAGES/uxlibc.src          644 root sys
+f none usr/lib/locale/C/LC_TIME/SUNW_OST_OSCMD.po       644 root sys

@@ -1,0 +1,12 @@
+#ident  "@(#)preinstall 1.1     94/03/18 SMI"
+#
+# Copyright (c) 1994 by Sun Microsystems, Inc.
+
+if [ -d $BASEDIR/devices/pseudo -a -c $BASEDIR/devices/pseudo/clone:arp ] ;
+then
+	cd $BASEDIR/devices/pseudo
+	find * -type d -prune -o \( \( -type b -o -type c \) -print \) | \
+		grep -v '.*@[0-9][0-9]*:*' | xargs rm -f >/dev/null 2>&1
+fi
+
+exit 0

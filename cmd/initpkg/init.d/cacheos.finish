@@ -1,0 +1,15 @@
+#!/sbin/sh
+
+#
+#	Copyright (c) 1994, Sun Microsystems Inc.
+#
+
+#ident	"@(#)cacheos.finish	1.7	95/01/27 SMI"
+
+ROOTFS=`/usr/lib/fs/cachefs/cfsfstype -r 2>/dev/null`
+if [ "$ROOTFS" = "cachefs" ]; then
+	if [ -f /.autoinstall/postinstall ]; then
+		mv /.autoinstall/postinstall /.autoinstall/postinstall.done
+		/sbin/sh /.autoinstall/postinstall.done
+	fi
+fi

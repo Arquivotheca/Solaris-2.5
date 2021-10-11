@@ -1,0 +1,66 @@
+#
+#ident	"@(#)Makefile.rules	1.4	95/03/24 SMI"
+#
+# Copyright (c) 1994, by Sun Microsystems, Inc.
+# All rights reserved.
+#
+# psm/stand/bootblks/obp-c/Makefile.rules
+#
+
+OBPSRCDIR	= $(BASEDIR)/obp-c
+
+#
+# Sources and objects used to build the C-based bootblock
+# for OBP V0 and V2 machines (using the romvec client interface)
+#
+OBP_C_SRCS	= main.c obp_devio.c $(FS_C_SRCS)
+OBP_S_SRCS	= obp_util.s
+OBP_SRCS	= $(OBP_C_SRCS) $(OBP_S_SRCS)
+OBP_SRT		= obp_srt0.o
+OBP_OBJS	= $(OBP_C_SRCS:%.c=%.o) $(OBP_S_SRCS:%.s=%.o) bbvers.o
+OBP_L_OBJS	= $(OBP_SRT:%.o=%.ln) $(OBP_OBJS:%.o=%.ln)
+
+MAPFILE		= $(OBPSRCDIR)/mapfile
+
+CPPINCS		+= -I$(ROOT)/usr/platform/$(PLATFORM)/include
+CPPINCS		+= -I$(ROOT)/usr/include/v7 -I$(OBPSRCDIR) -I$(PSMSYSHDRDIR)
+CPPFLAGS	+= -D_BOOT -D_KERNEL $(CPPINCS) $(CCYFLAG)$(PSMSYSHDRDIR)
+ASFLAGS		+= -D_BOOT -D_ASM -P $(CPPINCS)
+LDFLAGS		= -dn -M $(OBPSRCDIR)/mapfile -e start
+LDLIBS		= -L$(PSMNAMELIBDIR)/$(PLATFORM) -lnames -L$(SYSLIBDIR) -lsa
+
+#
+# lint pass1 enforcement
+#
+CFLAGS		+= -v
+
+# main.o	:=	CFLAGS += -DDEBUG
+
+MKBOOT		= mkboot
+MKVERS		= makevers
+
+#
+# Pattern matching rules to compile the source in this directory
+#
+%.o: $(OBPSRCDIR)/%.c
+	$(COMPILE.c) -o $@ $<
+
+%.o: %.c
+	$(COMPILE.c) -o $@ $<
+
+%.o: $(OBPSRCDIR)/%.s
+	$(COMPILE.s) -o $@ $<
+
+%.ln: $(OBPSRCDIR)/%.c
+	@($(LHEAD) $(LINT.c) $< $(LTAIL))
+
+%.ln: %.c
+	@($(LHEAD) $(LINT.c) $< $(LTAIL))
+
+%.ln: $(OBPSRCDIR)/%.s
+	@($(LHEAD) $(LINT.s) $< $(LTAIL))
+
+%: $(OBPSRCDIR)/%.sh
+	$(RM) $@
+	cat $< > $@
+	chmod +x $@

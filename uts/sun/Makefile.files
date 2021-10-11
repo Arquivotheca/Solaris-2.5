@@ -1,0 +1,169 @@
+#
+# Copyright (c) 1995, by Sun Microsystems, Inc.
+# All rights reserved.
+#
+#pragma	ident	"@(#)Makefile.files	1.58	95/03/23 SMI"
+#
+# uts/sun/Makefile.files
+#
+#	This Makefile defines all file modules and build rules for the
+# directory uts/sun and it's children. These are the source files which
+# are common to all sun implementations.
+#
+
+#
+#	object lists
+#
+#	XXX -	vuid_* ?, files indicates these should be in the win and
+#		kbd modules.... What gives?
+#
+#
+#	generic-unix module
+#
+GENUNIX_OBJS +=								\
+	mem_kern.o
+
+#
+#			Driver Modules
+#
+AUDIO_OBJS +=	audio_79C30.o
+
+BE_OBJS +=	be.o
+
+AUDIOCS_OBJS +=	audio_4231.o
+
+BPP_OBJS +=	bpp.o
+
+BWTWO_OBJS +=	bwtwo.o
+
+CGTWO_OBJS +=	cgtwo.o		cg2_rop.o	cg2_colormap.o \
+		gp1_shmem.o	gp1_util.o	pr_clip.o
+
+CGEIGHT_OBJS +=	cgeight.o
+
+CGEIGHT-P4_OBJS += cgeight-p4.o
+
+CGFOUR_OBJS +=	cgfour.o
+
+CG14_OBJS +=	cgfourteen.o
+
+CGSIX_OBJS +=	cgsix.o
+
+CGTHREE_OBJS +=	cgthree.o
+
+CONSKBD_OBJS += conskbd.o
+
+CONSMS_OBJS +=	consms.o
+
+DBRI_OBJS +=	dbri.o		dbri_conf.o	dbri_connect.o \
+		dbri_driver.o	dbri_isdn.o	dbri_isr.o \
+		dbri_mmcodec.o	dbri_pipe.o	dbri_subr.o
+
+DIAUDIO_OBJS +=	audio.o
+
+DMA_OBJS +=	dmaga.o
+
+EEPROM_OBJS +=	eeprom.o
+
+ESP_OBJS +=	esp.o reset_notify.o
+
+FAS_OBJS +=	fas.o reset_notify.o fas_callbacks.o
+
+FD_OBJS +=	fd.o
+
+ISP_OBJS +=	isp.o isp_fw.o reset_notify.o
+
+LE_OBJS +=	le.o
+
+LEBUFFER_OBJS += lebuffer.o
+
+LEDMA_OBJS +=	ledma.o
+
+ID_OBJS +=	id.o
+
+IPI3SC_OBJS +=	ipi3sc.o
+
+MS_OBJS +=	ms.o
+
+NCR_OBJS +=	ncr.o
+
+OBIO_OBJS +=	obio.o
+
+OPENEEPR_OBJS += openprom.o
+
+PLN_OBJS +=	pln.o pln_ctlr.o
+
+PM_OBJS +=	pm.o
+
+PN_OBJS +=	ipi.o is.o
+
+QEC_OBJS +=	qec.o
+
+QE_OBJS +=	qe.o
+
+HME_OBJS +=	hme.o
+
+SBUS_OBJS +=	sbus.o
+
+SBUSMEM_OBJS +=	sbusmem.o
+
+SD_OBJS +=	sd.o	sdwatch.o
+
+SSD_OBJS +=	ssd.o	sdwatch.o
+
+SOC_OBJS +=	soc.o	soc_ucode.o
+
+IE_OBJS +=	ie.o
+
+ST_OBJS +=	st.o		st_conf.o
+
+STC_OBJS +=	stc.o
+
+STP4020_OBJS +=	stp4020.o
+
+VME_OBJS +=	vme.o
+
+WC_OBJS +=	wscons.o
+
+VMEMEM_OBJS +=	vmemem.o
+
+WSDRV_OBJS += 	wsdrv.o
+
+XBOX_OBJS +=	xbox.o
+
+XD_OBJS +=	xd.o
+
+XDC_OBJS +=	xdc.o
+
+XT_OBJS +=	xt.o
+
+XY_OBJS +=	xy.o
+
+XYC_OBJS +=	xyc.o
+
+ZS_OBJS +=	zs_async.o	zs_common.o
+
+ZSH_OBJS +=	zs_hdlc.o
+
+MCP_OBJS +=	mcp.o
+
+MCPP_OBJS +=	mcpp.o
+
+MCPZSA_OBJS +=	mcpzsa.o
+
+#
+#			streams modules
+#
+KB_OBJS +=	kbd.o		keytables.o
+
+#
+#			misc. modules
+#
+CONSCONFIG_OBJS	+= consmsconf.o
+
+#
+#	Section 3:	Misc.
+#
+LINT_DEFS	+= -Dsun
+
+INC_PATH	+= -I$(UTSBASE)/sun

@@ -1,0 +1,145 @@
+#	Copyright (c) 1995 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)prototype_sparc	1.1	95/03/27 (c) Sun Microsystems, Inc.
+#
+# This required package information file contains a list of package contents.
+# The 'pkgmk' command uses this file to identify the contents of a package
+# and their location on the development machine when building the package.
+# Can be created via a text editor or through use of the 'pkgproto' command.
+
+#!search <pathname pathname ...>	# where to find pkg objects
+#!include <filename>			# include another 'prototype' file
+#!default <mode> <owner> <group>	# default used if not specified on entry
+#!<param>=<value>			# puts parameter in pkg environment
+
+#
+# Include ISA independent files (prototype_com)
+#
+!include prototype_com
+#
+# List files which are SPARC specific here
+#
+# source locations relative to the prototype file
+#
+# SUNWkey
+#
+d none usr/share/lib/keytables 755 bin bin
+f none usr/share/lib/keytables/reset 444 bin bin
+f none usr/share/lib/keytables/belgium_france 444 bin bin
+f none usr/share/lib/keytables/canada 444 bin bin
+f none usr/share/lib/keytables/canadian_french_5 444 bin bin
+f none usr/share/lib/keytables/canadian_french_5_tbits5 444 bin bin
+f none usr/share/lib/keytables/canadian_french_hobo 444 bin bin
+f none usr/share/lib/keytables/czech_5 444 bin bin
+f none usr/share/lib/keytables/denmark 444 bin bin
+f none usr/share/lib/keytables/denmark_5 444 bin bin
+f none usr/share/lib/keytables/denmark_hobo 444 bin bin
+f none usr/share/lib/keytables/france_5 444 bin bin
+f none usr/share/lib/keytables/france_hobo 444 bin bin
+f none usr/share/lib/keytables/germany 444 bin bin
+f none usr/share/lib/keytables/germany_5 444 bin bin
+f none usr/share/lib/keytables/germany_hobo 444 bin bin
+f none usr/share/lib/keytables/hungary_5 444 bin bin
+f none usr/share/lib/keytables/italy 444 bin bin
+f none usr/share/lib/keytables/italy_5 444 bin bin
+f none usr/share/lib/keytables/italy_hobo 444 bin bin
+f none usr/share/lib/keytables/japan 444 bin bin
+f none usr/share/lib/keytables/japan_5 444 bin bin
+f none usr/share/lib/keytables/japan_hobo 444 bin bin
+f none usr/share/lib/keytables/korea 444 bin bin
+f none usr/share/lib/keytables/korea_5 444 bin bin
+f none usr/share/lib/keytables/korea_hobo 444 bin bin
+f none usr/share/lib/keytables/netherlands 444 bin bin
+f none usr/share/lib/keytables/netherlands_5 444 bin bin
+f none usr/share/lib/keytables/netherlands_hobo 444 bin bin
+f none usr/share/lib/keytables/norway 444 bin bin
+f none usr/share/lib/keytables/norway_5 444 bin bin
+f none usr/share/lib/keytables/norway_hobo 444 bin bin
+f none usr/share/lib/keytables/poland_5 444 bin bin
+f none usr/share/lib/keytables/portugal 444 bin bin
+f none usr/share/lib/keytables/portugal_5 444 bin bin
+f none usr/share/lib/keytables/portugal_hobo 444 bin bin
+f none usr/share/lib/keytables/russia_5 444 bin bin
+f none usr/share/lib/keytables/spain_5 444 bin bin
+f none usr/share/lib/keytables/spain_latin_america 444 bin bin
+f none usr/share/lib/keytables/spain_hobo 444 bin bin
+f none usr/share/lib/keytables/sweden_5 444 bin bin
+f none usr/share/lib/keytables/sweden_finland 444 bin bin
+f none usr/share/lib/keytables/sweden_hobo 444 bin bin
+f none usr/share/lib/keytables/swiss_french 444 bin bin
+f none usr/share/lib/keytables/swiss_french_5 444 bin bin
+f none usr/share/lib/keytables/swiss_french_hobo 444 bin bin
+f none usr/share/lib/keytables/swiss_german 444 bin bin
+f none usr/share/lib/keytables/swiss_german_5 444 bin bin
+f none usr/share/lib/keytables/swiss_german_hobo 444 bin bin
+f none usr/share/lib/keytables/taiwan 444 bin bin
+f none usr/share/lib/keytables/taiwan_5 444 bin bin
+f none usr/share/lib/keytables/taiwan_hobo 444 bin bin
+f none usr/share/lib/keytables/uk 444 bin bin
+f none usr/share/lib/keytables/uk_5 444 bin bin
+f none usr/share/lib/keytables/uk_hobo 444 bin bin
+f none usr/share/lib/keytables/us 444 bin bin
+f none usr/share/lib/keytables/us101a_pc 444 bin bin
+f none usr/share/lib/keytables/us_5 444 bin bin
+f none usr/share/lib/keytables/us_hobo 444 bin bin
+l none usr/share/lib/keytables/layout_00=../../../../usr/share/lib/keytables/us
+l none usr/share/lib/keytables/layout_01=../../../../usr/share/lib/keytables/us
+l none usr/share/lib/keytables/layout_02=../../../../usr/share/lib/keytables/belgium_france
+l none usr/share/lib/keytables/layout_03=../../../../usr/share/lib/keytables/canada
+l none usr/share/lib/keytables/layout_04=../../../../usr/share/lib/keytables/denmark
+l none usr/share/lib/keytables/layout_05=../../../../usr/share/lib/keytables/germany
+l none usr/share/lib/keytables/layout_06=../../../../usr/share/lib/keytables/italy
+l none usr/share/lib/keytables/layout_07=../../../../usr/share/lib/keytables/netherlands
+l none usr/share/lib/keytables/layout_08=../../../../usr/share/lib/keytables/norway
+l none usr/share/lib/keytables/layout_09=../../../../usr/share/lib/keytables/portugal
+l none usr/share/lib/keytables/layout_0a=../../../../usr/share/lib/keytables/spain_latin_america
+l none usr/share/lib/keytables/layout_0b=../../../../usr/share/lib/keytables/sweden_finland
+l none usr/share/lib/keytables/layout_0c=../../../../usr/share/lib/keytables/swiss_french
+l none usr/share/lib/keytables/layout_0d=../../../../usr/share/lib/keytables/swiss_german
+l none usr/share/lib/keytables/layout_0e=../../../../usr/share/lib/keytables/uk
+l none usr/share/lib/keytables/layout_10=../../../../usr/share/lib/keytables/korea
+l none usr/share/lib/keytables/layout_11=../../../../usr/share/lib/keytables/taiwan
+l none usr/share/lib/keytables/layout_13=../../../../usr/share/lib/keytables/us101a_pc
+l none usr/share/lib/keytables/layout_20=../../../../usr/share/lib/keytables/japan
+l none usr/share/lib/keytables/layout_21=../../../../usr/share/lib/keytables/us_5
+l none usr/share/lib/keytables/layout_22=../../../../usr/share/lib/keytables/us_5
+l none usr/share/lib/keytables/layout_23=../../../../usr/share/lib/keytables/france_5
+l none usr/share/lib/keytables/layout_24=../../../../usr/share/lib/keytables/denmark_5
+l none usr/share/lib/keytables/layout_25=../../../../usr/share/lib/keytables/germany_5
+l none usr/share/lib/keytables/layout_26=../../../../usr/share/lib/keytables/italy_5
+l none usr/share/lib/keytables/layout_27=../../../../usr/share/lib/keytables/netherlands_5
+l none usr/share/lib/keytables/layout_28=../../../../usr/share/lib/keytables/norway_5
+l none usr/share/lib/keytables/layout_29=../../../../usr/share/lib/keytables/portugal_5
+l none usr/share/lib/keytables/layout_2a=../../../../usr/share/lib/keytables/spain_5
+l none usr/share/lib/keytables/layout_2b=../../../../usr/share/lib/keytables/sweden_5
+l none usr/share/lib/keytables/layout_2c=../../../../usr/share/lib/keytables/swiss_french_5
+l none usr/share/lib/keytables/layout_2d=../../../../usr/share/lib/keytables/swiss_german_5
+l none usr/share/lib/keytables/layout_2e=../../../../usr/share/lib/keytables/uk_5
+l none usr/share/lib/keytables/layout_2f=../../../../usr/share/lib/keytables/korea_5
+l none usr/share/lib/keytables/layout_30=../../../../usr/share/lib/keytables/taiwan_5
+l none usr/share/lib/keytables/layout_31=../../../../usr/share/lib/keytables/japan_5
+l none usr/share/lib/keytables/layout_32=../../../../usr/share/lib/keytables/canadian_french_5
+l none usr/share/lib/keytables/layout_33=../../../../usr/share/lib/keytables/hungary_5
+l none usr/share/lib/keytables/layout_34=../../../../usr/share/lib/keytables/poland_5
+l none usr/share/lib/keytables/layout_35=../../../../usr/share/lib/keytables/czech_5 
+l none usr/share/lib/keytables/layout_36=../../../../usr/share/lib/keytables/russia_5
+l none usr/share/lib/keytables/layout_3f=../../../../usr/share/lib/keytables/canadian_french_5_tbits5
+l none usr/share/lib/keytables/layout_5a=../../../../usr/share/lib/keytables/sweden_hobo
+l none usr/share/lib/keytables/layout_5b=../../../../usr/share/lib/keytables/swiss_french_hobo
+l none usr/share/lib/keytables/layout_5c=../../../../usr/share/lib/keytables/swiss_german_hobo
+l none usr/share/lib/keytables/layout_5e=../../../../usr/share/lib/keytables/korea_hobo
+l none usr/share/lib/keytables/layout_5d=../../../../usr/share/lib/keytables/uk_hobo
+l none usr/share/lib/keytables/layout_5f=../../../../usr/share/lib/keytables/taiwan_hobo
+l none usr/share/lib/keytables/layout_50=../../../../usr/share/lib/keytables/us_hobo
+l none usr/share/lib/keytables/layout_51=../../../../usr/share/lib/keytables/us_hobo
+l none usr/share/lib/keytables/layout_52=../../../../usr/share/lib/keytables/france_hobo
+l none usr/share/lib/keytables/layout_53=../../../../usr/share/lib/keytables/denmark_hobo
+l none usr/share/lib/keytables/layout_54=../../../../usr/share/lib/keytables/germany_hobo
+l none usr/share/lib/keytables/layout_55=../../../../usr/share/lib/keytables/italy_hobo
+l none usr/share/lib/keytables/layout_56=../../../../usr/share/lib/keytables/netherlands_hobo
+l none usr/share/lib/keytables/layout_57=../../../../usr/share/lib/keytables/norway_hobo
+l none usr/share/lib/keytables/layout_58=../../../../usr/share/lib/keytables/portugal_hobo
+l none usr/share/lib/keytables/layout_59=../../../../usr/share/lib/keytables/spain_hobo
+l none usr/share/lib/keytables/layout_60=../../../../usr/share/lib/keytables/japan_hobo
+l none usr/share/lib/keytables/layout_61=../../../../usr/share/lib/keytables/canadian_french_hobo

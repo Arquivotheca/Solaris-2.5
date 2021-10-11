@@ -1,0 +1,26 @@
+#
+#ident	"@(#)Makefile.targ	1.1	93/11/05 SMI"
+#
+# Copyright (c) 1993 by Sun Microsystems, Inc.
+#
+# cmd/sgs/lex/Makefile.targ
+#
+
+$(PROG):	$(POBJS)
+		$(LINK.c) $(POBJS) -o $@ $(LDLIBS)
+		$(POST_PROCESS)
+
+$(LIBRARY):	$(OBJS)
+		$(BUILD.AR)
+		$(POST_PROCESS_A)
+
+clean:
+		$(RM) $(POBJS) $(OBJS) $(CLEANFILES)
+
+lint:		$(LINTPOUT) $(LINTLIB)
+
+$(LINTPOUT):	$(SRCS)
+		$(LINT.c) $(SRCS) > $(LINTPOUT) 2>&1
+
+$(LINTLIB):	$(LINTSRCS)
+		$(LINT.c) -o $(LIBNAME) $(LINTSRCS) > $(LINTOUT) 2>&1

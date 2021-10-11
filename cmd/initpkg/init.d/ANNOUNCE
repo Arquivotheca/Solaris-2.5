@@ -1,0 +1,3 @@
+#ident	"@(#)ANNOUNCE	1.6	92/07/14 SMI"	/* SVr4.0 1.1	*/
+
+echo 'System services are now being stopped.'

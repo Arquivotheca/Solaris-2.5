@@ -1,0 +1,17 @@
+Update design documentation
+
+How does Metamucil move to Galaxy?
+
+Resolve nofilesontape bug
+
+Resolve X second wait for files....
+
+We need to gather statistics on how much data is being dumped so we can
+start making projections of tape needs, tape drive needs, etc.  We need to
+be able to track the amount of data being dumped under each dump level.
+
+Document/resolve how to recover dumptape database
+
+Resolve how to recover dumptape database -- log files help !
+
+Global mastersequence number or else we have a problem...

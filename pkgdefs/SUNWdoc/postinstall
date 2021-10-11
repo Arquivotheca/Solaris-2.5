@@ -1,0 +1,41 @@
+
+#
+#ident	"@(#)postinstall	1.2	94/08/18 SMI"
+#
+# Copyright (c) 1992 by Sun Microsystems, Inc.
+#
+#
+#	rename usr/lib/font/devpost/charlib/~ to ~=
+#
+
+CHARLIB=$BASEDIR/usr/lib/font/devpost/charlib
+
+if [ ! -f $CHARLIB/~ ]; then
+   exit 2
+fi
+
+
+#
+# Do the rename from ~ to ~=
+#
+mv "$CHARLIB/~" "$CHARLIB/~=" || exit 2
+
+#
+# Record the rename in the packaging database
+#
+removef $PKGINST $CHARLIB/~ > /dev/null
+
+#
+# We are unable to use installf to register this file because 
+# installf can not handle file names with an `=` in them.
+# This requires the addition of a preremove script to handle this
+# file.
+#
+# installf $PKGINST $CHARLIB/~= f 444 lp lp || exit 2
+
+#
+#	end with removef -f and exit message
+#
+removef -f $PKGINST || exit 2
+
+exit 0

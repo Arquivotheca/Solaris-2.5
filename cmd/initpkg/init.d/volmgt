@@ -1,0 +1,28 @@
+#!/bin/sh
+#
+# Copyright (c) 1992, by Sun Microsystems, Inc.
+#
+#ident	"@(#)volmgt 1.4	94/09/30 SMI"
+
+#
+# Startup for Volume Management
+#
+
+case "$1" in
+'start')
+	if [ -f /etc/vold.conf -a -f /usr/sbin/vold ] ; then
+		echo "volume management starting."
+		/usr/sbin/vold 1>/dev/console 2>&1 &
+	fi
+	;;
+'stop')
+	PID=`/usr/bin/ps -e -u 0|/usr/bin/fgrep vold|/usr/bin/awk '{print $1}'`
+	if [ ! -z "$PID" ] ;  then
+		/usr/bin/kill ${PID} 1>/dev/null 2>&1
+	fi
+	;;
+*)
+	echo "Usage: /etc/init.d/volmgt { start | stop }"
+	;;
+esac
+exit 0

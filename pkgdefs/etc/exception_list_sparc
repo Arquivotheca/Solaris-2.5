@@ -1,0 +1,492 @@
+#
+#pragma ident	"@(#)exception_list_sparc	1.18	95/06/03 SMI"
+#
+# Exception List for protocmp
+#
+###########################################
+#
+# ENTRIES FILTERED OUT OF THE protolist
+#
+###########################################
+#
+# filter s5 filesytem headers: Needs to be fixed in the build
+#
+usr/include/sys/fs/s5_inode.h	sparc
+usr/include/sys/fs/s5_lockfs.h	sparc
+usr/include/sys/fs/s5_mount.h	sparc
+usr/include/sys/fs/s5_fblk.h	sparc
+usr/include/sys/fs/s5_fs.h	sparc
+usr/include/sys/fs/s5_fsdir.h	sparc
+#
+# The following entries are built in the /proto area
+# but not included in any packages - this is intentional.
+#
+usr/include/getxby_door.h	sparc
+usr/lib/libthread_db.a	sparc
+#
+# The following need investigation.  Not all of these are currently in
+# the proto area.
+#
+usr/kernel/drv/pm.conf	sparc
+usr/kernel/drv/pm	sparc
+platform/sun4m/kernel/drv/pmc		sparc
+platform/sun4m/kernel/misc		sparc
+platform/sun4m/kernel/misc/cpr		sparc
+usr/include/sys/cpr.h	sparc
+#
+#The following are win and graphics related also ignore and do NOT
+#replace.
+#
+usr/include/sys/cms.h	sparc
+usr/include/sys/ieeefp.h	sparc
+usr/include/sys/memvar.h	sparc
+usr/include/sys/pixrect.h	sparc
+usr/include/sys/pr_planegroups.h	sparc
+usr/include/sys/pr_impl_util.h	sparc
+usr/include/sys/winlockio.h	sparc
+#
+# these are just a funky entries - they are fixed up
+# via a post install scripts.
+#
+usr/lib/libcrypt.a	sparc
+usr/lib/font/devpost/charlib/~ 	sparc
+usr/lib/font/devpost/charlib/~=	sparc
+###########################################
+#
+# ENTRIES FILTERED OUT OF THE protodirs
+#
+###########################################
+#
+# this is just a funky entry - it's fixed up
+# via a post install script.
+#
+usr/lib/font/devpost/charlib/~ sparc
+#
+# timezone files added to on494 but not packaged because of
+# disk space constraints #1164065.  
+#
+usr/share/lib/zoneinfo/America/Montreal	sparc
+usr/share/lib/zoneinfo/SystemV/EST5EDT	sparc
+usr/share/lib/zoneinfo/SystemV/PST8PDT	sparc
+usr/share/lib/zoneinfo/Asia/Bangkok	sparc
+usr/share/lib/zoneinfo/Europe/Vienna	sparc
+usr/share/lib/zoneinfo/Europe/Stockholm sparc
+usr/share/lib/zoneinfo/Africa	sparc
+usr/share/lib/zoneinfo/Africa/Brazzaville	sparc
+usr/share/lib/zoneinfo/Africa/Bissau	sparc
+usr/share/lib/zoneinfo/Europe	sparc
+usr/share/lib/zoneinfo/Europe/Belfast	sparc
+usr/share/lib/zoneinfo/Europe/Monaco	sparc
+usr/share/lib/zoneinfo/Pacific/Kiritimati	sparc
+usr/share/lib/zoneinfo/Europe/Zagreb	sparc
+usr/share/lib/zoneinfo/Pacific	sparc
+usr/share/lib/zoneinfo/SystemV/AST4ADT	sparc
+usr/share/lib/zoneinfo/Asia/Baku	sparc
+usr/share/lib/zoneinfo/Asia/Kuala_Lumpur	sparc
+usr/share/lib/zoneinfo/Asia/Baghdad	sparc
+usr/share/lib/zoneinfo/SystemV/PST8	sparc
+usr/share/lib/zoneinfo/Africa/Asmera	sparc
+usr/share/lib/zoneinfo/America/Regina	sparc
+usr/share/lib/zoneinfo/Atlantic/South_Georgia	sparc
+usr/share/lib/zoneinfo/America/Jamaica	sparc
+usr/share/lib/zoneinfo/America/St_Vincent	sparc
+usr/share/lib/zoneinfo/Indian/Comoro	sparc
+usr/share/lib/zoneinfo/Europe/Tallinn	sparc
+usr/share/lib/zoneinfo/Pacific/Wake	sparc
+usr/share/lib/zoneinfo/Africa/Timbuktu	sparc
+usr/share/lib/zoneinfo/Etc/GMT0	sparc
+usr/share/lib/zoneinfo/Europe/Vilnius	sparc
+usr/share/lib/zoneinfo/Australia/Perth	sparc
+usr/share/lib/zoneinfo/Portugal	sparc
+usr/share/lib/zoneinfo/Asia/Gaza	sparc
+usr/share/lib/zoneinfo/Asia/Tel_Aviv	sparc
+usr/share/lib/zoneinfo/America/Vancouver	sparc
+usr/share/lib/zoneinfo/SystemV/MST7	sparc
+usr/share/lib/zoneinfo/Asia/Magadan	sparc
+usr/share/lib/zoneinfo/Europe/Berlin	sparc
+usr/share/lib/zoneinfo/SystemV/YST9YDT	sparc
+usr/share/lib/zoneinfo/America/Bogota	sparc
+usr/share/lib/zoneinfo/America/Tegucigalpa	sparc
+usr/share/lib/zoneinfo/Asia/Nicosia	sparc
+usr/share/lib/zoneinfo/Asia/Damascus	sparc
+usr/share/lib/zoneinfo/Pacific/Samoa	sparc
+usr/share/lib/zoneinfo/America/Guadeloupe	sparc
+usr/share/lib/zoneinfo/Pacific/Tarawa	sparc
+usr/share/lib/zoneinfo/Africa/Lagos	sparc
+usr/share/lib/zoneinfo/America/Buenos_Aires	sparc
+usr/share/lib/zoneinfo/America/Edmonton	sparc
+usr/share/lib/zoneinfo/Europe/Helsinki	sparc
+usr/share/lib/zoneinfo/Australia/Brisbane	sparc
+usr/share/lib/zoneinfo/Europe/Moscow	sparc
+usr/share/lib/zoneinfo/Pacific/Norfolk	sparc
+usr/share/lib/zoneinfo/Africa/Djibouti	sparc
+usr/share/lib/zoneinfo/Atlantic/Faeroe	sparc
+usr/share/lib/zoneinfo/Australia/Lord_Howe	sparc
+usr/share/lib/zoneinfo/Europe/Ljubljana	sparc
+usr/share/lib/zoneinfo/Asia/Omsk	sparc
+usr/share/lib/zoneinfo/Asia/Rangoon	sparc
+usr/share/lib/zoneinfo/America/Barbados	sparc
+usr/share/lib/zoneinfo/America/Belize	sparc
+usr/share/lib/zoneinfo/America/Santiago	sparc
+usr/share/lib/zoneinfo/Europe/Rome	sparc
+usr/share/lib/zoneinfo/Europe/Vaduz	sparc
+usr/share/lib/zoneinfo/Pacific/Enderbury	sparc
+usr/share/lib/zoneinfo/Pacific/Yap	sparc
+usr/share/lib/zoneinfo/SystemV/YST9	sparc
+usr/share/lib/zoneinfo/Atlantic/Jan_Mayen	sparc
+usr/share/lib/zoneinfo/Pacific/Funafuti	sparc
+usr/share/lib/zoneinfo/Africa/Malabo	sparc
+usr/share/lib/zoneinfo/Asia/Jayapura	sparc
+usr/share/lib/zoneinfo/Indian/Mahe	sparc
+usr/share/lib/zoneinfo/Asia/Taipei	sparc
+usr/share/lib/zoneinfo/SystemV/EST5	sparc
+usr/share/lib/zoneinfo/America/Nassau	sparc
+usr/share/lib/zoneinfo/Asia/Tashkent	sparc
+usr/share/lib/zoneinfo/Europe/Malta	sparc
+usr/share/lib/zoneinfo/Pacific/Tahiti	sparc
+usr/share/lib/zoneinfo/Asia/Singapore	sparc
+usr/share/lib/zoneinfo/Europe/Oslo	sparc
+usr/share/lib/zoneinfo/Africa/Addis_Ababa	sparc
+usr/share/lib/zoneinfo/Australia/Melbourne	sparc
+usr/share/lib/zoneinfo/Europe/Copenhagen	sparc
+usr/share/lib/zoneinfo/Pacific/Easter	sparc
+usr/share/lib/zoneinfo/Canada/Saskatchewan	sparc
+usr/share/lib/zoneinfo/Asia	sparc
+usr/share/lib/zoneinfo/America/Grand_Turk	sparc
+usr/share/lib/zoneinfo/America/Fort_Wayne	sparc
+usr/share/lib/zoneinfo/Asia/Tehran	sparc
+usr/share/lib/zoneinfo/Etc/Universal	sparc
+usr/share/lib/zoneinfo/Europe/Bratislava	sparc
+usr/share/lib/zoneinfo/Africa/Luanda	sparc
+usr/share/lib/zoneinfo/Asia/Macao	sparc
+usr/share/lib/zoneinfo/Africa/Freetown	sparc
+usr/share/lib/zoneinfo/Africa/Libreville	sparc
+usr/share/lib/zoneinfo/Africa/Conakry	sparc
+usr/share/lib/zoneinfo/America/Guyana	sparc
+usr/share/lib/zoneinfo/Europe/Zurich	sparc
+usr/share/lib/zoneinfo/America/Grenada	sparc
+usr/share/lib/zoneinfo/Asia/Vientiane	sparc
+usr/share/lib/zoneinfo/Africa/Ouagadougou	sparc
+usr/share/lib/zoneinfo/America/Scoresbysund	sparc
+usr/share/lib/zoneinfo/Africa/Bangui	sparc
+usr/share/lib/zoneinfo/Europe/Luxembourg	sparc
+usr/share/lib/zoneinfo/SystemV	sparc
+usr/share/lib/zoneinfo/Africa/Johannesburg	sparc
+usr/share/lib/zoneinfo/America/Miquelon	sparc
+usr/share/lib/zoneinfo/Pacific/Marquesas	sparc
+usr/share/lib/zoneinfo/Pacific/Chatham	sparc
+usr/share/lib/zoneinfo/Africa/Kampala	sparc
+usr/share/lib/zoneinfo/Europe/Andorra	sparc
+usr/share/lib/zoneinfo/Africa/Nairobi	sparc
+usr/share/lib/zoneinfo/Africa/Monrovia	sparc
+usr/share/lib/zoneinfo/Asia/Kuwait	sparc
+usr/share/lib/zoneinfo/Asia/Calcutta	sparc
+usr/share/lib/zoneinfo/Europe/Gibraltar	sparc
+usr/share/lib/zoneinfo/America/Atka	sparc
+usr/share/lib/zoneinfo/Australia/Hobart	sparc
+usr/share/lib/zoneinfo/Indian/Mauritius	sparc
+usr/share/lib/zoneinfo/Pacific/Galapagos	sparc
+usr/share/lib/zoneinfo/Africa/Lumumbashi	sparc
+usr/share/lib/zoneinfo/Europe/Lisbon	sparc
+usr/share/lib/zoneinfo/Africa/Bujumbura	sparc
+usr/share/lib/zoneinfo/America/La_Paz	sparc
+usr/share/lib/zoneinfo/America/Sao_Paulo	sparc
+usr/share/lib/zoneinfo/antarctica	sparc
+usr/share/lib/zoneinfo/GB	sparc
+usr/share/lib/zoneinfo/America/Mexico_City	sparc
+usr/share/lib/zoneinfo/Etc/UCT	sparc
+usr/share/lib/zoneinfo/Etc/UTC	sparc
+usr/share/lib/zoneinfo/Europe/Sarajevo	sparc
+usr/share/lib/zoneinfo/Europe/Tirane	sparc
+usr/share/lib/zoneinfo/America/Noronha	sparc
+usr/share/lib/zoneinfo/Asia/Qatar	sparc
+usr/share/lib/zoneinfo/Asia/Thimbu	sparc
+usr/share/lib/zoneinfo/America	sparc
+usr/share/lib/zoneinfo/Asia/Anadyr	sparc
+usr/share/lib/zoneinfo/Europe/Paris	sparc
+usr/share/lib/zoneinfo/Asia/Dubai	sparc
+usr/share/lib/zoneinfo/SystemV/MST7MDT	sparc
+usr/share/lib/zoneinfo/SystemV/AST4	sparc
+usr/share/lib/zoneinfo/America/St_Kitts	sparc
+usr/share/lib/zoneinfo/America/Asuncion	sparc
+usr/share/lib/zoneinfo/Africa/Gaborone	sparc
+usr/share/lib/zoneinfo/Asia/Karachi	sparc
+usr/share/lib/zoneinfo/Asia/Ulan_Bator	sparc
+usr/share/lib/zoneinfo/Asia/Yerevan	sparc
+usr/share/lib/zoneinfo/Africa/Niamey	sparc
+usr/share/lib/zoneinfo/America/Paramaribo	sparc
+usr/share/lib/zoneinfo/Asia/Dushanbe	sparc
+usr/share/lib/zoneinfo/Africa/Harare	sparc
+usr/share/lib/zoneinfo/Africa/Mbabane	sparc
+usr/share/lib/zoneinfo/America/Montevideo	sparc
+usr/share/lib/zoneinfo/Asia/Hong_Kong	sparc
+usr/share/lib/zoneinfo/Europe/Amsterdam	sparc
+usr/share/lib/zoneinfo/Europe/Warsaw	sparc
+usr/share/lib/zoneinfo/SystemV/CST6CDT	sparc
+usr/share/lib/zoneinfo/Africa/Banjul	sparc
+usr/share/lib/zoneinfo/America/Guatemala	sparc
+usr/share/lib/zoneinfo/America/Los_Angeles	sparc
+usr/share/lib/zoneinfo/Pacific/Niue	sparc
+usr/share/lib/zoneinfo/America/Chicago	sparc
+usr/share/lib/zoneinfo/Europe/Budapest	sparc
+usr/share/lib/zoneinfo/Pacific/Auckland	sparc
+usr/share/lib/zoneinfo/America/Denver	sparc
+usr/share/lib/zoneinfo/Pacific/Efate	sparc
+usr/share/lib/zoneinfo/Africa/Abidjan	sparc
+usr/share/lib/zoneinfo/America/Manaus	sparc
+usr/share/lib/zoneinfo/Africa/Kinshasa	sparc
+usr/share/lib/zoneinfo/Asia/Colombo	sparc
+usr/share/lib/zoneinfo/Europe/Riga	sparc
+usr/share/lib/zoneinfo/America/Godthab	sparc
+usr/share/lib/zoneinfo/Asia/Yekaterinburg	sparc
+usr/share/lib/zoneinfo/Europe/Sofia	sparc
+usr/share/lib/zoneinfo/Asia/Ujung_Pandang	sparc
+usr/share/lib/zoneinfo/Africa/Maputo	sparc
+usr/share/lib/zoneinfo/America/Caracas	sparc
+usr/share/lib/zoneinfo/Pacific/Fakaofo	sparc
+usr/share/lib/zoneinfo/America/Thule	sparc
+usr/share/lib/zoneinfo/Atlantic/Cape_Verde	sparc
+usr/share/lib/zoneinfo/Atlantic/St_Helena	sparc
+usr/share/lib/zoneinfo/Asia/Kabul	sparc
+usr/share/lib/zoneinfo/Europe/Brussels	sparc
+usr/share/lib/zoneinfo/Africa/Maseru	sparc
+usr/share/lib/zoneinfo/Indian/Chagos	sparc
+usr/share/lib/zoneinfo/America/Winnipeg	sparc
+usr/share/lib/zoneinfo/Indian/Maldives	sparc
+usr/share/lib/zoneinfo/America/Havana	sparc
+usr/share/lib/zoneinfo/Asia/Kamchatka	sparc
+usr/share/lib/zoneinfo/Pacific/Kwajalein	sparc
+usr/share/lib/zoneinfo/Asia/Phnom_Penh	sparc
+usr/share/lib/zoneinfo/Africa/Windhoek	sparc
+usr/share/lib/zoneinfo/Africa/Dakar	sparc
+usr/share/lib/zoneinfo/Atlantic/Stanley	sparc
+usr/share/lib/zoneinfo/Australia/Sydney	sparc
+usr/share/lib/zoneinfo/Atlantic/Madeira	sparc
+usr/share/lib/zoneinfo/America/Santo_Domingo	sparc
+usr/share/lib/zoneinfo/Asia/Seoul	sparc
+usr/share/lib/zoneinfo/America/Costa_Rica	sparc
+usr/share/lib/zoneinfo/Africa/Tunis	sparc
+usr/share/lib/zoneinfo/America/New_York	sparc
+usr/share/lib/zoneinfo/Asia/Muscat	sparc
+usr/share/lib/zoneinfo/America/Anguilla	sparc
+usr/share/lib/zoneinfo/Australia/Adelaide	sparc
+usr/share/lib/zoneinfo/Asia/Amman	sparc
+usr/share/lib/zoneinfo/Africa/Ndjamena	sparc
+usr/share/lib/zoneinfo/Asia/Brunei	sparc
+usr/share/lib/zoneinfo/America/Virgin	sparc
+usr/share/lib/zoneinfo/SystemV/CST6	sparc
+usr/share/lib/zoneinfo/America/Guayaquil	sparc
+usr/share/lib/zoneinfo/Indian/Christmas	sparc
+usr/share/lib/zoneinfo/Africa/Tripoli	sparc
+usr/share/lib/zoneinfo/America/Detroit	sparc
+usr/share/lib/zoneinfo/Asia/Shanghai	sparc
+usr/share/lib/zoneinfo/Atlantic/Canary	sparc
+usr/share/lib/zoneinfo/America/Knox_IN	sparc
+usr/share/lib/zoneinfo/Asia/Istanbul	sparc
+usr/share/lib/zoneinfo/Europe/Chisinau	sparc
+usr/share/lib/zoneinfo/systemv	sparc
+usr/share/lib/zoneinfo/Atlantic/Bermuda	sparc
+usr/share/lib/zoneinfo/Africa/Cairo	sparc
+usr/share/lib/zoneinfo/America/Phoenix	sparc
+usr/share/lib/zoneinfo/Pacific/Ponape	sparc
+usr/share/lib/zoneinfo/Indian	sparc
+usr/share/lib/zoneinfo/Africa/Lusaka	sparc
+usr/share/lib/zoneinfo/Africa/Nouakchott	sparc
+usr/share/lib/zoneinfo/Asia/Riyadh	sparc
+usr/share/lib/zoneinfo/Asia/Katmandu	sparc
+usr/share/lib/zoneinfo/America/El_Salvador	sparc
+usr/share/lib/zoneinfo/America/Panama	sparc
+usr/share/lib/zoneinfo/Asia/Saigon	sparc
+usr/share/lib/zoneinfo/Europe/Minsk	sparc
+usr/share/lib/zoneinfo/Europe/Belgrade	sparc
+usr/share/lib/zoneinfo/Pacific/Rarotonga	sparc
+usr/share/lib/zoneinfo/Pacific/Wallis	sparc
+usr/share/lib/zoneinfo/America/Antigua	sparc
+usr/share/lib/zoneinfo/US/Indiana-Starke	sparc
+usr/share/lib/zoneinfo/Europe/Istanbul	sparc
+usr/share/lib/zoneinfo/Pacific/Fiji	sparc
+usr/share/lib/zoneinfo/Africa/Porto-Novo	sparc
+usr/share/lib/zoneinfo/Africa/Bamako	sparc
+usr/share/lib/zoneinfo/America/Lima	sparc
+usr/share/lib/zoneinfo/Europe/Prague	sparc
+usr/share/lib/zoneinfo/America/Puerto_Rico	sparc
+usr/share/lib/zoneinfo/Europe/Dublin	sparc
+usr/share/lib/zoneinfo/Europe/Kiev	sparc
+usr/share/lib/zoneinfo/Europe/Skopje	sparc
+usr/share/lib/zoneinfo/Africa/Blantyre	sparc
+usr/share/lib/zoneinfo/Asia/Ashkhabad	sparc
+usr/share/lib/zoneinfo/Asia/Yakutsk	sparc
+usr/share/lib/zoneinfo/America/St_Johns	sparc
+usr/share/lib/zoneinfo/Asia/Tbilisi	sparc
+usr/share/lib/zoneinfo/America/Managua	sparc
+usr/share/lib/zoneinfo/Pacific/Guadalcanal	sparc
+usr/share/lib/zoneinfo/Pacific/Port_Moresby	sparc
+usr/share/lib/zoneinfo/America/Martinique	sparc
+usr/share/lib/zoneinfo/Asia/Jakarta	sparc
+usr/share/lib/zoneinfo/America/Curacao	sparc
+usr/share/lib/zoneinfo/Africa/Lome	sparc
+usr/share/lib/zoneinfo/Pacific/Gambier	sparc
+usr/share/lib/zoneinfo/Pacific/Guam	sparc
+usr/share/lib/zoneinfo/Africa/Accra	sparc
+usr/share/lib/zoneinfo/America/Halifax	sparc
+usr/share/lib/zoneinfo/America/Anchorage	sparc
+usr/share/lib/zoneinfo/Pacific/Truk	sparc
+usr/share/lib/zoneinfo/Indian/Antananarivo	sparc
+usr/share/lib/zoneinfo/Asia/Vladivostok	sparc
+usr/share/lib/zoneinfo/America/Montserrat	sparc
+usr/share/lib/zoneinfo/America/St_Lucia	sparc
+usr/share/lib/zoneinfo/America/Mazatlan	sparc
+usr/share/lib/zoneinfo/Asia/Dacca	sparc
+usr/share/lib/zoneinfo/Africa/Algiers	sparc
+usr/share/lib/zoneinfo/Africa/Dar_es_Salaam	sparc
+usr/share/lib/zoneinfo/America/Whitehorse	sparc
+usr/share/lib/zoneinfo/Asia/Tokyo	sparc
+usr/share/lib/zoneinfo/Africa/Kigali	sparc
+usr/share/lib/zoneinfo/Europe/London	sparc
+usr/share/lib/zoneinfo/America/Port_of_Spain	sparc
+usr/share/lib/zoneinfo/Asia/Pyongyang	sparc
+usr/share/lib/zoneinfo/Pacific/Midway	sparc
+usr/share/lib/zoneinfo/Pacific/Tongatapu	sparc
+usr/share/lib/zoneinfo/Africa/Khartoum	sparc
+usr/share/lib/zoneinfo/America/Ensenada	sparc
+usr/share/lib/zoneinfo/Pacific/Honolulu	sparc
+usr/share/lib/zoneinfo/Africa/Casablanca	sparc
+usr/share/lib/zoneinfo/America/Porto_Acre	sparc
+usr/share/lib/zoneinfo/SystemV/HST10	sparc
+usr/share/lib/zoneinfo/Atlantic/Reykjavik	sparc
+usr/share/lib/zoneinfo/Pacific/Majuro	sparc
+usr/share/lib/zoneinfo/Pacific/Nauru	sparc
+usr/share/lib/zoneinfo/Atlantic/Azores	sparc
+usr/share/lib/zoneinfo/Africa/Douala	sparc
+usr/share/lib/zoneinfo/Asia/Irkutsk	sparc
+usr/share/lib/zoneinfo/Indian/Mayotte	sparc
+usr/share/lib/zoneinfo/Etc/Greenwich	sparc
+usr/share/lib/zoneinfo/Pacific/Pitcairn	sparc
+usr/share/lib/zoneinfo/Indian/Reunion	sparc
+usr/share/lib/zoneinfo/Africa/Sao_Tome	sparc
+usr/share/lib/zoneinfo/America/Cayman	sparc
+usr/share/lib/zoneinfo/Asia/Bahrain	sparc
+usr/share/lib/zoneinfo/Atlantic	sparc
+usr/share/lib/zoneinfo/Europe/Madrid	sparc
+usr/share/lib/zoneinfo/America/Dominica	sparc
+usr/share/lib/zoneinfo/America/Tijuana	sparc
+usr/share/lib/zoneinfo/Asia/Aden	sparc
+usr/share/lib/zoneinfo/Australia/Darwin	sparc
+usr/share/lib/zoneinfo/Europe/Athens	sparc
+usr/share/lib/zoneinfo/GMT0	sparc
+usr/share/lib/zoneinfo/Africa/Mogadishu	sparc
+usr/share/lib/zoneinfo/America/Cayenne	sparc
+usr/share/lib/zoneinfo/Asia/Manila	sparc
+usr/share/lib/zoneinfo/Etc/Zulu	sparc
+usr/share/lib/zoneinfo/America/Port-au-Prince	sparc
+usr/share/lib/zoneinfo/Asia/Beirut	sparc
+usr/share/lib/zoneinfo/Pacific/Noumea	sparc
+usr/share/lib/zoneinfo/Asia/Novosibirsk	sparc
+usr/share/lib/zoneinfo/Europe/Bucharest	sparc
+usr/share/lib/zoneinfo/Asia/Bishkek	sparc
+usr/share/lib/zoneinfo/Asia/Alma-Ata	sparc
+usr/share/lib/zoneinfo/Asia/Tomsk	sparc
+usr/share/lib/zoneinfo/Indian/Cocos	sparc
+usr/share/lib/zoneinfo/Pacific/Palau	sparc
+usr/share/lib/zoneinfo/Europe/Kuybyshev	sparc
+usr/share/lib/zoneinfo/Europe/Simferopol	sparc
+usr/share/lib/zoneinfo/Australia/Canberra	sparc
+#
+# Filter these files because of link count errors
+# not all timezone files are packaged
+#
+usr/share/lib/zoneinfo/Universal	sparc
+usr/share/lib/zoneinfo/Australia/ACT	sparc
+usr/share/lib/zoneinfo/Iran	sparc
+usr/share/lib/zoneinfo/ROC	sparc
+usr/share/lib/zoneinfo/Cuba	sparc
+usr/share/lib/zoneinfo/UCT	sparc
+usr/share/lib/zoneinfo/MST	sparc
+usr/share/lib/zoneinfo/Eire	sparc
+usr/share/lib/zoneinfo/GB-Eire	sparc
+usr/share/lib/zoneinfo/Etc/GMT-0	sparc
+usr/share/lib/zoneinfo/PST8PDT	sparc
+usr/share/lib/zoneinfo/US/Central	sparc
+usr/share/lib/zoneinfo/Iceland	sparc
+usr/share/lib/zoneinfo/Singapore	sparc
+usr/share/lib/zoneinfo/US/Aleutian	sparc
+usr/share/lib/zoneinfo/Australia/LHI	sparc
+usr/share/lib/zoneinfo/Brazil/East	sparc
+usr/share/lib/zoneinfo/EST	sparc
+usr/lib/locale/iso_8859_1	sparc
+usr/share/lib/zoneinfo/Canada/Atlantic	sparc
+usr/share/lib/zoneinfo/Kwajalein	sparc
+usr/share/lib/zoneinfo/Australia/North	sparc
+usr/share/lib/zoneinfo/Poland	sparc
+usr/share/lib/zoneinfo/Mexico/BajaSur	sparc
+usr/share/lib/zoneinfo/Australia/Broken_Hill	sparc
+usr/share/lib/zoneinfo/Hongkong	sparc
+usr/share/lib/zoneinfo/Brazil/West	sparc
+usr/share/lib/zoneinfo/Canada/Central	sparc
+usr/share/lib/zoneinfo/Australia/Yancowinna	sparc
+usr/share/lib/zoneinfo/Canada/Yukon	sparc
+usr/share/lib/zoneinfo/Canada/Newfoundland	sparc
+usr/share/lib/zoneinfo/Mexico/BajaNorte	sparc
+usr/share/lib/zoneinfo/Canada/Mountain	sparc
+usr/share/lib/zoneinfo/Canada/East-Saskatchewan	sparc
+usr/share/lib/zoneinfo/ROK	sparc
+usr/share/lib/zoneinfo/Turkey	sparc
+usr/share/lib/zoneinfo/Israel	sparc
+usr/share/lib/zoneinfo/Australia/West	sparc
+usr/share/lib/zoneinfo/MST7MDT	sparc
+usr/share/lib/zoneinfo/Zulu	sparc
+usr/share/lib/zoneinfo/US/Samoa	sparc
+usr/share/lib/zoneinfo/NZ	sparc
+usr/share/lib/zoneinfo/US/Pacific	sparc
+usr/share/lib/zoneinfo/HST	sparc
+usr/share/lib/zoneinfo/US/Alaska	sparc
+usr/share/lib/zoneinfo/Brazil/DeNoronha	sparc
+usr/share/lib/zoneinfo/Australia/Queensland	sparc
+usr/share/lib/zoneinfo/Australia/Tasmania	sparc
+usr/share/lib/zoneinfo/Australia/Victoria	sparc
+usr/share/lib/zoneinfo/Mexico/General	sparc
+usr/share/lib/zoneinfo/US/Michigan	sparc
+usr/share/lib/zoneinfo/Australia/NSW	sparc
+usr/share/lib/zoneinfo/Greenwich	sparc
+usr/share/lib/zoneinfo/GMT-0	sparc
+usr/share/lib/zoneinfo/Jamaica	sparc
+usr/share/lib/zoneinfo/GMT+0	sparc
+usr/share/lib/zoneinfo/PRC	sparc
+usr/share/lib/zoneinfo/CET	sparc
+usr/share/lib/zoneinfo/Chile/EasterIsland	sparc
+usr/share/lib/zoneinfo/Canada/Pacific	sparc
+usr/share/lib/zoneinfo/Canada/Eastern	sparc
+usr/share/lib/zoneinfo/Brazil/Acre	sparc
+usr/share/lib/zoneinfo/US/Arizona	sparc
+usr/share/lib/zoneinfo/US/Pacific-New	sparc
+usr/share/lib/zoneinfo/Chile/Continental	sparc
+usr/share/lib/zoneinfo/CST6CDT	sparc
+usr/share/lib/zoneinfo/US/Hawaii	sparc
+usr/share/lib/zoneinfo/Australia/South	sparc
+usr/share/lib/zoneinfo/Libya	sparc
+usr/share/lib/zoneinfo/Etc/GMT+0	sparc
+usr/share/lib/zoneinfo/Etc/GMT	sparc
+usr/share/lib/zoneinfo/Egypt	sparc
+usr/share/lib/zoneinfo/Japan	sparc
+usr/share/lib/zoneinfo/US/Mountain	sparc
+usr/share/lib/zoneinfo/GMT	sparc
+usr/share/lib/zoneinfo/NZ-CHAT	sparc
+usr/share/lib/zoneinfo/UTC	sparc
+usr/share/lib/zoneinfo/MET	sparc
+usr/share/lib/zoneinfo/US/East-Indiana	sparc
+usr/share/lib/zoneinfo/Navajo	sparc
+#
+# These items are in SUNW0on for Localization; they are built only
+# by the optional _msg target in usr/src/Makefile, not as a part
+# of the all target.
+#
+usr/lib/locale/C/LC_MESSAGES/SUNW_OST_ADMIN.po	sparc
+usr/lib/locale/C/LC_MESSAGES/SUNW_OST_LINFO	sparc
+usr/lib/locale/C/LC_MESSAGES/SUNW_OST_NETRPC.po	sparc
+usr/lib/locale/C/LC_MESSAGES/SUNW_OST_OSCMD.po	sparc
+usr/lib/locale/C/LC_MESSAGES/SUNW_OST_OSLIB.po	sparc
+usr/lib/locale/C/LC_MESSAGES/SUNW_OST_UCBCMD.po	sparc
+usr/lib/locale/C/LC_MESSAGES/mailx.help		sparc
+usr/lib/locale/C/LC_MESSAGES/more.help		sparc
+usr/lib/locale/C/LC_MESSAGES/uxlibc.src		sparc
+usr/lib/locale/C/LC_TIME/SUNW_OST_OSCMD.po	sparc

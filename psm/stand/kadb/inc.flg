@@ -1,0 +1,58 @@
+#!/bin/sh
+#
+#pragma ident	"@(#)inc.flg	1.14	95/03/22 SMI" 
+#
+#
+# Find all of the header files
+#
+find_files "s.*.[hx]" \
+           usr/src/uts/sunmmu\
+           usr/src/uts/srmmu\
+           usr/src/uts/sfmmu\
+           usr/src/uts/common/sys\
+           usr/src/uts/common/vm\
+           usr/src/uts/common/os\
+           usr/src/uts/common/rpc\
+	   usr/src/uts/common/net \
+	   usr/src/uts/common/netinet\
+           usr/src/uts/common/nfs\
+           usr/src/uts/common/kerberos\
+           usr/src/uts/sun\
+           usr/src/uts/i86/sys\
+           usr/src/uts/i86pc/sys\
+           usr/src/uts/sun4c/sys\
+           usr/src/uts/sun4m/sys\
+           usr/src/uts/sun4d/sys\
+           usr/src/uts/sun4u/sys\
+           usr/src/uts/sun4d/vm\
+           usr/src/uts/sun4m/vm\
+           usr/src/uts/sun4u/vm\
+           usr/src/uts/sparc/sys\
+           usr/src/uts/sparc/v7/sys\
+           usr/src/uts/sparc/v9/sys\
+           usr/src/cmd/adb/sparc\
+           usr/src/stand/sys\
+           usr/src/stand/i386\
+           usr/src/head
+
+#
+# These are all of the supporting directories
+#
+find_files "s.*" \
+           usr/src/cmd/adb/sparc\
+           usr/src/cmd/adb/i386\
+           usr/src/stand/lib\
+           usr/src/uts/adb\
+           usr/src/psm/promif\
+           usr/src/psm/stand/lib\
+           usr/src/uts/i86/promif\
+           usr/src/cmd/adb/common
+
+
+echo_file usr/src/Makefile.psm
+echo_file usr/src/Makefile.psm.targ
+echo_file usr/src/lib/Makefile.lib
+echo_file usr/src/cmd/Makefile.cmd
+echo_file usr/src/cmd/Makefile.targ
+echo_file usr/src/uts/Makefile.uts
+echo_file usr/src/head/Makefile

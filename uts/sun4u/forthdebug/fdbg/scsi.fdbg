@@ -1,0 +1,17 @@
+
+#ident	"@(#)scsi.fdbg	1.1	95/06/13 SMI"
+
+#include <sys/scsi/scsi.h>
+
+\ generic scsi structures
+
+scsi_address
+
+scsi_arq_status
+
+scsi_device
+
+scsi_hba_tran
+
+scsi_pkt
+

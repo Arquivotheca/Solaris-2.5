@@ -1,0 +1,39 @@
+#
+#ident	"@(#)Makefile.nfs_inet	1.19	94/08/09 SMI"
+#
+# Copyright (c) 1991-1994 by Sun Microsystems, Inc.
+# 
+# stand/lib/fs/nfs_inet/Makefile.nfs_inet
+#
+# NFS using internet/DARPA protocols filesystem boot specific library.
+#
+# This Makefile is included by ../../[sun,i386]/Makefile and is used
+# when building $(LIBNFS_INET).  The library is built in ../../[sun,i386].
+#
+
+NFS_INETOBJ= 	auth_none.o auth_unix.o bootparams.o inet.o lookup.o \
+		mount.o netaddr.o network_open.o nfsops.o pathname.o \
+		pmap.o rpc.o rpc_prot.o udp_ip.o xdr.o xdr_array.o \
+		xdr_mem.o xdr_refer.o
+
+NFS_INETSRC=	$(NFS_INETOBJ:%.o=$(NFS_INETDIR/%.c)
+NFS_INETLINTOBJ=$(NFS_INETOBJ:%.o=objs/%.ln)
+
+.PARALLEL:	$(NFS_INETLINTOBJ)
+.PARALLEL:	$(NFS_INETOBJ:%=objs/%)
+
+$(LIBNFS_INET) :=	OBJECTS = $(NFS_INETOBJ)
+$(LIBNFS_INET) :=	LOC_CPP = -I$(NFS_INETDIR)
+$(LINTLIBNFS_INET) :=	LOC_CPP = -I$(NFS_INETDIR)
+
+objs/%.o: $(NFS_INETDIR)/%.c
+	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
+
+$(LINTLIBNFS_INET): $(NFS_INETLINTOBJ)
+	@-$(ECHO) "\n (nfs_inet lint library construction):"
+	@$(LINT) -o nfs_inet $(LINTFLAGS) $(NFS_INETLINTOBJ)
+
+objs/%.ln: $(NFS_INETDIR)/%.c
+	@($(LHEAD) $(LINT.c) -c $< $(LTAIL))
+	@$(MV) $(@F) $@

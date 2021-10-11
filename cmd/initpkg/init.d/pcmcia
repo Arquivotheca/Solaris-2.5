@@ -1,0 +1,30 @@
+#!/bin/sh
+#
+# Copyright (c) 1994, by Sun Microsystems, Inc.
+#
+#ident	"@(#)pcmcia 1.2	94/10/06 SMI"
+
+#
+# Startup for PCMCIA
+#
+
+case "$1" in
+'start')
+	if [ -f /usr/lib/pcmciad ] ; then
+		/usr/lib/pcmciad 1>/dev/console 2>&1
+		if [ "$?" = 0 ] ; then
+			echo "PCMCIA user daemon starting"
+		fi
+	fi
+	;;
+'stop')
+	PID=`/usr/bin/ps -ef | grep /usr/lib/pcmciad | awk '{print $2}'`
+	if [ ! -z "$PID" ] ;  then
+		/usr/bin/kill ${PID} 1> /dev/null 2>&1
+	fi
+	;;
+*)
+	echo "Usage: /etc/init.d/pcmcia { start | stop }"
+	;;
+esac
+exit 0

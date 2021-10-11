@@ -1,0 +1,32 @@
+
+#
+#ident	"@(#)postinstall	1.3	93/06/23 SMI"
+#
+# Copyright (c) 1993 by Sun Microsystems, Inc.
+#
+#
+#	install crontab file for uucp
+#	use crontab command if cron is running
+#	do nothing in the context of adding services to a multi-release server
+#	(in this context there is no corresponding root partition)
+
+ps -e | egrep -s ' cron$'
+CRONRUNNING=$?
+
+CRONTABSRC=$BASEDIR/usr/lib/uucp/uudemon.crontab
+CRONTABDIR=$BASEDIR/var/spool/cron/crontabs
+CRONTABDEST=$CRONTABDIR/uucp
+
+if [ \( $CRONRUNNING -eq 0 \) -a \( "$BASEDIR" = "/" \) ]
+then
+	su uucp -c "crontab $CRONTABSRC"
+else
+	if [ -d $CRONTABDIR ]
+	then
+		rm -f $CRONTABDEST
+		cp $CRONTABSRC $CRONTABDEST
+		chgrp sys $CRONTABDEST
+	fi
+fi
+
+exit 0

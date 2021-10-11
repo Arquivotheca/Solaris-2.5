@@ -1,0 +1,7 @@
+#!/bin/sh
+#pragma ident	"@(#)req.flg	1.2	94/03/02 SMI"
+
+echo_file usr/src/cmd/Makefile
+echo_file usr/src/cmd/Makefile.cmd
+echo_file usr/src/cmd/Makefile.targ
+echo_file usr/src/Makefile.master

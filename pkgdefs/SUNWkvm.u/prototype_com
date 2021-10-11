@@ -1,0 +1,57 @@
+#	Copyright (c) 1990-95 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)prototype_com	1.15	95/09/21 (c) Sun Microsystems, Inc.
+#
+# This required package information file contains a list of package contents.
+# The 'pkgmk' command uses this file to identify the contents of a package
+# and their location on the development machine when building the package.
+# Can be created via a text editor or through use of the 'pkgproto' command.
+
+#!search <pathname pathname ...>	# where to find pkg objects
+#!include <filename>			# include another 'prototype' file
+#!default <mode> <owner> <group>	# default used if not specified on entry
+#!<param>=<value>			# puts parameter in pkg environment
+
+# packaging files
+i pkginfo
+i copyright
+#
+# source locations relative to the prototype file
+#
+# SUNWkvm.u
+#
+d none usr 775 root sys
+d none usr/platform 755 root sys
+d none usr/platform/sun4u 755 root sys
+d none usr/platform/sun4u/sbin 755 bin bin
+f none usr/platform/sun4u/sbin/eeprom 2555 bin sys
+d none usr/platform/sun4u/lib 755 bin bin 
+f none usr/platform/sun4u/lib/libc_psr.so.1 755 bin bin 
+#
+# platform-dependent adb macros
+#
+d none usr/platform/sun4u/lib/adb 755 bin bin 
+f none usr/platform/sun4u/lib/adb/ctx 644 root sys
+f none usr/platform/sun4u/lib/adb/hmetopmgrp 644 root sys
+f none usr/platform/sun4u/lib/adb/msgbuf 644 root sys
+f none usr/platform/sun4u/lib/adb/pmgrp 644 root sys
+f none usr/platform/sun4u/lib/adb/pmgseg 644 root sys
+f none usr/platform/sun4u/lib/adb/mutex 644 root sys
+f none usr/platform/sun4u/lib/adb/regs 644 root sys
+f none usr/platform/sun4u/lib/adb/rwlock 644 root sys
+f none usr/platform/sun4u/lib/adb/sema 644 root sys
+f none usr/platform/sun4u/lib/adb/machpcb 644 root sys
+#
+# platform-dependent boot objects
+#
+d none usr/platform/sun4u/lib/fs 755 bin bin
+d none usr/platform/sun4u/lib/fs/ufs 755 bin bin
+f none usr/platform/sun4u/lib/fs/ufs/bootblk 444 root sys
+d none usr/platform/sun4u/lib/fs/nfs 755 bin bin
+f none usr/platform/sun4u/lib/fs/nfs/inetboot 644 root sys
+#
+# make the links to other machine types
+#
+s none usr/platform/SUNW,Ultra-1=sun4u
+s none usr/platform/SUNW,Ultra-2=sun4u

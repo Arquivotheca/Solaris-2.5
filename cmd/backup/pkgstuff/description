@@ -1,0 +1,18 @@
+
+SunSoft Online: Backup 2.0 is an unbundled software package that provides a
+fast and site configurable backup solution.
+
+Online: Backup features enhanced versions of ufsdump(1M), ufsrestore(1M), a
+configuration and execution system for setting up and running dumps, a
+status monitor, an on-line database of all backups, and recover(1), a
+user interface to the on-line database.
+
+Under Online: Backup the file systems remain on-line during a backup session
+and most file operations proceed.  Backups of disks to remote devices
+is also supported.
+
+Online: Backup can be configured to backup remote clients running either
+Online: Backup 2.0 or Backup Copilot 1.0.
+
+You must be running Solaris 2.0 or higher to use Online: Backup 2.0.
+

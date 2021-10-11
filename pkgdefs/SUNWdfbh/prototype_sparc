@@ -1,0 +1,36 @@
+#	Copyright (c) 1990-93 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)prototype_sparc	1.4	94/07/22 (c) Sun Microsystems, Inc.
+#
+# This required package information file contains a list of package contents.
+# The 'pkgmk' command uses this file to identify the contents of a package
+# and their location on the development machine when building the package.
+# Can be created via a text editor or through use of the 'pkgproto' command.
+
+#!search <pathname pathname ...>	# where to find pkg objects
+#!include <filename>			# include another 'prototype' file
+#!default <mode> <owner> <group>	# default used if not specified on entry
+#!<param>=<value>			# puts parameter in pkg environment
+
+#
+# Include ISA independent files (prototype_com)
+#
+!include prototype_com
+#
+#
+#
+# List files which are SPARC specific here
+#
+# source locations relative to the prototype file
+#
+#
+# SUNWdfbh
+#
+f none usr/include/sys/cg8reg.h 644 bin bin
+f none usr/include/sys/cg8var.h 644 bin bin
+f none usr/include/sys/gp1cmds.h 644 bin bin
+f none usr/include/sys/gp1reg.h 644 bin bin
+f none usr/include/sys/gp1var.h 644 bin bin
+f none usr/include/sys/gpio.h 644 bin bin
+

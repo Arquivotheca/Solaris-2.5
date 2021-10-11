@@ -1,0 +1,38 @@
+#!/bin/csh
+#                    "@(#)testdumptm 1.1 91/04/10"
+rm -f /etc/test.tl
+./dumptm -m test.tl
+ls /etc/test.tl
+./dumptm -C NOTTHERE -l -r 0
+./dumptm -L NOTTHERE -l -r 0
+./dumptm -L test.tl -s -r 0
+./dumptm -L test.tl -l -r 0
+./dumptm -L test.tl -s -r 5-6,8
+./dumptm -L test.tl -l -r all
+./dumptm -L test.tl -w 7
+echo >> /tmp/testdumptm$$
+./dumptm -L test.tl -w 7 -D /tmp/testdumptm$$
+echo " " >> /tmp/testdumptm$$
+cat /tmp/testdumptm$$
+rm /tmp/testdumptm$$
+./dumptm -L test.tl -l -r all
+echo >> /tmp/testdumptm$$
+./dumptm -L test.tl -W RBK:TESTLAB -D /tmp/testdumptm$$
+echo " " >> /tmp/testdumptm$$
+cat /tmp/testdumptm$$
+rm /tmp/testdumptm$$
+echo Reserve test 1:
+./dumptm -L test.tl -l -r all
+./dumptm -L test.tl -n 2
+./dumptm -L test.tl -l -r all
+echo Reserve test 2:
+./dumptm -L test.tl -N 2
+./dumptm -L test.tl -l -r all
+echo Error check test:
+./dumptm -L test.tl -e
+echo Rewrite tape 5 date:
+./dumptm -L test.tl -r 5 -d 60909090
+./dumptm -L test.tl -ll -r all
+echo Rewrite tape 5 expcycle:
+./dumptm -L test.tl -r 5 -c 1234
+./dumptm -L test.tl -ll -r all

@@ -1,0 +1,24 @@
+#ident	"@(#)MOUNTFSYS	1.10	94/01/19 SMI"	/* SVr4.0 1.1.4.1	*/
+
+#	Mount file systems
+
+cd /
+/sbin/mountall -l
+
+# make sure /usr subtree is present by testing for /usr/sbin
+if [ ! -d /usr/sbin ]
+then
+	echo "/usr sub-tree is not present - changing to single user mode"
+	/etc/init S
+fi
+
+# The following counts the number of filesystems with quotas enabled
+NQUOTA=`cut -f 4 /etc/mnttab | egrep -c "^quota|,quota"`
+
+if [ $NQUOTA -gt 0 ]
+then
+	echo "Checking UFS quotas: \c"
+	/usr/sbin/quotacheck -a -p
+	echo "done."
+	/usr/sbin/quotaon -a
+fi

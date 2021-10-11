@@ -1,0 +1,9 @@
+# Specify what global symbols we export.
+
+SUNW_private.1.1 {
+	global:
+		ld_file;
+		ld_atexit;
+	local:
+		*;
+};

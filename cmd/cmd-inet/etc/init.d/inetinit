@@ -1,0 +1,129 @@
+#
+# Copyright (c) 1995, by Sun Microsystems, Inc.
+# All Rights Reserved
+#
+#ident	"@(#)inetinit	1.20	95/02/24 SMI"
+# 
+# This is the second phase of TCP/IP configuration.  The first part,
+# run in the "/etc/rcS.d/S30rootusr.sh" script, does all configuration
+# necessary to mount the "/usr" filesystem via NFS.  This includes configuring
+# the interfaces and setting the machine's hostname.  The second part,
+# run in this script, does all configuration that can be done before
+# NIS or NIS+ is started.  This includes configuring IP routing,
+# setting the NIS domainname and setting any tunable parameters.  The
+# third part, run in a subsequent startup script, does all
+# configuration that may be dependent on NIS/NIS+ maps.  This includes
+# a final re-configuration of the interfaces and starting all internet
+# services.
+# 
+
+#
+# Set configurable parameters.
+#
+ndd -set /dev/tcp tcp_old_urp_interpretation 1
+
+#
+# Configure default routers using the local "/etc/defaultrouter"
+# configuration file.  The file can contain the hostnames or IP
+# addresses of one or more default routers.  If hostnames are used,
+# each hostname must also be listed in the local "/etc/hosts" file
+# because NIS and NIS+ are not running at the time that this script is
+# run.  Each router name or address is listed on a single line by
+# itself in the file.  Anything else on that line after the router's
+# name or address is ignored.  Lines that begin with "#" are
+# considered comments and ignored.
+#
+# The default routes listed in the "/etc/defaultrouter" file will
+# replace those added by the kernel during diskless booting.  An
+# empty "/etc/defaultrouter" file will cause the default route
+# added by the kernel to be deleted.
+#
+if [ -f /etc/defaultrouter ]; then
+	defrouters=`grep -v \^\# /etc/defaultrouter | awk '{print $1}' `
+	if [ -n "$defrouters" ]; then
+		#
+		# To support diskless operation with a "/usr"
+		# filesystem NFS mounted from a server located on a
+		# remote subnet, we have to be very careful about
+		# replacing default routes.  We want the default
+		# routers listed in the "/etc/defaultrouter" file to
+		# replace the default router added by the bootparams
+		# protocol.  But we can't have a window of time when
+		# the system has no default routers in the process.
+		# That would cause a deadlock since the "route"
+		# command lives on the "/usr" filesystem.
+		#
+		pass=1
+		for router in $defrouters
+		do
+			if [ $pass -eq 1 ]; then
+				/usr/sbin/route -f add default $router 1
+			else
+				/usr/sbin/route add default $router 1
+			fi
+			pass=2
+		done
+	else
+		/usr/sbin/route -f
+	fi
+fi
+
+#
+# Set NIS domainname if locally configured.
+#
+if [ -f /etc/defaultdomain ]; then
+	/usr/bin/domainname `cat /etc/defaultdomain`
+	echo "NIS domainname is `/usr/bin/domainname`"
+fi
+
+#
+# Run routed/router discovery only if we don't already have a default
+# route installed.
+#
+if [ -z "$defrouters" ]; then
+	#
+	# No default routes were setup by "route" command above - check the
+	# kernel routing table for any other default routes.
+	#
+	defrouters="`netstat -rn | grep default`"
+fi
+
+if [ -z "$defrouters" ]; then
+	#
+	# Determine how many active interfaces there are and how many pt-pt
+	# interfaces. Act as a router if there are more than 2 interfaces 
+	# (including the loopback interface) or one or more point-point 
+	# interface. Also act as a router if /etc/gateways exists.
+	#
+	# Do NOT act as a router if /etc/notrouter exists.
+	#
+	numifs=`ifconfig -au | grep inet | wc -l`
+	numptptifs=`ifconfig -au | grep inet | egrep -e '-->' | wc -l`
+	if [ ! -f /etc/notrouter  -a  \
+	    \( $numifs -gt 2 -o $numptptifs -gt 0 -o -f /etc/gateways \) ]
+	then
+		# Machine is a router: turn on ip_forwarding, run routed,
+		# and advertise ourselves as a router using router discovery.
+		echo "machine is a router."
+		ndd -set /dev/ip ip_forwarding 1
+		if [ -f /usr/sbin/in.routed ]; then
+			/usr/sbin/in.routed -s
+		fi
+		if [ -f /usr/sbin/in.rdisc ]; then
+			/usr/sbin/in.rdisc -r
+		fi
+	else
+		# Machine is a host: if router discovery finds a router then
+		# we rely on router discovery. If there are not routers
+		# advertising themselves through router discovery
+		# run routed in space-saving mode.
+		# Turn off ip_forwarding
+		ndd -set /dev/ip ip_forwarding 0
+		if [ -f /usr/sbin/in.rdisc ] && /usr/sbin/in.rdisc -s; then
+			echo "starting router discovery."
+		elif [  -f /usr/sbin/in.routed ]; then
+			/usr/sbin/in.routed -q;
+			echo "starting routing daemon."
+		fi
+	fi
+fi

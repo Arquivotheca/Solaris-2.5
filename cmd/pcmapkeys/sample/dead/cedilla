@@ -1,0 +1,9 @@
+# Copyright (c) 1993 Sun Microsystems, Inc.  All Rights Reserved.
+#
+#	"@(#)cedilla	1.1	93/03/02 SMI"
+#
+dead: <cedilla> 	# cedilla
+' ' <cedilla>          # <cedilla accent>
+'C' <C-cedilla>          # <C-cedilla>
+'c' <c-cedilla>          # <c-cedilla>
+#

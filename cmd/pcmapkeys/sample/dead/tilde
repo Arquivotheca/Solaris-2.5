@@ -1,0 +1,17 @@
+# Copyright (c) 1993 Sun Microsystems, Inc.  All Rights Reserved.
+#
+#	"@(#)tilde	1.1	93/03/02 SMI"
+#
+dead: '~' 	# tilde
+' ' <tilde>          #<tilde accent>
+'A' <A-tilde>          # <A-tilde>
+'I' <I-tilde>          # <I-tilde>
+'N' <N-tilde>          # <N-tilde>
+'O' <O-tilde>          # <O-tilde>
+'U' <U-tilde>          # <U-tilde>
+'a' <a-tilde>          # <a-tilde>
+'i' <i-tilde>          # <i-tilde>
+'n' <n-tilde>          # <n-tilde>
+'o' <o-tilde>          # <o-tilde>
+'u' <u-tilde>          # <u-tilde>
+#

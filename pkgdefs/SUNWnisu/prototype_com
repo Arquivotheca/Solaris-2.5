@@ -1,0 +1,85 @@
+#	Copyright (c) 1990-93 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)prototype_com	1.25	94/11/12 (c) Sun Microsystems, Inc.
+#
+# This required package information file contains a list of package contents.
+# The 'pkgmk' command uses this file to identify the contents of a package
+# and their location on the development machine when building the package.
+# Can be created via a text editor or through use of the 'pkgproto' command.
+
+#!search <pathname pathname ...>	# where to find pkg objects
+#!include <filename>			# include another 'prototype' file
+#!default <mode> <owner> <group>	# default used if not specified on entry
+#!<param>=<value>			# puts parameter in pkg environment
+
+# packaging files
+i pkginfo
+i copyright
+i depend
+#
+# source locations relative to the prototype file
+#
+# SUNWnisu
+#
+d none usr 775 root sys
+d none usr/bin 775 root bin
+f none usr/bin/aliasadm 555 bin bin
+f none usr/bin/getent 555 bin bin
+s none usr/bin/newaliases=../lib/sendmail
+f none usr/bin/nisaddcred 555 bin bin
+f none usr/bin/niscat 555 bin bin
+f none usr/bin/nischgrp 555 bin bin
+l none usr/bin/nischmod=../../usr/bin/nischgrp
+l none usr/bin/nischown=../../usr/bin/nischgrp
+l none usr/bin/nischttl=../../usr/bin/nischgrp
+f none usr/bin/nisdefaults 555 bin bin
+f none usr/bin/niserror 555 bin bin
+f none usr/bin/nisgrep 555 bin bin
+f none usr/bin/nisgrpadm 555 bin bin
+f none usr/bin/nisln 555 bin bin
+f none usr/bin/nisls 555 bin bin
+f none usr/bin/nismatch 555 bin bin
+f none usr/bin/nismkdir 555 bin bin
+l none usr/bin/nispasswd=../../usr/bin/passwd
+f none usr/bin/nispath 555 bin bin
+f none usr/bin/nisrm 555 bin bin
+f none usr/bin/nisrmdir 555 bin bin
+f none usr/bin/nistbladm 555 bin bin
+f none usr/bin/nistest 555 bin bin
+f none usr/bin/ypcat 555 root other
+f none usr/bin/ypmatch 555 root other
+f none usr/bin/ypwhich 555 root other
+d none usr/lib 775 root bin
+s none usr/lib/libnisdb.so=./libnisdb.so.2
+f none usr/lib/libnisdb.so.2 755 bin bin
+d none usr/lib/netsvc 755 root sys
+d none usr/lib/netsvc/nis 755 root sys
+d none usr/lib/netsvc/yp 755 bin bin
+f none usr/lib/netsvc/yp/ypbind 555 bin bin
+f none usr/lib/netsvc/yp/ypxfr 555 bin bin
+d none usr/lib/nis 755 bin bin
+f none usr/lib/nis/nisaddent 555 bin bin
+f none usr/lib/nis/nisctl 555 bin bin
+f none usr/lib/nis/nisclient 755 bin bin
+f none usr/lib/nis/nisping 555 bin bin
+f none usr/lib/nis/nispopulate 755 bin bin
+f none usr/lib/nis/nisserver 755 bin bin
+f none usr/lib/nis/nissetup 755 bin bin
+f none usr/lib/nis/nisshowcache 555 bin bin
+f none usr/lib/nis/nisstat 555 bin bin
+f none usr/lib/nis/nisupdkeys 555 bin bin
+d none usr/sbin 775 root bin
+f none usr/sbin/gettable 555 bin bin
+f none usr/sbin/htable 555 bin bin
+f none usr/sbin/nis_cachemgr 555 bin bin
+f none usr/sbin/nisinit 555 bin bin
+f none usr/sbin/nislog 555 bin bin
+f none usr/sbin/rpc.nisd 555 bin bin
+f none usr/sbin/rpc.nisd_resolv 555 bin bin
+f none usr/sbin/rpc.nispasswdd 555 bin bin
+f none usr/sbin/rpc.rexd 555 bin bin
+f none usr/sbin/ypalias 555 bin bin
+f none usr/sbin/ypinit 555 bin bin
+f none usr/sbin/yppoll 555 bin bin
+f none usr/sbin/ypset 555 bin bin

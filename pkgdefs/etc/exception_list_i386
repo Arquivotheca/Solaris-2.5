@@ -1,0 +1,488 @@
+#
+#pragma ident	"@(#)exception_list_i386	1.14	95/06/02 SMI"
+#
+# Exception List for protocmp
+#
+###########################################
+#
+# ENTRIES FILTERED OUT OF THE protolist
+#
+###########################################
+#
+# these are just a funky entries - they are fixed up
+# via a post install scripts.
+#
+usr/lib/libcrypt.a	i386
+usr/lib/font/devpost/charlib/~ 	i386
+usr/lib/font/devpost/charlib/~=	i386
+#
+# The following entries are built in the /proto area
+# but not included in any packages - this is:
+#	bugid 1173280 for gcrt1.o
+#	bugid 1173281 for /dev/spx
+#	bugid 1173281 has been fixed removed /dev/spx
+#
+usr/ccs/bin/gcrt1.o		i386
+#
+# The following entries are built in the /proto area
+# but not included in any packages - this is intentional.
+#
+usr/include/getxby_door.h	i386
+usr/include/sys/winlockio.h	i386
+usr/lib/libthread_db.a		i386
+etc/fs/s5fs			i386
+etc/fs/s5fs/mount		i386
+usr/include/sys/cpr.h 		i386
+#
+###########################################
+#
+# ENTRIES FILTERED OUT OF THE protodirs
+#
+###########################################
+#
+# Filtering out the stuff not really owned by ON.
+# This really needs to be fixed.
+#
+shlib					i386
+shlib/libnsl_s				i386
+shlib/libc_s				i386
+shlib/libNSL_s				i386
+shlib/libX11_s				i386
+usr/lib/fs/ufs/bootblk			i386
+usr/lib/fs/ufs/pboot			i386
+usr/lib/fs/ufs/mboot			i386
+usr/lib/fs/nfs/drv.i86pc		i386
+usr/lib/fs/nfs/drv.i86pc/gluecode.com	i386
+usr/lib/fs/nfs/drv.i86pc/smc.com	i386
+#
+# Filtering out directories not shipped
+#
+usr/4lib	i386
+#
+# Timezone files not packaged in on494
+#
+usr/share/lib/zoneinfo/America/Montreal	i386
+usr/share/lib/zoneinfo/SystemV/EST5EDT	i386
+usr/share/lib/zoneinfo/SystemV/PST8PDT	i386
+usr/share/lib/zoneinfo/Asia/Bangkok	i386
+usr/share/lib/zoneinfo/Europe/Vienna	i386
+usr/share/lib/zoneinfo/Africa	i386
+usr/share/lib/zoneinfo/Africa/Brazzaville	i386
+usr/share/lib/zoneinfo/Africa/Bissau	i386
+usr/share/lib/zoneinfo/Europe	i386
+usr/share/lib/zoneinfo/Europe/Belfast	i386
+usr/share/lib/zoneinfo/Europe/Monaco	i386
+usr/share/lib/zoneinfo/Pacific/Kiritimati	i386
+usr/share/lib/zoneinfo/Europe/Zagreb	i386
+usr/share/lib/zoneinfo/Pacific	i386
+usr/share/lib/zoneinfo/SystemV/AST4ADT	i386
+usr/share/lib/zoneinfo/Asia/Baku	i386
+usr/share/lib/zoneinfo/Asia/Kuala_Lumpur	i386
+usr/share/lib/zoneinfo/Asia/Baghdad	i386
+usr/share/lib/zoneinfo/SystemV/PST8	i386
+usr/share/lib/zoneinfo/Africa/Asmera	i386
+usr/share/lib/zoneinfo/America/Regina	i386
+usr/share/lib/zoneinfo/Atlantic/South_Georgia	i386
+usr/share/lib/zoneinfo/America/Jamaica	i386
+usr/share/lib/zoneinfo/America/St_Vincent	i386
+usr/share/lib/zoneinfo/Indian/Comoro	i386
+usr/share/lib/zoneinfo/Europe/Tallinn	i386
+usr/share/lib/zoneinfo/Pacific/Wake	i386
+usr/share/lib/zoneinfo/Africa/Timbuktu	i386
+usr/share/lib/zoneinfo/Etc/GMT0	i386
+usr/share/lib/zoneinfo/Europe/Vilnius	i386
+usr/share/lib/zoneinfo/Australia/Perth	i386
+usr/share/lib/zoneinfo/Portugal	i386
+usr/share/lib/zoneinfo/Asia/Gaza	i386
+usr/share/lib/zoneinfo/Asia/Tel_Aviv	i386
+usr/share/lib/zoneinfo/America/Vancouver	i386
+usr/share/lib/zoneinfo/SystemV/MST7	i386
+usr/share/lib/zoneinfo/Asia/Magadan	i386
+usr/share/lib/zoneinfo/Europe/Berlin	i386
+usr/share/lib/zoneinfo/SystemV/YST9YDT	i386
+usr/share/lib/zoneinfo/America/Bogota	i386
+usr/share/lib/zoneinfo/America/Tegucigalpa	i386
+usr/share/lib/zoneinfo/Asia/Nicosia	i386
+usr/share/lib/zoneinfo/Asia/Damascus	i386
+usr/share/lib/zoneinfo/Pacific/Samoa	i386
+usr/share/lib/zoneinfo/America/Guadeloupe	i386
+usr/share/lib/zoneinfo/Pacific/Tarawa	i386
+usr/share/lib/zoneinfo/Africa/Lagos	i386
+usr/share/lib/zoneinfo/America/Buenos_Aires	i386
+usr/share/lib/zoneinfo/America/Edmonton	i386
+usr/share/lib/zoneinfo/Europe/Helsinki	i386
+usr/share/lib/zoneinfo/Australia/Brisbane	i386
+usr/share/lib/zoneinfo/Europe/Moscow	i386
+usr/share/lib/zoneinfo/Pacific/Norfolk	i386
+usr/share/lib/zoneinfo/Africa/Djibouti	i386
+usr/share/lib/zoneinfo/Atlantic/Faeroe	i386
+usr/share/lib/zoneinfo/Australia/Lord_Howe	i386
+usr/share/lib/zoneinfo/Europe/Ljubljana	i386
+usr/share/lib/zoneinfo/Asia/Omsk	i386
+usr/share/lib/zoneinfo/Asia/Rangoon	i386
+usr/share/lib/zoneinfo/America/Barbados	i386
+usr/share/lib/zoneinfo/America/Belize	i386
+usr/share/lib/zoneinfo/America/Santiago	i386
+usr/share/lib/zoneinfo/Europe/Rome	i386
+usr/share/lib/zoneinfo/Europe/Vaduz	i386
+usr/share/lib/zoneinfo/Pacific/Enderbury	i386
+usr/share/lib/zoneinfo/Pacific/Yap	i386
+usr/share/lib/zoneinfo/SystemV/YST9	i386
+usr/share/lib/zoneinfo/Atlantic/Jan_Mayen	i386
+usr/share/lib/zoneinfo/Pacific/Funafuti	i386
+usr/share/lib/zoneinfo/Africa/Malabo	i386
+usr/share/lib/zoneinfo/Asia/Jayapura	i386
+usr/share/lib/zoneinfo/Indian/Mahe	i386
+usr/share/lib/zoneinfo/Asia/Taipei	i386
+usr/share/lib/zoneinfo/SystemV/EST5	i386
+usr/share/lib/zoneinfo/America/Nassau	i386
+usr/share/lib/zoneinfo/Asia/Tashkent	i386
+usr/share/lib/zoneinfo/Europe/Malta	i386
+usr/share/lib/zoneinfo/Pacific/Tahiti	i386
+usr/share/lib/zoneinfo/Asia/Singapore	i386
+usr/share/lib/zoneinfo/Europe/Oslo	i386
+usr/share/lib/zoneinfo/Africa/Addis_Ababa	i386
+usr/share/lib/zoneinfo/Australia/Melbourne	i386
+usr/share/lib/zoneinfo/Europe/Copenhagen	i386
+usr/share/lib/zoneinfo/Pacific/Easter	i386
+usr/share/lib/zoneinfo/Canada/Saskatchewan	i386
+usr/share/lib/zoneinfo/Asia	i386
+usr/share/lib/zoneinfo/America/Grand_Turk	i386
+usr/share/lib/zoneinfo/America/Fort_Wayne	i386
+usr/share/lib/zoneinfo/Asia/Tehran	i386
+usr/share/lib/zoneinfo/Etc/Universal	i386
+usr/share/lib/zoneinfo/Europe/Bratislava	i386
+usr/share/lib/zoneinfo/Africa/Luanda	i386
+usr/share/lib/zoneinfo/Asia/Macao	i386
+usr/share/lib/zoneinfo/Africa/Freetown	i386
+usr/share/lib/zoneinfo/Africa/Libreville	i386
+usr/share/lib/zoneinfo/Africa/Conakry	i386
+usr/share/lib/zoneinfo/America/Guyana	i386
+usr/share/lib/zoneinfo/Europe/Zurich	i386
+usr/share/lib/zoneinfo/America/Grenada	i386
+usr/share/lib/zoneinfo/Asia/Vientiane	i386
+usr/share/lib/zoneinfo/Africa/Ouagadougou	i386
+usr/share/lib/zoneinfo/America/Scoresbysund	i386
+usr/share/lib/zoneinfo/Africa/Bangui	i386
+usr/share/lib/zoneinfo/Europe/Luxembourg	i386
+usr/share/lib/zoneinfo/SystemV	i386
+usr/share/lib/zoneinfo/Africa/Johannesburg	i386
+usr/share/lib/zoneinfo/America/Miquelon	i386
+usr/share/lib/zoneinfo/Pacific/Marquesas	i386
+usr/share/lib/zoneinfo/Pacific/Chatham	i386
+usr/share/lib/zoneinfo/Africa/Kampala	i386
+usr/share/lib/zoneinfo/Europe/Andorra	i386
+usr/share/lib/zoneinfo/Africa/Nairobi	i386
+usr/share/lib/zoneinfo/Africa/Monrovia	i386
+usr/share/lib/zoneinfo/Asia/Kuwait	i386
+usr/share/lib/zoneinfo/Asia/Calcutta	i386
+usr/share/lib/zoneinfo/Europe/Gibraltar	i386
+usr/share/lib/zoneinfo/America/Atka	i386
+usr/share/lib/zoneinfo/Australia/Hobart	i386
+usr/share/lib/zoneinfo/Indian/Mauritius	i386
+usr/share/lib/zoneinfo/Pacific/Galapagos	i386
+usr/share/lib/zoneinfo/Africa/Lumumbashi	i386
+usr/share/lib/zoneinfo/Europe/Lisbon	i386
+usr/share/lib/zoneinfo/Africa/Bujumbura	i386
+usr/share/lib/zoneinfo/America/La_Paz	i386
+usr/share/lib/zoneinfo/America/Sao_Paulo	i386
+usr/share/lib/zoneinfo/antarctica	i386
+usr/share/lib/zoneinfo/GB	i386
+usr/share/lib/zoneinfo/GB-Eire	i386
+usr/share/lib/zoneinfo/America/Mexico_City	i386
+usr/share/lib/zoneinfo/Etc/UCT	i386
+usr/share/lib/zoneinfo/Etc/UTC	i386
+usr/share/lib/zoneinfo/Europe/Sarajevo	i386
+usr/share/lib/zoneinfo/Europe/Tirane	i386
+usr/share/lib/zoneinfo/America/Noronha	i386
+usr/share/lib/zoneinfo/Asia/Qatar	i386
+usr/share/lib/zoneinfo/Asia/Thimbu	i386
+usr/share/lib/zoneinfo/America	i386
+usr/share/lib/zoneinfo/Asia/Anadyr	i386
+usr/share/lib/zoneinfo/Europe/Paris	i386
+usr/share/lib/zoneinfo/Asia/Dubai	i386
+usr/share/lib/zoneinfo/SystemV/MST7MDT	i386
+usr/share/lib/zoneinfo/SystemV/AST4	i386
+usr/share/lib/zoneinfo/America/St_Kitts	i386
+usr/share/lib/zoneinfo/America/Asuncion	i386
+usr/share/lib/zoneinfo/Africa/Gaborone	i386
+usr/share/lib/zoneinfo/Asia/Karachi	i386
+usr/share/lib/zoneinfo/Asia/Ulan_Bator	i386
+usr/share/lib/zoneinfo/Asia/Yerevan	i386
+usr/share/lib/zoneinfo/Africa/Niamey	i386
+usr/share/lib/zoneinfo/America/Paramaribo	i386
+usr/share/lib/zoneinfo/Asia/Dushanbe	i386
+usr/share/lib/zoneinfo/Africa/Harare	i386
+usr/share/lib/zoneinfo/Africa/Mbabane	i386
+usr/share/lib/zoneinfo/America/Montevideo	i386
+usr/share/lib/zoneinfo/Asia/Hong_Kong	i386
+usr/share/lib/zoneinfo/Europe/Amsterdam	i386
+usr/share/lib/zoneinfo/Europe/Warsaw	i386
+usr/share/lib/zoneinfo/SystemV/CST6CDT	i386
+usr/share/lib/zoneinfo/Africa/Banjul	i386
+usr/share/lib/zoneinfo/America/Guatemala	i386
+usr/share/lib/zoneinfo/America/Los_Angeles	i386
+usr/share/lib/zoneinfo/Pacific/Niue	i386
+usr/share/lib/zoneinfo/America/Chicago	i386
+usr/share/lib/zoneinfo/Europe/Budapest	i386
+usr/share/lib/zoneinfo/Pacific/Auckland	i386
+usr/share/lib/zoneinfo/America/Denver	i386
+usr/share/lib/zoneinfo/Pacific/Efate	i386
+usr/share/lib/zoneinfo/Africa/Abidjan	i386
+usr/share/lib/zoneinfo/America/Manaus	i386
+usr/share/lib/zoneinfo/Africa/Kinshasa	i386
+usr/share/lib/zoneinfo/Asia/Colombo	i386
+usr/share/lib/zoneinfo/Europe/Riga	i386
+usr/share/lib/zoneinfo/America/Godthab	i386
+usr/share/lib/zoneinfo/Asia/Yekaterinburg	i386
+usr/share/lib/zoneinfo/Europe/Sofia	i386
+usr/share/lib/zoneinfo/Asia/Ujung_Pandang	i386
+usr/share/lib/zoneinfo/Africa/Maputo	i386
+usr/share/lib/zoneinfo/America/Caracas	i386
+usr/share/lib/zoneinfo/Pacific/Fakaofo	i386
+usr/share/lib/zoneinfo/America/Thule	i386
+usr/share/lib/zoneinfo/Atlantic/Cape_Verde	i386
+usr/share/lib/zoneinfo/Atlantic/St_Helena	i386
+usr/share/lib/zoneinfo/Asia/Kabul	i386
+usr/share/lib/zoneinfo/Europe/Brussels	i386
+usr/share/lib/zoneinfo/Africa/Maseru	i386
+usr/share/lib/zoneinfo/Indian/Chagos	i386
+usr/share/lib/zoneinfo/America/Winnipeg	i386
+usr/share/lib/zoneinfo/Indian/Maldives	i386
+usr/share/lib/zoneinfo/America/Havana	i386
+usr/share/lib/zoneinfo/Asia/Kamchatka	i386
+usr/share/lib/zoneinfo/Pacific/Kwajalein	i386
+usr/share/lib/zoneinfo/Asia/Phnom_Penh	i386
+usr/share/lib/zoneinfo/Africa/Windhoek	i386
+usr/share/lib/zoneinfo/Africa/Dakar	i386
+usr/share/lib/zoneinfo/Atlantic/Stanley	i386
+usr/share/lib/zoneinfo/Australia/Sydney	i386
+usr/share/lib/zoneinfo/Atlantic/Madeira	i386
+usr/share/lib/zoneinfo/America/Santo_Domingo	i386
+usr/share/lib/zoneinfo/Asia/Seoul	i386
+usr/share/lib/zoneinfo/America/Costa_Rica	i386
+usr/share/lib/zoneinfo/Africa/Tunis	i386
+usr/share/lib/zoneinfo/America/New_York	i386
+usr/share/lib/zoneinfo/Asia/Muscat	i386
+usr/share/lib/zoneinfo/America/Anguilla	i386
+usr/share/lib/zoneinfo/Australia/Adelaide	i386
+usr/share/lib/zoneinfo/Asia/Amman	i386
+usr/share/lib/zoneinfo/Africa/Ndjamena	i386
+usr/share/lib/zoneinfo/Asia/Brunei	i386
+usr/share/lib/zoneinfo/America/Virgin	i386
+usr/share/lib/zoneinfo/SystemV/CST6	i386
+usr/share/lib/zoneinfo/America/Guayaquil	i386
+usr/share/lib/zoneinfo/Indian/Christmas	i386
+usr/share/lib/zoneinfo/Africa/Tripoli	i386
+usr/share/lib/zoneinfo/America/Detroit	i386
+usr/share/lib/zoneinfo/Asia/Shanghai	i386
+usr/share/lib/zoneinfo/Atlantic/Canary	i386
+usr/share/lib/zoneinfo/America/Knox_IN	i386
+usr/share/lib/zoneinfo/Asia/Istanbul	i386
+usr/share/lib/zoneinfo/Europe/Chisinau	i386
+usr/share/lib/zoneinfo/systemv	i386
+usr/share/lib/zoneinfo/Atlantic/Bermuda	i386
+usr/share/lib/zoneinfo/Africa/Cairo	i386
+usr/share/lib/zoneinfo/America/Phoenix	i386
+usr/share/lib/zoneinfo/Pacific/Ponape	i386
+usr/share/lib/zoneinfo/Indian	i386
+usr/share/lib/zoneinfo/Africa/Lusaka	i386
+usr/share/lib/zoneinfo/Africa/Nouakchott	i386
+usr/share/lib/zoneinfo/Asia/Riyadh	i386
+usr/share/lib/zoneinfo/Asia/Katmandu	i386
+usr/share/lib/zoneinfo/America/El_Salvador	i386
+usr/share/lib/zoneinfo/America/Panama	i386
+usr/share/lib/zoneinfo/Asia/Saigon	i386
+usr/share/lib/zoneinfo/Europe/Minsk	i386
+usr/share/lib/zoneinfo/Europe/Belgrade	i386
+usr/share/lib/zoneinfo/Pacific/Rarotonga	i386
+usr/share/lib/zoneinfo/Pacific/Wallis	i386
+usr/share/lib/zoneinfo/America/Antigua	i386
+usr/share/lib/zoneinfo/US/Indiana-Starke	i386
+usr/share/lib/zoneinfo/Europe/Istanbul	i386
+usr/share/lib/zoneinfo/Pacific/Fiji	i386
+usr/share/lib/zoneinfo/Africa/Porto-Novo	i386
+usr/share/lib/zoneinfo/Africa/Bamako	i386
+usr/share/lib/zoneinfo/America/Lima	i386
+usr/share/lib/zoneinfo/Europe/Prague	i386
+usr/share/lib/zoneinfo/America/Puerto_Rico	i386
+usr/share/lib/zoneinfo/Europe/Dublin	i386
+usr/share/lib/zoneinfo/Europe/Kiev	i386
+usr/share/lib/zoneinfo/Europe/Skopje	i386
+usr/share/lib/zoneinfo/Africa/Blantyre	i386
+usr/share/lib/zoneinfo/Asia/Ashkhabad	i386
+usr/share/lib/zoneinfo/Asia/Yakutsk	i386
+usr/share/lib/zoneinfo/America/St_Johns	i386
+usr/share/lib/zoneinfo/Asia/Tbilisi	i386
+usr/share/lib/zoneinfo/America/Managua	i386
+usr/share/lib/zoneinfo/Pacific/Guadalcanal	i386
+usr/share/lib/zoneinfo/Pacific/Port_Moresby	i386
+usr/share/lib/zoneinfo/America/Martinique	i386
+usr/share/lib/zoneinfo/Asia/Jakarta	i386
+usr/share/lib/zoneinfo/America/Curacao	i386
+usr/share/lib/zoneinfo/Africa/Lome	i386
+usr/share/lib/zoneinfo/Pacific/Gambier	i386
+usr/share/lib/zoneinfo/Pacific/Guam	i386
+usr/share/lib/zoneinfo/Africa/Accra	i386
+usr/share/lib/zoneinfo/America/Halifax	i386
+usr/share/lib/zoneinfo/America/Anchorage	i386
+usr/share/lib/zoneinfo/Pacific/Truk	i386
+usr/share/lib/zoneinfo/Indian/Antananarivo	i386
+usr/share/lib/zoneinfo/Asia/Vladivostok	i386
+usr/share/lib/zoneinfo/America/Montserrat	i386
+usr/share/lib/zoneinfo/America/St_Lucia	i386
+usr/share/lib/zoneinfo/America/Mazatlan	i386
+usr/share/lib/zoneinfo/Asia/Dacca	i386
+usr/share/lib/zoneinfo/Africa/Algiers	i386
+usr/share/lib/zoneinfo/Africa/Dar_es_Salaam	i386
+usr/share/lib/zoneinfo/America/Whitehorse	i386
+usr/share/lib/zoneinfo/Asia/Tokyo	i386
+usr/share/lib/zoneinfo/Africa/Kigali	i386
+usr/share/lib/zoneinfo/Europe/London	i386
+usr/share/lib/zoneinfo/America/Port_of_Spain	i386
+usr/share/lib/zoneinfo/Asia/Pyongyang	i386
+usr/share/lib/zoneinfo/Pacific/Midway	i386
+usr/share/lib/zoneinfo/Pacific/Tongatapu	i386
+usr/share/lib/zoneinfo/Africa/Khartoum	i386
+usr/share/lib/zoneinfo/America/Ensenada	i386
+usr/share/lib/zoneinfo/Pacific/Honolulu	i386
+usr/share/lib/zoneinfo/Africa/Casablanca	i386
+usr/share/lib/zoneinfo/America/Porto_Acre	i386
+usr/share/lib/zoneinfo/SystemV/HST10	i386
+usr/share/lib/zoneinfo/Atlantic/Reykjavik	i386
+usr/share/lib/zoneinfo/Pacific/Majuro	i386
+usr/share/lib/zoneinfo/Pacific/Nauru	i386
+usr/share/lib/zoneinfo/Atlantic/Azores	i386
+usr/share/lib/zoneinfo/Africa/Douala	i386
+usr/share/lib/zoneinfo/Asia/Irkutsk	i386
+usr/share/lib/zoneinfo/Indian/Mayotte	i386
+usr/share/lib/zoneinfo/Etc/Greenwich	i386
+usr/share/lib/zoneinfo/Pacific/Pitcairn	i386
+usr/share/lib/zoneinfo/Indian/Reunion	i386
+usr/share/lib/zoneinfo/Africa/Sao_Tome	i386
+usr/share/lib/zoneinfo/America/Cayman	i386
+usr/share/lib/zoneinfo/Asia/Bahrain	i386
+usr/share/lib/zoneinfo/Atlantic	i386
+usr/share/lib/zoneinfo/Europe/Madrid	i386
+usr/share/lib/zoneinfo/America/Dominica	i386
+usr/share/lib/zoneinfo/America/Tijuana	i386
+usr/share/lib/zoneinfo/Asia/Aden	i386
+usr/share/lib/zoneinfo/Australia/Darwin	i386
+usr/share/lib/zoneinfo/Europe/Athens	i386
+usr/share/lib/zoneinfo/GMT0	i386
+usr/share/lib/zoneinfo/Africa/Mogadishu	i386
+usr/share/lib/zoneinfo/America/Cayenne	i386
+usr/share/lib/zoneinfo/Asia/Manila	i386
+usr/share/lib/zoneinfo/Etc/Zulu	i386
+usr/share/lib/zoneinfo/America/Port-au-Prince	i386
+usr/share/lib/zoneinfo/Asia/Beirut	i386
+usr/share/lib/zoneinfo/Pacific/Noumea	i386
+usr/share/lib/zoneinfo/Asia/Novosibirsk	i386
+usr/share/lib/zoneinfo/Europe/Bucharest	i386
+usr/share/lib/zoneinfo/Asia/Bishkek	i386
+usr/share/lib/zoneinfo/Asia/Alma-Ata	i386
+usr/share/lib/zoneinfo/Asia/Tomsk	i386
+usr/share/lib/zoneinfo/Indian/Cocos	i386
+usr/share/lib/zoneinfo/Pacific/Palau	i386
+usr/share/lib/zoneinfo/Europe/Kuybyshev	i386
+usr/share/lib/zoneinfo/Europe/Simferopol	i386
+usr/share/lib/zoneinfo/Australia/Canberra	i386
+#
+# Filter these because of link count errors because all timezone files
+# aren't packaged.
+#
+usr/share/lib/zoneinfo/Universal	i386
+usr/share/lib/zoneinfo/Australia/ACT	i386
+usr/share/lib/zoneinfo/Iran	i386
+usr/share/lib/zoneinfo/ROC	i386
+usr/share/lib/zoneinfo/Cuba	i386
+usr/share/lib/zoneinfo/UCT	i386
+usr/share/lib/zoneinfo/MST	i386
+usr/share/lib/zoneinfo/Eire	i386
+usr/share/lib/zoneinfo/Etc/GMT-0	i386
+usr/share/lib/zoneinfo/PST8PDT	i386
+usr/share/lib/zoneinfo/US/Central	i386
+usr/share/lib/zoneinfo/Iceland	i386
+usr/share/lib/zoneinfo/Singapore	i386
+usr/share/lib/zoneinfo/US/Aleutian	i386
+usr/share/lib/zoneinfo/Australia/LHI	i386
+usr/share/lib/zoneinfo/Brazil/East	i386
+usr/share/lib/zoneinfo/EST	i386
+usr/lib/locale/iso_8859_1	i386
+usr/share/lib/zoneinfo/Canada/Atlantic	i386
+usr/share/lib/zoneinfo/Kwajalein	i386
+usr/share/lib/zoneinfo/Australia/North	i386
+usr/share/lib/zoneinfo/Poland	i386
+usr/share/lib/zoneinfo/Mexico/BajaSur	i386
+usr/share/lib/zoneinfo/Australia/Broken_Hill	i386
+usr/share/lib/zoneinfo/Hongkong	i386
+usr/share/lib/zoneinfo/Brazil/West	i386
+usr/share/lib/zoneinfo/Canada/Central	i386
+usr/share/lib/zoneinfo/Australia/Yancowinna	i386
+usr/share/lib/zoneinfo/Canada/Yukon	i386
+usr/share/lib/zoneinfo/Canada/Newfoundland	i386
+usr/share/lib/zoneinfo/Mexico/BajaNorte	i386
+usr/share/lib/zoneinfo/Canada/Mountain	i386
+usr/share/lib/zoneinfo/Canada/East-Saskatchewan	i386
+usr/share/lib/zoneinfo/ROK	i386
+usr/share/lib/zoneinfo/Turkey	i386
+usr/share/lib/zoneinfo/Israel	i386
+usr/share/lib/zoneinfo/Australia/West	i386
+usr/share/lib/zoneinfo/MST7MDT	i386
+usr/share/lib/zoneinfo/Zulu	i386
+usr/share/lib/zoneinfo/US/Samoa	i386
+usr/share/lib/zoneinfo/NZ	i386
+usr/share/lib/zoneinfo/US/Pacific	i386
+usr/share/lib/zoneinfo/HST	i386
+usr/share/lib/zoneinfo/US/Alaska	i386
+usr/share/lib/zoneinfo/Brazil/DeNoronha	i386
+usr/share/lib/zoneinfo/Australia/Queensland	i386
+usr/share/lib/zoneinfo/Australia/Tasmania	i386
+usr/share/lib/zoneinfo/Australia/Victoria	i386
+usr/share/lib/zoneinfo/Mexico/General	i386
+usr/share/lib/zoneinfo/US/Michigan	i386
+usr/share/lib/zoneinfo/Australia/NSW	i386
+usr/share/lib/zoneinfo/Greenwich	i386
+usr/share/lib/zoneinfo/GMT-0	i386
+usr/share/lib/zoneinfo/Jamaica	i386
+usr/share/lib/zoneinfo/GMT+0	i386
+usr/share/lib/zoneinfo/PRC	i386
+usr/share/lib/zoneinfo/CET	i386
+usr/share/lib/zoneinfo/Chile/EasterIsland	i386
+usr/share/lib/zoneinfo/Canada/Pacific	i386
+usr/share/lib/zoneinfo/Canada/Eastern	i386
+usr/share/lib/zoneinfo/Brazil/Acre	i386
+usr/share/lib/zoneinfo/US/Arizona	i386
+usr/share/lib/zoneinfo/US/Pacific-New	i386
+usr/share/lib/zoneinfo/Chile/Continental	i386
+usr/share/lib/zoneinfo/CST6CDT	i386
+usr/share/lib/zoneinfo/US/Hawaii	i386
+usr/share/lib/zoneinfo/Australia/South	i386
+usr/share/lib/zoneinfo/Libya	i386
+usr/share/lib/zoneinfo/Etc/GMT+0	i386
+usr/share/lib/zoneinfo/Etc/GMT	i386
+usr/share/lib/zoneinfo/Egypt	i386
+usr/share/lib/zoneinfo/Japan	i386
+usr/share/lib/zoneinfo/US/Mountain	i386
+usr/share/lib/zoneinfo/GMT	i386
+usr/share/lib/zoneinfo/NZ-CHAT	i386
+usr/share/lib/zoneinfo/UTC	i386
+usr/share/lib/zoneinfo/MET	i386
+usr/share/lib/zoneinfo/US/East-Indiana	i386
+usr/share/lib/zoneinfo/Navajo	i386
+usr/share/lib/zoneinfo/Europe/Stockholm	i386
+#
+# These items are in SUNW0on for Localization; they are built only
+# by the optional _msg target in usr/src/Makefile, not as a part
+# of the all target.
+#
+usr/lib/locale/C/LC_MESSAGES/SUNW_OST_ADMIN.po	i386
+usr/lib/locale/C/LC_MESSAGES/SUNW_OST_LINFO	i386
+usr/lib/locale/C/LC_MESSAGES/SUNW_OST_NETRPC.po	i386
+usr/lib/locale/C/LC_MESSAGES/SUNW_OST_OSCMD.po	i386
+usr/lib/locale/C/LC_MESSAGES/SUNW_OST_OSLIB.po	i386
+usr/lib/locale/C/LC_MESSAGES/SUNW_OST_UCBCMD.po	i386
+usr/lib/locale/C/LC_MESSAGES/mailx.help		i386
+usr/lib/locale/C/LC_MESSAGES/more.help		i386
+usr/lib/locale/C/LC_MESSAGES/uxlibc.src		i386
+usr/lib/locale/C/LC_TIME/SUNW_OST_OSCMD.po	i386

@@ -1,0 +1,73 @@
+#!/bin/sh
+#
+#ident	"@(#)asppp	1.14	94/02/01 SMI"
+#
+# Copyright (c) 1993 by Sun Microsystems, Inc.
+#
+# Asynchronous PPP start/stop script
+#
+
+PATH=/sbin:/usr/bin:/usr/sbin
+export PATH
+REQ_FILES="/usr/sbin/aspppd \
+	   /usr/sbin/aspppls"
+	 
+
+mode=$1
+
+set `id`
+if [ $1 != "uid=0(root)" ]; then
+	echo "$0: this script must be run as root ... fatal error"
+	exit 1
+fi
+
+for FILE in $REQ_FILES; do
+	if [ ! -f $FILE ]; then
+		echo "$0: Asynchronous PPP has been installed but"
+		echo "not configured correctly"
+		echo "$0: $FILE not found"
+		echo "$0: please refer to the PPP documentation"
+		exit 1
+	fi
+done
+
+
+case "$mode" in
+'start')
+	# Start aspppd
+	
+	if test -f /etc/asppp.cf
+	then
+		#  execute the ifconfig lines.
+        	nawk '/^[ \t]*ifconfig/ { system($0) }' < /etc/asppp.cf
+
+		/usr/sbin/aspppd -d 1
+		if [ $? -ne 0 ]; then
+			echo "aspppd not started, see /var/adm/log/asppp.log"
+		fi
+	fi
+       	;; 
+           
+'stop')
+       	# Stop aspppd
+	id=`ps -e | grep aspppd | awk '{print $1}'`
+	if test -n "$id"
+	then
+		kill $id
+	fi
+
+	if test -f /etc/asppp.cf
+	then
+		# use ifconfig to make the interfaces down just in case
+        	nawk '/^[ \t]*ifconfig/ { system("ifconfig " $2 " down") 
+				}' < /etc/asppp.cf
+	fi
+       	;; 
+
+
+*)	# usage
+	echo "usage: $0 start|stop"
+	exit 1
+	;;
+
+esac  

@@ -1,0 +1,25 @@
+#
+#ident	"@(#)mapfile-filter	1.6	95/03/31 SMI"
+#
+# Copyright (c) 1995 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+# Default mapfile for optimizing the creation of a filter shared object.
+#
+# Create a single read-only, executable text segment to catch all loadable
+# sections.  Although most filters can be built directly from ld(1) (so that no
+# .init/.fini sections are created), and only require to be read-only, the
+# execute attribute is maintained to provide for .init processing where
+# necessary (also, older versions of dbx give warning messages if they find
+# objects without traditional text segments).
+#
+# This compaction of a filter into a single segment allows ld.so.1 to optimize
+# its processing for a filter.  If the filter is small enough this segment
+# may be handled in a single page mapping (libdl.so.1).
+#
+# The assignment of all allocatable sections to this segment insures that the
+# .dynamic, and any .data or .bss sections, become part of the text.  Note that
+# the compiler has a habit of generating empty .data and .bss sections.
+
+filter = LOAD ?RX;
+filter : ?A;

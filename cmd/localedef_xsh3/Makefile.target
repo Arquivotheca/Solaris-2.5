@@ -1,0 +1,16 @@
+#
+#ident	"@(#)Makefile.target	1.11	93/03/30 SMI"
+#
+# Copyright (c) 1993 by Sun Microsystems, Inc.
+#
+# cmd/localedef/Makefile.target
+
+$(ROOTDIRS):
+	-$(INS.dir)
+
+$(ROOTPOSIX):
+	cd $(ROOTLOCALE); $(RM)	POSIX; $(SYMLINK) ./C POSIX
+
+$(ROOTJAPANESE):
+	cd $(ROOTLOCALE); $(RM)	japanese; $(SYMLINK) ./ja japanese
+

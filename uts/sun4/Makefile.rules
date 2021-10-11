@@ -1,0 +1,177 @@
+#
+# uts/sun4/Makefile.files
+# Copyright (c) 1991 by Sun Microsystems, Inc.
+#
+#ident   "@(#)Makefile.rules 1.16     94/03/23 SMI"
+#
+#	This Makefile defines all build rules for the directory uts/sun4
+#	and it's children. These are the source files which sun4
+#	"implementation architecture" dependent.
+#
+
+#
+#	This was implemented by pattern matching rules of the form:
+#
+# $(OBJS_DIR)/%.o:	 $(UTSBASE)/common/os/%.c
+#	$(COMPILE.c) -o $@ $<
+#
+# $(LINTS_DIR)/%.ln:	$(UTSBASE)/common/os/%.c
+#	@($(LHEAD) $(LINT.c) $< $(LTAIL))
+#
+#	For each directory containing source. This proved to slow under
+#	Nse because it caused a significant additional number of stats
+#	and stats are real slow under TFS. If TFS performance should
+#	improve, one might consider returning to the former implementation.
+#	In the former implementation, this file (Makefile.rules) was not
+#	needed and the pattern matching rules were in Makefile.files.
+#
+
+#
+#	C object build rules
+#
+#	The following are alphabetized by source file path. Please maintain
+# this ordering.
+#
+$(OBJS_DIR)/swtch.o:            $(UTSBASE)/sun4/ml/swtch.s
+	$(COMPILE.s) -o $@ $(UTSBASE)/sun4/ml/swtch.s
+
+$(OBJS_DIR)/confunix.o:		$(UTSBASE)/sun4/conf/confunix.c
+	$(COMPILE.c) -o $@ $(UTSBASE)/sun4/conf/confunix.c
+
+$(OBJS_DIR)/autoconf.o:		$(UTSBASE)/sun4/io/autoconf.c
+	$(COMPILE.c) -o $@ $(UTSBASE)/sun4/io/autoconf.c
+
+$(OBJS_DIR)/hardclk.o:		$(UTSBASE)/sun4/io/hardclk.c
+	$(COMPILE.c) -o $@ $(UTSBASE)/sun4/io/hardclk.c
+
+$(OBJS_DIR)/copy.o:		$(UTSBASE)/sun4/ml/copy.s
+	$(COMPILE.s) -o $@ $(UTSBASE)/sun4/ml/copy.s
+
+$(OBJS_DIR)/ip_ocsum.o:		$(UTSBASE)/sun4/ml/ip_ocsum.s
+	$(COMPILE.s) -o $@ $(UTSBASE)/sun4/ml/ip_ocsum.s
+
+$(OBJS_DIR)/locore.o:		$(UTSBASE)/sun4/ml/locore.s
+	$(COMPILE.s) -o $@ $(UTSBASE)/sun4/ml/locore.s
+
+$(OBJS_DIR)/map.o:		$(UTSBASE)/sun4/ml/map.s
+	$(COMPILE.s) -o $@ $(UTSBASE)/sun4/ml/map.s
+
+$(OBJS_DIR)/memerr.o:		$(UTSBASE)/sun4/ml/memerr.c
+	$(COMPILE.c) -o $@ $(UTSBASE)/sun4/ml/memerr.c
+
+$(OBJS_DIR)/subr_4.o:		$(UTSBASE)/sun4/ml/subr_4.s
+	$(COMPILE.s) -o $@ $(UTSBASE)/sun4/ml/subr_4.s
+
+$(OBJS_DIR)/bp_map.o:		$(UTSBASE)/sun4/os/bp_map.c
+	$(COMPILE.c) -o $@ $(UTSBASE)/sun4/os/bp_map.c
+
+$(OBJS_DIR)/ddi_impl.o:		$(UTSBASE)/sun4/os/ddi_impl.c
+	$(COMPILE.c) -o $@ $(UTSBASE)/sun4/os/ddi_impl.c
+
+$(OBJS_DIR)/dvma.o:		$(UTSBASE)/sun4/os/dvma.c
+	$(COMPILE.c) -o $@ $(UTSBASE)/sun4/os/dvma.c
+
+$(OBJS_DIR)/kalloc.o:		$(UTSBASE)/sun4/os/kalloc.c
+	$(COMPILE.c) -o $@ $(UTSBASE)/sun4/os/kalloc.c
+
+$(OBJS_DIR)/machdep.o:		$(UTSBASE)/sun4/os/machdep.c
+	$(COMPILE.c) -o $@ $(UTSBASE)/sun4/os/machdep.c
+
+$(OBJS_DIR)/ppage.o:		$(UTSBASE)/sun4/os/ppage.c
+	$(COMPILE.c) -o $@ $(UTSBASE)/sun4/os/ppage.c
+
+$(OBJS_DIR)/rootnex.o:		$(UTSBASE)/sun4/os/rootnex.c
+	$(COMPILE.c) -o $@ $(UTSBASE)/sun4/os/rootnex.c
+
+$(OBJS_DIR)/startup.o:		$(UTSBASE)/sun4/os/startup.c
+	$(COMPILE.c) -o $@ $(UTSBASE)/sun4/os/startup.c
+
+$(OBJS_DIR)/stubs.o:		$(UTSBASE)/sun4/os/stubs.c
+	$(COMPILE.c) -o $@ $(UTSBASE)/sun4/os/stubs.c
+
+$(OBJS_DIR)/trap.o:		$(UTSBASE)/sun4/os/trap.c
+	$(COMPILE.c) -o $@ $(UTSBASE)/sun4/os/trap.c
+
+$(OBJS_DIR)/hat_conf.o:		$(UTSBASE)/sun4/vm/hat_conf.c
+	$(COMPILE.c) -o $@ $(UTSBASE)/sun4/vm/hat_conf.c
+
+$(OBJS_DIR)/mmu.o:		$(UTSBASE)/sun4/vm/mmu.c
+	$(COMPILE.c) -o $@ $(UTSBASE)/sun4/vm/mmu.c
+
+$(OBJS_DIR)/vm_machdep.o:	$(UTSBASE)/sun4/vm/vm_machdep.c
+	$(COMPILE.c) -o $@ $(UTSBASE)/sun4/vm/vm_machdep.c
+
+#
+#	Lint `object' build rules
+#
+#	The following are alphabetized by source file path. Please maintain
+# this ordering.
+#
+$(LINTS_DIR)/swtch.ln:          $(UTSBASE)/sun4/ml/swtch.s
+	@($(LHEAD) $(LINT.s) $(UTSBASE)/sun4/ml/swtch.s $(LTAIL))
+
+$(LINTS_DIR)/confunix.ln:	$(UTSBASE)/sun4/conf/confunix.c
+	@($(LHEAD) $(LINT.c) $(UTSBASE)/sun4/conf/confunix.c $(LTAIL))
+
+$(LINTS_DIR)/autoconf.ln:	$(UTSBASE)/sun4/io/autoconf.c
+	@($(LHEAD) $(LINT.c) $(UTSBASE)/sun4/io/autoconf.c $(LTAIL))
+
+$(LINTS_DIR)/hardclk.ln:	$(UTSBASE)/sun4/io/hardclk.c
+	@($(LHEAD) $(LINT.c) $(UTSBASE)/sun4/io/hardclk.c $(LTAIL))
+
+$(LINTS_DIR)/copy.ln:		$(UTSBASE)/sun4/ml/copy.s
+	@($(LHEAD) $(LINT.s) $(UTSBASE)/sun4/ml/copy.s $(LTAIL))
+
+$(LINTS_DIR)/ip_ocsum.ln:	$(UTSBASE)/sun4/ml/ip_ocsum.s
+	@($(LHEAD) $(LINT.s) $(UTSBASE)/sun4/ml/ip_ocsum.s $(LTAIL))
+
+$(LINTS_DIR)/locore.ln:		$(UTSBASE)/sun4/ml/locore.s
+	@($(LHEAD) $(LINT.s) $(UTSBASE)/sun4/ml/locore.s $(LTAIL))
+
+$(LINTS_DIR)/map.ln:		$(UTSBASE)/sun4/ml/map.s
+	@($(LHEAD) $(LINT.s) $(UTSBASE)/sun4/ml/map.s $(LTAIL))
+
+$(LINTS_DIR)/memerr.ln:		$(UTSBASE)/sun4/ml/memerr.c
+	@($(LHEAD) $(LINT.c) $(UTSBASE)/sun4/ml/memerr.c $(LTAIL))
+
+$(LINTS_DIR)/subr_4.ln:		$(UTSBASE)/sun4/ml/subr_4.s
+	@($(LHEAD) $(LINT.s) $(UTSBASE)/sun4/ml/subr_4.s $(LTAIL))
+
+$(LINTS_DIR)/bp_map.ln:		$(UTSBASE)/sun4/os/bp_map.c
+	@($(LHEAD) $(LINT.c) $(UTSBASE)/sun4/os/bp_map.c $(LTAIL))
+
+$(LINTS_DIR)/ddi_impl.ln:	$(UTSBASE)/sun4/os/ddi_impl.c
+	@($(LHEAD) $(LINT.c) $(UTSBASE)/sun4/os/ddi_impl.c $(LTAIL))
+
+$(LINTS_DIR)/dvma.ln:		$(UTSBASE)/sun4/os/dvma.c
+	@($(LHEAD) $(LINT.c) $(UTSBASE)/sun4/os/dvma.c $(LTAIL))
+
+$(LINTS_DIR)/kalloc.ln:		$(UTSBASE)/sun4/os/kalloc.c
+	@($(LHEAD) $(LINT.c) $(UTSBASE)/sun4/os/kalloc.c $(LTAIL))
+
+$(LINTS_DIR)/machdep.ln:	$(UTSBASE)/sun4/os/machdep.c
+	@($(LHEAD) $(LINT.c) $(UTSBASE)/sun4/os/machdep.c $(LTAIL))
+
+$(LINTS_DIR)/ppage.ln:		$(UTSBASE)/sun4/os/ppage.c
+	@($(LHEAD) $(LINT.c) $(UTSBASE)/sun4/os/ppage.c $(LTAIL))
+
+$(LINTS_DIR)/rootnex.ln:	$(UTSBASE)/sun4/os/rootnex.c
+	@($(LHEAD) $(LINT.c) $(UTSBASE)/sun4/os/rootnex.c $(LTAIL))
+
+$(LINTS_DIR)/startup.ln:	$(UTSBASE)/sun4/os/startup.c
+	@($(LHEAD) $(LINT.c) $(UTSBASE)/sun4/os/startup.c $(LTAIL))
+
+$(LINTS_DIR)/stubs.ln:		$(UTSBASE)/sun4/os/stubs.c
+	@($(LHEAD) $(LINT.c) $(UTSBASE)/sun4/os/stubs.c $(LTAIL))
+
+$(LINTS_DIR)/trap.ln:		$(UTSBASE)/sun4/os/trap.c
+	@($(LHEAD) $(LINT.c) $(UTSBASE)/sun4/os/trap.c $(LTAIL))
+
+$(LINTS_DIR)/hat_conf.ln:	$(UTSBASE)/sun4/vm/hat_conf.c
+	@($(LHEAD) $(LINT.c) $(UTSBASE)/sun4/vm/hat_conf.c $(LTAIL))
+
+$(LINTS_DIR)/mmu.ln:		$(UTSBASE)/sun4/vm/mmu.c
+	@($(LHEAD) $(LINT.c) $(UTSBASE)/sun4/vm/mmu.c $(LTAIL))
+
+$(LINTS_DIR)/vm_machdep.ln:	$(UTSBASE)/sun4/vm/vm_machdep.c
+	@($(LHEAD) $(LINT.c) $(UTSBASE)/sun4/vm/vm_machdep.c $(LTAIL))

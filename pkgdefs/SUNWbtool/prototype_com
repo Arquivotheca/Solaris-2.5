@@ -1,0 +1,60 @@
+#       Copyright (c) 1992 Sun Microsystems, Inc.
+#               All Rights Reserved
+#
+#pragma ident	"@(#)prototype_com	1.6	95/03/02 SMI"
+#
+
+# This required package information file contains a list of package contents.
+# The 'pkgmk' command uses this file to identify the contents of a package
+# and their location on the development machine when building the package.
+# Can be created via a text editor or through use of the 'pkgproto' command.
+
+#!search <pathname pathname ...>        # where to find pkg objects
+#!include <filename>                    # include another 'prototype' file
+#!default <mode> <owner> <group>        # default used if not specified on entry
+#!<param>=<value>                       # puts parameter in pkg environment
+
+i pkginfo
+i copyright
+i depend
+
+#
+# source locations relative to the prototype file
+#
+# SUNWbtool
+#
+
+d none usr 0775 root sys
+d none usr/bin 775 root bin
+f none usr/bin/rpcgen 555 bin bin
+d none usr/ccs 0755 bin bin
+d none usr/ccs/bin 0755 bin bin
+f none usr/ccs/bin/ar 0555 bin bin
+f none usr/ccs/bin/dis 0555 bin bin
+f none usr/ccs/bin/dump 0555 bin bin
+f none usr/ccs/bin/error 0555 bin bin
+f none usr/ccs/bin/gprof 0555 bin bin
+f none usr/ccs/bin/gprof.flat.blurb 0444 bin bin
+f none usr/ccs/bin/gprof.callg.blurb 0444 bin bin
+f none usr/ccs/bin/lex 0555 bin bin
+f none usr/ccs/bin/ncform 0644 bin bin
+f none usr/ccs/bin/nrform 0644 bin bin
+f none usr/ccs/bin/nceucform 0644 bin bin
+f none usr/ccs/bin/lorder 0555 bin bin
+f none usr/ccs/bin/mcs 0555 bin bin
+f none usr/ccs/bin/nm 0555 bin bin
+f none usr/ccs/bin/prof 0555 bin bin
+f none usr/ccs/bin/ranlib 0555 bin bin
+f none usr/ccs/bin/size 0555 bin bin
+f none usr/ccs/bin/strip 0555 bin bin
+f none usr/ccs/bin/symorder 0555 bin bin
+f none usr/ccs/bin/tsort 0555 bin bin
+f none usr/ccs/bin/unifdef 0555 bin bin
+f none usr/ccs/bin/yacc 0555 bin bin
+f none usr/ccs/bin/yaccpar 0644 bin bin
+
+d none usr/ccs/lib 0755 bin bin
+f none usr/ccs/lib/libl.a 0644 bin bin
+f none usr/ccs/lib/llib-ll.ln 0644 bin bin
+f none usr/ccs/lib/liby.a 0644 bin bin
+f none usr/ccs/lib/llib-ly.ln 0644 bin bin

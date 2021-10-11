@@ -1,0 +1,10 @@
+# Specify what global symbols we export (none).  Note that we're not
+# interested in declaring a version, simply scoping the file
+# is sufficient.
+
+{
+	global:
+		main;			# debuggers seem to like this.
+	local:
+		*;
+};

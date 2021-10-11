@@ -1,0 +1,19 @@
+#ident	"@(#)postinstall	1.3	94/06/06 SMI"
+#
+# Copyright (c) 1992 by Sun Microsystems, Inc.
+#
+
+# Remove "crash", we nuked it, but it comes back
+if [ -d $BASEDIR/usr/kvm ] ; then
+	if [ -f $BASEDIR/usr/kvm/crash ] ; then
+		rm $BASEDIR/usr/kvm/crash
+		removef $PKGINST $BASEDIR/usr/kvm/crash
+	fi
+fi
+
+#
+#	end with removef -f and exit message
+#
+removef -f $PKGINST || exit 2
+
+exit 0

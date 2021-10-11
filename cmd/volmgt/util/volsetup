@@ -1,0 +1,8 @@
+# @(#)volsetup 1.2     92/09/23 SMI
+# Setup nis+ directory and group.
+
+nisgrpadm -c volmgt.rmtc.central.sun.com.
+nismkdir volmgt.rmtc.central.sun.com.
+nischmod n=r,w=r,g=rmcd,o=rmcd volmgt.rmtc.central.sun.com.
+nischgrp volmgt volmgt
+

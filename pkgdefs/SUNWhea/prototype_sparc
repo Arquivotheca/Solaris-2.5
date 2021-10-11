@@ -1,0 +1,334 @@
+#	Copyright (c) 1990-93 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)prototype_sparc	1.39	95/06/01 (c) Sun Microsystems, Inc.
+#
+# This required package information file contains a list of package contents.
+# The 'pkgmk' command uses this file to identify the contents of a package
+# and their location on the development machine when building the package.
+# Can be created via a text editor or through use of the 'pkgproto' command.
+
+#!search <pathname pathname ...>	# where to find pkg objects
+#!include <filename>			# include another 'prototype' file
+#!default <mode> <owner> <group>	# default used if not specified on entry
+#!<param>=<value>			# puts parameter in pkg environment
+
+#
+# Include ISA independent files (prototype_com)
+#
+!include prototype_com
+#
+#
+#
+# List files which are SPARC specific here
+#
+# source locations relative to the prototype file
+#
+#
+# SUNWhea
+#
+f none usr/include/kerberos/conf-svsparc.h 644 bin bin
+f none usr/include/sys/aflt.h 644 bin bin
+f none usr/include/sys/audio_4231.h 644 bin bin
+f none usr/include/sys/audio_79C30.h 644 bin bin
+f none usr/include/sys/audiodebug.h 644 bin bin
+f none usr/include/sys/audiovar.h 644 bin bin
+f none usr/include/sys/be.h 644 bin bin
+f none usr/include/sys/bmac.h 644 bin bin
+f none usr/include/sys/bpp_var.h 644 bin bin
+f none usr/include/sys/bpp_reg.h 644 bin bin
+f none usr/include/sys/bw2reg.h 644 bin bin
+f none usr/include/sys/bw2var.h 644 bin bin
+f none usr/include/sys/cg2reg.h 644 bin bin
+f none usr/include/sys/cg2var.h 644 bin bin
+f none usr/include/sys/cg3var.h 644 bin bin
+f none usr/include/sys/cg4reg.h 644 bin bin
+f none usr/include/sys/cg4var.h 644 bin bin
+f none usr/include/sys/cg6fbc.h 644 bin bin
+f none usr/include/sys/cg6tec.h 644 bin bin
+f none usr/include/sys/cg6thc.h 644 bin bin
+f none usr/include/sys/cg8-p4reg.h 644 bin bin
+f none usr/include/sys/cg8-p4var.h 644 bin bin
+f none usr/include/sys/cg9reg.h 644 bin bin
+f none usr/include/sys/cg9var.h 644 bin bin
+f none usr/include/sys/cg14io.h 644 bin bin
+f none usr/include/sys/cg14reg.h 644 bin bin
+f none usr/include/sys/comvec.h 644 bin bin
+f none usr/include/sys/condvar_impl.h 644 bin bin
+f none usr/include/sys/cursor_impl.h 644 bin bin
+f none usr/include/sys/dbriio.h 644 bin bin
+f none usr/include/sys/dbrireg.h 644 bin bin
+f none usr/include/sys/dbrivar.h 644 bin bin
+f none usr/include/sys/dkbad.h 644 bin bin
+f none usr/include/sys/dkmpio.h 644 bin bin
+f none usr/include/sys/dmaga.h 644 bin bin
+f none usr/include/sys/eeprom_com.h 644 bin bin
+f none usr/include/sys/fdreg.h 644 bin bin
+f none usr/include/sys/fdvar.h 644 bin bin
+d none usr/include/sys/fpu 755 bin bin
+f none usr/include/sys/fpu/fpu_simulator.h 644 bin bin
+f none usr/include/sys/fpu/fpusystm.h 644 bin bin
+f none usr/include/sys/fpu/globals.h 644 bin bin
+f none usr/include/sys/fpu/ieee.h 644 bin bin
+f none usr/include/sys/hdio.h 644 bin bin
+f none usr/include/sys/fsr.h 644 bin bin
+f none usr/include/sys/i82586.h 644 bin bin
+f none usr/include/sys/idprom.h 644 bin bin
+f none usr/include/sys/idvar.h 644 bin bin
+f none usr/include/sys/ie.h 644 bin bin
+f none usr/include/sys/ipi3.h 644 bin bin
+f none usr/include/sys/ipi_chan.h 644 bin bin
+f none usr/include/sys/ipi_driver.h 644 bin bin
+f none usr/include/sys/ipi_error.h 644 bin bin
+f none usr/include/sys/isdev.h 644 bin bin
+f none usr/include/sys/isdnio.h 644 bin bin
+f none usr/include/sys/isvar.h 644 bin bin
+f none usr/include/sys/lance.h 644 bin bin
+f none usr/include/sys/le.h 644 bin bin
+f none usr/include/sys/mace.h 644 bin bin
+f none usr/include/sys/memfb.h 644 bin bin
+f none usr/include/sys/memreg.h 644 bin bin
+f none usr/include/sys/mmcodecreg.h 644 bin bin
+f none usr/include/sys/msreg.h 644 bin bin
+f none usr/include/sys/obpdefs.h 644 bin bin
+f none usr/include/sys/openprom.h 644 bin bin
+f none usr/include/sys/p4reg.h 644 bin bin
+f none usr/include/sys/pw_dblbuf.h 644 bin bin
+f none usr/include/sys/qec.h 644 bin bin
+f none usr/include/sys/qe.h 644 bin bin
+f none usr/include/sys/ramdac.h 644 bin bin
+f none usr/include/sys/rwlock_impl.h 644 bin bin
+d none usr/include/sys/scsi/adapters 755 bin bin
+f none usr/include/sys/scsi/adapters/espcmd.h 644 bin bin
+f none usr/include/sys/scsi/adapters/espreg.h 644 bin bin
+f none usr/include/sys/scsi/adapters/espvar.h 644 bin bin
+f none usr/include/sys/scsi/adapters/ispcmd.h 644 bin bin
+f none usr/include/sys/scsi/adapters/ispmail.h 644 bin bin
+f none usr/include/sys/scsi/adapters/ispreg.h 644 bin bin
+f none usr/include/sys/scsi/adapters/ispvar.h 644 bin bin
+f none usr/include/sys/scsi/adapters/ncrctl.h 644 bin bin
+f none usr/include/sys/scsi/adapters/ncrreg.h 644 bin bin
+f none usr/include/sys/scsi/adapters/ncrsbc.h 644 bin bin
+f none usr/include/sys/scsi/adapters/reset_notify.h 644 bin bin
+d none usr/include/sys/scsi/targets 755 bin bin
+f none usr/include/sys/scsi/targets/sddef.h 644 bin bin
+f none usr/include/sys/scsi/targets/sdwatch.h 644 bin bin
+f none usr/include/sys/scsi/targets/stdef.h 644 bin bin
+f none usr/include/sys/sema_impl.h 644 bin bin
+f none usr/include/sys/ser_async.h 644 bin bin
+f none usr/include/sys/ser_zscc.h 644 bin bin
+f none usr/include/sys/spl.h 644 bin bin
+f none usr/include/sys/stcconf.h 644 bin bin
+f none usr/include/sys/stcio.h 644 bin bin
+f none usr/include/sys/stcreg.h 644 bin bin
+f none usr/include/sys/stcvar.h 644 bin bin
+f none usr/include/sys/stp4020_reg.h 644 bin bin
+f none usr/include/sys/stp4020_var.h 644 bin bin
+f none usr/include/sys/xdcreg.h 644 bin bin
+f none usr/include/sys/xderr.h 644 bin bin
+f none usr/include/sys/xdreg.h 644 bin bin
+f none usr/include/sys/xdvar.h 644 bin bin
+f none usr/include/sys/xtreg.h 644 bin bin
+f none usr/include/sys/xtvar.h 644 bin bin
+f none usr/include/sys/xycom.h 644 bin bin
+f none usr/include/sys/xycreg.h 644 bin bin
+f none usr/include/sys/xyerr.h 644 bin bin
+f none usr/include/sys/xyreg.h 644 bin bin
+f none usr/include/sys/xyvar.h 644 bin bin
+f none usr/include/sys/zsdev.h 644 bin bin
+d none usr/platform 755 root sys
+d none usr/platform/sun4c 755 root sys
+d none usr/platform/sun4c/include 755 bin bin
+d none usr/platform/sun4c/include/sys 755 bin bin
+f none usr/platform/sun4c/include/sys/auxio.h 644 bin bin
+f none usr/platform/sun4c/include/sys/buserr.h 644 bin bin
+f none usr/platform/sun4c/include/sys/clock.h 644 bin bin
+f none usr/platform/sun4c/include/sys/ddi_subrdefs.h 644 bin bin
+f none usr/platform/sun4c/include/sys/eeprom.h 644 bin bin
+f none usr/platform/sun4c/include/sys/enable.h 644 bin bin
+f none usr/platform/sun4c/include/sys/immu.h 644 bin bin
+f none usr/platform/sun4c/include/sys/intreg.h 644 bin bin
+f none usr/platform/sun4c/include/sys/machcpuvar.h 644 bin bin
+f none usr/platform/sun4c/include/sys/machparam.h 644 bin bin
+f none usr/platform/sun4c/include/sys/machsystm.h 644 bin bin
+f none usr/platform/sun4c/include/sys/machthread.h 644 bin bin
+f none usr/platform/sun4c/include/sys/memerr.h 644 bin bin
+f none usr/platform/sun4c/include/sys/mmu.h 644 bin bin
+d none usr/platform/sun4c/include/sys/mon 755 bin bin
+f none usr/platform/sun4c/include/sys/mon/eeprom.h 644 bin bin
+f none usr/platform/sun4c/include/sys/mon/idprom.h 644 bin bin
+f none usr/platform/sun4c/include/sys/mon/keyboard.h 644 bin bin
+f none usr/platform/sun4c/include/sys/mon/password.h 644 bin bin
+f none usr/platform/sun4c/include/sys/prom_plat.h 644 bin bin
+f none usr/platform/sun4c/include/sys/pte.h 644 bin bin
+f none usr/platform/sun4c/include/sys/scb.h 644 bin bin
+f none usr/platform/sun4c/include/sys/vm_machparam.h 644 bin bin
+f none usr/platform/sun4c/include/sys/zsmach.h 644 bin bin
+d none usr/platform/sun4c/include/vm 755 bin bin
+f none usr/platform/sun4c/include/vm/hat_sunm.h 644 bin bin
+d none usr/share/src/uts/sun4c 755 bin bin
+s none usr/share/src/uts/sun4c/sys=../../../../platform/sun4c/include/sys
+s none usr/share/src/uts/sun4c/vm=../../../../platform/sun4c/include/vm
+d none usr/platform/sun4d 755 root sys
+d none usr/platform/sun4d/include 755 bin bin
+d none usr/platform/sun4d/include/sys 755 bin bin
+f none usr/platform/sun4d/include/sys/bcopy_if.h 644 bin bin
+f none usr/platform/sun4d/include/sys/bt.h 644 bin bin
+f none usr/platform/sun4d/include/sys/clock.h 644 bin bin
+f none usr/platform/sun4d/include/sys/ddi_subrdefs.h 644 bin bin
+f none usr/platform/sun4d/include/sys/devaddr.h 644 bin bin
+f none usr/platform/sun4d/include/sys/eeprom.h 644 bin bin
+f none usr/platform/sun4d/include/sys/hwbkpt.h 644 bin bin
+f none usr/platform/sun4d/include/sys/immu.h 644 bin bin
+f none usr/platform/sun4d/include/sys/iocache.h 644 bin bin
+f none usr/platform/sun4d/include/sys/iommu.h 644 bin bin
+f none usr/platform/sun4d/include/sys/led.h 644 bin bin
+f none usr/platform/sun4d/include/sys/machcpuvar.h 644 bin bin
+f none usr/platform/sun4d/include/sys/machparam.h 644 bin bin
+f none usr/platform/sun4d/include/sys/machsystm.h 644 bin bin
+f none usr/platform/sun4d/include/sys/machthread.h 644 bin bin
+f none usr/platform/sun4d/include/sys/memerr.h 644 bin bin
+f none usr/platform/sun4d/include/sys/mmu.h 644 bin bin
+f none usr/platform/sun4d/include/sys/mqh.h 644 bin bin
+f none usr/platform/sun4d/include/sys/nvsimm.h 644 bin bin
+f none usr/platform/sun4d/include/sys/physaddr.h 644 bin bin
+f none usr/platform/sun4d/include/sys/prom_plat.h 644 bin bin
+f none usr/platform/sun4d/include/sys/pte.h 644 bin bin
+f none usr/platform/sun4d/include/sys/scb.h 644 bin bin
+f none usr/platform/sun4d/include/sys/syserr.h 644 bin bin
+f none usr/platform/sun4d/include/sys/vm_machparam.h 644 bin bin
+f none usr/platform/sun4d/include/sys/xdb_inline.h 644 bin bin
+f none usr/platform/sun4d/include/sys/zsmach.h 644 bin bin
+d none usr/platform/sun4d/include/vm 755 bin bin
+f none usr/platform/sun4d/include/vm/hat_srmmu.h 644 bin bin
+f none usr/platform/sun4d/include/vm/mach_srmmu.h 644 bin bin
+d none usr/share/src/uts/sun4d 755 bin bin
+s none usr/share/src/uts/sun4d/sys=../../../../platform/sun4d/include/sys
+s none usr/share/src/uts/sun4d/vm=../../../../platform/sun4d/include/vm
+d none usr/platform/sun4m 755 root sys
+d none usr/platform/sun4m/include 755 bin bin
+d none usr/platform/sun4m/include/sys 755 bin bin
+f none usr/platform/sun4m/include/sys/async.h 644 bin bin
+f none usr/platform/sun4m/include/sys/auxio.h 644 bin bin
+f none usr/platform/sun4m/include/sys/bcopy_if.h 644 bin bin
+f none usr/platform/sun4m/include/sys/bt.h 644 bin bin
+f none usr/platform/sun4m/include/sys/buserr.h 644 bin bin
+f none usr/platform/sun4m/include/sys/clock.h 644 bin bin
+f none usr/platform/sun4m/include/sys/ddi_subrdefs.h 644 bin bin
+f none usr/platform/sun4m/include/sys/devaddr.h 644 bin bin
+f none usr/platform/sun4m/include/sys/eeprom.h 644 bin bin
+f none usr/platform/sun4m/include/sys/enable.h 644 bin bin
+f none usr/platform/sun4m/include/sys/hat_sx.h 644 bin bin
+f none usr/platform/sun4m/include/sys/immu.h 644 bin bin
+f none usr/platform/sun4m/include/sys/intreg.h 644 bin bin
+f none usr/platform/sun4m/include/sys/iocache.h 644 bin bin
+f none usr/platform/sun4m/include/sys/iommu.h 644 bin bin
+f none usr/platform/sun4m/include/sys/machcpuvar.h 644 bin bin
+f none usr/platform/sun4m/include/sys/machparam.h 644 bin bin
+f none usr/platform/sun4m/include/sys/machsystm.h 644 bin bin
+f none usr/platform/sun4m/include/sys/machthread.h 644 bin bin
+f none usr/platform/sun4m/include/sys/memctl.h 644 bin bin
+f none usr/platform/sun4m/include/sys/memerr.h 644 bin bin
+f none usr/platform/sun4m/include/sys/mmu.h 644 bin bin
+f none usr/platform/sun4m/include/sys/module.h 644 bin bin
+f none usr/platform/sun4m/include/sys/module_ross625.h 644 bin bin
+d none usr/platform/sun4m/include/sys/mon 755 bin bin
+f none usr/platform/sun4m/include/sys/mon/eeprom.h 644 bin bin
+f none usr/platform/sun4m/include/sys/mon/idprom.h 644 bin bin
+f none usr/platform/sun4m/include/sys/mon/keyboard.h 644 bin bin
+f none usr/platform/sun4m/include/sys/mon/password.h 644 bin bin
+f none usr/platform/sun4m/include/sys/physaddr.h 644 bin bin
+f none usr/platform/sun4m/include/sys/prom_plat.h 644 bin bin
+f none usr/platform/sun4m/include/sys/pte.h 644 bin bin
+f none usr/platform/sun4m/include/sys/scb.h 644 bin bin
+f none usr/platform/sun4m/include/sys/sx_cmemio.h 644 bin bin
+f none usr/platform/sun4m/include/sys/sxreg.h 644 bin bin
+f none usr/platform/sun4m/include/sys/sxio.h 644 bin bin
+f none usr/platform/sun4m/include/sys/vm_machparam.h 644 bin bin
+f none usr/platform/sun4m/include/sys/x_call.h 644 bin bin
+f none usr/platform/sun4m/include/sys/xc_levels.h 644 bin bin
+f none usr/platform/sun4m/include/sys/zsmach.h 644 bin bin
+d none usr/platform/sun4m/include/vm 755 bin bin
+f none usr/platform/sun4m/include/vm/hat_srmmu.h 644 bin bin
+f none usr/platform/sun4m/include/vm/mach_srmmu.h 644 bin bin
+d none usr/share/src/uts/sun4m 755 bin bin
+s none usr/share/src/uts/sun4m/sys=../../../../platform/sun4m/include/sys
+s none usr/share/src/uts/sun4m/vm=../../../../platform/sun4m/include/vm
+d none usr/platform/sun4u 755 root sys
+d none usr/platform/sun4u/include 755 bin bin
+d none usr/platform/sun4u/include/sys 755 bin bin
+f none usr/platform/sun4u/include/sys/ac.h 644 bin bin
+f none usr/platform/sun4u/include/sys/bt.h 644 bin bin
+f none usr/platform/sun4u/include/sys/clock.h 644 bin bin
+f none usr/platform/sun4u/include/sys/dvma.h 644 bin bin
+f none usr/platform/sun4u/include/sys/eeprom.h 644 bin bin
+f none usr/platform/sun4u/include/sys/environ.h 644 bin bin
+f none usr/platform/sun4u/include/sys/fhc.h 644 bin bin
+f none usr/platform/sun4u/include/sys/intr.h 644 bin bin
+f none usr/platform/sun4u/include/sys/intreg.h 644 bin bin
+f none usr/platform/sun4u/include/sys/iocache.h 644 bin bin
+f none usr/platform/sun4u/include/sys/iommu.h 644 bin bin
+f none usr/platform/sun4u/include/sys/ivintr.h 644 bin bin
+f none usr/platform/sun4u/include/sys/machcpuvar.h 644 bin bin
+f none usr/platform/sun4u/include/sys/machparam.h 644 bin bin
+f none usr/platform/sun4u/include/sys/machsystm.h 644 bin bin
+f none usr/platform/sun4u/include/sys/machthread.h 644 bin bin
+f none usr/platform/sun4u/include/sys/module.h 644 bin bin
+f none usr/platform/sun4u/include/sys/nexusdebug.h 644 bin bin
+f none usr/platform/sun4u/include/sys/pci_iommu.h 644 bin bin
+f none usr/platform/sun4u/include/sys/pci_regs.h 644 bin bin
+f none usr/platform/sun4u/include/sys/pci_var.h 644 bin bin
+f none usr/platform/sun4u/include/sys/prom_debug.h 644 bin bin
+f none usr/platform/sun4u/include/sys/prom_plat.h 644 bin bin
+f none usr/platform/sun4u/include/sys/scb.h 644 bin bin
+f none usr/platform/sun4u/include/sys/sram.h 644 bin bin
+f none usr/platform/sun4u/include/sys/spitasi.h 644 bin bin
+f none usr/platform/sun4u/include/sys/spitregs.h 644 bin bin
+f none usr/platform/sun4u/include/sys/simmstat.h 644 bin bin
+f none usr/platform/sun4u/include/sys/sysctrl.h 644 bin bin
+f none usr/platform/sun4u/include/sys/sysioerr.h 644 bin bin
+f none usr/platform/sun4u/include/sys/sysiosbus.h 644 bin bin
+f none usr/platform/sun4u/include/sys/vm_machparam.h 644 bin bin
+f none usr/platform/sun4u/include/sys/x_call.h 644 bin bin
+f none usr/platform/sun4u/include/sys/xc_impl.h 644 bin bin
+f none usr/platform/sun4u/include/sys/zsmach.h 644 bin bin
+d none usr/platform/sun4u/include/vm 755 bin bin
+f none usr/platform/sun4u/include/vm/hat_sfmmu.h 644 bin bin
+f none usr/platform/sun4u/include/vm/mach_sfmmu.h 644 bin bin
+d none usr/share/src/uts/sun4u 755 bin bin
+s none usr/share/src/uts/sun4u/sys=../../../../platform/sun4u/include/sys
+s none usr/share/src/uts/sun4u/vm=../../../../platform/sun4u/include/vm
+d none usr/include/v7 755 bin bin
+d none usr/include/v7/sys 755 bin bin 
+f none usr/include/v7/sys/machpcb.h 644 bin bin 
+f none usr/include/v7/sys/machtrap.h 644 bin bin 
+f none usr/include/v7/sys/mutex_impl.h 644 bin bin 
+f none usr/include/v7/sys/privregs.h 644 bin bin 
+f none usr/include/v7/sys/prom_isa.h 644 bin bin 
+f none usr/include/v7/sys/psr.h 644 bin bin 
+f none usr/include/v7/sys/traptrace.h 644 bin bin
+d none usr/include/v9 755 bin bin
+d none usr/include/v9/sys 755 bin bin
+f none usr/include/v9/sys/asi.h 644 bin bin 
+f none usr/include/v9/sys/atomic_prim.h 644 bin bin 
+f none usr/include/v9/sys/machpcb.h 644 bin bin 
+f none usr/include/v9/sys/machtrap.h 644 bin bin 
+f none usr/include/v9/sys/membar.h 644 bin bin 
+f none usr/include/v9/sys/mutex_impl.h 644 bin bin 
+f none usr/include/v9/sys/privregs.h 644 bin bin 
+f none usr/include/v9/sys/prom_isa.h 644 bin bin 
+f none usr/include/v9/sys/psr_compat.h 644 bin bin 
+f none usr/include/v9/sys/traptrace.h 644 bin bin
+f none usr/include/sys/socvar.h 644 bin bin
+f none usr/include/sys/socmap.h 644 bin bin
+f none usr/include/sys/soc_cq_defs.h 644 bin bin
+f none usr/include/sys/socreg.h 644 bin bin
+d none usr/include/sys/fc4 755 bin bin
+f none usr/include/sys/fc4/fc.h 644 bin bin
+f none usr/include/sys/fc4/fcp.h 644 bin bin
+f none usr/include/sys/fc4/linkapp.h 644 bin bin
+f none usr/include/sys/fc4/fc_transport.h 644 bin bin
+f none usr/include/sys/scsi/adapters/plndef.h 644 bin bin
+f none usr/include/sys/scsi/adapters/plnvar.h 644 bin bin
+f none usr/include/sys/scsi/targets/pln_ctlr.h 644 bin bin
+f none usr/include/sys/scsi/targets/ssddef.h 644 bin bin

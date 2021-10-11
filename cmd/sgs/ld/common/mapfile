@@ -1,0 +1,18 @@
+# Indicate that the dependency on liblddbg is USED
+
+liblddbg.so -	$USED;
+
+# Specify what global symbols we export.  Note that we're not
+# interested in declaring a version, simply scoping the file
+# is sufficient.
+
+{
+	global:
+		main;			# Provides basic adb symbol offsets
+
+		dbg_mask;
+		dbg_print;
+		eprintf;
+	local:
+		*;
+};

@@ -1,0 +1,41 @@
+#
+#ident	"@(#)Makefile.rules	1.1	94/12/10 SMI"
+#
+# Copyright (c) 1994 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+# psm/stand/boot/Makefile.rules
+
+#
+# Pattern matching rules to compile the source in the current directory
+#
+%.o: $(CMN_DIR)/%.c
+	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
+
+%.o: $(MACH_DIR)/%.c
+	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
+
+%.o: $(MACH_DIR)/%.s
+	$(COMPILE.s) -o $@ $<
+	$(POST_PROCESS_O)
+
+%.o: $(PLAT_DIR)/%.c
+	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
+
+#
+# Pattern matching rules to lint the source in the current directory
+#
+%.ln: $(CMN_DIR)/%.c
+	@($(LHEAD) $(LINT.c) -c $< $(LTAIL))
+
+%.ln: $(MACH_DIR)/%.c
+	@($(LHEAD) $(LINT.c) -c $< $(LTAIL))
+
+%.ln: $(MACH_DIR)/%.s
+	@($(LHEAD) $(LINT.s) -c $< $(LTAIL))
+
+%.ln: $(PLAT_DIR)/%.c
+	@($(LHEAD) $(LINT.c) -c $< $(LTAIL))

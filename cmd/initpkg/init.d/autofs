@@ -1,0 +1,32 @@
+#!/bin/sh
+#
+# Copyright (c) 1993, by Sun Microsystems, Inc.
+#
+#ident	"@(#)autofs	1.3	94/05/18 SMI"
+
+killproc() {		# kill the named process(es)
+	pid=`/usr/bin/ps -e |
+	     /usr/bin/grep $1 |
+	     /usr/bin/sed -e 's/^  *//' -e 's/ .*//'`
+	[ "$pid" != "" ] && kill $pid
+}
+
+#
+# Start/stop automounter
+#
+
+case "$1" in
+
+'start')
+	/usr/lib/autofs/automountd > /dev/console 2>&1	# start daemon
+	/usr/sbin/automount &				# do mounts
+	;;
+
+'stop')
+	/sbin/umountall -F autofs			# undo mounts
+	killproc automoun				# kill daemon
+	;;
+*)
+	echo "Usage: /etc/init.d/autofs { start | stop }"
+	;;
+esac

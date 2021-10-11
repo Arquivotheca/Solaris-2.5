@@ -1,0 +1,27 @@
+#
+#ident	"@(#)Makefile.psm	1.1	94/07/01 SMI"
+#
+# Copyright (c) 1990-93, by Sun Microsystems, Inc.
+#
+# uts/adb/platform/Makefile.psm
+#
+
+ADB_BASE_DIR	= $(ADB_PLAT_DIR)/..
+COMMONDIR	= $(ADB_BASE_DIR)/common
+ISADIR		= $(ADB_BASE_DIR)/${MACH}
+SYSDIR		= $(ADB_BASE_DIR)/..
+
+include $(SYSDIR)/Makefile.uts
+include $(SRC)/Makefile.psm
+
+NATIVEDEFS	= -D${KARCH} -D${MACH} -D__${MACH} -D_KERNEL -D_MACHDEP
+
+INCDIR		= ${SYSDIR}/common
+
+SCRIPTS		= $(SRCS:.adb=)
+
+USR_PSM_ADB_DIR = $(USR_PSM_LIB_DIR)/adb
+
+ROOTSCRIPTS	= $(SCRIPTS:%=$(USR_PSM_ADB_DIR)/%)
+$(ROOTSCRIPTS) := FILEMODE = 644
+

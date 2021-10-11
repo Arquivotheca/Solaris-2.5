@@ -1,0 +1,17 @@
+# Copyright (c) 1993 Sun Microsystems, Inc.  All Rights Reserved.
+#
+#	"@(#)grave	1.1	93/03/02 SMI"
+#
+dead: <grave-accent>	# grave accent
+' '  <grave-accent>          # <grave-accent>
+'A'  <A-grave>          # A grave
+'E'  <E-grave>          # E grave
+'I'  <I-grave>          # I grave
+'O'  <O-grave>          # O grave
+'U'  <U-grave>          # U grave
+'a'  <a-grave>          # a grave
+'e'  <e-grave>          # e grave
+'i'  <i-grave>          # i grave
+'o'  <o-grave>          # o grave
+'u'  <u-grave>          # u grave
+#

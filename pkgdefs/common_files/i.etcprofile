@@ -1,0 +1,23 @@
+#!/bin/sh
+#
+#ident	"@(#)i.etcprofile	1.3	95/03/29 SMI"
+#
+# Copyright (c) 1995, by Sun Microsystems, Inc.
+# All rights reserved.
+#
+
+PATH="/usr/bin:/usr/sbin:${PATH}" export PATH
+
+while read src dest
+do
+	if [ ! -f $dest ] ; then
+		cp $src $dest
+	else
+		# This class-action script was created for an unnecessary
+		# fix; however, the class-action script is appropriate for
+		# /etc/profile, so is left here for future use.
+		:
+	fi
+done
+
+exit 0

@@ -1,0 +1,118 @@
+#
+# uts/sun4m/Makefile.files
+# Copyright (c) 1991-1994 by Sun Microsystems, Inc.
+#
+#ident   "@(#)Makefile.files 1.50     95/02/21 SMI"
+#
+#	This Makefile defines all file modules for the directory uts/sun4m
+#	and it's children. These are the source files which are sun4m
+#	"implementation architecture" dependent.
+#
+
+#
+#	object lists
+#
+CORE_OBJS +=	bp_map.o \
+		confunix.o \
+		ddi_impl.o \
+		dvma.o \
+		fillsysinfo.o \
+		genalign.o \
+		hardclk.o \
+		iommu.o \
+		ip_ocsum.o \
+		kalloc.o \
+		machdep.o \
+		mach_4m.o \
+		mach_small4m.o \
+		mach_srmmu.o \
+		mlsetup.o \
+		module.o \
+		module_asm.o \
+		module_conf.o \
+		module_mp.o \
+		module_mp_asm.o \
+		module_ross.o \
+		module_ross625.o \
+		module_ross_asm.o \
+		module_ross625_asm.o \
+		module_ross625_overflow.o \
+		module_ross625_underflow.o \
+		module_srmmu_asm.o \
+		module_tsu.o \
+		module_tsu_asm.o \
+		module_vik.o \
+		module_vik_asm.o \
+		module_vik_overflow.o \
+		module_vik_underflow.o \
+		module_swift.o \
+		module_swift_asm.o \
+		mp_startup.o \
+		mp_call.o \
+		notes.o  \
+		ppage.o \
+		proc_init.o \
+		startup.o \
+		subr_4m.o \
+		subr_small4m.o \
+		swtch.o \
+		trap.o \
+		vm_machdep.o \
+		x_call.o \
+		copy.o \
+		mmu.o \
+		seg_kmem.o \
+		hwbcopy.o \
+		hat_conf.o \
+		hat_srmmu.o \
+		spt_srmmu.o \
+		hat_sx.o
+
+AUTOCONF_OBJS += autoconf.o
+
+#
+#	locore.o is special. It must be the first file relocated so that it
+#	it is relocated just where its name implies.
+#
+SPECIAL_OBJS +=	locore.o
+
+#
+#			driver modules
+#
+ROOTNEX_OBJS +=	rootnex.o
+IOMMU_OBJS +=	iommunex.o
+SX_OBJS +=	sx.o
+SX_CMEM_OBJS +=	sx_cmem.o
+PMC_OBJS +=     pmc.o
+
+#
+#			Misc modules
+#
+OBPSYM_OBJS +=	obpsym.o obpsym_obp.o
+
+
+#
+#	checkpoint-resume platform dependent objects
+#
+CPR_IMPL_OBJS	+= cpr_impl.o cpr_resume_setup.o
+
+#
+#	Section 3:	Misc.
+#
+ALL_DEFS	+= -Dsun4m
+INC_PATH	+= -I$(UTSBASE)/sun4m
+
+#
+# Since assym.s is a derived file, the dependency must be explicit for
+# all files including this file. (This is only actually required in the
+# instance when the .nse_depinfo file does not exist.) It may seem that
+# the lint targets should also have a similar dependency, but they don't
+# since only C headers are included when #defined(lint) is true.
+#
+ASSYM_DEPS	+= copy.o genalign.o locore.o map.o proc_init.o \
+		   subr_4m.o subr_small4m.o swtch.o
+ASSYM_DEPS	+= module_asm.o module_mp_asm.o module_ross_asm.o \
+		   module_srmmu_asm.o module_tsu_asm.o module_vik_asm.o \
+		   module_vik_overflow.o module_vik_underflow.o \
+		   module_swift_asm.o module_ross625_asm.o \
+		   module_ross625_overflow.o module_ross625_underflow.o

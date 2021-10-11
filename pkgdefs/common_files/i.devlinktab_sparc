@@ -1,0 +1,129 @@
+#!/bin/sh
+#
+#ident	"@(#)i.devlinktab_sparc	1.20	94/12/03 SMI"
+#
+# Copyright (c) 1993 by Sun Microsystems, Inc.
+#
+
+PATH="/usr/bin:/usr/sbin:${PATH}"
+export PATH
+
+while read src dest
+do
+	if [ ! -f $dest ] ; then
+		cp $src $dest
+	else
+		grep '^#ident[ 	]*"@(#)devlink.tab' $src \
+		    > /tmp/newident.$$ 2>/dev/null
+		egrep -v '^#(pragma ident|ident)[ 	]*"@\(#\)devlink.tab' $dest \
+		    > /tmp/rest.$$ 2>/dev/null
+		cat /tmp/newident.$$ /tmp/rest.$$ > $dest
+		sed -e '/^type=ddi_pseudo;name=app	/d' \
+		    -e '/^type=ddi_pseudo;name=sw	/d' \
+		    -e '/^type=ddi_pseudo;name=consfb;minor=consfb	/d' \
+		    -e '/^type=ddi_pseudo;name=win	/d' \
+		    -e 's,sys/obpdefs.h,<sys/sunddi.h>,' $dest > /tmp/d.$$
+		cp /tmp/d.$$ $dest
+		rm -f /tmp/d.$$ /tmp/newident.$$ /tmp/rest.$$
+
+		grep '^type=ddi_pseudo;name=vol	' $dest > /dev/null 2>&1
+		if [ $? != 0 ] ; then
+			grep '^type=ddi_pseudo;name=vol	' $src >> $dest
+		fi
+		grep '^type=ddi_pseudo;name=profile	' $dest > \
+		    /dev/null 2>&1
+		if [ $? != 0 ] ; then
+			grep '^type=ddi_pseudo;name=profile	' $src >> $dest
+		fi
+		grep '^type=ddi_parallel;name=mcpp	' $dest > /dev/null 2>&1
+		if [ $? != 0 ] ; then
+			grep '^type=ddi_parallel;name=mcpp	' $src >> $dest
+		fi
+		grep '^type=ddi_pseudo;name=zsh	' $dest > /dev/null 2>&1
+		if [ $? != 0 ] ; then
+			grep '^type=ddi_pseudo;name=zsh	' $src >> $dest
+		fi
+		grep '^type=ddi_pseudo;name=clone;minor=zsh	' $dest \
+		   > /dev/null 2>&1
+		if [ $? != 0 ] ; then
+			grep '^type=ddi_pseudo;name=clone;minor=zsh	' \
+			   $src >> $dest
+		fi
+		grep '^type=ddi_pseudo;name=clone;minor=ipdcm	' $dest \
+		   > /dev/null 2>&1
+		if [ $? != 0 ] ; then
+			grep '^type=ddi_pseudo;name=clone;minor=ipdcm	' \
+			   $src >> $dest
+		fi
+		grep '^type=ddi_pseudo;name=ipdcm	' $dest \
+		   > /dev/null 2>&1
+		if [ $? = 0 ] ; then
+			grep -v '^type=ddi_pseudo;name=ipdcm	' \
+			   $dest >> /tmp/d.$$
+			cp /tmp/d.$$ $dest
+		fi
+		grep '^type=ddi_pseudo;name=SUNW,sx	' $dest > /dev/null 2>&1
+		if [ $? != 0 ] ; then
+			grep '^type=ddi_pseudo;name=SUNW,sx	' $src >> $dest
+		fi
+		grep '^type=ddi_pseudo;name=sx_cmem	' $dest > /dev/null 2>&1
+		if [ $? != 0 ] ; then
+			grep '^type=ddi_pseudo;name=sx_cmem	' $src >> $dest
+		fi
+		grep '^type=ddi_parallel;name=SUNW,spif;minor=stclp	' \
+		   $dest > /dev/null 2>&1
+		if [ $? != 0 ] ; then
+			grep \
+			 '^type=ddi_parallel;name=SUNW,spif;minor=stclp	' $src \
+			 >> $dest
+		fi
+		grep '^type=ddi_pseudo;name=SUNW,spif;minor=stc	' $dest \
+		  >  /dev/null 2>&1
+		if [ $? != 0 ] ; then
+			grep '^type=ddi_pseudo;name=SUNW,spif;minor=stc	' $src \
+			   >> $dest
+		fi
+		grep '^type=ddi_pseudo;name=tl;' $dest \
+		  >  /dev/null 2>&1
+		if [ $? != 0 ] ; then
+			grep '^type=ddi_pseudo;name=tl;' $src \
+			   >> $dest
+		fi
+		grep '^type=ddi_pseudo;name=tnf' $dest \
+		  >  /dev/null 2>&1
+		if [ $? != 0 ] ; then
+			grep '^type=ddi_pseudo;name=tnf' $src \
+			   >> $dest
+		fi
+		# Update existing ddi_network entry
+		sed -e\
+		's/^type=ddi_network;name=clone	\\M0$/type=ddi_network	\\M0/'\
+		< $dest > /tmp/d.$$
+		cmp -s /tmp/d.$$ $dest  >  /dev/null 2>&1
+		# Don't modify file unless changes are required.
+		if [ $? != 0 ] ; then
+			cp /tmp/d.$$ $dest	
+		fi
+		# Handle the case of file without prior ddi_network entries.
+		# Extremely unlikely but best to be cautious.
+		grep '^type=ddi_network	\\M0' $dest >  /dev/null 2>&1
+		if [ $? != 0 ] ; then
+			grep '^type=ddi_network	\\M0' $src >> $dest
+		fi
+		grep '^type=ddi_block:diskette;minor=c	diskette0' $dest \
+		  >  /dev/null 2>&1
+		if [ $? != 0 ] ; then
+			grep '^type=ddi_block:diskette;minor=c	diskette0' \
+			  $src >> $dest
+		fi
+		grep '^type=ddi_block:diskette;minor=c,raw	rdiskette0' \
+		  $dest >  /dev/null 2>&1
+		if [ $? != 0 ] ; then
+		    grep '^type=ddi_block:diskette;minor=c,raw	rdiskette0' \
+		      $src >> $dest
+		fi
+	fi
+done
+
+exit 0
+

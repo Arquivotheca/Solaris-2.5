@@ -1,0 +1,49 @@
+#!/sbin/sh
+#
+#ident	"@(#)sendmail	1.7	95/09/26 SMI"	/* SVr4.0 1.5 */
+#
+# /etc/init.d/sendmail - Start/Stop the sendmail daemon
+#
+
+#
+# The network and streams should already be built by the time
+# this script runs.
+#
+# If sendmail is already executing, don't re-execute it.
+#
+PATH=/usr/bin:/bin
+
+case $1 in 
+'start')
+	if [ -f /usr/lib/sendmail -a -f /etc/mail/sendmail.cf ]; then
+		if [ -d /var/spool/mqueue ]; then
+			(cd /var/spool/mqueue; rm -f nf* lf*)
+		else
+			mkdir /var/spool/mqueue
+			chown root /var/spool/mqueue
+			chgrp staff /var/spool/mqueue
+			chmod 750 /var/spool/mqueue
+		fi
+		/usr/lib/sendmail -bd -q1h; 
+	fi	
+
+	if /usr/sbin/mount -p | /usr/bin/nawk '
+		BEGIN { s = 1; }
+		$3 == "/var/mail" && $4 == "nfs" && $7 !~ /actimeo=0/ && $7 !~ /noac/ { s = 0;}
+	END { exit s; }'
+	then
+		/usr/bin/logger -p mail.crit "WARNING: /var/mail is NFS-mounted without setting actimeo=0,"
+		/usr/bin/logger -p mail.crit "this can cause mailbox locking and access problems."
+	fi
+	;;
+'stop')
+	pid=`/usr/bin/ps -e | /usr/bin/grep sendmail | /usr/bin/sed -e 's/^  *//' -e 's/ .*//'`
+	if test "$pid"
+	then
+		kill $pid
+	fi
+	;;
+*)
+	echo "usage: /etc/rc2.d/S88sendmail {start|stop}"
+	;;
+esac

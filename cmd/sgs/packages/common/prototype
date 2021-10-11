@@ -1,0 +1,73 @@
+#	Copyright (c) 1990-93 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)prototype	1.17	95/08/17 (c) Sun Microsystems, Inc.
+#
+# This required package information file contains a list of package contents.
+# The 'pkgmk' command uses this file to identify the contents of a package
+# and their location on the development machine when building the package.
+# Can be created via a text editor or through use of the 'pkgproto' command.
+
+#!search <pathname pathname ...>	# where to find pkg objects
+#!include <filename>			# include another 'prototype' file
+#!default <mode> <owner> <group>	# default used if not specified on entry
+#!<param>=<value>			# puts parameter in pkg environment
+
+# packaging files
+i pkginfo
+i copyright
+i preinstall
+i postremove
+#
+# source locations relative to the prototype file
+#
+# SUNWonld
+#
+d none etc 775 root sys
+d none etc/lib 775 root sys
+f none etc/lib/ld.so.1 755 bin bin
+d none usr 775 root sys
+d none usr/include 775 root bin
+f none usr/include/dlfcn.h 644 bin bin
+f none usr/include/libelf.h 644 bin bin
+f none usr/include/link.h 644 bin bin
+d none usr/include/sys 775 root bin
+f none usr/include/sys/elf.h 644 bin bin
+f none usr/include/sys/link.h 644 bin bin
+d none usr/ccs 755 bin bin
+d none usr/ccs/bin 755 bin bin
+f none usr/ccs/bin/ar 755 bin bin
+f none usr/ccs/bin/gprof 555 bin bin
+f none usr/ccs/bin/gprof.flat.blurb 555 bin bin
+f none usr/ccs/bin/gprof.callg.blurb 555 bin bin
+f none usr/ccs/bin/ld 755 bin bin
+d none usr/lib 775 root bin
+f none usr/lib/ld.so.1 755 bin bin
+f none usr/lib/ld.so 755 bin bin
+f none usr/lib/libelf.so.1 755 bin bin
+f none usr/lib/libld.so.2 755 bin bin
+f none usr/lib/liblddbg.so.3 755 bin bin
+f none usr/lib/libldstab.so.1 755 bin bin
+d none usr/bin 775 root sys
+f none usr/bin/ldd 755 bin bin
+f none usr/bin/pvs 755 bin bin
+d none opt 775 root sys
+d none opt/SUNWonld 775 root sys
+f none opt/SUNWonld/SUNWonld-README 444 bin bin
+d none opt/SUNWonld/bin 775 root sys
+f none opt/SUNWonld/bin/elfdump 755 bin bin
+f none opt/SUNWonld/bin/lsd 755 bin bin
+f none opt/SUNWonld/bin/so425 755 bin bin
+f none opt/SUNWonld/bin/sovv 755 bin bin
+d none opt/SUNWonld/lib 775 root sys
+f none opt/SUNWonld/lib/libldmake.so.1 755 bin bin
+f none opt/SUNWonld/lib/0@0.so.1 755 bin bin
+d none opt/SUNWonld/man 775 root sys
+d none opt/SUNWonld/man/man1l 775 root sys
+f none opt/SUNWonld/man/man1l/elfdump.1l 444 bin bin
+f none opt/SUNWonld/man/man1l/lsd.1l 444 bin bin
+f none opt/SUNWonld/man/man1l/so425.1l 444 bin bin
+d none opt/SUNWonld/man/man3t 775 root sys
+f none opt/SUNWonld/man/man3t/ld_concurrency.3t 444 bin bin
+d none opt/SUNWonld/man/man3l 775 root sys
+f none opt/SUNWonld/man/man3l/ld_support.3l 444 bin bin

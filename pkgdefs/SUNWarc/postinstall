@@ -1,0 +1,17 @@
+
+#
+#ident	"@(#)postinstall	1.3	94/02/08 SMI"
+#
+# Copyright (c) 1994 by Sun Microsystems, Inc.
+#
+#
+#	install the libcrypt symlink
+#
+
+# make the symlink
+#
+if [ ! -h $BASEDIR/usr/lib/libcrypt.a ] ; then
+	ln -s libcrypt_i.a $BASEDIR/usr/lib/libcrypt.a || exit 2
+fi
+
+exit 0

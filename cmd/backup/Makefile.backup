@@ -1,0 +1,132 @@
+#
+#ident  "@(#)Makefile.backup 1.6     93/10/05 SMI"
+#
+# Copyright (c) 1993 by Sun Microsystems, Inc.
+#
+# cmd/backup/Makefile.backup
+#
+
+include $(SRC)/cmd/Makefile.cmd
+
+#
+# The following variables are propagated across all Makefiles.
+# The settings should be as follows:
+#
+#	variable	Solaris 1.0	Solaris 2.0
+#			(BSD-based)	(SVR4-based)
+#
+#	USG		uninitialized	-DUSG
+#	ANSI		uninitialized	-Xa
+#	HSMROOT		/opt/SUNWhsm	/opt/SUNWhsm
+#
+
+USG=		-DUSG
+ANSI=		-Xa
+HSMROOT=	/opt/SUNWhsm
+
+UFSROOTETC=		$(ROOT)/etc
+UFSROOTUSR=		$(ROOT)/usr
+UFSROOTUSRLIB=		$(UFSROOTUSR)/lib
+UFSROOTUSRLIBFS=	$(UFSROOTUSRLIB)/fs
+UFSROOTUSRLIBFSTYPE=	$(UFSROOTUSRLIBFS)/$(FSTYPE)
+UFSROOTUSRSBIN=		$(UFSROOTUSR)/sbin
+
+HSMROOTPKGLOC=		$(ROOT)$(HSMROOT)
+HSMROOTPKGBIN=		$(HSMROOTPKGLOC)/bin
+HSMROOTPKGLIB=		$(HSMROOTPKGLOC)/lib
+HSMROOTPKGSBIN=		$(HSMROOTPKGLOC)/sbin
+HSMVARPKGLOC=		$(ROOT)/var$(HSMROOT)
+HSMVARPKGLOGLOC=	$(HSMVARPKGLOC)/dumplog
+HSMETCPKGLOC=		$(ROOT)/etc$(HSMROOT)
+
+$(CH)$(UFSROOTETC)	:= DIRMODE = 775
+$(UFSROOTETC)		:= OWNER   = root
+$(UFSROOTETC)		:= GROUP   = sys
+$(CH)$(UFSROOTUSR)	:= DIRMODE = 775
+$(UFSROOTUSR)		:= OWNER   = bin
+$(UFSROOTUSR)		:= GROUP   = bin
+$(CH)$(UFSROOTUSRLIB)	:= DIRMODE = 775
+$(UFSROOTUSRLIB)	:= OWNER   = root
+$(UFSROOTUSRLIB)	:= GROUP   = bin
+$(CH)$(UFSROOTUSRLIBFS)	:= DIRMODE = 775
+$(UFSROOTUSRLIBFS)	:= OWNER   = root
+$(UFSROOTUSRLIBFS)	:= GROUP   = sys
+$(CH)$(UFSROOTUSRLIBFSFSTYPE):= DIRMODE = 775
+$(UFSROOTUSRLIBFSFSTYPE):= OWNER   = root
+$(UFSROOTUSRLIBFSFSTYPE):= GROUP   = sys
+$(CH)$(UFSROOTUSRSBIN)	:= DIRMODE = 775
+$(UFSROOTUSRSBIN)	:= OWNER   = bin
+$(UFSROOTUSRSBIN)	:= GROUP   = bin
+
+$(CH)$(HSMROOTPKGLOC)	:= DIRMODE = 775
+$(HSMROOTPKGLOC)	:= OWNER   = root
+$(HSMROOTPKGLOC)	:= GROUP   = sys
+$(CH)$(HSMROOTPKGBIN)	:= DIRMODE = 775
+$(HSMROOTPKGBIN)	:= OWNER   = root
+$(HSMROOTPKGBIN)	:= GROUP   = sys
+$(CH)$(HSMROOTPKGLIB)	:= DIRMODE = 775
+$(HSMROOTPKGLIB)	:= OWNER   = root
+$(HSMROOTPKGLIB)	:= GROUP   = sys
+$(CH)$(HSMROOTPKGSBIN)	:= DIRMODE = 775
+$(HSMROOTPKGSBIN)	:= OWNER   = root
+$(HSMROOTPKGSBIN)	:= GROUP   = sys
+$(CH)$(HSMVARPKGLOC)	:= DIRMODE = 775
+$(HSMVARPKGLOC)		:= OWNER   = root
+$(HSMVARPKGLOC)		:= GROUP   = sys
+$(CH)$(HSMVARPKGLOGLOC)	:= DIRMODE = 775
+$(HSMVARPKGLOGLOC)	:= OWNER   = root
+$(HSMVARPKGLOGLOC)	:= GROUP   = sys
+$(CH)$(HSMETCPKGLOC)	:= DIRMODE = 775
+$(HSMETCPKGLOC)		:= OWNER   = root
+$(HSMETCPKGLOC)		:= GROUP   = sys
+
+HSMROOTPKGADMLINK=	$(HSMROOTPKGLOC)/adm
+HSMROOTPKGETCLINK=	$(HSMROOTPKGLOC)/etc
+ADMLINKVALUE=		/var$(HSMROOT)
+ETCLINKVALUE=		/etc$(HSMROOT)
+
+UFSROOTPKGUSRLIBFSTYPE=	$(PROG:%=$(UFSROOTUSRLIBFSTYPE)/%)
+UFSROOTPKGETC=		$(PROT:%=$(UFSROOTETC)/%)
+
+HSMROOTPKGBINPROG=	$(HSMPROG:%=$(HSMROOTPKGBIN)/%)
+HSMROOTPKGBINSHFILES=	$(HSMSHFILES:%=$(HSMROOTPKGBIN)/%)
+HSMROOTPKGLIBPROG=	$(HSMPROG:%=$(HSMROOTPKGLIB)/%)
+HSMROOTPKGLIBSHFILES=	$(HSMSHFILES:%=$(HSMROOTPKGLIB)/%)
+HSMROOTPKGSBINPROG=	$(HSMPROG:%=$(HSMROOTPKGSBIN)/%)
+HSMROOTPKGSBINSHFILES=	$(HSMSHFILES:%=$(HSMROOTPKGSBIN)/%)
+
+$(UFSROOTETC)/%: $(UFSROOTETC) %
+	$(INS.file)
+
+$(UFSROOTUSRLIBFSTYPE)/%: $(UFSROOTUSRLIBFSTYPE) %
+	$(INS.file)
+
+$(HSMROOTPKGBIN)/%: $(HSMROOTPKGBIN) %
+	$(INS.file)
+
+$(HSMROOTPKGLIB)/%: $(HSMROOTPKGLIB) %
+	$(INS.file)
+
+$(HSMROOTPKGSBIN)/%: $(HSMROOTPKGSBIN) %
+	$(INS.file)
+
+# set up TARGET macro for all Makefile here
+all:=		TARGET= all
+hsm:=		TARGET= hsm
+install:=	TARGET= install
+hsminstall:=	TARGET= hsminstall
+clean:=		TARGET= clean
+clobber:=	TARGET= clobber
+lint:=		TARGET= lint
+debug:=		TARGET= debug
+
+# default dump library is the -O one
+DUMPLIB=	libdump.a
+
+# define the DO_SUBDIR macro, so that it can be changed here for all Makefiles
+DO_SUBDIR=	cd $@; pwd; $(MAKE) HSMROOT=$(HSMROOT) USG=$(USG) \
+			ANSI=$(ANSI) $(TARGET)
+DO_LIBDIR=	@if [ ! -f $(@D)/.target_done ]; then \
+			cd $(@D); pwd; $(MAKE) HSMROOT=$(HSMROOT) USG=$(USG) \
+				ANSI=$(ANSI) $(TARGET); \
+		fi

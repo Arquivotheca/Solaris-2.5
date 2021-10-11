@@ -1,0 +1,97 @@
+#       Copyright (c) 1990-95 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)prototype_i386	1.6	95/09/01 (c) Sun Microsystems, Inc.
+#
+# This required package information file contains a list of package contents.
+# The 'pkgmk' command uses this file to identify the contents of a package
+# and their location on the development machine when building the package.
+# Can be created via a text editor or through use of the 'pkgproto' command.
+
+#!search <pathname pathname ...>	# where to find pkg objects
+#!include <filename>			# include another 'prototype' file
+#!default <mode> <owner> <group>	# default used if not specified on entry
+#!<param>=<value>			# puts parameter in pkg environment
+
+i copyright
+i pkginfo
+i depend
+#
+# List x86-specific header files here
+#
+# Path names are relative to the prototype root directory
+#
+# SUNWpsh
+#
+d none usr 775 root sys
+d none usr/include 775 root bin
+d none usr/include/sys 755 bin bin
+f none usr/include/sys/ansi.h 644 bin bin
+f none usr/include/sys/asy.h 644 bin bin
+f none usr/include/sys/at_ansi.h 644 bin bin
+f none usr/include/sys/chanmux.h 644 bin bin
+f none usr/include/sys/char.h 644 bin bin
+d none usr/include/sys/dktp 755 bin bin
+f none usr/include/sys/dktp/aha.h 644 bin bin
+f none usr/include/sys/dktp/ata.h 644 bin bin
+f none usr/include/sys/dktp/bbh.h 644 bin bin
+f none usr/include/sys/dktp/cdtypes.h 644 bin bin
+f none usr/include/sys/dktp/cm.h 644 bin bin
+f none usr/include/sys/dktp/cmdev.h 644 bin bin
+f none usr/include/sys/dktp/cmdk.h 644 bin bin
+f none usr/include/sys/dktp/controller.h 644 bin bin
+f none usr/include/sys/dktp/dadev.h 644 bin bin
+f none usr/include/sys/dktp/dadk.h 644 bin bin
+f none usr/include/sys/dktp/dadkio.h 644 bin bin
+f none usr/include/sys/dktp/dklb.h 644 bin bin
+d none usr/include/sys/dktp/dpt 755 bin bin
+f none usr/include/sys/dktp/dpt/dpt.h 644 bin bin
+f none usr/include/sys/dktp/dpt/dptioctl.h 644 bin bin
+f none usr/include/sys/dktp/dpt/dptsig.h 644 bin bin
+f none usr/include/sys/dktp/eha.h 644 bin bin
+f none usr/include/sys/dktp/fctypes.h 644 bin bin
+f none usr/include/sys/dktp/flowctrl.h 644 bin bin
+f none usr/include/sys/dktp/gda.h 644 bin bin
+f none usr/include/sys/dktp/gen_vtoc.h 644 bin bin
+f none usr/include/sys/dktp/genlb.h 644 bin bin
+f none usr/include/sys/dktp/hba.h 644 bin bin
+f none usr/include/sys/dktp/mcis.h 644 bin bin
+f none usr/include/sys/dktp/objmgr.h 644 bin bin
+f none usr/include/sys/dktp/quetypes.h 644 bin bin
+f none usr/include/sys/dktp/queue.h 644 bin bin
+f none usr/include/sys/dktp/scdk.h 644 bin bin
+f none usr/include/sys/dktp/scdkwatch.h 644 bin bin
+f none usr/include/sys/dktp/sctarget.h 644 bin bin
+f none usr/include/sys/dktp/snlb.h 644 bin bin
+f none usr/include/sys/dktp/tgcd.h 644 bin bin
+f none usr/include/sys/dktp/tgcom.h 644 bin bin
+f none usr/include/sys/dktp/tgdk.h 644 bin bin
+f none usr/include/sys/dktp/tgpassthru.h 644 bin bin
+f none usr/include/sys/dktp/tgtp.h 644 bin bin
+f none usr/include/sys/el.h 644 bin bin
+f none usr/include/sys/elx.h 644 bin bin
+f none usr/include/sys/emap.h 644 bin bin
+f none usr/include/sys/evc.h 644 bin bin
+f none usr/include/sys/fd_debug.h 644 bin bin
+f none usr/include/sys/fdc.h 644 bin bin
+f none usr/include/sys/fdmedia.h 644 bin bin
+f none usr/include/sys/kb.h 644 bin bin
+f none usr/include/sys/kd.h 644 bin bin
+f none usr/include/sys/kdvm_cgi.h 644 bin bin
+f none usr/include/sys/lp.h 644 bin bin
+f none usr/include/sys/mouse.h 644 bin bin
+f none usr/include/sys/mse.h 644 bin bin
+f none usr/include/sys/sbpro.h 644 bin bin
+f none usr/include/sys/smc.h 644 bin bin
+f none usr/include/sys/smcboard.h 644 bin bin
+f none usr/include/sys/smchdw.h 644 bin bin
+f none usr/include/sys/vdc.h 644 bin bin
+f none usr/include/sys/vid.h 644 bin bin
+f none usr/include/sys/vt.h 644 bin bin
+f none usr/include/sys/vuidkd.h 644 bin bin
+f none usr/include/sys/vuidmice.h 644 bin bin
+d none usr/include/sys/ws 755 bin bin
+f none usr/include/sys/ws/8042.h 644 bin bin
+f none usr/include/sys/ws/chan.h 644 bin bin
+f none usr/include/sys/ws/tcl.h 644 bin bin
+f none usr/include/sys/ws/ws.h 644 bin bin

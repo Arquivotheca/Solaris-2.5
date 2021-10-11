@@ -1,0 +1,52 @@
+#	Copyright (c) 1990-95 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)prototype_i386	1.24	95/03/27 (c) Sun Microsystems, Inc.
+#
+# This required package information file contains a list of package contents.
+# The 'pkgmk' command uses this file to identify the contents of a package
+# and their location on the development machine when building the package.
+# Can be created via a text editor or through use of the 'pkgproto' command.
+
+#!search <pathname pathname ...>	# where to find pkg objects
+#!include <filename>			# include another 'prototype' file
+#!default <mode> <owner> <group>	# default used if not specified on entry
+#!<param>=<value>			# puts parameter in pkg environment
+
+#
+# Include ISA independent files (prototype_com)
+#
+!include prototype_com
+#
+#
+# List files which are i386 specific here
+#
+# source locations relative to the prototype file
+#
+# SUNWcsu
+#
+f none usr/bin/addbadsec 555 bin bin
+f none usr/bin/diskscan 555 bin bin
+f none usr/bin/loadfont 555 bin bin
+f none usr/bin/pcmapkeys 555 bin bin
+f none usr/sbin/rtc 555 bin bin
+s none usr/sbin/fdisk=../../sbin/fdisk
+d none usr/share/lib/fonts 555 bin bin
+f none usr/share/lib/fonts/437.bdf 444 bin bin
+f none usr/share/lib/fonts/646g.bdf 444 bin bin
+f none usr/share/lib/fonts/646y.bdf 444 bin bin
+f none usr/share/lib/fonts/850.bdf 444 bin bin
+f none usr/share/lib/fonts/861.bdf 444 bin bin
+f none usr/share/lib/fonts/863.bdf 444 bin bin
+f none usr/share/lib/fonts/865.bdf 444 bin bin
+f none usr/share/lib/fonts/866.bdf 444 bin bin
+f none usr/share/lib/fonts/8859-1.bdf 444 bin bin
+f none usr/share/lib/fonts/8859-2.bdf 444 bin bin
+f none usr/share/lib/fonts/8859-3.bdf 444 bin bin
+f none usr/share/lib/fonts/8859-4.bdf 444 bin bin
+f none usr/share/lib/fonts/8859-5.bdf 444 bin bin
+f none usr/share/lib/fonts/8859-7.bdf 444 bin bin
+f none usr/share/lib/fonts/8859-9.bdf 444 bin bin
+s none usr/share/lib/fonts/8859.bdf=./8859-1.bdf
+f none usr/share/lib/fonts/csfr.bdf 444 bin bin
+f none usr/share/lib/fonts/greek.bdf 444 bin bin

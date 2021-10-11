@@ -1,0 +1,4 @@
+#!/bin/sh
+#pragma ident "@(#)req.flg	1.2	92/08/05 SMI" 
+
+echo_file usr/src/cmd/fs.d/Makefile.fstype

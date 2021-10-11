@@ -1,0 +1,53 @@
+#
+# Copyright (c) 1995, by Sun Microsystems, Inc.
+# All Rights Reserved
+#
+#ident	"@(#)inetsvc	1.7	95/02/24 SMI"
+#
+# This is third phase of TCP/IP startup/configuration.  This script
+# runs after the NIS/NIS+ startup script.  We run things here that may
+# depend on NIS/NIS+ maps.
+#
+
+#
+# XXX - We need to give ypbind time to bind to a server.
+#
+sleep 5
+# 
+# Re-set the netmask and broadcast addr for all IP interfaces.  This
+# ifconfig is run here, after NIS has been started, so that "netmask
+# +" will find the netmask if it lives in a NIS map.
+#
+
+/usr/sbin/ifconfig -au netmask + broadcast +
+
+# This is a good time to verify that all of the interfaces were
+# correctly configured.  But this is too noisy to run every time we
+# boot.
+#
+# echo "network interface configuration:"
+# /usr/sbin/ifconfig -a
+
+#
+# If this machine is configured to be an Internet Domain Name 
+# System (DNS) server, run the name daemon.
+# Start named prior to: route add net host, to avoid dns
+# gethostbyname timout delay for nameserver during boot.
+#
+if [ -f /usr/sbin/in.named -a -f /etc/named.boot ]; then
+	/usr/sbin/in.named;	echo "starting internet domain name server."
+fi
+
+#
+# Add a static route for multicast packets out our default interface.
+# The default interface is the interface that corresponds to the node name.
+#
+echo "Setting default interface for multicast: \c"
+/usr/sbin/route add "224.0.0.0" "`uname -n`" 0
+
+#
+# Run inetd in "standalone" mode (-s flag) so that it doesn't have
+# to submit to the will of SAF.  Why did we ever let them change inetd?
+#
+/usr/sbin/inetd -s
+

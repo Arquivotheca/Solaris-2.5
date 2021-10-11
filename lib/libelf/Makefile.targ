@@ -1,0 +1,54 @@
+#
+#ident	"@(#)Makefile.targ	1.2	94/10/03 SMI"
+#
+# Copyright (c) 1994 by Sun Microsystems, Inc.
+#
+# lib/libelf/Makefile.targ
+#
+
+objs/%.o profs/%.o pics/%.o:	%.c
+		$(COMPILE.c) -DMMAP_IS_AVAIL -o $@ $<
+		$(POST_PROCESS_O)
+
+objs/%.o profs/%.o pics/%.o:	../misc/%.c
+		$(COMPILE.c) -DELF -o $@ $<
+		$(POST_PROCESS_O)
+
+objs/%.o profs/%.o pics/%.o:	../common/%.c
+		$(COMPILE.c) -DMMAP_IS_AVAIL -o $@ $<
+		$(POST_PROCESS_O)
+
+
+all:		$(BLTSRCS) .WAIT $(LIBS)
+
+install:	all .WAIT $(ROOTLIBS) $(ROOTLINKS)
+
+lint:		$(BLTSRCS) .WAIT $(LINTLIB)
+
+
+# include common library targets
+#
+include		../../Makefile.targ
+
+# derived C source and related dependencies
+#
+../common/error.c: ../common/error.list ../common/error.c.awk
+		cd ../common; pwd; $(AWK) -f error.c.awk error.list > error.c
+
+../common/error.h: ../common/error.list ../common/error.h.awk
+		cd ../common; pwd; $(AWK) -f error.h.awk error.list > error.h
+
+../common/xlate.c: ../common/xlate.m4
+		cd ../common; pwd; $(M4) < xlate.m4 > xlate.c
+
+objs/xlate.o \
+pics/xlate.o \
+profs/xlate.o:	../common/xlate.c
+
+objs/error.o \
+pics/error.o \
+profs/error.o:	../common/error.c ../common/error.h
+
+objs/ar.o \
+pics/ar.o \
+profs/ar.o:	../common/error.h

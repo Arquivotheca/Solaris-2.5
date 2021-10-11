@@ -1,0 +1,36 @@
+
+
+passwd
+ace
+tapedata
+index
+/dev/rmt0
+/dev/rmt1
+
+32
+3
+kolstad
+
+rdev
+n
+2  dumpsets
+1  dumpscheme
+10 length
+n stagger
+
+1
+15
+3
+10
+-1
+3
+
+3
+3
+/mnt
+/usr
+summit:/
+summit:/usr
+rmtc:/scratch
+
+n

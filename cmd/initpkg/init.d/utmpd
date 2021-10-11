@@ -1,0 +1,25 @@
+#ident	"@(#)utmpd	1.1	94/06/08 SMI"
+
+#	utmpd control
+pid=`/usr/bin/ps -e | /usr/bin/grep utmpd | /usr/bin/sed -e 's/^  *//' -e 's/ .*//'`
+case $1 in
+'start')
+	if [ "${pid}" = "" ]
+	then
+		/usr/bin/rm -f /etc/utmppipe
+		if [ -x /usr/lib/utmpd ]
+		then
+			/usr/lib/utmpd
+		fi
+	fi
+	;;
+'stop')
+	if [ "${pid}" != "" ]
+	then
+		/usr/bin/kill ${pid}
+	fi
+	;;
+*)
+	echo "usage: /etc/init.d/utmpd {start|stop}"
+	;;
+esac

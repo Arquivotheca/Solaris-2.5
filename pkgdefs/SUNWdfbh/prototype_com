@@ -1,0 +1,30 @@
+#	Copyright (c) 1990-93 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)prototype_com	1.14	94/07/22 (c) Sun Microsystems, Inc.
+#
+# This required package information file contains a list of package contents.
+# The 'pkgmk' command uses this file to identify the contents of a package
+# and their location on the development machine when building the package.
+# Can be created via a text editor or through use of the 'pkgproto' command.
+
+#!search <pathname pathname ...>	# where to find pkg objects
+#!include <filename>			# include another 'prototype' file
+#!default <mode> <owner> <group>	# default used if not specified on entry
+#!<param>=<value>			# puts parameter in pkg environment
+
+# packaging files
+i pkginfo
+i copyright
+i depend
+#
+# source locations relative to the prototype file
+#
+# SUNWdfbh
+#
+d none usr 775 root sys
+d none usr/include 775 root bin
+d none usr/include/sys 755 bin bin
+f none usr/include/sys/visual_io.h 644 bin bin
+f none usr/include/sys/fbio.h 0644 bin bin
+f none usr/include/sys/seg_drv.h 0644 bin bin

@@ -1,0 +1,93 @@
+#	Copyright (c) 1990-93 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#pragma ident	"@(#)prototype_com	1.39	94/11/09 SMI"
+#
+# This required package information file contains a list of package contents.
+# The 'pkgmk' command uses this file to identify the contents of a package
+# and their location on the development machine when building the package.
+# Can be created via a text editor or through use of the 'pkgproto' command.
+
+#!search <pathname pathname ...>	# where to find pkg objects
+#!include <filename>			# include another 'prototype' file
+#!default <mode> <owner> <group>	# default used if not specified on entry
+#!<param>=<value>			# puts parameter in pkg environment
+
+# packaging files
+i pkginfo
+i copyright
+i depend
+i postinstall
+i preremove
+#
+# source locations relative to the prototype file
+#
+# SUNWarc
+#
+d none usr 775 root sys
+d none usr/ccs 755 bin bin
+d none usr/ccs/lib 755 bin bin
+d none usr/ccs/lib/fp 755 bin bin
+d none usr/ccs/lib/fp/libp 755 bin bin
+f none usr/ccs/lib/libcurses.a 644 bin bin
+f none usr/ccs/lib/libgen.a 644 bin bin
+f none usr/ccs/lib/libmalloc.a 644 bin bin
+l none usr/ccs/lib/libtermcap.a=../../../usr/ccs/lib/libcurses.a
+l none usr/ccs/lib/libtermlib.a=../../../usr/ccs/lib/libcurses.a
+f none usr/ccs/lib/values-xpg4.o 644 bin bin
+f none usr/ccs/lib/values-Xa.o 644 bin bin
+f none usr/ccs/lib/values-Xc.o 644 bin bin
+f none usr/ccs/lib/values-Xs.o 644 bin bin
+f none usr/ccs/lib/values-Xt.o 644 bin bin
+d none usr/lib 775 root bin
+f none usr/lib/libauth.a 644 bin bin
+f none usr/lib/lib300.a 644 bin bin
+f none usr/lib/lib300s.a 644 bin bin
+f none usr/lib/lib4014.a 644 bin bin
+f none usr/lib/lib450.a 644 bin bin
+f none usr/lib/libTL.a 644 bin bin
+f none usr/lib/libadm.a 644 bin bin
+f none usr/lib/libbsdmalloc.a 644 bin bin
+f none usr/lib/libbsm.a 644 bin bin
+f none usr/lib/libc.a 644 bin bin
+s none usr/lib/libc2.a=./libc2stubs.a
+f none usr/lib/libc2stubs.a 644 bin bin
+f none usr/lib/libcmd.a 644 bin bin
+f none usr/lib/libcrypt_i.a 644 bin bin
+f none usr/lib/libelf.a 644 bin bin
+f none usr/ccs/lib/libform.a 644 bin bin
+f none usr/lib/libgenIO.a 644 bin bin
+f none usr/lib/libintl.a 644 bin bin
+f none usr/lib/libkrb.a 644 bin bin
+f none usr/lib/libmail.a 644 bin bin
+f none usr/lib/libmapmalloc.a 644 bin bin
+f none usr/ccs/lib/libmenu.a 644 bin bin
+f none usr/lib/libmp.a 644 bin bin
+f none usr/lib/libnisdb.a 644 bin bin
+f none usr/lib/libnls.a 644 bin bin
+f none usr/lib/libnsl.a 644 bin bin
+d none usr/lib/libp 775 bin bin
+f none usr/lib/libp/libc.a 644 bin bin
+f none usr/ccs/lib/libpanel.a 644 bin bin
+f none usr/lib/libpkg.a 644 bin bin
+f none usr/lib/libplot.a 644 bin bin
+f none usr/lib/librac.a 644 bin bin
+f none usr/lib/librpcsvc.a 644 bin bin
+f none usr/lib/libsec.a 644 bin bin
+f none usr/lib/libsocket.a 644 bin bin
+f none usr/lib/libvolmgt.a 644 bin bin
+f none usr/lib/libvt0.a 644 bin bin
+f none usr/lib/libw.a 644 bin bin
+f none usr/lib/llib-lc 644 bin bin
+f none usr/lib/llib-lc.ln 644 bin bin
+f none usr/lib/llib-ldl.ln 644 bin bin
+f none usr/lib/llib-lelf.ln 644 bin bin
+f none usr/lib/llib-lpthread.ln 644 bin bin
+f none usr/ccs/lib/llib-lform 644 bin bin
+f none usr/ccs/lib/llib-lform.ln 644 bin bin
+f none usr/ccs/lib/llib-lmenu 644 bin bin
+f none usr/ccs/lib/llib-lmenu.ln 644 bin bin
+f none usr/ccs/lib/llib-lpanel 644 bin bin
+f none usr/ccs/lib/llib-lpanel.ln 644 bin bin
+d none usr/lib/pics 755 bin bin
+f none usr/lib/pics/libc_pic.a 644 bin bin

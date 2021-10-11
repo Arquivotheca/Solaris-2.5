@@ -1,0 +1,37 @@
+#!/bin/sh
+
+case `/usr/bin/uname -r` in
+    5.0|5.1)
+cat <<eof
+
+This patch does not apply to SunOS 5.0 or 5.1 (a.k.a. Solaris 2.0 or 2.1).
+
+eof
+exit 1;;
+
+    5.2)
+cat <<eof
+
+Note -- this patch was compiled in a SunOS 5.3 (a.k.a. Solaris 2.3)
+environment, not in a SunOS 5.2 environment.  If you have to backout
+this patch, see the README file for details.
+
+eof
+exit 0;;
+
+    5.3)
+exit 0;;
+esac
+
+# if we get here, we must be 5.4, 5.5, ... ?
+
+cat <<eof
+
+This patch was compiled in a SunOS 5.3 (a.k.a. Solaris 2.3)
+environment.  This patch will be installed anyway, but check to see if
+there is a later revision of this patch, or a newer patch which
+obseletes this one.
+
+eof
+
+exit 0

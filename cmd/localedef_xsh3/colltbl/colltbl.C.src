@@ -1,0 +1,7 @@
+#ident	"@(#)colltbl.C.src	1.1	90/09/09 SMI"	/* SVr4.0 1.1	*/
+
+# codeset for "C" locale
+
+codeset		LC_COLLATE
+
+order is	\001;...;\377

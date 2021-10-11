@@ -1,0 +1,48 @@
+#!/bin/sh
+#
+#ident	"@(#)i.kclasses_sparc	1.8	95/01/17 SMI"
+#
+# Copyright (c) 1993-1994, by Sun Microsystems, Inc.
+# All rights reserved.
+#
+
+PATH="/usr/bin:/usr/sbin:${PATH}"
+export PATH
+
+while read src dest
+do
+	if [ ! -f $dest ] ; then
+		cp $src $dest
+	else
+		grep '^#ident[ 	]*\"@(#)driver_classes' $src \
+		    > /tmp/newident.$$ 2>/dev/null
+		sed -e '/^#ident[ 	]*\"@(#)driver_classes.*$/d' \
+		    -e '/^\"QLGC,isp\"[	]*scsi$/d' \
+		    -e '/^\"SUNW,isp\"[	]*scsi$/d' \
+		    $dest > /tmp/rest.$$ 2>/dev/null
+		cat /tmp/newident.$$ /tmp/rest.$$ > $dest
+		grep '^xbox	sbus' $dest > /dev/null 2>&1
+		if [ $? != 0 ] ; then
+			echo 'xbox	sbus' >> $dest
+		fi
+		grep '^isp	scsi' $dest > /dev/null 2>&1
+		if [ $? != 0 ] ; then
+			echo 'isp	scsi' >> $dest
+		fi
+		grep '^pci[ 	].*pci' $dest > /dev/null 2>&1
+		if [ $? != 0 ] ; then
+			echo 'pci	pci' >> $dest
+		fi
+		grep '^pci_pci[ 	].*pci' $dest > /dev/null 2>&1
+		if [ $? != 0 ] ; then
+			echo 'pci_pci pci' >> $dest
+		fi
+		grep '^fas[ 	].*scsi' $dest > /dev/null 2>&1
+		if [ $? != 0 ] ; then
+			echo 'fas	scsi' >> $dest
+		fi
+	fi
+done
+rm -f /tmp/newident.$$ /tmp/rest.$$
+
+exit 0

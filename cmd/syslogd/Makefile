@@ -1,0 +1,58 @@
+#
+#ident	"@(#)Makefile	1.12	94/08/25 SMI"
+#
+# Copyright (c) 1991-1993, by Sun Microsystems, Inc.
+#
+# cmd/syslogd/Makefile
+#
+
+PROG= 		syslogd
+ROTATESCRIPT=	newsyslog
+CONFIGFILE=	syslog.conf
+TXTS= 		syslog.conf
+PRODUCT=	$(PROG) $(ROTATESCRIPT)
+SRCS=		$(PROG:%=%.c)
+OBJS=		$(SRCS:%.c=%.o)
+
+include ../Makefile.cmd
+
+$(PROG) 	:= LDLIBS += -lnsl
+
+VARSYSLOG=	syslog
+VARAUTHLOG=	authlog
+ROOTVARLOGD=	$(ROOT)/var/log
+
+OWNER=		root
+GROUP=		sys
+
+ROOTETCCONFIG=	$(CONFIGFILE:%=$(ROOTETC)/%)
+ROOTLIBROTATE=	$(ROTATESCRIPT:%=$(ROOTLIB)/%)
+ROOTVARSYSLOG=	$(VARSYSLOG:%=$(ROOTVARLOGD)/%)
+ROOTVARAUTHLOG=	$(VARAUTHLOG:%=$(ROOTVARLOGD)/%)
+
+$(ROOTUSRSBINPROG) 	:= FILEMODE = 0555
+$(ROOTUSRLIBROTATE)	:= FILEMODE = 0555
+$(ROOTETCCONFIG)	:= FILEMODE = 0644
+$(ROOTVARSYSLOG)	:= FILEMODE = 0664
+$(ROOTVARAUTHLOG)	:= FILEMODE = 0600
+
+$(ROOTVARLOGD)/% : %
+	$(INS.file)
+
+.KEEP_STATE:
+
+all: $(PRODUCT) $(CONFIGFILE) $(TXTS) $(VARSYSLOG) $(VARAUTHLOG)
+
+$(VARSYSLOG) $(VARAUTHLOG):
+	$(ECHO) '\c' > $@
+
+logfiles: $(ROOTVARSYSLOG) $(ROOTVARAUTHLOG)
+
+install: all $(ROOTUSRSBINPROG) $(ROOTETCCONFIG) $(ROOTLIBROTATE) logfiles
+
+clean:
+	$(RM) $(OBJS) $(VARSYSLOG) $(VARAUTHLOG)
+
+lint:	lint_PROG
+
+include ../Makefile.targ

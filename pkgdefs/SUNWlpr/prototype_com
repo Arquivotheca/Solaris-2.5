@@ -1,0 +1,72 @@
+#	Copyright (c) 1990-93 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)prototype_com	1.21	95/07/13 (c) Sun Microsystems, Inc.
+#
+# This required package information file contains a list of package contents.
+# The 'pkgmk' command uses this file to identify the contents of a package
+# and their location on the development machine when building the package.
+# Can be created via a text editor or through use of the 'pkgproto' command.
+
+#!search <pathname pathname ...>	# where to find pkg objects
+#!include <filename>			# include another 'prototype' file
+#!default <mode> <owner> <group>	# default used if not specified on entry
+#!<param>=<value>			# puts parameter in pkg environment
+
+# packaging files
+i pkginfo
+i copyright
+i depend
+i i.lpsystem
+#
+# source locations relative to the prototype file
+#
+# SUNWlpr
+#
+d none etc 775 root sys
+d none etc/init.d 775 root sys
+f none etc/init.d/lp 744 root sys
+d none etc/lp 775 lp lp
+e lpsystem etc/lp/Systems 664 lp lp
+d none etc/lp/classes 775 lp lp
+d none etc/lp/fd 755 lp lp
+f none etc/lp/fd/download.fd 664 lp lp
+f none etc/lp/fd/dpost.fd 664 lp lp
+f none etc/lp/fd/postdaisy.fd 664 lp lp
+f none etc/lp/fd/postdmd.fd 664 lp lp
+f none etc/lp/fd/postio.fd 664 lp lp
+f none etc/lp/fd/postior.fd 664 lp lp
+f none etc/lp/fd/postmd.fd 664 lp lp
+f none etc/lp/fd/postplot.fd 664 lp lp
+f none etc/lp/fd/postprint.fd 664 lp lp
+f none etc/lp/fd/postreverse.fd 664 lp lp
+f none etc/lp/fd/posttek.fd 664 lp lp
+f none etc/lp/fd/postpages.fd 664 lp lp
+f none etc/lp/fd/pr.fd 664 lp lp
+f none etc/lp/fd/catv.fd 664 lp lp
+d none etc/lp/forms 775 lp lp
+d none etc/lp/interfaces 775 lp lp
+s none etc/lp/logs=../../var/lp/logs
+d none etc/lp/printers 775 lp lp
+d none etc/lp/pwheels 775 lp lp
+d none etc/rc0.d 775 root sys
+l none etc/rc0.d/K20lp=../../etc/init.d/lp
+d none etc/rc1.d 775 root sys
+d none etc/rc2.d 775 root sys
+l none etc/rc2.d/K20lp=../../etc/init.d/lp
+l none etc/rc2.d/S80lp=../../etc/init.d/lp
+d none var 775 root sys
+d none var/lp 775 lp lp
+d none var/lp/logs 775 lp lp
+d none var/spool 775 root bin
+d none var/spool/lp 755 lp tty
+d none var/spool/lp/admins 775 lp lp
+s none var/spool/lp/admins/lp=../../../../etc/lp
+s none var/spool/lp/bin=../../../usr/lib/lp/bin
+d none var/spool/lp/fifos 775 lp lp
+d none var/spool/lp/fifos/private 771 lp lp
+d none var/spool/lp/fifos/public 773 lp lp
+s none var/spool/lp/logs=../../lp/logs
+s none var/spool/lp/model=../../../usr/lib/lp/model
+d none var/spool/lp/requests 775 lp lp
+d none var/spool/lp/system 775 lp lp

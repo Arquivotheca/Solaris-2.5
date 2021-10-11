@@ -1,0 +1,24 @@
+#! /bin/sh
+#
+#ident  "@(#)audit 1.2     93/06/03 SMI"
+#
+# start/stop the audit deamon
+
+case "$1" in
+ 
+'start')
+	# Start the audit deamon
+	if [ -f /etc/security/audit_startup ] ; then
+		echo "starting audit daemon"
+		/etc/security/audit_startup
+		/usr/sbin/auditd &
+	fi
+	;;
+ 
+'stop')
+	# Stop the audit deamon
+	if [ -f /etc/security/audit_startup ] ; then
+		/usr/sbin/audit -t
+	fi
+	;;
+esac

@@ -1,0 +1,238 @@
+
+#ident	"@(#)sfmmu.fdbg	1.9	95/07/10 SMI"
+
+#include <sys/param.h>
+#include <sys/types.h>
+#include <sys/user.h>
+#include <sys/cred.h>
+#include <sys/proc.h>
+#include <sys/cpuvar.h>
+#include <sys/thread.h>
+#include <sys/sysinfo.h>
+#include <sys/vfs.h>
+#include <sys/time.h>
+#include <sys/vnode.h>
+#include <sys/disp.h>
+#include <sys/var.h>
+#include <sys/ts.h>
+#include <sys/kstat.h>
+#if defined(sun4) || defined(sun4c) || defined(sun4e)
+#include <vm/hat_sunm.h>
+#endif
+#if defined(sun4m) || defined(sun4d)
+#include <vm/hat_srmmu.h>
+#endif
+#if defined(sun4u)
+#include <vm/hat_sfmmu.h>
+#endif
+#include <sys/ivintr.h>
+#include <sys/intr.h>
+#include <sys/machcpuvar.h>
+#include <sys/sysiosbus.h>
+#include <sys/iommu.h>
+#include <sys/iocache.h>
+#include <vm/anon.h>
+#include <vm/as.h>
+#include <vm/hat.h>
+#include <vm/page.h>
+#include <vm/pvn.h>
+#include <vm/seg.h>
+#include <vm/seg_dev.h>
+#include <vm/seg_enum.h>
+#include <vm/seg_kp.h>
+#include <vm/seg_map.h>
+#include <vm/seg_vn.h>
+#include <sys/mutex_impl.h>
+#include <sys/rwlock_impl.h>
+#include <sys/callo.h>
+#include <sys/ddi_impldefs.h>
+#include <sys/kmem_impl.h>
+#include <sys/siginfo.h>
+#include <sys/memlist.h>
+#include <sys/modctl.h>
+#include <sys/kobj.h>
+#include <sys/privregs.h>
+#include <sys/machpcb.h>
+#include <sys/traptrace.h>
+
+tte
+	v	x
+	sz	x
+	nfo	x
+	ie	x
+	hmenum	x
+	lockcnt	x
+	pahi	x
+	palo	x
+	ref	x
+	wr_perm	x
+	no_sync	x
+	l	x
+	cp	x
+	cv	x
+	e	x
+	p	x
+	w	x
+	g	x
+
+hmehash_bucket
+	hmehash_mutex	.mutex
+	hmeh_nextpa	x
+	hmeblkp		x
+
+hmeblk_tag
+	htag_tag	x
+
+hme_blk.hblk_misc
+
+
+hme_blk.hblk_un
+
+hme_blk
+	hblk_nextpa	x
+	hblk_tag	.hmeblk_tag
+	hblk_next	x
+	hblk_shadow	x
+	hblk_span	d
+	hblk_misc	.hme_blk.hblk_misc
+	hblk_un		.hme_blk.hblk_un
+
+sf_hment
+	gen_hme		.hment
+	hme_tte		.tte
+
+sfmmu
+
+ctx.c_un
+	c_sfmmup	.x
+
+ctx
+	c_un		.ctx.c_un
+	c_flags		.x
+	c_refcnt	.x
+	c_ismblkpa	.x
+
+vmhatstat
+
+forth_start
+
+: .sfmmu-cnum ( cnum -- )
+   [ also ctx-words ]
+   [ also ctx.c_un-words ]
+   ['] .ctx sizeof *          ( coff )
+   symbol ctxs + c_sfmmup      ( sfmmu )
+   ." sfmmu " dup .x cr       ( sfmmu )
+   ?dup  if  .sfmmu  then     ( )
+   [ previous ]
+;
+
+: .hmeb-shift ( sfmmu addr shift -- )
+   >> over xor swap                 ( hash sfmmu )
+   symbol ksfmmup l@ <>  if               ( hash )
+      symbol uhmehash_num l@ and    ( bucket )
+      ['] .hmehash_bucket sizeof *  ( index )
+      symbol uhme_hash l@ +         ( hmeb )
+   else                             ( hash )
+      symbol khmehash_num l@ and    ( bucket )
+      ['] .hmehash_bucket sizeof *  ( index )
+      symbol khme_hash l@ +         ( hmeb )
+   then                             ( hmeb )
+   ." hmeb " dup .x cr              ( hmeb )
+   .hmehash_bucket                  ( )
+;
+
+: .hmeb-8k ( sfmmup addr -- ) d# 16 .hmeb-shift ;
+
+alias .hmeb-64k .hmeb-8k
+
+: .hmeb-512k ( sfmmup addr -- ) d# 19 .hmeb-shift ;
+
+: .hmeb-4m ( sfmmup addr -- ) d# 22 .hmeb-shift ;
+
+: .hmeblk-list ( hmeblk -- )
+   [ also hme_blk-words ]
+   begin  ?dup  while             ( hmeblk )
+      dup .hme_blk cr hblk_next   ( hmeblk' )
+   repeat                         ( )
+   [ previous ]
+;
+
+: .pmap-list ( sfhme -- )
+   [ also hment-words ]
+   begin  ?dup  while            ( sfhme )
+      dup .sf_hment cr hme_next  ( sfhme' )
+   repeat                        ( )
+   [ previous ]
+;
+
+: clr_mmustats ( -- )
+	[ also vmhatstat-words ]
+	[ also kstat_named-words ]
+	[ also kstat_named.value-words ]
+	symbol vmhatstat 
+	dup vh_ctxfree value 0 to ul
+	dup vh_ctxsteal value 0 to ul
+	dup vh_tteload value 0 to ul
+	dup vh_hblk_hit value 0 to ul
+	dup vh_hblk_dalloc value 0 to ul
+	dup vh_hblk_nalloc value 0 to ul
+	dup vh_pgcolor_conflict value 0 to ul
+	dup vh_uncache_conflict value 0 to ul
+	dup vh_unload_conflict value 0 to ul
+	dup vh_mlist_enter value 0 to ul
+	dup vh_mlist_exit value 0 to ul
+	dup vh_pagesync value 0 to ul
+	dup vh_pagesync_invalid value 0 to ul
+	dup vh_itlb_misses value 0 to ul
+	dup vh_dtlb_misses value 0 to ul
+	dup vh_utsb_misses value 0 to ul
+	dup vh_ktsb_misses value 0 to ul
+	dup vh_tsb_hits value 0 to ul
+	dup vh_umod_faults value 0 to ul
+	dup vh_kmod_faults value 0 to ul
+	dup vh_slow_tsbmiss value 0 to ul
+	dup vh_pagefaults value 0 to ul
+	dup vh_uhash_searches value 0 to ul
+	dup vh_uhash_links value 0 to ul
+	dup vh_khash_searches value 0 to ul
+	dup vh_khash_links value 0 to ul
+	[ previous ]
+	[ previous ]
+	[ previous ]
+;
+
+: prt_mmustats ( -- )
+	[ also vmhatstat-words ]
+	[ also kstat_named-words ]
+	[ also kstat_named.value-words ]
+	symbol vmhatstat 
+	dup vh_ctxfree dup name .cstr ." = " value L@ . cr
+	dup vh_ctxsteal dup name .cstr ." = " value L@ . cr
+	dup vh_tteload dup name .cstr ." = " value L@ . cr
+	dup vh_hblk_hit dup name .cstr ." = " value L@ . cr
+	dup vh_hblk_dalloc dup name .cstr ." = " value L@ . cr
+	dup vh_hblk_nalloc dup name .cstr ." = " value L@ . cr
+	dup vh_pgcolor_conflict dup name .cstr ." = " value L@ . cr
+	dup vh_uncache_conflict dup name .cstr ." = " value L@ . cr
+	dup vh_unload_conflict dup name .cstr ." = " value L@ . cr
+	dup vh_mlist_enter dup name .cstr ." = " value L@ . cr
+	dup vh_mlist_exit dup name .cstr ." = " value L@ . cr
+	dup vh_pagesync dup name .cstr ." = " value L@ . cr
+	dup vh_pagesync_invalid dup name .cstr ." = " value L@ . cr
+	dup vh_itlb_misses dup name .cstr ." = " value L@ . cr
+	dup vh_dtlb_misses dup name .cstr ." = " value L@ . cr
+	dup vh_utsb_misses dup name .cstr ." = " value L@ . cr
+	dup vh_ktsb_misses dup name .cstr ." = " value L@ . cr
+	dup vh_tsb_hits dup name .cstr ." = " value L@ . cr
+	dup vh_umod_faults dup name .cstr ." = " value L@ . cr
+	dup vh_kmod_faults dup name .cstr ." = " value L@ . cr
+	dup vh_slow_tsbmiss dup name .cstr ." = " value L@ . cr
+	dup vh_pagefaults dup name .cstr ." = " value L@ . cr
+	dup vh_uhash_searches dup name .cstr ." = " value L@ . cr
+	dup vh_uhash_links dup name .cstr ." = " value L@ . cr
+	dup vh_khash_searches dup name .cstr ." = " value L@ . cr
+	dup vh_khash_links dup name .cstr ." = " value L@ . cr
+	[ previous ]
+	[ previous ]
+	[ previous ]
+;

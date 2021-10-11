@@ -1,0 +1,255 @@
+# Copyright (c) 1993 Sun Microsystems, Inc.  All Rights Reserved.
+#
+#	"@(#)fr_CA	1.2	93/04/09 SMI"
+#
+# This mapfile is provided as example only. Sun Microsystems Inc.,
+# does not warrant that this file is error-free.
+#
+#	fr_CA.863
+#
+# This mapping file is indended for use with the 863 loadfont.
+# It implements a keyboard mapping which allows the use of the
+# 863 code set, using the Danish Standards Association's recommended
+# short names (but not their "compose" value), such that the "compose" key,
+# followed by the 2-letter code, generates the character.
+# In addition, more "graphic" combinations are also encoded
+# (for instance, E^ in addition to E>, and ?? in addition to ?I
+# for inverted question mark). The graphic characters are encoded
+# using special names.
+#
+# Dead keys are defined for circumflex (upper case), diaeresis, cedilla, 
+# grave accent (upper case) and apostrophe.
+# The internal code for non-spacing circumflex is 0x101 and for non-
+# spacing grave accent is 0x102.
+# 
+#
+# Input mapping is not done 
+input:
+#
+# The toggle key is CTRL t.
+#
+toggle: 0x14
+#
+dead: 0x101	# circumflex
+' ' '^'          # <circumflex>
+'A'  0x84          # A circumflex
+'E'  0x92          # E circumflex
+'I'  0xa8          # I circumflex
+'O'  0x99          # O circumflex
+'U'  0x9e          # U circumflex
+'a'  0x83          # a circumflex
+'e'  0x88          # e circumflex
+'i'  0x8c          # i circumflex
+'o'  0x93          # o circumflex
+'u'  0x96          # u circumflex
+#
+dead: 0xa4 		# umlaut/diaeresis
+' ' 0xa4  	# <diaeresis>
+'E'  0x94          # E diaeresis
+'I'  0x95          # I diaresis
+'U'  0x9a          # U diaeresis
+'e'  0x89          # e diaeresis
+'i'  0x8b          # i diaresis
+'u'  0x81          # u diaeresis
+#
+dead: 0xa5 	# cedilla
+' ' 0xa5          # <cedilla accent>
+'C' 0x80          # <C-cedilla>
+'c' 0x87          # <c-cedilla>
+#
+dead: 0x102				# grave accent
+' '  '`'          # <grave-accent>
+'A'  0x8e          # A grave
+'E'  0x91          # E grave
+'U'  0x9d          # U grave
+'a'  0x85          # a grave
+'e'  0x8a          # e grave
+'u'  0x97          # u grave
+#
+dead: '''  	# apostrophe (acute accent>
+' '  '''         # <apostrophe>
+'E'  0x90          # E acute
+'e'  0x82          # e acute
+'o'  0xa2          # o acute
+'u'  0xa3          # u acute
+#
+#
+# The "compose" character is CTRL x.
+# Compose mode: 
+# 
+compose:  0x18      # unfrequently used ctrl character
+#			
+' '  ' '  0xff          # no breaking space 
+' '  '2'  0xfd          # superscript 2
+' '  '3'  0xa6          # superscript 3
+' '  'n'  0xfc          # superscript n
+'#'  '$'  0x98          # currency symbol
+'$'  '$'  0x8f          # paragraph sign
+'''  ' '  '''          # apostrophe
+'''  '''  0xa1          # acute accent
+'''  ','  0xa5          # cedilla
+'''  ':'  0xa4          # diaeresis
+'('  'U'  0xc5          # intersection
+'*'  '*'  0xf8          # degree
+'+'  '-'  0xf1          # plus-minus
+','  ','  0xa5          # cedilla
+'-'  ':'  0xf6          # division sign
+'-'  '|'  0xaa          # not sign
+'.'  '.'  0xfa          # middle dot
+'.'  'M'  0xfa          # middle dot
+'.'  'S'  0xb0          # box drawing light shade (25%)
+'1'  'h'  0xab          # vulgar fraction 1/2
+'1'  'q'  0xac          # vulgar fraction 1/4
+'3'  'q'  0xad          # vulgar fraction 3/4
+':'  'S'  0xb1          # box drawing medium shade (50%)
+'<'  '<'  0xae          # left double angle quotation mark
+'<'  '='  0xf3          # less than or equal
+'='  '2'  0x8d          # double underline
+'='  '3'  0xf0          # Is identical to
+'>'  '='  0xf2          # greater than or equal to
+'>'  '>'  0xaf          # right double angle quotation mark
+'?'  '2'  0xf7          # almost equal
+'?'  'S'  0xb2          # box drawing dark shade (75%)
+'A'  '>'  0x84          # A circumflex
+'A'  '`'  0x8e          # A grave
+'B'  'B'  0xa0          # broken bar
+'B'  'T'  0xca          # "Bottom T Intersection Double"
+'B'  't'  0xd0          # "Bottom T (_||_)
+'C'  ','  0x80          # C cedilla
+'C'  't'  0x9b          # cent sign
+'C'  'u'  0x98          # currency symbol
+'D'  'G'  0xf8          # degree
+'E'  '>'  0x92          # E circumflex
+'E'  '`'  0x91          # E grave
+'F'  '*'  0xe8          # Greek letter PHI
+'F'  'B'  0xdb          # "Solid Full Block"
+'G'  '*'  0xe2          # Greek letter GAMMA
+'H'  '*'  0xe9          # Greek letter THETA
+'H'  'L'  0xcd          # "Horizontal Line Double" (||)
+'I'  '>'  0xa8          # I circumflex
+'I'  'B'  0xf4          # Integral sign (bottom half)
+'I'  'N'  0xa9          # Inverted not sign
+'I'  'T'  0xf5          # Integral sign (top half)
+'L'  '-'  0x9c          # pound sign
+'L'  'B'  0xdc          # "Solid Lower Half Block"
+'L'  'L'  0xc8          # "Lower Left Corner Double"
+'L'  'R'  0xbc          # "Lower Right Corner Double"
+'L'  'T'  0xcc          # "Left T Intersection Double" (|-) 
+'L'  'l'  0xd4          # "Lower Left Corner" (h. double)
+'L'  'r'  0xbe          # "Lower Right Corner" (h. double)
+'L'  't'  0xc6          # "Left T Intersection" (|=)
+'M'  'y'  0xe6          # micro
+'N'  'O'  0xaa          # not sign
+'N'  'S'  0xff          # no breaking space 
+'N'  'o'  0xaa          # not sign
+'O'  '>'  0x99          # O circumflex
+'P'  'I'  0x86          # pilcrow
+'P'  'P'  0x86          # pilcrow
+'P'  'd'  0x9c          # pound sign
+'R'  'B'  0xde          # Solid block right half
+'R'  'T'  0xb9          # "Right T intersection Double" (-|)
+'S'  '*'  0xe4          # Greek letter SIGMA
+'S'  'E'  0x8f          # paragraph sign
+'U'  '>'  0x9e          # U circumflex
+'U'  'B'  0xdf          # "Solid Upper Half Block"
+'U'  'L'  0xc9          # "Upper Left Corner Double" (|~)
+'U'  'R'  0xbb          # "Upper Right Corner Double" (~|)
+'U'  'T'  0xcb          # "Upper T Intersection Double"
+'U'  '`'  0x9d          # U grave
+'U'  'l'  0xd5          # "Upper Left Corner" (h. double)
+'U'  'r'  0xb8          # "Upper Right Corner" (h. double)
+'U'  't'  0xd1          # "Upper T" (h. double)
+'V'  'L'  0xba          # "Vertical line Double" (=)
+'W'  '*'  0xea          # Greek letter OMEGA
+'X'  'T'  0xce          # "Middle Cross Heavy" (=||=)
+'X'  't'  0xd7          # "Middle Cross" (-||-)
+'_'  '_'  0x8d          # "Double underline"
+'a'  '*'  0xe0          # Greek letter alpha
+'a'  '>'  0x83          # a circumflex
+'a'  '`'  0x85          # a grave
+'b'  '*'  0xe1          # Greek letter beta
+'b'  't'  0xc1          # "Bottom T intersection" (_|_)
+'c'  ','  0x87          # c cedilla
+'c'  '/'  0x9b          # cent sign
+'d'  '*'  0xeb          # Greek letter delta
+'e'  '*'  0xee          # Greek letter epsilon
+'e'  '>'  0x88          # e circumflex
+'e'  '`'  0x8a          # e grave
+'f'  '*'  0xed          # Greek letter phi
+'f'  'l'  0x9f          # florin
+'h'  'l'  0xc4          # "Horizontal Line"
+'i'  '>'  0x8c          # i circumflex
+'l'  'B'  0xdd          # Solid block left half
+'l'  'L'  0xd3          # "Lower Left Corner" (||_)
+'l'  'R'  0xbd          # "Lower Right Corner" (_||)
+'l'  'T'  0xc7          # "Left T Intersection" (|=))
+'l'  'l'  0xc0          # "Lower Left Corner" (|_)
+'l'  'r'  0xd9          # "Lower Right Corner" (_|)
+'l'  't'  0xc3          # "Left T Intersection" (|-)
+'m'  '*'  0xe6          # Greek letter mu
+'o'  '>'  0x93          # o circumflex
+'p'  '*'  0xe3          # Greek letter pi
+'p'  's'  0x9c          # pound sign
+'r'  'T'  0xb6          # "Right T Intersection" (=|)
+'r'  't'  0xb4          # "Right T Intersection" (-|)
+'s'  '*'  0xe5          # Greek letter sigma
+'s'  'q'  0xfe          # solid square
+'t'  '*'  0xe7          # Greek letter tau
+'u'  '>'  0x96          # u circumflex
+'u'  'L'  0xd6          # "Upper Left Corner" (||~)
+'u'  'R'  0xb7          # "Upper Right Corner" (~||))
+'u'  'T'  0xd2          # "Upper T Intersection" (~||~)
+'u'  '`'  0x97          # u grave
+'u'  'l'  0xda          # "Upper Left Corner" (|~)
+'u'  'r'  0xbf          # "Upper Right Corner" (~|)
+'u'  't'  0xc2          # "Upper T intersection" (~|~)
+'u'  '|'  0xe6          # micro
+'v'  'l'  0xb3          # "Vertical Line" (-)
+'x'  'T'  0xd7          # "Middle Cross Intersection" (-||-)
+'x'  't'  0xc5          # "Middle Cross(Intersection" (-|-)
+'|'  '|'  0xa0          # broken bar
+'~'  '~'  0xa7          # macron
+#
+#
+# The following output section maps '9b' (an ANSI CSI code,
+# which unfortunately is also an IBM character) such that
+# it prints.
+#
+output:
+0x9b	0x1b 0x9b
+#
+# scan codes for fr_CA
+scancodes:
+#      NORM    SHIFT     ALT   ALT_SHIFT
+0x2     '1'     '!'     0xf1     -
+0x3     '2'     '@'     '"'     -
+0x4     '3'     '/'     0x9c    -
+0x5     '4'     '$'     0x9b    -
+0x6     '5'     '%'     0x98    -
+0x7     '6'     '?'     0xaa    -
+0x8     '7'     '&'     '|'     -
+0x9     '8'     0xf8    0xfd    -
+0xa     '9'     '('     0xa6    -
+0xb     '0'     ')'     0xac    -
+0xc     '-'     '_'|C   0xab    -
+0xd     '='     '+'     0xad    -
+0x18    'o'|C   'O'|C   0x8f    'O'|N  CAPS
+0x19    'p'|C   'P'|C   0x86    'P'|N  CAPS
+0x1a    '^'|C   0x101    '['     -
+0x1b    0xa5    0xa4    ']'     -
+0x27    ';'     ':'     '~'     -
+0x28    '`'     0x102    '{'     -
+0x2b    '<'     '>'     ')'     -
+0x29    '#'     '|'     '\'|C   -
+0x56    0xae    0xaf    0xf8    -
+0x32    'm'|C   'M'|C   0xe6    'M'|N  CAPS
+0x33    ','     ','     0xf8    -
+0x34    '.'     '.'     '_'|C   -
+0x35    0x82    0x90    '''    -  CAPS
+#
+#
+#
+# map CTRL SHIFT F1  to be 0x18 for the compose character key
+F37     0x18
+# map CTRL SHIFT F2 to be 0x14 for the toggle key
+F38     0x14

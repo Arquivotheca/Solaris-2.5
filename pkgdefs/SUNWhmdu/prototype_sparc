@@ -1,0 +1,48 @@
+#	Copyright (c) 1990-93 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)prototype_sparc	1.5	95/08/28 (c) Sun Microsystems, Inc.
+#
+# This required package information file contains a list of package contents.
+# The 'pkgmk' command uses this file to identify the contents of a package
+# and their location on the development machine when building the package.
+# Can be created via a text editor or through use of the 'pkgproto' command.
+
+#!search <pathname pathname ...>	# where to find pkg objects
+#!include <filename>			# include another 'prototype' file
+#!default <mode> <owner> <group>	# default used if not specified on entry
+#!<param>=<value>			# puts parameter in pkg environment
+
+#
+# Include ISA independent files (prototype_com)
+#
+!include prototype_com
+#
+#
+#
+# List files which are SPARC specific here
+#
+# source locations relative to the prototype file
+#
+#
+# SUNWhmdu
+#
+d none usr 775 root sys
+d none usr/include 775 root bin
+d none usr/include/sys 755 bin bin
+f none usr/include/sys/hme.h 644 bin bin
+f none usr/include/sys/hme_mac.h 644 bin bin
+f none usr/include/sys/hme_phy.h 644 bin bin
+d none usr/include/sys/scsi 755 bin bin
+d none usr/include/sys/scsi/adapters 755 bin bin
+f none usr/include/sys/scsi/adapters/fascmd.h 644 bin bin
+f none usr/include/sys/scsi/adapters/fasdma.h 644 bin bin
+f none usr/include/sys/scsi/adapters/fasreg.h 644 bin bin
+f none usr/include/sys/scsi/adapters/fasvar.h 644 bin bin
+d none usr/lib 775 root bin
+d none usr/lib/adb 755 root sys
+f none usr/lib/adb/fas 644 root sys
+f none usr/lib/adb/fas_cb_info 644 root sys
+f none usr/lib/adb/fas_cmd 644 root sys
+f none usr/lib/adb/fas_regs 644 root sys
+f none usr/lib/adb/fas_tagQ 644 root sys

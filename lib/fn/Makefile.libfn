@@ -1,0 +1,26 @@
+#
+#ident	"@(#)Makefile.libfn	1.8	95/07/16 SMI"
+#
+# Copyright (c) 1993 by Sun Microsystems, Inc.
+#
+# lib/fn/Makefile.lib
+# Definitions common to fn shared libraries.
+#
+
+include $(SRC)/lib/Makefile.lib
+
+# do after lib/Makefile.lib, which also sets ROOTLIBDIR
+
+FNLIBDIR=	$(ROOT)/usr/lib/fn
+FNINCDIR=	$(SRC)/lib/fn/include
+ROOTLIBDIR=	$(FNLIBDIR)
+
+debug :=	CPPFLAGS += $(DEBUG)
+debug :=	COPTFLAG = -g
+debug :=	CCOPTFLAG = -g
+tcov :=		CFLAGS += -xa
+tcov :=		CCFLAGS += -a
+
+# make sure -I$(FNINCDIR) precedes other -Is
+
+CPPFLAGS=	-I$(FNINCDIR) $(CPPFLAGS.master) -D_REENTRANT

@@ -1,0 +1,17 @@
+#
+#ident	"@(#)Makefile.targ	1.1	93/06/03 SMI"
+#
+# Copyright (c) 1993 by Sun Microsystems, Inc.
+#
+# lib/libkvm/platform/Makefile.targ
+#
+# Makefile for the platform dependent libkvm adjunct for sun4c.  This only
+# has any utility as a shared object.
+#
+install:	$(USR_PSM_LIBS)
+
+#
+# Include library targets.
+#
+include $(LIBKVM_BASE)/../Makefile.targ
+include $(LIBKVM_BASE)/../../Makefile.psm.targ

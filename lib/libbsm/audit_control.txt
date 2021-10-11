@@ -1,0 +1,4 @@
+dir:/var/audit
+flags:
+minfree:20
+naflags:

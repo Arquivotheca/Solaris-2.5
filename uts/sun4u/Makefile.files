@@ -1,0 +1,103 @@
+#
+# uts/sun4u/Makefile.files
+# Copyright (c) 1994 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+#ident	"@(#)Makefile.files	1.37	95/08/21 SMI"
+#
+#	This Makefile defines all file modules for the directory uts/sun4u
+#	and it's children. These are the source files which are sun4u
+#	"implementation architecture" dependent.
+#
+
+#
+#	object lists
+#
+CORE_OBJS +=	bp_map.o
+CORE_OBJS +=	confunix.o
+CORE_OBJS +=	copy.o
+CORE_OBJS +=	ddi_impl.o
+CORE_OBJS +=	dvma.o
+CORE_OBJS +=	ecc.o
+CORE_OBJS +=	fillsysinfo.o
+CORE_OBJS +=	genalign.o
+CORE_OBJS +=	hardclk.o
+CORE_OBJS +=	hat_conf.o
+CORE_OBJS +=	hat_sfmmu.o
+CORE_OBJS +=	intr.o
+CORE_OBJS +=	ivintr.o
+CORE_OBJS +=	ip_ocsum.o
+CORE_OBJS +=	mach_float.o
+CORE_OBJS +=	mach_sfmmu.o
+CORE_OBJS +=	machdep.o
+CORE_OBJS +=	mlsetup.o
+CORE_OBJS +=	module.o
+CORE_OBJS +=	module_conf.o
+CORE_OBJS +=	module_mp.o
+CORE_OBJS +=	module_mp_asm.o
+CORE_OBJS +=	module_spitfire.o
+CORE_OBJS +=	module_spitfire_asm.o
+CORE_OBJS +=	mp_call.o
+CORE_OBJS +=	mp_startup.o
+CORE_OBJS +=	ppage.o
+CORE_OBJS +=	proc_init.o
+CORE_OBJS +=	seg_kmem.o
+CORE_OBJS +=	spitinstr.o
+CORE_OBJS +=	spt_sfmmu.o
+CORE_OBJS +=	startup.o
+CORE_OBJS +=	subr_4u.o
+CORE_OBJS +=	swtch.o
+CORE_OBJS +=	trap.o
+CORE_OBJS +=	vm_machdep.o
+CORE_OBJS +=	x_call.o
+CORE_OBJS +=	xc.o
+
+AUTOCONF_OBJS += autoconf.o
+
+#
+#	Some objects must be linked at the front of the image (or
+#	near other objects at the front of the image).
+#
+SPECIAL_OBJS +=	trap_table.o
+SPECIAL_OBJS +=	locore.o
+SPECIAL_OBJS +=	sfmmu_asm.o
+SPECIAL_OBJS +=	interrupt.o
+SPECIAL_OBJS +=	wbuf.o
+
+#
+#			driver modules
+#
+ROOTNEX_OBJS	+= rootnex.o
+SYSIO_SBUS_OBJS	+= iommu.o iommu_asm.o sysioerr.o sysiosbus.o iocache.o
+PSYCHO_PCI_OBJS	+= pci.o
+
+#
+#			Misc modules
+#
+OBPSYM_OBJS	+= obpsym.o obpsym_1275.o
+
+FHC_OBJS	+= fhc.o
+CENTRAL_OBJS	+= central.o
+ENVIRON_OBJS	+= environ.o
+SYSCTRL_OBJS	+= sysctrl.o
+AC_OBJS		+= ac.o
+SRAM_OBJS	+= sram.o
+SIMMSTAT_OBJS	+= simmstat.o
+
+#	Section 3:	Misc.
+#
+ALL_DEFS	+= -Dsun4u
+INC_PATH	+= -I$(UTSBASE)/sun4u
+
+#
+# Since assym.s is a derived file, the dependency must be explicit for
+# all files including this file. (This is only actually required in the
+# instance when the .nse_depinfo file does not exist.) It may seem that
+# the lint targets should also have a similar dependency, but they don't
+# since only C headers are included when #defined(lint) is true.
+#
+ASSYM_DEPS	+= genalign.o copy.o ip_ocsum.o
+ASSYM_DEPS	+= locore.o mach_float.o
+ASSYM_DEPS	+= module_mp_asm.o module_sfmmu_asm.o module_spitfire_asm.o
+ASSYM_DEPS	+= proc_init.o subr_4u.o swtch.o
+ASSYM_DEPS	+= interrupt.o xc.o trap_table.o iommu_asm.o wbuf.o

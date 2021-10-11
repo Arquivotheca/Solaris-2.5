@@ -1,0 +1,52 @@
+#!/bin/sh
+#
+#ident	"@(#)i.nsswitch	1.4	94/05/03 SMI"
+#
+# Copyright (c) 1993-1994 by Sun Microsystems, Inc.
+#
+
+write_sed_script() {
+cat > /tmp/sed.scr.$$ << EOF
+/hosts:[ 	]*nisplus[ 	][ 	]*dns/i\\
+#You must also set up the /etc/resolv.conf file for DNS name\\
+#server lookup.  See resolv.conf(4).
+EOF
+}
+
+while read src dest
+do
+	if [ ! -f $dest ] ; then
+		cp $src $dest
+	else
+		grep '/etc/nsswitch.nisplus' $dest > /dev/null 2>&1
+		if [ $? = 0 ] ; then
+			grep 'You must also set up the /etc/resolv.conf' \
+			    $dest > /dev/null 2>&1
+			if [ $? != 0 ]; then
+				write_sed_script
+				sed -f /tmp/sed.scr.$$ $dest > /tmp/d.$$
+				cp /tmp/d.$$ $dest
+				rm -f /tmp/d.$$ /tmp/sed.scr.$$
+			fi
+		else
+			egrep '/etc/nsswitch\.(nis|files)' $dest \
+			    > /dev/null 2>&1
+			if [ $? = 0 ] ; then
+				grep '^sendmailvars:' $dest > /dev/null 2>&1
+				if [ $? != 0 ] ; then
+					echo 'sendmailvars:   files' >> $dest
+				fi
+			fi
+		fi
+		grep 'nametoaddr_libs of' $dest > /dev/null 2>&1
+		if [ $? != 0 ]; then
+			cat $dest | \
+			sed -e 's/# "hosts:" and "services:" in this file are used only if the \/etc\/netconfig.*/# "hosts:" and "services:" in this file are used only if the/' \
+			    -e 's/# file contains "switch.so" as a nametoaddr library for/# \/etc\/netconfig file has a "-" for nametoaddr_libs of/' > /tmp/d2.$$
+			cp /tmp/d2.$$ $dest
+			rm -f /tmp/d2.$$
+		fi
+	fi
+done
+
+exit 0

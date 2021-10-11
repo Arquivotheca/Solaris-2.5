@@ -1,0 +1,128 @@
+#ident	"@(#)rpc	1.29	95/04/04 SMI"	/* SVr4.0 1.1.2.5	*/
+
+if [ ! -d /usr/bin ]
+then			# /usr not mounted
+	exit
+fi
+case "$1" in
+'start')
+	set `/usr/bin/who -r`
+	if [ $9 = "S" -o $9 = "1" -o $9 = "?" ]
+	then
+		if [ -x /usr/sbin/rpcbind ]
+		then
+			/sbin/sh /etc/init.d/rpc rpcstart
+		else
+			exit # nothing else can do anything
+		fi
+	fi
+	;;
+'rpcstart')
+		echo "starting rpc services:\c"
+		/usr/sbin/rpcbind > /dev/console 2>&1
+		echo " rpcbind\c"
+	
+#		Configure NIS or NIS+
+		if [ -f /etc/.UNCONFIGURED -a -x /usr/sbin/sysidnis ]
+		then
+			/usr/sbin/sysidnis > /dev/console 2>&1
+		fi
+#
+# Start the key service.
+#
+		if [ -x /usr/sbin/keyserv ] ; then
+			/usr/sbin/keyserv > /dev/console 2>&1
+			echo " keyserv\c"
+		fi
+
+#
+# Start NIS+. Note this needs to be done after keyserv
+# has started because NIS+ uses the keyserver for authentication.
+#
+		domain=`domainname`
+		hostname=`uname -n | cut -d. -f1 | tr '[A-Z]' '[a-z]'`
+		if [ -d /var/nis -a -x /usr/sbin/rpc.nisd ]; then
+			if [ -f /var/nis/NIS_COLD_START ]; then
+				if [ -x /usr/sbin/nis_cachemgr ]; then
+					/usr/sbin/nis_cachemgr
+					echo " nis_cachemgr\c"
+				fi
+			fi
+#
+# Note add the  option to rpc.nisd if you wish to emulate the NIS (YP)
+# service. 
+#
+#			EMULYP="-Y"
+#
+# We always start the NIS+ Password Update Daemon.  If it finds the NIS+
+# server is not a Master it will just exit.  It also determines if the 
+# server is running in NIS (YP) compat mode and automatically registers
+# a yppasswdd so NIS (YP) clients can change their passwords.
+#
+			if [ -d /var/nis/data -o -d /var/nis/$hostname ]; then
+				/usr/sbin/rpc.nisd $EMULYP
+				echo " rpc.nisd \c"
+				/usr/sbin/rpc.nispasswdd
+			fi
+		fi
+
+#
+# NIS (YP) Client side support. 
+# 
+# When to start ypbind :
+# 	The value of $domain is non-null *and*
+#	There is an executable ypbind in $YPDIR *and*
+#	The directory /var/yp/binding/$domain exists. 
+#
+# This latter choice is there to switch on ypbind if sysidnis
+# tells it to run. (it creates that directory)
+#
+# NB: -broadcast option is insecure and transport dependent !
+# ... and ypbind is noisy about this fact...
+		YPDIR=/usr/lib/netsvc/yp
+		YPSRV=/var/yp/binding/$domain
+		if [ X$domain != X -a -x $YPDIR/ypbind ]; then
+			if [ -d $YPSRV -a -f $YPSRV/ypservers ] ; then
+				$YPDIR/ypbind > /dev/null 2>&1
+				echo " ypbind\c"
+			elif [ -d $YPSRV ] ; then
+				$YPDIR/ypbind -broadcast > /dev/null 2>&1
+				echo " ypbind\c"
+			fi
+		fi
+
+		# kerbd must be started after NIS
+		if [ -x /usr/sbin/kerbd ]
+		then
+			/usr/sbin/kerbd > /dev/console 2>&1
+			echo " kerbd\c"
+		fi
+		echo " done."
+		;;
+'stop')
+	# 
+	# Bring all of the RPC "service" daemons to a halt.
+	# note the "daemons" list is ordered, and they will be
+	# stopped in that order, further note that rpcbind is "special"
+	# in that it needs to be killed with -KILL to prevent it from
+	# saving its state and sending a message to syslog. It is also 
+	# virtual "first" in the list.
+	#
+	daemons='kerbd ypbind rpc.nisd nis_cache keyserv rpc.nispasswdd'
+	pidlist=`/usr/bin/ps -f -u 0`
+	PID=`echo "$pidlist" | grep rpcbind |awk '{print $2}'`
+	if [ ! -z "$PID" ] ; then
+		/usr/bin/kill  -KILL ${PID}
+	fi
+	for DAEMON in $daemons
+	do
+		PID=`echo "$pidlist" | grep $DAEMON |awk '{print $2}'`
+		if [ ! -z "$PID" ] ; then
+			/usr/bin/kill  ${PID}
+		fi
+	done
+	;;
+*)
+	echo "Usage: /etc/init.d/rpc { start | stop }"
+	;;
+esac

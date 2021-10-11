@@ -1,0 +1,22 @@
+#!/sbin/sh
+#	Copyright (c) 1984, 1986, 1987, 1988, 1989 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF AT&T
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+#
+#	Copyright (c) 1991-1993, by Sun Microsystems, Inc.
+#
+
+#ident	"@(#)drvconfig	1.4	93/03/01 SMI"
+
+#
+#	Build/Rebuild device directories.
+#
+if [ -n "${_INIT_RECONFIG}" ]
+then
+	echo "Configuring the /devices directory"
+	/usr/sbin/drvconfig
+fi

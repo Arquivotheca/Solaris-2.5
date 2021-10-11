@@ -1,0 +1,160 @@
+#	Copyright (c) 1995 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)prototype_i386	1.1	95/03/27 (c) Sun Microsystems, Inc.
+#
+# This required package information file contains a list of package contents.
+# The 'pkgmk' command uses this file to identify the contents of a package
+# and their location on the development machine when building the package.
+# Can be created via a text editor or through use of the 'pkgproto' command.
+
+#!search <pathname pathname ...>	# where to find pkg objects
+#!include <filename>			# include another 'prototype' file
+#!default <mode> <owner> <group>	# default used if not specified on entry
+#!<param>=<value>			# puts parameter in pkg environment
+
+#
+# Include ISA independent files (prototype_com)
+#
+!include prototype_com
+#
+# List files which are i386 specific here
+#
+# source locations relative to the prototype file
+#
+# SUNWkey
+#
+d none usr/share/lib/keyboards 555 bin bin
+d none usr/share/lib/keyboards/437 555 bin bin
+f none usr/share/lib/keyboards/437/da_DK 444 bin bin
+f none usr/share/lib/keyboards/437/de_CH 444 bin bin
+f none usr/share/lib/keyboards/437/de_DE 444 bin bin
+f none usr/share/lib/keyboards/437/en_UK 444 bin bin
+f none usr/share/lib/keyboards/437/en_US 444 bin bin
+f none usr/share/lib/keyboards/437/es_ES 444 bin bin
+f none usr/share/lib/keyboards/437/fr_CA 444 bin bin
+f none usr/share/lib/keyboards/437/fr_CH 444 bin bin
+f none usr/share/lib/keyboards/437/fr_FR 444 bin bin
+f none usr/share/lib/keyboards/437/it_IT 444 bin bin
+f none usr/share/lib/keyboards/437/nl_BE 444 bin bin
+s none usr/share/lib/keyboards/437/fr_BE=./nl_BE
+f none usr/share/lib/keyboards/437/nl_NL 444 bin bin
+f none usr/share/lib/keyboards/437/no_NO 444 bin bin
+f none usr/share/lib/keyboards/437/sv_SE 444 bin bin
+d none usr/share/lib/keyboards/646y 555 bin bin
+f none usr/share/lib/keyboards/646y/sh_YU 444 bin bin
+d none usr/share/lib/keyboards/850 555 bin bin
+f none usr/share/lib/keyboards/850/da_DK 444 bin bin
+f none usr/share/lib/keyboards/850/de_CH 444 bin bin
+f none usr/share/lib/keyboards/850/de_DE 444 bin bin
+f none usr/share/lib/keyboards/850/en_UK 444 bin bin
+f none usr/share/lib/keyboards/850/en_US 444 bin bin
+f none usr/share/lib/keyboards/850/es_ES 444 bin bin
+f none usr/share/lib/keyboards/850/fr_CA 444 bin bin
+f none usr/share/lib/keyboards/850/fr_CH 444 bin bin
+f none usr/share/lib/keyboards/850/fr_FR 444 bin bin
+f none usr/share/lib/keyboards/850/it_IT 444 bin bin
+f none usr/share/lib/keyboards/850/nl_BE 444 bin bin
+s none usr/share/lib/keyboards/850/fr_BE=./nl_BE
+f none usr/share/lib/keyboards/850/nl_NL 444 bin bin
+f none usr/share/lib/keyboards/850/no_NO 444 bin bin
+f none usr/share/lib/keyboards/850/sv_SE 444 bin bin
+d none usr/share/lib/keyboards/863 555 bin bin
+f none usr/share/lib/keyboards/863/fr_CA 444 bin bin
+d none usr/share/lib/keyboards/865 555 bin bin
+f none usr/share/lib/keyboards/865/da_DK 444 bin bin
+f none usr/share/lib/keyboards/865/no_NO 444 bin bin
+d none usr/share/lib/keyboards/866 555 bin bin
+f none usr/share/lib/keyboards/866/ru_RU.s 444 bin bin
+f none usr/share/lib/keyboards/866/ru_RU.t 444 bin bin
+d none usr/share/lib/keyboards/8859-1 555 bin bin
+f none usr/share/lib/keyboards/8859-1/da_DK 444 bin bin
+f none usr/share/lib/keyboards/8859-1/de_CH 444 bin bin
+f none usr/share/lib/keyboards/8859-1/de_DE 444 bin bin
+f none usr/share/lib/keyboards/8859-1/en_UK 444 bin bin
+f none usr/share/lib/keyboards/8859-1/en_US 444 bin bin
+f none usr/share/lib/keyboards/8859-1/es_ES 444 bin bin
+f none usr/share/lib/keyboards/8859-1/fr_CA 444 bin bin
+f none usr/share/lib/keyboards/8859-1/fr_CH 444 bin bin
+f none usr/share/lib/keyboards/8859-1/fr_FR 444 bin bin
+f none usr/share/lib/keyboards/8859-1/it_IT 444 bin bin
+f none usr/share/lib/keyboards/8859-1/nl_BE 444 bin bin
+s none usr/share/lib/keyboards/8859-1/fr_BE=./nl_BE
+f none usr/share/lib/keyboards/8859-1/nl_NL 444 bin bin
+f none usr/share/lib/keyboards/8859-1/no_NO 444 bin bin
+f none usr/share/lib/keyboards/8859-1/sv_SE 444 bin bin
+d none usr/share/lib/keyboards/8859-2 555 bin bin
+f none usr/share/lib/keyboards/8859-2/de_DE 444 bin bin
+f none usr/share/lib/keyboards/8859-2/sh_YU 444 bin bin
+f none usr/share/lib/keyboards/8859-2/sk_CZ 444 bin bin
+d none usr/share/lib/keyboards/8859-3 555 bin bin
+f none usr/share/lib/keyboards/8859-3/de_CH 444 bin bin
+f none usr/share/lib/keyboards/8859-3/de_DE 444 bin bin
+f none usr/share/lib/keyboards/8859-3/fr_CH 444 bin bin
+f none usr/share/lib/keyboards/8859-3/it_IT 444 bin bin
+f none usr/share/lib/keyboards/8859-3/nl_BE 444 bin bin
+d none usr/share/lib/keyboards/8859-4 555 bin bin
+f none usr/share/lib/keyboards/8859-4/da_DK 444 bin bin
+f none usr/share/lib/keyboards/8859-4/no_NO 444 bin bin
+f none usr/share/lib/keyboards/8859-4/sv_SE 444 bin bin
+d none usr/share/lib/keyboards/8859-5 555 bin bin
+f none usr/share/lib/keyboards/8859-5/ru_RU.s 444 bin bin
+f none usr/share/lib/keyboards/8859-5/ru_RU.t 444 bin bin
+d none usr/share/lib/keyboards/8859-7 555 bin bin
+f none usr/share/lib/keyboards/8859-7/el_GR.s 444 bin bin
+f none usr/share/lib/keyboards/8859-7/el_GR.t 444 bin bin
+d none usr/share/lib/keyboards/8859-9 555 bin bin
+f none usr/share/lib/keyboards/8859-9/da_DK 444 bin bin
+f none usr/share/lib/keyboards/8859-9/de_DE 444 bin bin
+f none usr/share/lib/keyboards/8859-9/nl_NL 444 bin bin
+f none usr/share/lib/keyboards/8859-9/no_NO 444 bin bin
+f none usr/share/lib/keyboards/8859-9/sv_SE 444 bin bin
+s none usr/share/lib/keyboards/8859=./8859-1
+d none usr/share/lib/keyboards/csfr 555 bin bin
+f none usr/share/lib/keyboards/csfr/sk_CZ 444 bin bin
+d none usr/share/lib/keyboards/greek 555 bin bin
+f none usr/share/lib/keyboards/greek/el_GR.s 444 bin bin
+f none usr/share/lib/keyboards/greek/el_GR.t 444 bin bin
+d none usr/share/lib/keyboards/japan 555 bin bin
+f none usr/share/lib/keyboards/japan/j3100 444 bin bin
+f none usr/share/lib/keyboards/japan/ja_JP 444 bin bin
+d none usr/share/lib/keyboards/korean 555 bin bin
+f none usr/share/lib/keyboards/korean/ko_KR 444 bin bin
+d none usr/share/lib/keyboards/tchinese 555 bin bin
+f none usr/share/lib/keyboards/tchinese/zh_TW 444 bin bin
+d none usr/share/lib/keyboards/sample 555 bin bin
+f none usr/share/lib/keyboards/sample/README 444 bin bin
+f none usr/share/lib/keyboards/sample/compose 444 bin bin
+f none usr/share/lib/keyboards/sample/da_DK 444 bin bin
+f none usr/share/lib/keyboards/sample/de_CH 444 bin bin
+f none usr/share/lib/keyboards/sample/de_DE 444 bin bin
+d none usr/share/lib/keyboards/sample/dead 555 bin bin
+f none usr/share/lib/keyboards/sample/dead/acute 444 bin bin
+f none usr/share/lib/keyboards/sample/dead/caron 444 bin bin
+f none usr/share/lib/keyboards/sample/dead/cedilla 444 bin bin
+f none usr/share/lib/keyboards/sample/dead/circumflex 444 bin bin
+f none usr/share/lib/keyboards/sample/dead/diaeresis 444 bin bin
+f none usr/share/lib/keyboards/sample/dead/dot-above 444 bin bin
+f none usr/share/lib/keyboards/sample/dead/double-acute 444 bin bin
+f none usr/share/lib/keyboards/sample/dead/grave 444 bin bin
+f none usr/share/lib/keyboards/sample/dead/stroke 444 bin bin
+f none usr/share/lib/keyboards/sample/dead/tilde 444 bin bin
+f none usr/share/lib/keyboards/sample/el_GR.s 444 bin bin
+f none usr/share/lib/keyboards/sample/el_GR.t 444 bin bin
+f none usr/share/lib/keyboards/sample/en_UK 444 bin bin
+f none usr/share/lib/keyboards/sample/en_US 444 bin bin
+f none usr/share/lib/keyboards/sample/es_ES 444 bin bin
+f none usr/share/lib/keyboards/sample/fr_BE 444 bin bin
+f none usr/share/lib/keyboards/sample/fr_CA 444 bin bin
+f none usr/share/lib/keyboards/sample/fr_CH 444 bin bin
+f none usr/share/lib/keyboards/sample/fr_FR 444 bin bin
+f none usr/share/lib/keyboards/sample/is_IS 444 bin bin
+f none usr/share/lib/keyboards/sample/it_IT 444 bin bin
+f none usr/share/lib/keyboards/sample/nl_BE 444 bin bin
+f none usr/share/lib/keyboards/sample/nl_NL 444 bin bin
+f none usr/share/lib/keyboards/sample/no_NO 444 bin bin
+f none usr/share/lib/keyboards/sample/ru_RU.s 444 bin bin
+f none usr/share/lib/keyboards/sample/ru_RU.t 444 bin bin
+f none usr/share/lib/keyboards/sample/sh_YU 444 bin bin
+f none usr/share/lib/keyboards/sample/sk_CZ 444 bin bin
+f none usr/share/lib/keyboards/sample/sv_SE 444 bin bin

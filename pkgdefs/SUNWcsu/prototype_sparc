@@ -1,0 +1,52 @@
+#	Copyright (c) 1990-95 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#       @(#)prototype_sparc	1.27     95/03/27 (c) Sun Microsystems, Inc.
+#
+# This required package information file contains a list of package contents.
+# The 'pkgmk' command uses this file to identify the contents of a package
+# and their location on the development machine when building the package.
+# Can be created via a text editor or through use of the 'pkgproto' command.
+
+#!search <pathname pathname ...>	# where to find pkg objects
+#!include <filename>			# include another 'prototype' file
+#!default <mode> <owner> <group>	# default used if not specified on entry
+#!<param>=<value>			# puts parameter in pkg environment
+
+#
+# Include ISA independent files (prototype_com)
+#
+!include prototype_com
+#
+# List files which are SPARC specific here
+#
+# source locations relative to the prototype file
+#
+# SUNWcsu
+#
+f none usr/bin/kbd 555 bin bin
+f none usr/bin/dumpkeys 555 bin bin
+f none usr/bin/loadkeys 555 bin bin
+d none usr/kernel/misc 755 root sys
+f none usr/kernel/drv/audio 755 root sys
+f none usr/kernel/drv/audiocs 755 root sys
+f none usr/kernel/drv/dbri 755 root sys
+f none usr/kernel/misc/diaudio 755 root sys
+f none usr/lib/ld.so 755 bin bin
+f none usr/lib/adb/rwindow 644 root sys
+f none usr/lib/adb/esp 644 root sys
+f none usr/lib/adb/esp_cb_info 644 root sys
+f none usr/lib/adb/esp_cmd 644 root sys
+f none usr/lib/adb/esp_tagQ 644 root sys
+f none usr/lib/adb/dk_geom 644 root sys
+f none usr/lib/adb/dk_label 644 root sys
+f none usr/lib/adb/dk_vtoc 644 root sys
+f none usr/lib/adb/isp 644 root sys
+f none usr/lib/adb/isp_cmd 644 root sys
+f none usr/lib/adb/isp_request 644 root sys
+f none usr/lib/adb/isp_response 644 root sys
+f none usr/lib/adb/st_drivetype 644 root sys
+f none usr/lib/adb/scsi_disk 644 root sys
+f none usr/lib/adb/scsi_tape 644 root sys
+f none usr/lib/adb/ssa_disk 644 root sys
+f none usr/sbin/eeprom 555 bin sys

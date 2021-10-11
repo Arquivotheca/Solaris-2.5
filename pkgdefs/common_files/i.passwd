@@ -1,0 +1,26 @@
+#!/bin/sh
+#
+#ident	"@(#)i.passwd	1.2	93/02/23 SMI"
+#
+# Copyright (c) 1993 by Sun Microsystems, Inc.
+#
+
+PATH="/usr/bin:/usr/sbin:${PATH}"
+export PATH
+
+while read src dest
+do
+	if [ ! -f $dest ] ; then
+		cp $src $dest
+	else
+		#
+		# 2.1 version of this file had a trailing blank
+		# in the nobody entry.  Remove it.
+		#
+		sed 's/^\(nobody:.*:\) $/\1/' $dest > /tmp/d.$$
+		cp /tmp/d.$$ $dest
+		rm -f /tmp/d.$$
+	fi
+done
+
+exit 0

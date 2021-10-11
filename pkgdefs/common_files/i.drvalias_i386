@@ -1,0 +1,28 @@
+#!/bin/sh
+#
+#ident   "@(#)i.drvalias_i386 1.6     95/08/25 SMI"
+#
+# Copyright (c) 1993-1995, by Sun Microsystems, Inc.
+# All rights reserved.
+#
+
+PATH="/usr/bin:/usr/sbin:${PATH}"
+export PATH
+
+while read src dest
+do
+	if [ ! -f "$dest" ] ; then
+		cp $src $dest
+	else
+		grep '^dpt ' $dest > /dev/null 2>&1
+		if [ $? != 0 ] ; then
+			echo 'dpt "pci1044,a400"' >> $dest
+		fi
+		grep '"pci1011,1"' $dest > /dev/null 2>&1
+		if [ $? != 0 ] ; then
+			echo 'pci_pci "pci1011,1"' >> $dest
+		fi
+	fi
+done
+
+exit 0

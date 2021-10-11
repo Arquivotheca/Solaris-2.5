@@ -1,0 +1,76 @@
+#
+#ident	"@(#)postremove	1.7	95/05/12 SMI"
+#
+# Copyright (c) 1994 by Sun Microsystems, Inc.
+#
+
+SUNWcsu_files="\
+	usr/lib/libelf.so.1 \
+	usr/lib/libld.so.2 \
+	usr/lib/liblddbg.so.3 \
+	usr/lib/ld.so.1 \
+	"
+SUNWhea_files="\
+	usr/include/dlfcn.h \
+	usr/include/libelf.h \
+	usr/include/link.h \
+	usr/include/sys/elf.h \
+	usr/include/sys/link.h \
+	"
+SUNWtoo_files="\
+	usr/ccs/bin/ld \
+	usr/bin/ldd \
+	usr/bin/pvs \
+	"
+
+SUNWbtool_files="\
+	usr/ccs/bin/ar \
+	"
+
+MV="/usr/sbin/static/mv"
+RM="/usr/bin/rm -f"
+
+for F in $SUNWcsu_files
+do
+	if [ -f ${BASEDIR}/$F.orig ]
+	then
+		${MV} ${BASEDIR}/$F.orig ${BASEDIR}/$F
+		installf SUNWcsu ${BASEDIR}/$F
+	fi
+done
+
+for F in $SUNWhea_files
+do
+	if [ -f ${BASEDIR}/$F.orig ]
+	then
+		${MV} ${BASEDIR}/$F.orig ${BASEDIR}/$F
+		installf SUNWhea ${BASEDIR}/$F
+	fi
+done
+
+for F in $SUNWtoo_files
+do
+	if [ -f ${BASEDIR}/$F.orig ]
+	then
+		${MV} ${BASEDIR}/$F.orig ${BASEDIR}/$F
+		installf SUNWtoo ${BASEDIR}/$F
+	fi
+done
+
+for F in $SUNWbtoo_files
+do
+	if [ -f ${BASEDIR}/$F.orig ]
+	then
+		${MV} ${BASEDIR}/$F.orig ${BASEDIR}/$F
+		installf SUNWbtoo ${BASEDIR}/$F
+	fi
+done
+#
+# and then there is /etc/lib/ld.so.1
+#
+${MV} ${BASEDIR}/etc/lib/ld.so.1.orig ${BASEDIR}/etc/lib/ld.so.1
+installf SUNWcsr ${BASEDIR}/etc/lib/ld.so.1
+
+installf -f SUNWcsu
+installf -f SUNWcsr
+installf -f SUNWtoo

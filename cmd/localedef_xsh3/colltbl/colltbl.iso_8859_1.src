@@ -1,0 +1,7 @@
+#ident	"@(#)colltbl.iso_8859_1.src	1.2	92/07/14 SMI"
+
+# codeset for "iso_8859_1" locale
+
+codeset		LC_COLLATE
+
+order is	\001;...;\377

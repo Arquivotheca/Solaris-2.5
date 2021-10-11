@@ -1,0 +1,7 @@
+#
+#ident	"@(#)uudemon.crontab	1.3	93/02/02 SMI"
+#
+48 8,12,16 * * * /usr/lib/uucp/uudemon.admin
+45 23 * * * /usr/lib/uucp/uudemon.cleanup
+0 * * * * /usr/lib/uucp/uudemon.poll
+11,41 * * * * /usr/lib/uucp/uudemon.hour

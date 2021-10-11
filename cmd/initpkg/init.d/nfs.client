@@ -1,0 +1,58 @@
+#!/bin/sh
+#ident	"@(#)nfs.client	1.8	93/07/07 SMI"
+
+if [ ! -d /usr/bin ]
+then			# /usr not mounted
+	exit
+fi
+
+killproc() {		# kill the named process(es)
+	pid=`/usr/bin/ps -e |
+	     /usr/bin/grep $1 |
+	     /usr/bin/sed -e 's/^  *//' -e 's/ .*//'`
+	[ "$pid" != "" ] && kill $pid
+}
+
+#
+# Start/stop processes required for client NFS
+#
+
+case "$1" in
+'start')
+	if [ -x /usr/lib/nfs/statd -a -x /usr/lib/nfs/lockd ]
+	then
+		/usr/lib/nfs/statd > /dev/console 2>&1
+		/usr/lib/nfs/lockd > /dev/console 2>&1
+	fi
+
+	# obtain kerberos ticket before attempting kerberos NFS mounts
+	/usr/bin/sed -e 's/#.*//' /etc/vfstab |	\
+	    /usr/bin/grep kerberos >/dev/null 2>&1
+	if [ $? = 0 -a -x /usr/bin/ksrvtgt -a -x /usr/bin/uname ]
+	then
+		HNAME=`/usr/bin/uname -n`
+		WARN=`/usr/bin/ksrvtgt root $HNAME 2>&1`
+		if [ $? != 0 ]
+		then
+		    echo "Warning: cannot get kerberos ticket for root.$HNAME"
+		    echo "  ksrvtgt error: $WARN"
+		fi
+	fi
+
+	/sbin/mountall -F nfs
+	/sbin/mountall -F cachefs
+	/sbin/swapadd
+	;;
+
+'stop')
+
+	killproc lockd
+	killproc statd
+
+	/sbin/umountall -F cachefs
+	/sbin/umountall -F nfs
+	;;
+*)
+	echo "Usage: /etc/init.d/nfs.client { start | stop }"
+	;;
+esac

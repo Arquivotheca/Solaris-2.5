@@ -1,0 +1,8 @@
+add  scsi_cmd::cmd_pkt.pkt_comp        target  st_intr
+disallow st_ioctl_cmd scsi_ifsetcap
+disallow st_ioctl_cmd scsi_ifgetcap
+add  scsi_hba_tran::tran_tgt_free target  func_to_shutup_warlock
+add  scsi_hba_tran::tran_tgt_init target  func_to_shutup_warlock
+add  :scsi_probe/f target  func_to_shutup_warlock
+
+one  scsi_device

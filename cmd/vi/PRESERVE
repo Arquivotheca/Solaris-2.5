@@ -1,0 +1,7 @@
+#ident	"@(#)PRESERVE	1.5	92/07/14 SMI"	/* SVr4.0 1.1	*/
+
+#
+# script to move editing files into /usr/preserve
+#
+
+/usr/lib/expreserve -

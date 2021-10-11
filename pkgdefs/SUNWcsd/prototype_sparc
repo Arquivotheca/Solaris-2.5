@@ -1,0 +1,41 @@
+#	Copyright (c) 1990-93 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)prototype_sparc	1.7	95/07/17 (c) Sun Microsystems, Inc.
+#
+# This required package information file contains a list of package contents.
+# The 'pkgmk' command uses this file to identify the contents of a package
+# and their location on the development machine when building the package.
+# Can be created via a text editor or through use of the 'pkgproto' command.
+
+#!search <pathname pathname ...>	# where to find pkg objects
+#!include <filename>			# include another 'prototype' file
+#!default <mode> <owner> <group>	# default used if not specified on entry
+#!<param>=<value>			# puts parameter in pkg environment
+
+#
+# Include ISA independent files (prototype_com)
+#
+!include prototype_com
+#
+#
+#
+# List files which are SPARC specific here
+#
+# source locations relative to the prototype file
+#
+#
+# SUNWcsd
+#
+s none dev/ie=../devices/pseudo/clone@0:ie
+s none dev/le=../devices/pseudo/clone@0:le
+s none dev/qe=../devices/pseudo/clone@0:qe
+s none dev/be=../devices/pseudo/clone@0:be
+s none dev/hme=../devices/pseudo/clone@0:hme
+s none dev/openprom=../devices/pseudo/openeepr@0:openprom
+c none devices/pseudo/clone@0:ie 11 63 600 root sys
+c none devices/pseudo/clone@0:le 11 40 600 root sys
+c none devices/pseudo/clone@0:qe 11 104 600 root sys
+c none devices/pseudo/clone@0:be 11 106 600 root sys
+c none devices/pseudo/clone@0:hme 11 7 600 root sys
+c none devices/pseudo/openeepr@0:openprom 38 0 640 root sys

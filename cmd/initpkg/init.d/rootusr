@@ -1,0 +1,166 @@
+#!/sbin/sh
+#	Copyright (c) 1984, 1986, 1987, 1988, 1989 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF AT&T
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+#
+#	Copyright (c) 1991, Sun Microsystems Inc.
+#
+
+#ident	"@(#)rootusr	1.8	95/02/24 SMI"
+
+
+# Make sure that the libraries essential
+# to this stage of booting can be found.
+LD_LIBRARY_PATH=/etc/lib; export LD_LIBRARY_PATH
+
+#
+#
+# Configure the software loopback driver. The network initialization is
+# done early to support diskless and dataless configurations.
+#
+/sbin/ifconfig lo0 127.0.0.1 up 2>&1 >/dev/null
+
+#
+# For interfaces that were configured by the kernel (e.g. those on diskless
+# machines), reset the netmask using the local "/etc/netmasks" file, if 
+# one exists.
+#
+/sbin/ifconfig -au netmask + broadcast + 2>&1 >/dev/null
+
+#
+# Get the list of network interfaces to configure by breaking 
+# /etc/hostname.* into separate args by using "." as a shell separator 
+# character, then step through args and ifconfig every other arg.
+# Set the netmask along the way using local "/etc/netmasks" file.
+# This also sets up the streams plumbing for the interface.
+# With an empty /etc/hostname.* file this only sets up the streams plumbing
+# allowing the ifconfig auto-revarp command will attempt to set the address.
+#
+interface_names="`echo /etc/hostname.*[0-9]		2>/dev/null`"
+if test "$interface_names" != "/etc/hostname.*[0-9]"
+then
+        (
+		echo "configuring network interfaces:\c"
+                IFS="$IFS."
+                set `echo /etc/hostname\.*[0-9]`
+                while test $# -ge 2
+                do
+                        shift
+                        if [ "$1" != "xx0" ]; then
+				 addr=`shcat /etc/hostname\.$1`
+				 /sbin/ifconfig $1 plumb
+				 if test -n "$addr"
+				 then
+					/sbin/ifconfig $1 inet "$addr" netmask + \
+						broadcast + -trailers up \
+						2>&1 > /dev/null
+				 fi
+				 echo " $1\c"
+                        fi
+                        shift
+                done
+		echo "."
+        )
+fi
+
+#
+# configure the rest of the interfaces automatically, quietly.
+#
+/sbin/ifconfig -ad auto-revarp netmask + broadcast + -trailers up \
+	2>&1 >/dev/null
+
+#
+# Set the hostname from a local config file, if one exists.
+#
+hostname="`shcat /etc/nodename		2>/dev/null`"
+if [ ! -z "$hostname" ]; \
+then
+        /sbin/uname -S $hostname
+fi
+
+#
+# Otherwise, set host information from bootparams RPC protocol.
+#
+if [ -z "`/sbin/uname -n`" ]; then
+        /sbin/hostconfig -p bootparams
+fi
+
+# 
+# If local and network configuration failed, re-try network
+# configuration until we get an answer.  We want this loop to be
+# interruptible so that the machine can still be brought up manually
+# when the servers are not cooperating.
+#
+
+trap 'intr=1' 2 3
+while [ -z "`/sbin/uname -n`" -a ! -f /etc/.UNCONFIGURED  -a -z "${intr}" ]; do
+        echo "re-trying host configuration..."
+        /sbin/ifconfig -ad auto-revarp up 2>&1 >/dev/null
+        /sbin/hostconfig -p bootparams 2>&1 >/dev/null
+done
+trap 2 3
+
+echo "Hostname: `/sbin/uname -n`" >&2
+
+#
+# If "/usr" is going to be NFS mounted from a host on a different
+# network, we must have a routing table entry before the mount is
+# attempted.  One may be added by the diskless kernel or by the
+# "hostconfig" program above.  Setting a default router here is a problem
+# because the default system configuration does not include the
+# "route" program in "/sbin".  Thus we only try to add a default route
+# at this point if someone managed to place a static version of "route" into
+# "/sbin".  Otherwise, we may add the route at run level 2 after "/usr"
+# has been mounted and NIS is running.
+#
+# Note that since NIS is not running at this point, the router's name
+# must be in "/etc/hosts" or its numeric IP address must be used in the file.
+#
+if [ -f /sbin/route -a -f /etc/defaultrouter ]; then
+        /sbin/route -f add default `cat /etc/defaultrouter` 1
+fi
+
+#
+# Root is already mounted (by the kernel), but still needs to be checked,
+# possibly remounted and entered into mnttab. First mount /usr read only
+# if it is a separate file system. This must be done first to allow
+# utilities such as fsck and setmnt to reside on /usr minimizing the space
+# required by the root file system.
+#
+exec < ${vfstab}; readvfstab "/usr"
+if [ "${mountp}" ]
+then
+	if [ "${fstype}" = "cachefs" ]; then
+		#
+		# Mount without the cache initially.  We'll enable it
+		# later at remount time.  This lets us avoid
+		# teaching the statically linked mount program about
+		# cachefs.  Here we determine the backfstype.
+		# This is not pretty, but we have no tools for parsing
+		# the option string until we get /usr mounted...
+		#
+		case "$mntopts" in
+		*backfstype=nfs*)
+			cfsbacktype=nfs
+			;;
+		*backfstype=hsfs*)
+			cfsbacktype=hsfs
+			;;
+		*)
+			echo "invalid vfstab entry for /usr"
+			cfsbacktype=nfs
+			;;
+		esac
+		/sbin/mount -m -F ${cfsbacktype} -o ro ${special} ${mountp}
+	else
+		/sbin/mount -m -o ro /usr
+	fi
+fi
+
+# Reset the library path now that we are
+# past the critical stage.
+LD_LIBRARY_PATH=/usr/lib; export LD_LIBRARY_PATH

@@ -1,0 +1,34 @@
+#!/bin/sh
+#
+#ident "@(#)i.inittab 1.1    94/08/01 SMI"
+#
+# Copyright (c) 1994, by Sun Microsystems, Inc.
+#
+
+PATH="/usr/bin:/usr/sbin:${PATH}"
+export PATH
+
+term=`tail -1 /etc/.sysIDtool.state 2>/dev/null`
+status=$?
+
+while read src dest
+do
+	if [ ! -f $dest ]; then
+		cp $src $dest
+	fi
+
+	if [ $status -eq 0 -a "$term" ]; then 
+		wk1=/tmp/dfl.$$
+
+		nawk '/^co:/{
+		   sub("[ \t]-T[ \t][ \t]*[a-zA-Z0-9][^ \t]*", " -T " "'$term'")
+		   print $0
+		   next}
+		   {print $0}' $dest >$wk1 2> /dev/null
+
+		cp $wk1 $dest
+		rm -f $wk1
+	fi
+done
+
+exit 0

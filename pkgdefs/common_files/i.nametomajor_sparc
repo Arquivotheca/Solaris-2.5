@@ -1,0 +1,110 @@
+#!/bin/sh
+#
+#ident  "@(#)i.nametomajor_sparc 1.10 94/12/03 SMI"
+#
+# Copyright (c) 1993 by Sun Microsystems, Inc.
+#
+
+
+PATH="/usr/bin:/usr/sbin:${PATH}"
+export PATH
+
+trap "rm -f /tmp/$$.*;exit" 0 1 2 3 13 15
+TMP=/tmp/$$
+
+# adds new major numbers to system for device drivers
+# Usage:
+#	add_major name1 name2 name3 name4 ....
+
+add_major()
+{
+sort +1 -2n ${dest} | nawk '#
+BEGIN	{oldmajor = -1}
+NR == 1	{n=split(namelist,x)
+	 if (n < 1)
+	    exit(1)
+	 for (i=1; i<=n; i++)
+	    chklist[x[i]]++
+	}
+	{for (name in chklist)
+	 {
+	    if ($1 == name)
+		delete chklist[name]
+	 }
+	 if (($2 - oldmajor) > 1)
+	 {
+	    gap++
+	    gaplist[gap] = oldmajor " " $2;
+	 }
+	 oldmajor = $2;
+	}
+END	{addsize=1
+	 for (name in chklist)
+	    addlist[addsize++] = name
+	
+	 addidx = 1
+	 for (i=1; i<=gap && addidx < addsize; i++)
+	 {
+	    split(gaplist[i],x)
+	    begmajor = x[1]
+	    endmajor = x[2]
+	    for (begmajor++;begmajor < endmajor && addidx < addsize;)
+	    {
+		printf "%s %d\n",addlist[addidx],begmajor
+		addidx++
+		begmajor++
+	    }
+	 }
+	 for (; addidx < addsize; addidx++)
+	 {
+	    oldmajor++
+	    printf "%s %d\n",addlist[addidx],oldmajor
+	 }
+	}
+' namelist="$*" - > $TMP.new
+if [ -s $TMP.new ]
+then
+    echo "Adding following devices to ${dest}"
+    cat $TMP.new
+    sort +1 -2n ${dest} $TMP.new -o ${dest}
+fi
+}
+
+while read src dest
+do
+	if [ ! -f $dest ] ; then
+		cp $src $dest
+	else
+		sed -e '/^rip 4/d' \
+		    -e '/^svloop 6/d' \
+		    -e '/^tcl 7/d' \
+		    -e '/^tco 8/d' \
+		    -e '/^tcoo 9/d' \
+		    -e '/^consfb 18/d' \
+		    -e '/^XXunusedXX 18/d' \
+		    -e '/^sw 20/d' \
+		    -e '/^pc 37/d' \
+		    -e '/^app 43/d' \
+		    -e '/^evq 45/d' \
+		    -e '/^svarp 51/d' \
+		    -e '/^svip 52/d' \
+		    -e '/^svrip 53/d' \
+		    -e '/^svicmp 54/d' \
+		    -e '/^svudp 55/d' \
+		    -e '/^svtcp 56/d' \
+		    -e '/^win 50/d' \
+		    -e '/^kmac 79/d' $dest > /tmp/tmp.$$
+		cp /tmp/tmp.$$ $dest
+		rm -f /tmp/tmp.$$
+		cat $src |
+	       (while read name major
+		do
+			if grep -w $name $dest > /dev/null 2>&1 ; then
+				continue
+			else
+				add_major $name
+			fi
+		done)
+	fi
+done
+exit 0

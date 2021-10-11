@@ -1,0 +1,80 @@
+#!/sbin/sh
+#	Copyright (c) 1984, 1986, 1987, 1988, 1989 AT&T
+#	  All Rights Reserved
+
+#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF AT&T
+#	The copyright notice above does not evidence any
+#	actual or intended publication of such source code.
+
+#
+#	Copyright (c) 1991-1993, by Sun Microsystems, Inc.
+#
+
+#ident	"@(#)keymap	1.1	94/09/08 SMI"
+
+# This file loads keyboard mappings
+
+if [ "`uname -m`" = "i86pc" ]
+then
+	#
+	# Load the default fonts. 
+	#
+	LOADFONT=/usr/bin/loadfont
+	ETC_DEFAULTFONT=/etc/defaultfont
+	SYS_DEFAULTFONT=/usr/share/lib/fonts/8859.bdf
+
+	if [ -x $LOADFONT ]
+	then
+		if [ -f $ETC_DEFAULTFONT ]
+		then
+			$LOADFONT -f `cat $ETC_DEFAULTFONT` < /dev/console
+		else
+			if [ -f $SYS_DEFAULTFONT ]
+			then
+				$LOADFONT -f $SYS_DEFAULTFONT < /dev/console
+			else
+				echo "Failed to set the default fonts."
+				echo "Neither $ETC_DEFAULTFONT nor $SYS_DEFAULTFONT exists."
+			fi
+			echo "$ETC_DEFAULTFONT does not exist, used $SYS_DEFAULTFONT instead."
+		fi
+	else
+		echo "Failed to set the default font."
+		echo "$LOADFONT does not exist or not executable."
+	fi
+
+	#
+	# Load the default keyboard mappings. 
+	#
+	PCMAPKEYS=/usr/bin/pcmapkeys
+	ETC_DEFAULTKB=/etc/defaultkb
+	SYS_DEFAULTKB=/usr/share/lib/keyboards/8859/en_US
+
+	if [ -x $PCMAPKEYS ]
+	then
+		if [ -f $ETC_DEFAULTKB ]
+		then
+			$PCMAPKEYS -f `cat $ETC_DEFAULTKB` < /dev/console
+		else
+			if [ -f $SYS_DEFAULTKB ]
+			then
+				$PCMAPKEYS -f $SYS_DEFAULTKB < /dev/console
+			else
+				echo "Failed to set the default keyboard mappings."
+				echo "Neither $ETC_DEFAULTKB nor $SYS_DEFAULTKB exists."
+			fi
+			echo "$ETC_DEFAULTKB does not exist, used $SYS_DEFAULTKB instead."
+		fi
+	else
+		echo "Failed to set the default keyboard mappings."
+		echo "$PCMAPKEYS does not exist or not executable."
+	fi
+else
+	#
+	# Load the keymap for the attached keyboard.
+	#
+	if [ -x /usr/bin/loadkeys ]
+	then
+		/usr/bin/loadkeys -e
+	fi
+fi

@@ -1,0 +1,27 @@
+# Copyright (c) 1993 Sun Microsystems, Inc.  All Rights Reserved.
+#
+#	"@(#)circumflex	1.1	93/03/02 SMI"
+#
+dead: '^'	# circumflex
+' ' '^'          # <circumflex>
+'A'  <A-circumflex>          # A circumflex
+'C'  <C-circumflex>          # C circumflex
+'E'  <E-circumflex>          # E circumflex
+'G'  <G-circumflex>          # G circumflex
+'H'  <H-circumflex>          # H circumflex
+'I'  <I-circumflex>          # I circumflex
+'J'  <J-circumflex>          # J circumflex
+'O'  <O-circumflex>          # O circumflex
+'S'  <S-circumflex>          # S circumflex
+'U'  <U-circumflex>          # U circumflex
+'a'  <a-circumflex>          # a circumflex
+'c'  <c-circumflex>          # c circumflex
+'e'  <e-circumflex>          # e circumflex
+'g'  <g-circumflex>          # g circumflex
+'h'  <h-circumflex>          # h circumflex
+'i'  <i-circumflex>          # i circumflex
+'j'  <j-circumflex>          # j circumflex
+'o'  <o-circumflex>          # o circumflex
+'s'  <s-circumflex>          # s circumflex
+'u'  <u-circumflex>          # u circumflex
+#

@@ -1,0 +1,26 @@
+#
+#ident	"@(#)Makefile.targ	1.1	94/05/18 SMI"
+#
+# Copyright (c) 1994 by Sun Microsystems, Inc.
+#
+
+all:		$(PROG)
+
+clean:
+		$(RM) $(CLEANFILES)
+
+delete:
+		$(RM) $(PROG)
+
+install:	all $(ROOTPROG)
+
+lint:		$(LINTOUT)
+
+$(PROG):	../common/ldd.c
+		$(LINK.c) -o $@ ../common/ldd.c $(LDLIBS)
+		$(POST_PROCESS)
+
+$(LINTOUT):	$(SRCS)
+		$(LINT.c) $(SRCS) > $(LINTOUT) 2>&1
+
+include		../../../Makefile.targ

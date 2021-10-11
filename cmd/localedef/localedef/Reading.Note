@@ -1,0 +1,62 @@
+5. Locale
+5.1 General
+5.2 POSIX Locale
+5.3 Locale Definition
+    <NOTE>:
+    1. The locale definition file must contain one or more locale
+       category source definitions.
+    2. A category source definition must contain either the definition 
+       of a category or a COPY directive.
+    3. A category source looks like:
+	category header		LC_*
+	category body		definition
+	category trailer	END LC_*
+    4. notes on category body.
+	*) The category body consists of one or more lines of text.
+	*) Each line contains an identifier optionally followed by
+	   one or more operands.
+	*) Identifier := keywords | collating element.
+	   (Collating element is defined in page 8 of XPG document.)
+	*) operand := characters | collating element | strings
+	*) Strings must be enclosed in double-quote.
+	*) When a keyword is followed by one or more operands, 
+	   the operand must be separated by semicolons.
+	*) Character:
+		i) Can be represented via a symbolic name.
+		   EX:	<c>; "<M><a><y>"
+		ii) Can be represented by character itself.
+		   EX: 	c, "May"
+		iii) Can be representd as 
+		     an octal, a hexadecimal or a decimal constant.
+		   EX: \143; "\115\141\171"
+		       \x63; "\x4d\x61\x79"
+		       \d99; "\d77\d97\d121"
+	5.3.1 LC_CTYPE
+	      <NOTE>:
+	      1. The ellipis symbol (...) is used to specify a range.
+		 EX: \x30;...\x40
+
+	      2. Keywords defined:
+		 keyword	Comment
+		 -----------------------------------------------
+		 upper 		isupper
+		 lower		islower
+		 alpha		N/A (1)
+		 digit		isdigit
+		 space		isspace
+		 cntrl		iscntl
+		 punct		ispunct
+		 graph		N/A (2)
+		 print		N/A (3)
+		 xdigit		isxdigit
+		 blank		isblank
+		 toupper	N/A (4)		see ul
+		 tolower	N/A (5)		see ul
+
+	5.3.2 LC_COLLATE
+	5.3.3 LC_MONETARY
+	5.3.4 LC_NUMERIC
+	5.3.5 LC_TIME
+	5.3.6 LC_MESSAGES
+5.4 Locale Definition Grammer
+5.5 Locale Definition Example

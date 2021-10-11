@@ -1,0 +1,23 @@
+
+adb - 5.0 port version
+
+ident	%z%README	1.1	89/08/07 SMI
+
+As of 8/7/89, adb has been modified to run under the development state
+of SunOS 5.0 - the SVr4 version. This means it:
+	1) compiles and links in the 5.0 environment
+	2) understands a.out file formats
+The final goal will have to understand ELF (and possibly a.out) format(s).
+Due to instability at this time:
+	1) the -k option of adb has been disabled. This option depends
+	   upon libkvm which is not part of 5.0 at this time.
+	2) Three SunOS 4.1 header files (link.h, stab.h, and vfork.h)
+	   have been installed locally in the sparc subdirectory. This
+	   should be veiwed as a temporary measure.
+	3) Only sparc adb for a.out format is supported: no ELF, no 68k,
+	   NO kadb!
+
+This is a quick job to get a working debugger for the 5.0 development
+effort. Note however, that all the appropriate SCCS conventions have
+been maintained.
+

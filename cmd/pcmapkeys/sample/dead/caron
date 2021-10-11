@@ -1,0 +1,24 @@
+# Copyright (c) 1993 Sun Microsystems, Inc.  All Rights Reserved.
+#
+#	"@(#)caron	1.1	93/03/02 SMI"
+#
+dead: <caron>			# Caron
+' '  <caron>          # <caron>
+'C'  <C-caron>          # C caron
+'D'  <D-caron>          # D caron
+'E'  <E-caron>          # E caron
+'L'  <L-caron>          # L caron
+'N'  <N-caron>          # N caron
+'R'  <R-caron>          # R caron
+'S'  <S-caron>          # S caron
+'T'  <T-caron>          # T caron
+'Z'  <Z-caron>          # Z caron
+'c'  <c-caron>          # c caron
+'d'  <d-caron>          # d caron
+'e'  <e-caron>          # e caron
+'l'  <l-caron>          # l caron
+'n'  <n-caron>          # n caron
+'r'  <r-caron>          # r caron
+'s'  <s-caron>          # s caron
+'t'  <t-caron>          # t caron
+'z'  <z-caron>          # z caron

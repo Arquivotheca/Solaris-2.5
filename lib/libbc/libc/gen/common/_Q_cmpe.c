@@ -1,0 +1,25 @@
+#pragma ident	"@(#)_Q_cmpe.c	1.6	92/07/20 SMI" 
+
+
+/*
+ * Copyright (c) 1988 by Sun Microsystems, Inc.
+ */
+
+#include "_Qquad.h"
+#include "_Qglobals.h"
+
+extern _Q_get_rp_rd(), _Q_set_exception();
+
+enum fcc_type
+_Q_cmpe(x,y)
+	QUAD x,y;
+{
+	unpacked	px,py,pz;
+	enum fcc_type	fcc;
+	_fp_current_exceptions = 0;
+	_fp_unpack(&px,&x,fp_op_extended);
+	_fp_unpack(&py,&y,fp_op_extended);
+	fcc = _fp_compare(&px,&py,1);	/* quiet NaN exceptional */
+	_Q_set_exception(_fp_current_exceptions);
+	return fcc;
+}

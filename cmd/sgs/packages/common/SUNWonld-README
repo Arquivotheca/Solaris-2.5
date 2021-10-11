@@ -1,0 +1,147 @@
+#ident	"@(#)SUNWonld-README	1.16	95/08/17 SMI"
+#
+# Copyright (c) 1994 by Sun Microsystems, Inc.
+#
+--------------------------------------------------------------------------------
+SUNWonld - link-editors development package.
+--------------------------------------------------------------------------------
+
+
+  The SUNWonld package contains the OSNET consolidation updates to
+  the link-editors to provide and support scoping/versioning within
+  ELF objects.  (see PSARC 1994/252, rti/bugid 1177496).  These elements
+  have been integrated into the /ws/on495-gate as of Oct 6th 94.
+
+  Deliverables are: ld(1) and associated support libraries, ld.so.1,
+  ldd(1) and pvs(1); system headers files sys/link.h and sys/elf.h. This
+  package exists in:
+			/ws/on495-gate/public/packages/{sparc|i386}
+
+  In addition to this package, documentation for associated man pages
+  and the Linker And Libraries Guide updates are also provided.  This
+  documentation exists in:
+			/ws/on495-gate/public/docs
+
+  The new manual pages:
+
+    man1/ld.1		Updated to show new linker options.
+    man1/ldd.1		Updated to show new ldd options.
+    man1/pvs.1		New manual page for print version section command.
+
+
+  The Linker and Libraries Guide updates are restricted to just the
+  updates to the present online (Answerbook) version of the documentation:
+
+    LLG-Chapter2-PART.ps
+			this contains the new information relevant
+			to scoping/versioning. This introduces the
+			link-editors basic processing of scoping/
+			versioning information (pages 32 - 41). 
+
+    LLG-Chapter5-ALL.ps	this is a new versioning section that describes
+			models for versioning shared objects (24 pages)
+			(previous Linker and Libraries chapters 5
+			and 6 have been bumped to 6 and 7).
+			Diff marks in this chapter signal updates over
+			previously released versions.
+
+    LLG-Chapter6-ALL.ps	this contains the details of any new versioning
+			ELF information (ie. new sections, dynamic entries,
+			etc.).  The updates to this chapter are very
+			scattered (78 pages):
+			New section type definitions (pages 149 - 156).
+			New symbol order description (page 162).
+			New versioning section descriptions (pages 173 - 178).
+			New versioning .dynamic entries (pages 199 - 202).
+
+  Overview:
+
+    scoping -		the reduction of global symbols to local.
+
+    versioning -	the assignment of global symbols to an interface
+  			definition.
+
+
+    Scoping/versioning information is provided by using an extension
+    to the mapfile syntax (invoked using ld(1) -M).  This information is
+    used by the link-editor to reduce specified symbols from global to
+    local, and to assign global symbols to an internal version definition.
+    See the updated Linker and Libraries Manual, Chapter 2, Page 32-41 for
+    more details.
+
+    By allowing the user to explicitly define the global symbolic
+    interface of an object, we provide for defining the objects ABI
+    while reducing the processing required to use (link with and
+    run with) the object.
+
+
+  Note:
+
+    Developers who have used previous releases of SUNWonld (later than
+    REV-7) should relink all scoped/versioned objects.  The internal
+    versioning structures went through an incompatible change during
+    PSARC review.
+
+    Objects generated that contain version information can be taken
+    to previous releases and run.  However, attempts to link versioned shared
+    objects on older releases (where ld(1) doesn't understand the new
+    versioning information) will cause the generation of `unknown section'
+    warnings from ld(1).
+    Objects may be built with the -znoversion option to prune away all
+    versioning information.
+
+    Scoped/versioned objects require the SC3.0.1 (or greater) version of
+    dbx (available via /usr/dist). 
+
+
+  Comments and Questions:
+
+    Contact Rod Evans and/or Mike Walker.
+
+  History
+
+    The following bug fixes have also been applied to this package:
+
+    NOTE: With the fix for bug#1185256 if you want a truly 'thread-safe'
+	  run-time linker you also need to run with the latest
+	  version of libthread (on495-beta or later).
+
+
+Bugid   Risk Synopsis
+------- -----------------------
+1179363 segment addresses not being caclulated properly when mapfiles are used
+1179076 gprof has trouble finding the etext symbol for scoped libraries
+1179880 the symbol _end is calculated with the wrong address
+1180010 Versioning/Scoping updates.
+1181026 ld.so.1 - dbx just can't handle it.
+1181174 x86 ABI shows only 1 reserved PLT entry rather than 4
+1182089 the continuing saga of invalid relocations in ld.so.1
+1181841 run-time loader debugger doesn't work if ld.so.1 built without profiling
+1181633 pvs(1) updates.
+1181166 Unclear message output from ld w.r.t. map files
+1171726 Enhanced LD_PRELOAD (or new environment variable) for higher trust
+1184436 relocations against non-allocable sections are passed to ld.so.1
+1183916 Some copy relocations aren't necessary.
+1184330 text alignment calculation incorrect when .align padding is in effect
+1178994 RTLD_GLOBAL semantics not clear
+1184454 ldd should process non-executable shared objects.
+1186050 ld is in-efficient in how it creates it's output relocations
+1185256 ld.so.1 is not threads safe durring it's run-time binding of symbols
+1194710 mapfile section identifier $REL broken in 2.5
+1187274	rtld doesn't always do the correct thing for copy relocations
+1187869	Seg fault executing 4.1.x compiled program on sol 2.4 with setgid/setuid
+1190133	Why spend time linking libdl.so?
+1193794	.bss section must be the last section of a segment
+1167049	Need additional relocation types for C++
+1198994	new filters cause dbx/rtc grief
+1199539 RFE for significant reduction of swap space need to link with large
+	archives
+1206122	ld(1) support interface makes life hard for unbundled products
+1210707 ld(1) core dumps on unknown section types
+1198970	ldd doesn't work with sbcp
+1214740	nss_*.so files should only be loaded from /usr/lib
+1214211	dlopen
+1212392	BCP's "dlsym()" lookup defective
+1216291 Gets ld: fatal: small GOT overflows error when linking Dyn Lib on
+	2.5 Beta.
+1218109	runtime linker BCP support requires additional iflush instructions

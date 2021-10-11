@@ -1,0 +1,48 @@
+#	Copyright (c) 1990-95 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)prototype_com	1.29	95/03/27 (c) Sun Microsystems, Inc.
+#
+# This required package information file contains a list of package contents.
+# The 'pkgmk' command uses this file to identify the contents of a package
+# and their location on the development machine when building the package.
+# Can be created via a text editor or through use of the 'pkgproto' command.
+
+#!search <pathname pathname ...>	# where to find pkg objects
+#!include <filename>			# include another 'prototype' file
+#!default <mode> <owner> <group>	# default used if not specified on entry
+#!<param>=<value>			# puts parameter in pkg environment
+
+# packaging files
+i pkginfo
+i copyright
+i depend
+#
+# source locations relative to the prototype file
+#
+# SUNWloc
+#
+d none usr 775 root sys
+d none usr/bin 775 root bin
+f none usr/bin/chrtbl 555 bin bin
+f none usr/bin/colltbl 555 bin bin
+f none usr/bin/gencat 555 bin bin
+f none usr/bin/gettxt 555 bin bin
+f none usr/bin/kbdcomp 555 bin bin
+f none usr/bin/locale 555 bin bin
+f none usr/bin/mkmsgs 555 root root
+f none usr/bin/montbl 555 bin bin
+f none usr/bin/msgfmt 555 bin bin
+f none usr/bin/printf 555 bin bin
+f none usr/bin/srchtxt 555 bin bin
+l none usr/bin/wchrtbl=../../usr/bin/chrtbl
+f none usr/bin/xgettext 555 bin bin
+d none usr/lib 775 root bin
+d none usr/lib/locale 755 bin bin
+d none usr/lib/locale/C 755 bin bin
+d none usr/lib/locale/C/LC_COLLATE 755 bin bin
+f none usr/lib/locale/C/LC_COLLATE/coll.so 555 bin bin
+s none usr/lib/locale/POSIX=./C
+d none usr/lib/locale/iso_8859_1 755 bin bin
+d none usr/lib/locale/iso_8859_1/LC_CTYPE 755 bin bin
+f none usr/lib/locale/iso_8859_1/LC_CTYPE/ctype 555 bin bin

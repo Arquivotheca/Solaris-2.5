@@ -1,0 +1,77 @@
+# Copyright (c) 1993 Sun Microsystems, Inc.  All Rights Reserved.
+#
+#	"@(#)sh_YU	1.1	93/03/02 SMI"
+#
+# This mapfile is provided as example only. Sun Microsystems Inc.,
+# does not warrant that this file is error-free.
+#
+#	sh_YU.646y
+#
+# ttymap file for Yugoslav keyboard (IBM PC ???)
+#
+# This mapping file is indended for use with the 646y loadfont.
+# It implements a keyboard mapping which allows the use of the
+# '646y' code set, using the Danish Standards Association's recommended
+# short names (but not their "compose" value), such that the "compose" key,
+# followed by the 2-letter code, generates the character.
+# In addition, more "graphic" combinations are also encoded
+# (for instance, E^ in addition to E>, and ?? in addition to ?I
+# for inverted question mark). The graphic characters are encoded
+# using special names.
+# There are, in this set, no nonspacing characters; all non-keyboard
+# sequences require the "compose" key.
+#
+#
+# Input mapping is not done 
+input:
+#
+# The toggle key is CTRL t.
+#
+toggle: 0x14
+#
+# 
+#
+# The "compose" character is CTRL x.
+# Compose mode: 
+# 
+compose:  0x18      # unfrequently used ctrl character
+#			
+'''  ' '  '''          # apostrophe
+#
+#
+# The following output section maps '9b' (an ANSI CSI code,
+# which unfortunately is also an IBM character) such that
+# it prints.
+#
+output:
+0x9b	0x1b 0x9b
+#
+scancodes:
+#      NORM    SHIFT     ALT   ALT_SHIFT
+0x3	'2'	'"'	'2'|N	'@'
+0x7	'6'	'&'	'6'|N	'^'|C
+0x8	'7'	'/'	'7'|N	'&'
+0x9	'8'	'('	'8'|N	'*'
+0xa	'9'	')'	'9'|N	'('
+0xb	'0'	'='	'0'|N	')'
+0xc	'''	'?'	'-'	'_'|C
+0xd	'+'	'*'	'='	'+'
+0x15	'z'|C	'Z'|C	'y'	'Y'	CAPS
+0x1a	'{'	'['	'['|C	'{'	CAPS
+0x1b	'|'	'\'	']'|C	'}'	CAPS
+0x27	'~'	'^'	';'	':'	CAPS
+0x28	'}'	']'	'''	'"'	CAPS
+0x2b	'`'	'@'	'\'|C	'|'	CAPS
+0x2c	'y'|C	'Y'|C	'z'|C	'Z'|C	CAPS
+0x29	'<'	'>'	'`'	'~'
+0x33	','	';'	','	'<'
+0x34	'.'	':'	'.'	'>'
+0x35	'-'	'_'|C	'/'	'?'
+0x56	'`'	'@'	'\'|C	'|'	CAPS
+#
+#
+# map CTRL SHIFT F1  to be 0x18 for the compose character key
+F37     0x18
+# map CTRL SHIFT F2 to be 0x14 for the toggle key
+F38     0x14
+#

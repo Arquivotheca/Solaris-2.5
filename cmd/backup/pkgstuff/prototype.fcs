@@ -1,0 +1,129 @@
+#
+# ident $SunId: @(#)prototype 1.14 92/10/23 SMI [RMTC] $
+#
+i copyright
+i depend
+i description
+i pkgicon
+i pkginfo
+i postremove
+#
+d none /etc/opt							0775 root sys
+d none /etc/opt/SUNWhsm						2775 root sys
+d none /etc/opt/SUNWhsm/dumps					2775 root sys
+#
+d none SUNWhsm							0775 root sys
+s none SUNWhsm/adm=/var/opt/SUNWhsm
+#
+!search ../src/wd/recover
+#
+d none SUNWhsm/bin						0775 root sys
+f none SUNWhsm/bin/recover					4555 root bin
+#
+!search ../doc/PS
+#
+d none SUNWhsm/doc						0775 root sys
+f none SUNWhsm/doc/README					0444 bin  bin
+f none SUNWhsm/doc/prod.notes.ps				0444 bin  bin
+#
+!search ../doc/PS/admin-guide
+#
+d none SUNWhsm/doc/admin-guide					0775 root sys
+f none SUNWhsm/doc/admin-guide/00-Title.ps			0444 bin  bin
+f none SUNWhsm/doc/admin-guide/01-Credits.ps			0444 bin  bin
+f none SUNWhsm/doc/admin-guide/02-AdminBookTOC.ps		0444 bin  bin
+f none SUNWhsm/doc/admin-guide/03-Preface.VB.ps			0444 bin  bin
+f none SUNWhsm/doc/admin-guide/11-intro.chap.ps			0444 bin  bin
+f none SUNWhsm/doc/admin-guide/12-config.chap.ps		0444 bin  bin
+f none SUNWhsm/doc/admin-guide/13-tapelib.chap.ps		0444 bin  bin
+f none SUNWhsm/doc/admin-guide/14-opermon.chap.ps		0444 bin  bin
+f none SUNWhsm/doc/admin-guide/15-recovery.chap.ps		0444 bin  bin
+f none SUNWhsm/doc/admin-guide/16-db.chap.ps			0444 bin  bin
+f none SUNWhsm/doc/admin-guide/17-dump.chap.ps			0444 bin  bin
+f none SUNWhsm/doc/admin-guide/18-guides.chap.ps		0444 bin  bin
+f none SUNWhsm/doc/admin-guide/19-disaster.chap.ps		0444 bin  bin
+f none SUNWhsm/doc/admin-guide/2A-changes.ps			0444 bin  bin
+f none SUNWhsm/doc/admin-guide/2B-pieces.ps			0444 bin  bin
+f none SUNWhsm/doc/admin-guide/2C-err.app.ps			0444 bin  bin
+f none SUNWhsm/doc/admin-guide/2D-exabyte.app.ps		0444 bin  bin
+f none SUNWhsm/doc/admin-guide/2E-manpages.app.ps		0444 bin  bin
+f none SUNWhsm/doc/admin-guide/2F-manpages.ps			0444 bin  bin
+f none SUNWhsm/doc/admin-guide/2G-Glossary.ps			0444 bin  bin
+f none SUNWhsm/doc/admin-guide/3A-AdminBookIX.ps		0444 bin  bin
+#
+!search ../doc/PS/getting-started
+#
+d none SUNWhsm/doc/getting-started				0775 root sys
+f none SUNWhsm/doc/getting-started/00-title.ps			0444 bin  bin
+f none SUNWhsm/doc/getting-started/01-credit.ps			0444 bin  bin
+f none SUNWhsm/doc/getting-started/02-GetStartBookTOC.ps	0444 bin  bin
+f none SUNWhsm/doc/getting-started/03-preface.ps		0444 bin  bin
+f none SUNWhsm/doc/getting-started/11-overview.install.ps	0444 bin  bin
+f none SUNWhsm/doc/getting-started/12-configuring.ps		0444 bin  bin
+f none SUNWhsm/doc/getting-started/13-backingup.ps		0444 bin  bin
+f none SUNWhsm/doc/getting-started/14-restoring.ps		0444 bin  bin
+f none SUNWhsm/doc/getting-started/2A-glossary.ps		0444 bin  bin
+f none SUNWhsm/doc/getting-started/3A-GetStartBookIX.ps		0444 bin  bin
+#
+s none SUNWhsm/etc=/etc/opt/SUNWhsm
+#
+!search ../src/wd/include/protocols
+#
+d none SUNWhsm/include						0775 root sys
+d none SUNWhsm/include/protocols				0775 root sys
+f none SUNWhsm/include/protocols/dumprestore.h			0644 bin  bin
+#
+!search ../src/wd/database/dbserv ../src/wd/dumpex ../src/wd/operd/operd
+#
+d none SUNWhsm/lib						0775 root sys
+f none SUNWhsm/lib/dumpconfrc					0555 bin  bin
+f none SUNWhsm/lib/dumpdf					0555 bin  bin
+f none SUNWhsm/lib/dumpsetup					0555 bin  bin
+f none SUNWhsm/lib/rpc.dumpdbd					0555 bin  bin
+f none SUNWhsm/lib/rpc.operd					0555 bin  bin
+#
+!search ../src/wd/man/man1 ../src/wd/man/man1m ../src/wd/man/man4
+#
+d none SUNWhsm/man						0755 bin  bin
+d none SUNWhsm/man/man1						0755 bin  bin
+f none SUNWhsm/man/man1/dumpintro.1				0444 bin  bin
+f none SUNWhsm/man/man1/recover.1				0444 bin  bin
+d none SUNWhsm/man/man1m					0755 bin  bin
+f none SUNWhsm/man/man1m/dumpconfig.1m				0444 bin  bin
+f none SUNWhsm/man/man1m/dumpconfrc.1m				0444 bin  bin
+f none SUNWhsm/man/man1m/dumpdm.1m				0444 bin  bin
+f none SUNWhsm/man/man1m/dumped.1m				0444 bin  bin
+f none SUNWhsm/man/man1m/dumpex.1m				0444 bin  bin
+f none SUNWhsm/man/man1m/dumpfind.1m				0444 bin  bin
+f none SUNWhsm/man/man1m/dumptm.1m				0444 bin  bin
+f none SUNWhsm/man/man1m/fastfs.1m				0444 bin  bin
+f none SUNWhsm/man/man1m/hsmdump.1m				0444 bin  bin
+f none SUNWhsm/man/man1m/hsmrestore.1m				0444 bin  bin
+f none SUNWhsm/man/man1m/opermon.1m				0444 bin  bin
+f none SUNWhsm/man/man1m/rpc.dumpdbd.1m				0444 bin  bin
+f none SUNWhsm/man/man1m/rpc.operd.1m				0444 bin  bin
+f none SUNWhsm/man/man1m/tapedbfix.1m				0444 bin  bin
+d none SUNWhsm/man/man4						0755 bin  bin
+f none SUNWhsm/man/man4/dump.conf.4				0444 bin  bin
+f none SUNWhsm/man/man4/dumpconfig.4				0444 bin  bin
+f none SUNWhsm/man/man4/hsmdump.4				0444 bin  bin
+f none SUNWhsm/man/man4/operd.conf.4				0444 bin  bin
+#
+!search ../src/wd/database/utils ../src/wd/dump ../src/wd/dumpex ../src/wd/fastfs ../src/wd/operd/monitor ../src/wd/restore
+#
+d none SUNWhsm/sbin						0775 root sys
+f none SUNWhsm/sbin/dumpconfig					0555 bin  bin
+f none SUNWhsm/sbin/dumpdm					0555 bin  bin
+f none SUNWhsm/sbin/dumped					0555 bin  bin
+f none SUNWhsm/sbin/dumpex					0555 bin  bin
+f none SUNWhsm/sbin/dumpfind					0555 bin  bin
+f none SUNWhsm/sbin/dumptm					0555 bin  bin
+f none SUNWhsm/sbin/fastfs					0555 bin  bin
+f none SUNWhsm/sbin/hsmdump					6555 root tty
+f none SUNWhsm/sbin/hsmrestore					4555 root bin
+f none SUNWhsm/sbin/opermon					0555 bin  bin
+f none SUNWhsm/sbin/tapedbfix					0555 bin  bin
+#
+d none /var/opt							0775 root sys
+d none /var/opt/SUNWhsm						2775 root sys
+d none /var/opt/SUNWhsm/dumplog					2775 root sys

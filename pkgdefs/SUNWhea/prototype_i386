@@ -1,0 +1,98 @@
+#       Copyright (c) 1990-95 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)prototype_i386	1.34	95/03/23 (c) Sun Microsystems, Inc.
+#
+# This required package information file contains a list of package contents.
+# The 'pkgmk' command uses this file to identify the contents of a package
+# and their location on the development machine when building the package.
+# Can be created via a text editor or through use of the 'pkgproto' command.
+
+#!search <pathname pathname ...>	# where to find pkg objects
+#!include <filename>			# include another 'prototype' file
+#!default <mode> <owner> <group>	# default used if not specified on entry
+#!<param>=<value>			# puts parameter in pkg environment
+
+#
+# Include ISA independent files (prototype_com)
+#
+!include prototype_com
+#
+#
+#
+# List files which are I386 specific here
+#
+# source locations relative to the prototype file
+#
+#
+# SUNWhea
+#
+f none usr/include/kerberos/conf-bsd386i.h 644 bin bin
+f none usr/include/sys/asm_misc.h 644 bin bin
+f none usr/include/sys/bootsvcs.h 644 bin bin
+f none usr/include/sys/clock.h 644 bin bin
+f none usr/include/sys/condvar_impl.h 644 bin bin
+f none usr/include/sys/cram.h 644 bin bin
+f none usr/include/sys/ddi_subrdefs.h 644 bin bin
+f none usr/include/sys/debugreg.h 644 bin bin
+d none usr/include/sys/dktp 755 bin bin
+f none usr/include/sys/dktp/altsctr.h 644 bin bin
+f none usr/include/sys/dktp/cmpkt.h 644 bin bin
+f none usr/include/sys/dma_engine.h 644 bin bin
+f none usr/include/sys/dktp/fdisk.h 644 bin bin
+f none usr/include/sys/dma_i8237A.h 644 bin bin
+f none usr/include/sys/eisarom.h 644 bin bin
+f none usr/include/sys/fp.h 644 bin bin
+f none usr/include/sys/fs/s5_fblk.h 644 bin bin
+f none usr/include/sys/fs/s5_fs.h 644 bin bin
+f none usr/include/sys/fs/s5_fsdir.h 644 bin bin
+f none usr/include/sys/fs/s5_inode.h 644 bin bin
+f none usr/include/sys/fs/s5_lockfs.h 644 bin bin
+f none usr/include/sys/fs/s5_mount.h 644 bin bin
+f none usr/include/sys/gld.h 644 bin bin
+f none usr/include/sys/i8272A.h 644 bin bin
+f none usr/include/sys/immu.h 644 bin bin
+f none usr/include/sys/machcpuvar.h 644 bin bin
+f none usr/include/sys/machparam.h 644 bin bin
+f none usr/include/sys/machsystm.h 644 bin bin
+f none usr/include/sys/machthread.h 644 bin bin
+f none usr/include/sys/mcdma.h 644 bin bin
+f none usr/include/sys/mmu.h 644 bin bin
+f none usr/include/sys/mutex_impl.h 644 bin bin
+f none usr/include/sys/nvm.h  644 bin bin
+f none usr/include/sys/pci_impl.h 644 bin bin
+f none usr/include/sys/pcic_reg.h 644 bin bin
+f none usr/include/sys/pcic_var.h 644 bin bin
+f none usr/include/sys/pic.h 644 bin bin
+f none usr/include/sys/pit.h 644 bin bin
+f none usr/include/sys/prom_isa.h 644 bin bin
+f none usr/include/sys/psm.h 644 bin bin
+f none usr/include/sys/psm_defs.h 644 bin bin
+f none usr/include/sys/psm_types.h 644 bin bin
+f none usr/include/sys/pte.h 644 bin bin
+f none usr/include/sys/rm_platter.h 644 bin bin
+f none usr/include/sys/rtc.h 644 bin bin
+f none usr/include/sys/rwlock_impl.h 644 bin bin
+d none usr/include/sys/scsi/targets 755 bin bin
+f none usr/include/sys/scsi/targets/stdef.h 644 bin bin
+f none usr/include/sys/segment.h 644 bin bin
+f none usr/include/sys/sema_impl.h 644 bin bin
+f none usr/include/sys/smp_impldefs.h 644 bin bin
+f none usr/include/sys/sysi86.h 644 bin bin
+f none usr/include/sys/spl.h 644 bin bin
+f none usr/include/sys/tss.h 644 bin bin
+f none usr/include/sys/v86.h 644 bin bin
+f none usr/include/sys/v86intr.h 644 bin bin
+f none usr/include/sys/vm_machparam.h 644 bin bin
+f none usr/include/sys/xque.h 644 bin bin
+f none usr/include/sys/x_call.h 644 bin bin
+f none usr/include/sys/xc_levels.h 644 bin bin
+d none usr/platform 755 root sys
+d none usr/platform/i86pc 755 root sys
+d none usr/platform/i86pc/include 755 bin bin
+d none usr/platform/i86pc/include/vm 755 bin bin
+f none usr/platform/i86pc/include/vm/hat_i86.h 644 bin bin
+f none usr/platform/i86pc/include/vm/seg_kmem.h 644 bin bin
+f none usr/platform/i86pc/include/vm/seg_vpix.h 644 bin bin
+d none usr/share/src/uts/i86pc 755 bin bin
+s none usr/share/src/uts/i86pc/vm=../../../../platform/i86pc/include/vm

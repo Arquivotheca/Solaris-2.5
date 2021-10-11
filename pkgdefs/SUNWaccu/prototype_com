@@ -1,0 +1,67 @@
+#	Copyright (c) 1990-93 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)prototype_com	1.15	93/04/02 (c) Sun Microsystems, Inc.
+#
+# This required package information file contains a list of package contents.
+# The 'pkgmk' command uses this file to identify the contents of a package
+# and their location on the development machine when building the package.
+# Can be created via a text editor or through use of the 'pkgproto' command.
+
+#!search <pathname pathname ...>	# where to find pkg objects
+#!include <filename>			# include another 'prototype' file
+#!default <mode> <owner> <group>	# default used if not specified on entry
+#!<param>=<value>			# puts parameter in pkg environment
+
+# packaging files
+i pkginfo
+i copyright
+i depend
+#
+# source locations relative to the prototype file
+#
+# SUNWaccu
+#
+d none usr 775 root sys
+d none usr/bin 775 root bin
+f none usr/bin/acctcom 555 bin bin
+s none usr/bin/sag=../sbin/sag
+s none usr/bin/sar=../sbin/sar
+f none usr/bin/timex 555 bin sys
+d none usr/lib 775 root bin
+d none usr/lib/acct 775 bin bin
+f none usr/lib/acct/acctcms 555 bin bin
+f none usr/lib/acct/acctcon 555 bin bin
+f none usr/lib/acct/acctcon1 555 bin bin
+f none usr/lib/acct/acctcon2 555 bin bin
+f none usr/lib/acct/acctdisk 555 bin bin
+f none usr/lib/acct/acctdusg 555 bin bin
+f none usr/lib/acct/acctmerg 555 bin bin
+f none usr/lib/acct/accton 4755 root adm
+f none usr/lib/acct/acctprc 555 bin bin
+f none usr/lib/acct/acctprc1 555 bin bin
+f none usr/lib/acct/acctprc2 555 bin bin
+f none usr/lib/acct/acctwtmp 555 bin bin
+f none usr/lib/acct/chargefee 555 bin bin
+f none usr/lib/acct/ckpacct 555 bin bin
+f none usr/lib/acct/closewtmp 555 bin bin
+f none usr/lib/acct/dodisk 555 bin bin
+f none usr/lib/acct/fwtmp 555 bin bin
+f none usr/lib/acct/lastlogin 555 bin bin
+f none usr/lib/acct/monacct 555 bin bin
+f none usr/lib/acct/nulladm 555 bin bin
+f none usr/lib/acct/prctmp 555 bin bin
+f none usr/lib/acct/prdaily 555 bin bin
+f none usr/lib/acct/prtacct 555 bin bin
+f none usr/lib/acct/ptecms.awk 555 bin bin
+f none usr/lib/acct/ptelus.awk 555 bin bin
+f none usr/lib/acct/remove 555 bin bin
+f none usr/lib/acct/runacct 555 bin bin
+f none usr/lib/acct/shutacct 555 bin bin
+f none usr/lib/acct/startup 555 bin bin
+f none usr/lib/acct/turnacct 555 bin bin
+f none usr/lib/acct/utmp2wtmp 555 bin bin
+f none usr/lib/acct/wtmpfix 555 bin bin
+d none usr/sbin 775 root bin
+f none usr/sbin/sag 555 bin bin
+f none usr/sbin/sar 555 bin bin

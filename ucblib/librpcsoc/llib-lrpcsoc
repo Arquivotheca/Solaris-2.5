@@ -1,0 +1,34 @@
+/* LINTLIBRARY */
+
+#include <stdio.h>
+#include <rpc/rpc.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <netdb.h>
+#include <errno.h>
+#include <rpc/pmap_clnt.h>
+#include <sys/syslog.h>
+#include <sys/ioctl.h>
+#include <sys/filio.h>
+#include <sys/types.h>
+#include <sys/errno.h>
+#include <netinet/in.h>
+
+/* clnt_tcp.c */
+CLIENT *clnttcp_create(raddr, prog, vers, sockp, sendsz, recvsz) struct sockaddr_in *raddr; u_long prog; u_long vers; register int *sockp; u_int sendsz; u_int recvsz; { static CLIENT *x; return(x); }
+
+/* clnt_udp.c */
+CLIENT *clntudp_bufcreate(raddr, program, version, wait, sockp, sendsz, recvsz) struct sockaddr_in *raddr; u_long program; u_long version; struct timeval wait; register int *sockp; u_int sendsz; u_int recvsz; { static CLIENT *x; return(x); }
+CLIENT *clntudp_create(raddr, program, version, wait, sockp) struct sockaddr_in *raddr; u_long program; u_long version; struct timeval wait; register int *sockp; { static CLIENT *x; return(x); }
+
+/* rtime.c */
+int rtime(addrp, timep, timeout) struct sockaddr_in *addrp; struct timeval *timep; struct timeval *timeout; { static int x; return(x); }
+
+/* svc_tcp.c */
+SVCXPRT *svctcp_create(sock, sendsize, recvsize) register int sock; u_int sendsize; u_int recvsize; { static SVCXPRT *x; return(x); }
+SVCXPRT *svcfd_create(fd, sendsize, recvsize) int fd; u_int sendsize; u_int recvsize; { static SVCXPRT *x; return(x); }
+
+/* svc_udp.c */
+SVCXPRT *svcudp_bufcreate(sock, sendsz, recvsz) register int sock; u_int sendsz; u_int recvsz; { static SVCXPRT *x; return(x); }
+SVCXPRT *svcudp_create(sock) int sock; { static SVCXPRT *x; return(x); }
+int svcudp_enablecache(transp, size) SVCXPRT *transp; u_long size; { static int x; return(x); }

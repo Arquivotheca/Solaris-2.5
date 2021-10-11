@@ -1,0 +1,32 @@
+#!/bin/sh
+#
+#ident  "@(#)i.iuap 1.5 95/08/09 SMI"
+#
+# Copyright (c) 1993 by Sun Microsystems, Inc.
+#
+
+while read src dest
+do
+	if [ ! -f $dest ] ; then
+		cp $src $dest
+	else
+		grep '^[ 	]*mcpzsa[ 	]' $dest > /dev/null 2>&1
+		if [ $? != 0 ] ; then
+			grep '^[ 	]*mcpzsa[ 	]' $src >> $dest
+		fi
+		grep '^[ 	]*stc[ 	]' $dest > /dev/null 2>&1
+		if [ $? != 0 ] ; then
+			grep '^[ 	]*stc[ 	]' $src >> $dest
+		fi
+		grep '^[ 	]*ptsl[ 	][ 	]*0[ 	][ 	]*15[ 	]' \
+			$dest > /dev/null 2>&1
+		if [ $? = 0 ] ; then
+			sed "/^[ 	]*ptsl/s/15/47/" $dest > /tmp/x.$$
+			cp /tmp/x.$$ $dest
+			rm -f /tmp/xx.$$
+		fi
+	fi
+done
+
+exit 0
+

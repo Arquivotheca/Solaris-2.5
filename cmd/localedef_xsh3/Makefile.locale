@@ -1,0 +1,29 @@
+#
+#ident	"@(#)Makefile.locale	1.15	93/10/07 SMI"
+#
+# Copyright (c) 1993 by Sun Microsystems, Inc.
+#
+# cmd/localedef/Makefile.locale
+
+#local macros
+TMPDIRMODE=	0777
+
+# add an installation rule for each item in BUILDDIRS
+# also add an explicit dependency in Makefile.target for each
+#
+
+BUILDDIRS=	C
+BUILDDIRS2=	iso_8859_1 $(BUILDDIRS)
+
+ROOTLOCALE=	$(ROOTLIB)/locale
+
+ROOTC=		$(ROOTLOCALE)/C
+ROOTPOSIX=	$(ROOTLOCALE)/POSIX
+
+ROOTCOUNTRY= $(BUILDDIRS:%=$(ROOTLOCALE)/%)
+
+ROOTDIRS=	$(ROOTLOCALE) $(ROOTCOUNTRY) 
+
+ROOTSYMLN=	$(ROOTPOSIX)
+
+$(ROOTISO) := DIRMODE= $(TMPDIRMODE)
